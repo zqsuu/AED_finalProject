@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package AirCompany;
+package ui.AirCompany;
 
 
 
@@ -103,7 +103,7 @@ public class AirlineCompany extends javax.swing.JPanel {
         tabPatient.setLayout(tabPatientLayout);
         tabPatientLayout.setHorizontalGroup(
             tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tabPatientLayout.setVerticalGroup(
             tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -2,10 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Customer;
-
-import Airport.*;
-import AirCompany.*;
+package ui.Airport;
 
 
 
@@ -14,7 +11,7 @@ import AirCompany.*;
  *
  * @author HP
  */
-public class Customer extends javax.swing.JPanel {
+public class Airport extends javax.swing.JPanel {
 
 //    PatientDirectory plist;
 //    DoctorDirectory dlist;
@@ -98,7 +95,7 @@ public class Customer extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REFUND");
+        jLabel1.setText("LOCATION");
 
         javax.swing.GroupLayout tabPatientLayout = new javax.swing.GroupLayout(tabPatient);
         tabPatient.setLayout(tabPatientLayout);
@@ -148,7 +145,7 @@ public class Customer extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("PURCHASE");
+        jLabel3.setText("ROUTE");
 
         javax.swing.GroupLayout tabHospitalLayout = new javax.swing.GroupLayout(tabHospital);
         tabHospital.setLayout(tabHospitalLayout);

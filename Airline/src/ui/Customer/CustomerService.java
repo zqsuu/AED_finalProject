@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package AirCompany;
+package ui.Customer;
 
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -14,7 +14,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author HP
  */
-public class Income extends javax.swing.JPanel {
+public class CustomerService extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
@@ -50,31 +50,26 @@ public class Income extends javax.swing.JPanel {
         lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAirplane = new javax.swing.JTable();
+        tblPeople = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
         txtAge1 = new javax.swing.JTextField();
-        txtAge2 = new javax.swing.JTextField();
-        txtName1 = new javax.swing.JTextField();
         txtId1 = new javax.swing.JTextField();
         lblId7 = new javax.swing.JLabel();
-        lblId8 = new javax.swing.JLabel();
-        lblId9 = new javax.swing.JLabel();
         lblId10 = new javax.swing.JLabel();
-        txtAge3 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        lblId3 = new javax.swing.JLabel();
+        txtName2 = new javax.swing.JTextField();
+        txtId2 = new javax.swing.JTextField();
+        lblId4 = new javax.swing.JLabel();
+        lblId9 = new javax.swing.JLabel();
         lblId11 = new javax.swing.JLabel();
-        txtAge4 = new javax.swing.JTextField();
-        lblId12 = new javax.swing.JLabel();
-        txtAge5 = new javax.swing.JTextField();
-        lblId13 = new javax.swing.JLabel();
-        lblId14 = new javax.swing.JLabel();
-        lblId15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Income");
+        jLabel1.setText("Customer Service");
 
         btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnDelete.setText("Delete");
@@ -107,15 +102,15 @@ public class Income extends javax.swing.JPanel {
         });
 
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId2.setText("TOTAL INCOME");
+        lblId2.setText("PRICE");
 
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("HUMAN COST");
+        lblId1.setText("WEIGHT");
 
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId.setText("FLIGHT COST");
+        lblId.setText("SIZE");
 
-        tblAirplane.setModel(new javax.swing.table.DefaultTableModel(
+        tblPeople.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -123,11 +118,11 @@ public class Income extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "COMPANY", "TYPE", "SEATS", "FUEL CONSUMPTION", "PRICE", "SERVICE LIFE"
+                "DEPARTURE", "DESTINATION", "FLIGHT TIME", "STATE", "GATE", "TIME"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -141,12 +136,12 @@ public class Income extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblAirplane.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblPeople.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblAirplaneMouseClicked(evt);
+                tblPeopleMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblAirplane);
+        jScrollPane1.setViewportView(tblPeople);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,31 +167,30 @@ public class Income extends javax.swing.JPanel {
         });
 
         lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId7.setText("TICKET PRICE");
-
-        lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId8.setText("QUANTITY");
-
-        lblId9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId9.setText("TICKET PRICE");
+        lblId7.setText("REMARK");
 
         lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId10.setText("QUANTITY");
+        lblId10.setText("CLASS");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FIRST CLASS", "BUSINESS CLASS", "ENCONOMY CLASS", " " }));
+
+        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId3.setText("QUANTITY");
+
+        txtId2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtId2KeyPressed(evt);
+            }
+        });
+
+        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId4.setText("NAME");
+
+        lblId9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId9.setText("FOOD");
 
         lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId11.setText("QUANTITY");
-
-        lblId12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId12.setText("TICKET PRICE");
-
-        lblId13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId13.setText("FIRST CLASS");
-
-        lblId14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId14.setText("ECONOMY CLASS");
-
-        lblId15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId15.setText("BUSINESS CLASS");
+        lblId11.setText("LUGGAGE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,69 +200,53 @@ public class Income extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnDelete)
-                                .addGap(30, 30, 30)
-                                .addComponent(btnUpdate)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
+                        .addComponent(btnSave)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnDelete)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblId11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAge4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblId12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAge5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblId10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAge3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(lblId9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblId15, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(191, 191, 191))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtId1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblId1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(255, 255, 255))))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtId2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtId1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(438, 438, 438))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -287,11 +265,11 @@ public class Income extends javax.swing.JPanel {
                     .addComponent(btnSave)
                     .addComponent(lblSearchContent)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(lblId13)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblId11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblId))
@@ -303,35 +281,25 @@ public class Income extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId2)
                             .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId8))
+                            .addComponent(lblId10)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(lblId15)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblId7)
+                            .addComponent(txtId1))))
+                .addGap(45, 45, 45)
+                .addComponent(lblId9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(lblId14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                    .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId3))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -340,7 +308,7 @@ public class Income extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblAirplane.getSelectedRow();
+        int selectedRowIndex = tblPeople.getSelectedRow();
         
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this,"Please select a row to delete.");
@@ -348,14 +316,14 @@ public class Income extends javax.swing.JPanel {
         }
         
         //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblPeople.getModel();
         //delete row
-        if(tblAirplane.getSelectedRowCount()==1){
+        if(tblPeople.getSelectedRowCount()==1){
             //if single row is selected then delete
-            tblModel.removeRow(tblAirplane.getSelectedRow());
+            tblModel.removeRow(tblPeople.getSelectedRow());
             JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
         }else{
-            if(tblAirplane.getRowCount()==0){
+            if(tblPeople.getRowCount()==0){
                 //if table is empty then display message
                 JOptionPane.showMessageDialog(this, "Table is Empty!");  
             }else{
@@ -372,7 +340,7 @@ public class Income extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirplane.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
 //        if(tblDoctor.getSelectedRowCount() == 1){
 //            //If single row is selected then update
 //            
@@ -502,20 +470,20 @@ public class Income extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void tblAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirplaneMouseClicked
+    private void tblPeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeopleMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirplane.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
         
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblAirplane.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblAirplane.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblAirplane.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblAirplane.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblAirplane.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblAirplane.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblAirplane.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblAirplane.getSelectedRow(), 8).toString();
+        String tblId = tblModel.getValueAt(tblPeople.getSelectedRow(), 0).toString();
+        String tblName = tblModel.getValueAt(tblPeople.getSelectedRow(), 1).toString();
+        String tblGender = tblModel.getValueAt(tblPeople.getSelectedRow(), 2).toString();
+        String tblAge = tblModel.getValueAt(tblPeople.getSelectedRow(), 3).toString();
+        String tblPhone = tblModel.getValueAt(tblPeople.getSelectedRow(), 4).toString();
+        String tblPassword = tblModel.getValueAt(tblPeople.getSelectedRow(), 5).toString();
+        String tblField = tblModel.getValueAt(tblPeople.getSelectedRow(), 6).toString();
+        String tblStandard = tblModel.getValueAt(tblPeople.getSelectedRow(), 7).toString();
+        String tblFee = tblModel.getValueAt(tblPeople.getSelectedRow(), 8).toString();
         
         
         
@@ -530,7 +498,7 @@ public class Income extends javax.swing.JPanel {
 //        txtStandard.setText(tblStandard);
 //        txtFee.setText(tblFee);
         
-    }//GEN-LAST:event_tblAirplaneMouseClicked
+    }//GEN-LAST:event_tblPeopleMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
@@ -539,9 +507,9 @@ public class Income extends javax.swing.JPanel {
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
         // TODO add your handling code here:
         //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblAirplane.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblAirplane.setRowSorter(tr);
+        tblPeople.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
     }//GEN-LAST:event_txtSearchKeyPressed
 
@@ -557,6 +525,10 @@ public class Income extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtId1KeyPressed
 
+    private void txtId2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtId2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtId2KeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -564,37 +536,32 @@ public class Income extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId10;
     private javax.swing.JLabel lblId11;
-    private javax.swing.JLabel lblId12;
-    private javax.swing.JLabel lblId13;
-    private javax.swing.JLabel lblId14;
-    private javax.swing.JLabel lblId15;
     private javax.swing.JLabel lblId2;
+    private javax.swing.JLabel lblId3;
+    private javax.swing.JLabel lblId4;
     private javax.swing.JLabel lblId7;
-    private javax.swing.JLabel lblId8;
     private javax.swing.JLabel lblId9;
     private javax.swing.JLabel lblSearchContent;
-    private javax.swing.JTable tblAirplane;
+    private javax.swing.JTable tblPeople;
     private javax.swing.JTextField txtAge1;
-    private javax.swing.JTextField txtAge2;
-    private javax.swing.JTextField txtAge3;
-    private javax.swing.JTextField txtAge4;
-    private javax.swing.JTextField txtAge5;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtId1;
+    private javax.swing.JTextField txtId2;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtName2;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         
-        DefaultTableModel model = (DefaultTableModel) tblAirplane.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
         model.setRowCount(0);
         
 //        for (Doctor dc : dlist.getDlist()){
