@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Airport;
+package ui.AirCompany;
 
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -14,7 +14,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author HP
  */
-public class Service extends javax.swing.JPanel {
+public class Crew extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
@@ -44,24 +44,33 @@ public class Service extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        lblId5 = new javax.swing.JLabel();
+        lblId3 = new javax.swing.JLabel();
+        cbRole = new javax.swing.JComboBox<>();
+        lblId6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPeople = new javax.swing.JTable();
+        tblCrew = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
-        txtAge1 = new javax.swing.JTextField();
-        txtId1 = new javax.swing.JTextField();
+        rbtnFemale = new javax.swing.JRadioButton();
+        rbtnMale = new javax.swing.JRadioButton();
         lblId7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txtFlyYears = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(153, 255, 204));
+        setBackground(new java.awt.Color(102, 102, 102));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Service");
+        jLabel1.setText("Flight Crew");
 
         btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnDelete.setText("Delete");
@@ -87,31 +96,59 @@ public class Service extends javax.swing.JPanel {
             }
         });
 
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+        });
+
+        lblId2.setForeground(new java.awt.Color(255, 255, 255));
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId2.setText("PERSON IN CHARGE");
+        lblId2.setText("GENDER");
 
+        lblId1.setForeground(new java.awt.Color(255, 255, 255));
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("TIME");
+        lblId1.setText("NAME");
 
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId.setText("SERVICE NAME");
+        lblId.setText("ID");
 
-        tblPeople.setModel(new javax.swing.table.DefaultTableModel(
+        lblId5.setForeground(new java.awt.Color(255, 255, 255));
+        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId5.setText("PASSWORD");
+
+        lblId3.setForeground(new java.awt.Color(255, 255, 255));
+        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId3.setText("AGE");
+
+        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Captain", "Pilot", "Stewardess", "Steward" }));
+        cbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRoleActionPerformed(evt);
+            }
+        });
+
+        lblId6.setForeground(new java.awt.Color(255, 255, 255));
+        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId6.setText("ROLE");
+
+        tblCrew.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "DEPARTURE", "DESTINATION", "FLIGHT TIME", "STATE", "GATE", "TIME"
+                "ID", "NAME", "GENDER", "AGE", "ROLE", "FLY YEARS", "PASSWORD"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -122,12 +159,12 @@ public class Service extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblPeople.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblCrew.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPeopleMouseClicked(evt);
+                tblCrewMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblPeople);
+        jScrollPane1.setViewportView(tblCrew);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,63 +180,87 @@ public class Service extends javax.swing.JPanel {
             }
         });
 
+        lblSearchContent.setBackground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
 
-        txtId1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtId1KeyPressed(evt);
+        buttonGroup1.add(rbtnFemale);
+        rbtnFemale.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnFemale.setText("Female");
+
+        buttonGroup1.add(rbtnMale);
+        rbtnMale.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnMale.setText("Male");
+        rbtnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnMaleActionPerformed(evt);
             }
         });
 
+        lblId7.setForeground(new java.awt.Color(255, 255, 255));
         lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId7.setText("SERVICE FOR");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "24 HOURS", " " }));
+        lblId7.setText("FLY YEARS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(rbtnFemale)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(rbtnMale)))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblId5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtFlyYears, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(207, 207, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave)
                         .addGap(31, 31, 31)
                         .addComponent(btnDelete)
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtId1)
-                                        .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnUpdate)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -218,23 +279,34 @@ public class Service extends javax.swing.JPanel {
                     .addComponent(btnSave)
                     .addComponent(lblSearchContent)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblId6)
+                    .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFlyYears, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId7))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId5))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblId2)
+                        .addComponent(rbtnFemale)
+                        .addComponent(rbtnMale)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId1)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId2)
-                    .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId7))
-                .addContainerGap(174, Short.MAX_VALUE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId3))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -243,7 +315,7 @@ public class Service extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblPeople.getSelectedRow();
+        int selectedRowIndex = tblCrew.getSelectedRow();
         
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this,"Please select a row to delete.");
@@ -251,14 +323,14 @@ public class Service extends javax.swing.JPanel {
         }
         
         //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
         //delete row
-        if(tblPeople.getSelectedRowCount()==1){
+        if(tblCrew.getSelectedRowCount()==1){
             //if single row is selected then delete
-            tblModel.removeRow(tblPeople.getSelectedRow());
+            tblModel.removeRow(tblCrew.getSelectedRow());
             JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
         }else{
-            if(tblPeople.getRowCount()==0){
+            if(tblCrew.getRowCount()==0){
                 //if table is empty then display message
                 JOptionPane.showMessageDialog(this, "Table is Empty!");  
             }else{
@@ -275,7 +347,7 @@ public class Service extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblCrew.getModel();
 //        if(tblDoctor.getSelectedRowCount() == 1){
 //            //If single row is selected then update
 //            
@@ -405,20 +477,20 @@ public class Service extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void tblPeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeopleMouseClicked
+    private void tblCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCrewMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblCrew.getModel();
         
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblPeople.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblPeople.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblPeople.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblPeople.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblPeople.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblPeople.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblPeople.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblPeople.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblPeople.getSelectedRow(), 8).toString();
+        String tblId = tblModel.getValueAt(tblCrew.getSelectedRow(), 0).toString();
+        String tblName = tblModel.getValueAt(tblCrew.getSelectedRow(), 1).toString();
+        String tblGender = tblModel.getValueAt(tblCrew.getSelectedRow(), 2).toString();
+        String tblAge = tblModel.getValueAt(tblCrew.getSelectedRow(), 3).toString();
+        String tblPhone = tblModel.getValueAt(tblCrew.getSelectedRow(), 4).toString();
+        String tblPassword = tblModel.getValueAt(tblCrew.getSelectedRow(), 5).toString();
+        String tblField = tblModel.getValueAt(tblCrew.getSelectedRow(), 6).toString();
+        String tblStandard = tblModel.getValueAt(tblCrew.getSelectedRow(), 7).toString();
+        String tblFee = tblModel.getValueAt(tblCrew.getSelectedRow(), 8).toString();
         
         
         
@@ -433,7 +505,7 @@ public class Service extends javax.swing.JPanel {
 //        txtStandard.setText(tblStandard);
 //        txtFee.setText(tblFee);
         
-    }//GEN-LAST:event_tblPeopleMouseClicked
+    }//GEN-LAST:event_tblCrewMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
@@ -442,9 +514,9 @@ public class Service extends javax.swing.JPanel {
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
         // TODO add your handling code here:
         //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCrew.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblPeople.setRowSorter(tr);
+        tblCrew.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
     }//GEN-LAST:event_txtSearchKeyPressed
 
@@ -452,9 +524,17 @@ public class Service extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtId1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtId1KeyPressed
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtId1KeyPressed
+    }//GEN-LAST:event_txtIdKeyPressed
+
+    private void cbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRoleActionPerformed
+
+    private void rbtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnMaleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -463,24 +543,31 @@ public class Service extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> cbRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId2;
+    private javax.swing.JLabel lblId3;
+    private javax.swing.JLabel lblId5;
+    private javax.swing.JLabel lblId6;
     private javax.swing.JLabel lblId7;
     private javax.swing.JLabel lblSearchContent;
-    private javax.swing.JTable tblPeople;
-    private javax.swing.JTextField txtAge1;
-    private javax.swing.JTextField txtId1;
+    private javax.swing.JRadioButton rbtnFemale;
+    private javax.swing.JRadioButton rbtnMale;
+    private javax.swing.JTable tblCrew;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtFlyYears;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         
-        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCrew.getModel();
         model.setRowCount(0);
         
 //        for (Doctor dc : dlist.getDlist()){

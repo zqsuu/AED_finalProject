@@ -31,73 +31,82 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" pref="1106" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="1106" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="btnDelete" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="btnUpdate" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                              <Component id="lblSearchContent" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtSearch" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblId10" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblId11" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <Component id="lblId12" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPrice" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtFuel" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtLife" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblId7" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <Component id="lblId8" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <Component id="lblId9" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCompany" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtType" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtRoute" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblId1" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="lblId" alignment="1" pref="140" max="32767" attributes="0"/>
-                          <Component id="lblId3" alignment="1" pref="140" max="32767" attributes="0"/>
-                          <Component id="lblId2" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtBusiness" min="-2" pref="185" max="-2" attributes="0"/>
-                          <Component id="txtFirst" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                          <Component id="txtEco" min="-2" pref="185" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnDelete" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="lblSearchContent" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtSearch" min="-2" pref="210" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblId22" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtSteward3" min="-2" pref="127" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblId23" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtSteward4" min="-2" pref="127" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblId12" min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="lblId11" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="lblId6" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblId17" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="lblId18" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCaptain" min="-2" pref="127" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtPilot1" min="-2" pref="127" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lblId19" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtPilot2" min="-2" pref="127" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblId20" min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtSteward1" min="-2" pref="127" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblId21" min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtSteward2" min="-2" pref="127" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblId" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtRN" min="-2" pref="185" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblId1" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtAirType" min="-2" pref="185" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,59 +125,46 @@
                   <Component id="lblSearchContent" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="lblId3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtRN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtFirst" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtBusiness" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblId2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEco" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtCompany" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtRoute" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtFuel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAirType" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblId6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCaptain" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPilot1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId17" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPilot2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId19" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtLife" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId10" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="lblId12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSteward1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId20" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSteward2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId21" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtSteward3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId22" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSteward4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId23" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -183,7 +179,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Airplane"/>
+        <Property name="text" type="java.lang.String" value="Airline Route Crew Management"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
@@ -219,21 +215,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFirst">
+    <Component class="javax.swing.JTextField" name="txtRN">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFirstKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRNKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtBusiness">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId2">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ECONOMY CLASS"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtAirType">
     </Component>
     <Component class="javax.swing.JLabel" name="lblId1">
       <Properties>
@@ -241,7 +228,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="BUSINESS CLASS"/>
+        <Property name="text" type="java.lang.String" value="AIPLANE TYPE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId">
@@ -250,7 +237,23 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="FIRST CLASS"/>
+        <Property name="text" type="java.lang.String" value="ROUTE NAME"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCaptain">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCaptainActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPilot1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId6">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="CAPTAIN"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -260,19 +263,19 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblAirplane">
+        <Component class="javax.swing.JTable" name="tblRouteCrew">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="4">
-                <Column editable="false" title="TYPE" type="java.lang.String"/>
-                <Column editable="false" title="COMPANY" type="java.lang.String"/>
-                <Column editable="false" title="ROUTE" type="java.lang.String"/>
-                <Column editable="false" title="FUEL CONSUMPTION" type="java.lang.Integer"/>
-                <Column editable="false" title="PRICE" type="java.lang.Integer"/>
-                <Column editable="false" title="SERVICE LIFE" type="java.lang.Integer"/>
-                <Column editable="true" title="FIRST CLASS" type="java.lang.Integer"/>
-                <Column editable="true" title="BUSINESS CLASS" type="java.lang.Integer"/>
-                <Column editable="true" title="ECONOMY CLASS" type="java.lang.Integer"/>
+                <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
+                <Column editable="false" title="AIRPLANE TYPE" type="java.lang.String"/>
+                <Column editable="false" title="CAPTAIN" type="java.lang.String"/>
+                <Column editable="false" title="PILOT1" type="java.lang.String"/>
+                <Column editable="false" title="PILOT2" type="java.lang.String"/>
+                <Column editable="false" title="STEWARD1" type="java.lang.String"/>
+                <Column editable="false" title="STEWARD2" type="java.lang.String"/>
+                <Column editable="false" title="STEWARD3" type="java.lang.String"/>
+                <Column editable="false" title="STEWARD4" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -329,7 +332,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblAirplaneMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblRouteCrewMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -352,69 +355,13 @@
         <Property name="text" type="java.lang.String" value="Search Content:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEco">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtRoute">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCompany">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtType">
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTypeKeyPressed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId7">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="COMPANY"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId8">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="TYPE"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId9">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ROUTE"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtFuel">
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFuelKeyPressed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtPrice">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtLife">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId10">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="SERVICE LIFE"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblId11">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="PRICE"/>
+        <Property name="text" type="java.lang.String" value="PILOT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId12">
@@ -423,16 +370,80 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="FUEL CONSUMPTION"/>
+        <Property name="text" type="java.lang.String" value="STEWARD/STEWARESS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblId3">
+    <Component class="javax.swing.JLabel" name="lblId17">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="PASSENGER CAPACITY"/>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId18">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId19">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPilot2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId20">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSteward1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId21">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSteward2">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSteward4">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSteward3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId22">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId23">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="4"/>
       </Properties>
     </Component>
   </SubComponents>

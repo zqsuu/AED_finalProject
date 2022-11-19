@@ -44,47 +44,29 @@ public class Route extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        txtId = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
+        txtDepature = new javax.swing.JTextField();
+        txtDestination = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        txtAge = new javax.swing.JTextField();
-        txtPhone = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
-        lblId5 = new javax.swing.JLabel();
-        lblId4 = new javax.swing.JLabel();
-        lblId3 = new javax.swing.JLabel();
-        cbField = new javax.swing.JComboBox<>();
-        lblId6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPeople = new javax.swing.JTable();
+        tblRoute = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
-        txtAge1 = new javax.swing.JTextField();
-        txtAge2 = new javax.swing.JTextField();
-        txtName1 = new javax.swing.JTextField();
-        txtId1 = new javax.swing.JTextField();
-        lblId7 = new javax.swing.JLabel();
+        txtFlyTime = new javax.swing.JTextField();
+        txtAirType = new javax.swing.JTextField();
         lblId8 = new javax.swing.JLabel();
-        lblId9 = new javax.swing.JLabel();
-        lblId10 = new javax.swing.JLabel();
-        lblId11 = new javax.swing.JLabel();
-        cbField1 = new javax.swing.JComboBox<>();
-        lblId12 = new javax.swing.JLabel();
-        cbField2 = new javax.swing.JComboBox<>();
-        lblId13 = new javax.swing.JLabel();
-        txtPassword1 = new javax.swing.JTextField();
-        lblId14 = new javax.swing.JLabel();
-        txtPhone1 = new javax.swing.JTextField();
-        lblId15 = new javax.swing.JLabel();
-        txtPhone2 = new javax.swing.JTextField();
-        lblId16 = new javax.swing.JLabel();
-        txtPhone3 = new javax.swing.JTextField();
+        lblId17 = new javax.swing.JLabel();
+        txtDepTime = new javax.swing.JTextField();
+        lblId18 = new javax.swing.JLabel();
+        txtFallTime = new javax.swing.JTextField();
+        lblId19 = new javax.swing.JLabel();
+        txtRN = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(153, 255, 204));
+        setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Airline Route");
 
@@ -112,71 +94,56 @@ public class Route extends javax.swing.JPanel {
             }
         });
 
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDepature.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtIdKeyPressed(evt);
+                txtDepatureKeyPressed(evt);
             }
         });
 
+        lblId2.setForeground(new java.awt.Color(255, 255, 255));
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId2.setText("FLIGHT TIME");
+        lblId2.setText("FLY TIME");
 
+        lblId1.setForeground(new java.awt.Color(255, 255, 255));
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId1.setText("DESTINATION");
 
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId.setText("DEPARTURE");
 
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
-
-        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId5.setText("NAME1");
-
-        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId4.setText("NAME1");
-
-        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId3.setText("NAME1");
-
-        cbField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Captain", "Pilot", "Stewardess", "Steward" }));
-        cbField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFieldActionPerformed(evt);
-            }
-        });
-
-        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId6.setText("ROLE1");
-
-        tblPeople.setModel(new javax.swing.table.DefaultTableModel(
+        tblRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NAME", "GENDER", "AGE", "PHONE", "PASSWORD", "FIELD", "STANDARD", "FEE"
+                "ROUTE NAME", "DEPARTURE", "DEPARTURE TIME", "DESTINATION", "FALL TIME", "FLY TIME", "AIPLANE TYPE"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblPeople.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblRoute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPeopleMouseClicked(evt);
+                tblRouteMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblPeople);
+        jScrollPane1.setViewportView(tblRoute);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,57 +160,36 @@ public class Route extends javax.swing.JPanel {
         });
 
         lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
 
-        txtId1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtId1KeyPressed(evt);
-            }
-        });
-
-        lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId7.setText("COMPANY");
-
+        lblId8.setForeground(new java.awt.Color(255, 255, 255));
         lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId8.setText("TYPE");
+        lblId8.setText("AIRPLANE TYPE");
 
-        lblId9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId9.setText("NUMBER OF SEATS");
+        lblId17.setForeground(new java.awt.Color(255, 255, 255));
+        lblId17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId17.setText("DEPARTURE TIME");
 
-        lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId10.setText("AIRPLANE");
-
-        lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId11.setText("ROLE2");
-
-        cbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Captain", "Pilot", "Stewardess", "Steward" }));
-        cbField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbField1ActionPerformed(evt);
+        txtDepTime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDepTimeKeyPressed(evt);
             }
         });
 
-        lblId12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId12.setText("ROLE3");
+        lblId18.setForeground(new java.awt.Color(255, 255, 255));
+        lblId18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId18.setText("FALL TIME");
 
-        cbField2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Captain", "Pilot", "Stewardess", "Steward" }));
-        cbField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbField2ActionPerformed(evt);
+        lblId19.setForeground(new java.awt.Color(255, 255, 255));
+        lblId19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId19.setText("ROUTE NAME");
+
+        txtRN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRNKeyPressed(evt);
             }
         });
-
-        lblId13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId13.setText("NAME2");
-
-        lblId14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId14.setText("NAME2");
-
-        lblId15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId15.setText("NAME3");
-
-        lblId16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId16.setText("NAME4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -251,104 +197,56 @@ public class Route extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(btnSave)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnDelete)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtAirType, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblId19, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtDepature, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(26, 26, 26)
+                                            .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(lblId17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnDelete)
-                                .addGap(30, 30, 30)
                                 .addComponent(btnUpdate)
                                 .addGap(156, 156, 156)
                                 .addComponent(lblSearchContent)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblId15, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtId1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId12, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbField2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblId3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                                            .addComponent(lblId5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                                            .addComponent(txtPassword)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(11, 11, 11)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPhone1)
-                                    .addComponent(txtPassword1))
-                                .addGap(134, 134, 134))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblId16, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPhone3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)))))
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -368,55 +266,29 @@ public class Route extends javax.swing.JPanel {
                     .addComponent(btnSave)
                     .addComponent(lblSearchContent)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
+                .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId19))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDepature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId)
-                    .addComponent(lblId6)
-                    .addComponent(cbField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId3))
+                    .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId1)
-                    .addComponent(lblId11)
-                    .addComponent(cbField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId5)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId13)
-                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId2)
-                    .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId12)
-                    .addComponent(cbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId4)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId14)
-                    .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId15)
-                    .addComponent(txtPhone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId16)
-                    .addComponent(txtPhone3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblId10)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAirType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -425,7 +297,7 @@ public class Route extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblPeople.getSelectedRow();
+        int selectedRowIndex = tblRoute.getSelectedRow();
         
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this,"Please select a row to delete.");
@@ -433,14 +305,14 @@ public class Route extends javax.swing.JPanel {
         }
         
         //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
         //delete row
-        if(tblPeople.getSelectedRowCount()==1){
+        if(tblRoute.getSelectedRowCount()==1){
             //if single row is selected then delete
-            tblModel.removeRow(tblPeople.getSelectedRow());
+            tblModel.removeRow(tblRoute.getSelectedRow());
             JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
         }else{
-            if(tblPeople.getRowCount()==0){
+            if(tblRoute.getRowCount()==0){
                 //if table is empty then display message
                 JOptionPane.showMessageDialog(this, "Table is Empty!");  
             }else{
@@ -457,7 +329,7 @@ public class Route extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblRoute.getModel();
 //        if(tblDoctor.getSelectedRowCount() == 1){
 //            //If single row is selected then update
 //            
@@ -587,20 +459,20 @@ public class Route extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void tblPeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeopleMouseClicked
+    private void tblRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblPeople.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblRoute.getModel();
         
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblPeople.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblPeople.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblPeople.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblPeople.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblPeople.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblPeople.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblPeople.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblPeople.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblPeople.getSelectedRow(), 8).toString();
+        String tblId = tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString();
+        String tblName = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
+        String tblGender = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
+        String tblAge = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
+        String tblPhone = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
+        String tblPassword = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
+        String tblField = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
+        String tblStandard = tblModel.getValueAt(tblRoute.getSelectedRow(), 7).toString();
+        String tblFee = tblModel.getValueAt(tblRoute.getSelectedRow(), 8).toString();
         
         
         
@@ -615,7 +487,7 @@ public class Route extends javax.swing.JPanel {
 //        txtStandard.setText(tblStandard);
 //        txtFee.setText(tblFee);
         
-    }//GEN-LAST:event_tblPeopleMouseClicked
+    }//GEN-LAST:event_tblRouteMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
@@ -624,9 +496,9 @@ public class Route extends javax.swing.JPanel {
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
         // TODO add your handling code here:
         //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblPeople.setRowSorter(tr);
+        tblRoute.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
     }//GEN-LAST:event_txtSearchKeyPressed
 
@@ -634,29 +506,17 @@ public class Route extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+    private void txtDepatureKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepatureKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdKeyPressed
+    }//GEN-LAST:event_txtDepatureKeyPressed
 
-    private void cbFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFieldActionPerformed
+    private void txtDepTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepTimeKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbFieldActionPerformed
+    }//GEN-LAST:event_txtDepTimeKeyPressed
 
-    private void txtId1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtId1KeyPressed
+    private void txtRNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRNKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtId1KeyPressed
-
-    private void cbField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbField1ActionPerformed
-
-    private void cbField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbField2ActionPerformed
-
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
+    }//GEN-LAST:event_txtRNKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -665,49 +525,30 @@ public class Route extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbField;
-    private javax.swing.JComboBox<String> cbField1;
-    private javax.swing.JComboBox<String> cbField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
-    private javax.swing.JLabel lblId10;
-    private javax.swing.JLabel lblId11;
-    private javax.swing.JLabel lblId12;
-    private javax.swing.JLabel lblId13;
-    private javax.swing.JLabel lblId14;
-    private javax.swing.JLabel lblId15;
-    private javax.swing.JLabel lblId16;
+    private javax.swing.JLabel lblId17;
+    private javax.swing.JLabel lblId18;
+    private javax.swing.JLabel lblId19;
     private javax.swing.JLabel lblId2;
-    private javax.swing.JLabel lblId3;
-    private javax.swing.JLabel lblId4;
-    private javax.swing.JLabel lblId5;
-    private javax.swing.JLabel lblId6;
-    private javax.swing.JLabel lblId7;
     private javax.swing.JLabel lblId8;
-    private javax.swing.JLabel lblId9;
     private javax.swing.JLabel lblSearchContent;
-    private javax.swing.JTable tblPeople;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtAge1;
-    private javax.swing.JTextField txtAge2;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtId1;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtPassword1;
-    private javax.swing.JTextField txtPhone;
-    private javax.swing.JTextField txtPhone1;
-    private javax.swing.JTextField txtPhone2;
-    private javax.swing.JTextField txtPhone3;
+    private javax.swing.JTable tblRoute;
+    private javax.swing.JTextField txtAirType;
+    private javax.swing.JTextField txtDepTime;
+    private javax.swing.JTextField txtDepature;
+    private javax.swing.JTextField txtDestination;
+    private javax.swing.JTextField txtFallTime;
+    private javax.swing.JTextField txtFlyTime;
+    private javax.swing.JTextField txtRN;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         
-        DefaultTableModel model = (DefaultTableModel) tblPeople.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
         model.setRowCount(0);
         
 //        for (Doctor dc : dlist.getDlist()){

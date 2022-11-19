@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Customer;
+package ui.Airport;
 
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -14,7 +14,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author HP
  */
-public class CustomerService extends javax.swing.JPanel {
+public class AirportDetail extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
@@ -44,34 +44,29 @@ public class CustomerService extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCustomerService = new javax.swing.JTable();
+        tblAirportDetail = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
+        txtSearch1 = new javax.swing.JTextField();
+        lblId2 = new javax.swing.JLabel();
+        txtSearch2 = new javax.swing.JTextField();
+        txtSearch3 = new javax.swing.JTextField();
         lblId3 = new javax.swing.JLabel();
         lblId4 = new javax.swing.JLabel();
-        cbService1 = new javax.swing.JComboBox<>();
-        cbTime1 = new javax.swing.JComboBox<>();
-        cbService2 = new javax.swing.JComboBox<>();
-        cbTime2 = new javax.swing.JComboBox<>();
+        txtSearch4 = new javax.swing.JTextField();
         lblId5 = new javax.swing.JLabel();
-        cbService3 = new javax.swing.JComboBox<>();
+        txtSearch5 = new javax.swing.JTextField();
         lblId6 = new javax.swing.JLabel();
-        cbTime3 = new javax.swing.JComboBox<>();
-        txtId = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
-        lblId2 = new javax.swing.JLabel();
-        lblId8 = new javax.swing.JLabel();
-        lblId11 = new javax.swing.JLabel();
+        txtSearch6 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Customer Service");
+        jLabel1.setText("Airport Detail");
 
         btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnDelete.setText("Delete");
@@ -97,30 +92,26 @@ public class CustomerService extends javax.swing.JPanel {
             }
         });
 
-        lblId1.setForeground(new java.awt.Color(255, 255, 255));
-        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("TIME 1");
-
         lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId.setText("SERVICE 1");
+        lblId.setText("AIRPORT NAME");
 
-        tblCustomerService.setModel(new javax.swing.table.DefaultTableModel(
+        tblAirportDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "NAME", "PASSPORT", "SERVICE 1", "TIME 1", "SERVICE 2", "TIME 2", "SERVICE 3", "TIME 3"
+                "AIRPORT NAME", "CITY", "ADDRESS", "ROUTE", "SERVICE", "ROUTE REQUEST"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -131,12 +122,12 @@ public class CustomerService extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblCustomerService.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblAirportDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblCustomerServiceMouseClicked(evt);
+                tblAirportDetailMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblCustomerService);
+        jScrollPane1.setViewportView(tblAirportDetail);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,39 +147,109 @@ public class CustomerService extends javax.swing.JPanel {
         lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
 
-        lblId3.setForeground(new java.awt.Color(255, 255, 255));
-        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId3.setText("TIME 2");
-
-        lblId4.setForeground(new java.awt.Color(255, 255, 255));
-        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId4.setText("SERVICE 2");
-
-        lblId5.setForeground(new java.awt.Color(255, 255, 255));
-        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId5.setText("SERVICE 3");
-
-        lblId6.setForeground(new java.awt.Color(255, 255, 255));
-        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId6.setText("TIME 3");
-
-        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch1ActionPerformed(evt);
+            }
+        });
+        txtSearch1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtIdKeyPressed(evt);
+                txtSearch1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch1KeyReleased(evt);
             }
         });
 
         lblId2.setForeground(new java.awt.Color(255, 255, 255));
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId2.setText("PASSPORT");
+        lblId2.setText("CITY");
 
-        lblId8.setForeground(new java.awt.Color(255, 255, 255));
-        lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId8.setText("NAME");
+        txtSearch2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch2ActionPerformed(evt);
+            }
+        });
+        txtSearch2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch2KeyReleased(evt);
+            }
+        });
 
-        lblId11.setForeground(new java.awt.Color(255, 255, 255));
-        lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId11.setText("CUSTOMER");
+        txtSearch3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch3ActionPerformed(evt);
+            }
+        });
+        txtSearch3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch3KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch3KeyReleased(evt);
+            }
+        });
+
+        lblId3.setForeground(new java.awt.Color(255, 255, 255));
+        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId3.setText("ADDRESS");
+
+        lblId4.setForeground(new java.awt.Color(255, 255, 255));
+        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId4.setText("ROUTE");
+
+        txtSearch4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch4ActionPerformed(evt);
+            }
+        });
+        txtSearch4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch4KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch4KeyReleased(evt);
+            }
+        });
+
+        lblId5.setForeground(new java.awt.Color(255, 255, 255));
+        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId5.setText("SERVICE");
+
+        txtSearch5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch5ActionPerformed(evt);
+            }
+        });
+        txtSearch5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch5KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch5KeyReleased(evt);
+            }
+        });
+
+        lblId6.setForeground(new java.awt.Color(255, 255, 255));
+        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId6.setText("ROUTE REQUEST");
+
+        txtSearch6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearch6ActionPerformed(evt);
+            }
+        });
+        txtSearch6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch6KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch6KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -198,7 +259,7 @@ public class CustomerService extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1162, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave)
                         .addGap(31, 31, 31)
@@ -208,46 +269,40 @@ public class CustomerService extends javax.swing.JPanel {
                         .addGap(156, 156, 156)
                         .addComponent(lblSearchContent)
                         .addGap(18, 18, 18)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(155, 155, 155)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblId5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearch6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbService3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTime3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbService1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTime1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbService2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTime2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblId5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -267,43 +322,28 @@ public class CustomerService extends javax.swing.JPanel {
                     .addComponent(btnSave)
                     .addComponent(lblSearchContent)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblId11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId)
-                            .addComponent(cbService1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId1)
-                            .addComponent(cbTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId4)
-                            .addComponent(cbService2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId3)
-                            .addComponent(cbTime2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId5)
-                            .addComponent(cbService3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId6)
-                    .addComponent(cbTime3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                    .addComponent(txtSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId6)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -312,7 +352,7 @@ public class CustomerService extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblCustomerService.getSelectedRow();
+        int selectedRowIndex = tblAirportDetail.getSelectedRow();
         
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this,"Please select a row to delete.");
@@ -320,14 +360,14 @@ public class CustomerService extends javax.swing.JPanel {
         }
         
         //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblCustomerService.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirportDetail.getModel();
         //delete row
-        if(tblCustomerService.getSelectedRowCount()==1){
+        if(tblAirportDetail.getSelectedRowCount()==1){
             //if single row is selected then delete
-            tblModel.removeRow(tblCustomerService.getSelectedRow());
+            tblModel.removeRow(tblAirportDetail.getSelectedRow());
             JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
         }else{
-            if(tblCustomerService.getRowCount()==0){
+            if(tblAirportDetail.getRowCount()==0){
                 //if table is empty then display message
                 JOptionPane.showMessageDialog(this, "Table is Empty!");  
             }else{
@@ -344,7 +384,7 @@ public class CustomerService extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblCustomerService.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblAirportDetail.getModel();
 //        if(tblDoctor.getSelectedRowCount() == 1){
 //            //If single row is selected then update
 //            
@@ -474,20 +514,20 @@ public class CustomerService extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void tblCustomerServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerServiceMouseClicked
+    private void tblAirportDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirportDetailMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblCustomerService.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)tblAirportDetail.getModel();
         
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblCustomerService.getSelectedRow(), 8).toString();
+        String tblId = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 0).toString();
+        String tblName = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 1).toString();
+        String tblGender = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 2).toString();
+        String tblAge = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 3).toString();
+        String tblPhone = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 4).toString();
+        String tblPassword = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 5).toString();
+        String tblField = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 6).toString();
+        String tblStandard = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 7).toString();
+        String tblFee = tblModel.getValueAt(tblAirportDetail.getSelectedRow(), 8).toString();
         
         
         
@@ -502,7 +542,7 @@ public class CustomerService extends javax.swing.JPanel {
 //        txtStandard.setText(tblStandard);
 //        txtFee.setText(tblFee);
         
-    }//GEN-LAST:event_tblCustomerServiceMouseClicked
+    }//GEN-LAST:event_tblAirportDetailMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
@@ -511,9 +551,9 @@ public class CustomerService extends javax.swing.JPanel {
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
         // TODO add your handling code here:
         //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblCustomerService.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblAirportDetail.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblCustomerService.setRowSorter(tr);
+        tblAirportDetail.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
     }//GEN-LAST:event_txtSearchKeyPressed
 
@@ -521,9 +561,77 @@ public class CustomerService extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+    private void txtSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdKeyPressed
+    }//GEN-LAST:event_txtSearch1ActionPerformed
+
+    private void txtSearch1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch1KeyPressed
+
+    private void txtSearch1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch1KeyReleased
+
+    private void txtSearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2ActionPerformed
+
+    private void txtSearch2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2KeyPressed
+
+    private void txtSearch2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2KeyReleased
+
+    private void txtSearch3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch3ActionPerformed
+
+    private void txtSearch3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch3KeyPressed
+
+    private void txtSearch3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch3KeyReleased
+
+    private void txtSearch4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch4ActionPerformed
+
+    private void txtSearch4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch4KeyPressed
+
+    private void txtSearch4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch4KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch4KeyReleased
+
+    private void txtSearch5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch5ActionPerformed
+
+    private void txtSearch5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch5KeyPressed
+
+    private void txtSearch5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch5KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch5KeyReleased
+
+    private void txtSearch6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch6ActionPerformed
+
+    private void txtSearch6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch6KeyPressed
+
+    private void txtSearch6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch6KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch6KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -532,33 +640,28 @@ public class CustomerService extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbService1;
-    private javax.swing.JComboBox<String> cbService2;
-    private javax.swing.JComboBox<String> cbService3;
-    private javax.swing.JComboBox<String> cbTime1;
-    private javax.swing.JComboBox<String> cbTime2;
-    private javax.swing.JComboBox<String> cbTime3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblId1;
-    private javax.swing.JLabel lblId11;
     private javax.swing.JLabel lblId2;
     private javax.swing.JLabel lblId3;
     private javax.swing.JLabel lblId4;
     private javax.swing.JLabel lblId5;
     private javax.swing.JLabel lblId6;
-    private javax.swing.JLabel lblId8;
     private javax.swing.JLabel lblSearchContent;
-    private javax.swing.JTable tblCustomerService;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTable tblAirportDetail;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtSearch1;
+    private javax.swing.JTextField txtSearch2;
+    private javax.swing.JTextField txtSearch3;
+    private javax.swing.JTextField txtSearch4;
+    private javax.swing.JTextField txtSearch5;
+    private javax.swing.JTextField txtSearch6;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         
-        DefaultTableModel model = (DefaultTableModel) tblCustomerService.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblAirportDetail.getModel();
         model.setRowCount(0);
         
 //        for (Doctor dc : dlist.getDlist()){

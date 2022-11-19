@@ -86,16 +86,20 @@ public class AirlineCompany extends javax.swing.JPanel {
 
         sysSplit.setPreferredSize(new java.awt.Dimension(1450, 800));
 
+        sysMenuPanel.setBackground(new java.awt.Color(102, 102, 102));
         sysMenuPanel.setPreferredSize(new java.awt.Dimension(300, 800));
 
-        tabPatient.setBackground(new java.awt.Color(255, 255, 153));
+        tabPatient.setBackground(new java.awt.Color(255, 0, 0));
+        tabPatient.setForeground(new java.awt.Color(51, 51, 51));
         tabPatient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabPatientMouseClicked(evt);
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("AIRPLANE");
 
@@ -113,7 +117,7 @@ public class AirlineCompany extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabDoctor.setBackground(new java.awt.Color(255, 255, 153));
+        tabDoctor.setBackground(new java.awt.Color(255, 0, 0));
         tabDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabDoctorMouseClicked(evt);
@@ -121,6 +125,7 @@ public class AirlineCompany extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PEOPLE");
 
@@ -138,14 +143,16 @@ public class AirlineCompany extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabHospital.setBackground(new java.awt.Color(255, 255, 153));
+        tabHospital.setBackground(new java.awt.Color(255, 0, 0));
         tabHospital.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabHospitalMouseClicked(evt);
             }
         });
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ROUTE");
 
@@ -163,7 +170,7 @@ public class AirlineCompany extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabEncounter.setBackground(new java.awt.Color(255, 255, 153));
+        tabEncounter.setBackground(new java.awt.Color(255, 0, 0));
         tabEncounter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabEncounterMouseClicked(evt);
@@ -171,6 +178,7 @@ public class AirlineCompany extends javax.swing.JPanel {
         });
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("INCOME");
 
@@ -188,7 +196,7 @@ public class AirlineCompany extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabLogout.setBackground(new java.awt.Color(204, 102, 0));
+        tabLogout.setBackground(new java.awt.Color(153, 0, 0));
         tabLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabLogoutMouseClicked(evt);
@@ -196,6 +204,7 @@ public class AirlineCompany extends javax.swing.JPanel {
         });
 
         jLabel5.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Log out");
 
@@ -241,7 +250,8 @@ public class AirlineCompany extends javax.swing.JPanel {
 
         sysSplit.setLeftComponent(sysMenuPanel);
 
-        sysEncounterPanel.setBackground(new java.awt.Color(204, 102, 255));
+        sysEncounterPanel.setBackground(new java.awt.Color(153, 153, 153));
+        sysEncounterPanel.setForeground(new java.awt.Color(102, 102, 102));
         sysEncounterPanel.setPreferredSize(new java.awt.Dimension(1150, 800));
 
         javax.swing.GroupLayout sysEncounterPanelLayout = new javax.swing.GroupLayout(sysEncounterPanel);
