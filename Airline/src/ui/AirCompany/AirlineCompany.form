@@ -70,24 +70,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabPatient" max="32767" attributes="0"/>
-                  <Component id="tabDoctor" max="32767" attributes="0"/>
-                  <Component id="tabHospital" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tabAirplane" max="32767" attributes="0"/>
+                  <Component id="tabCrew" max="32767" attributes="0"/>
+                  <Component id="tabRoute" alignment="0" max="32767" attributes="0"/>
                   <Component id="tabLogout" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tabEncounter" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tabIncome" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="tabHospital" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabRoute" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabPatient" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabAirplane" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabDoctor" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabCrew" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabEncounter" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabIncome" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="340" max="32767" attributes="0"/>
                       <Component id="tabLogout" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="tabPatient">
+            <Container class="javax.swing.JPanel" name="tabAirplane">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -106,7 +106,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabPatientMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabAirplaneMouseClicked"/>
               </Events>
 
               <Layout>
@@ -143,14 +143,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="tabDoctor">
+            <Container class="javax.swing.JPanel" name="tabCrew">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabDoctorMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabCrewMouseClicked"/>
               </Events>
 
               <Layout>
@@ -179,19 +179,19 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="PEOPLE"/>
+                    <Property name="text" type="java.lang.String" value="CREW"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="tabHospital">
+            <Container class="javax.swing.JPanel" name="tabRoute">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabHospitalMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabRouteMouseClicked"/>
               </Events>
 
               <Layout>
@@ -228,14 +228,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="tabEncounter">
+            <Container class="javax.swing.JPanel" name="tabIncome">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabEncounterMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabIncomeMouseClicked"/>
               </Events>
 
               <Layout>

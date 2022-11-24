@@ -67,15 +67,15 @@ public class Airport extends javax.swing.JPanel {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
-        tabPatient = new javax.swing.JPanel();
+        tabLocation = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tabDoctor = new javax.swing.JPanel();
+        tabService = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        tabHospital = new javax.swing.JPanel();
+        tabRoute = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tabLogout = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        tabHospital1 = new javax.swing.JPanel();
+        tabAirport = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
@@ -89,10 +89,10 @@ public class Airport extends javax.swing.JPanel {
         sysMenuPanel.setBackground(new java.awt.Color(102, 102, 102));
         sysMenuPanel.setPreferredSize(new java.awt.Dimension(300, 800));
 
-        tabPatient.setBackground(new java.awt.Color(255, 0, 0));
-        tabPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabLocation.setBackground(new java.awt.Color(255, 0, 0));
+        tabLocation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabPatientMouseClicked(evt);
+                tabLocationMouseClicked(evt);
             }
         });
 
@@ -101,24 +101,24 @@ public class Airport extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOCATION");
 
-        javax.swing.GroupLayout tabPatientLayout = new javax.swing.GroupLayout(tabPatient);
-        tabPatient.setLayout(tabPatientLayout);
-        tabPatientLayout.setHorizontalGroup(
-            tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabLocationLayout = new javax.swing.GroupLayout(tabLocation);
+        tabLocation.setLayout(tabLocationLayout);
+        tabLocationLayout.setHorizontalGroup(
+            tabLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabPatientLayout.setVerticalGroup(
-            tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPatientLayout.createSequentialGroup()
+        tabLocationLayout.setVerticalGroup(
+            tabLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabLocationLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        tabDoctor.setBackground(new java.awt.Color(255, 0, 0));
-        tabDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabService.setBackground(new java.awt.Color(255, 0, 0));
+        tabService.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabDoctorMouseClicked(evt);
+                tabServiceMouseClicked(evt);
             }
         });
 
@@ -127,24 +127,24 @@ public class Airport extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SERVICE");
 
-        javax.swing.GroupLayout tabDoctorLayout = new javax.swing.GroupLayout(tabDoctor);
-        tabDoctor.setLayout(tabDoctorLayout);
-        tabDoctorLayout.setHorizontalGroup(
-            tabDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabServiceLayout = new javax.swing.GroupLayout(tabService);
+        tabService.setLayout(tabServiceLayout);
+        tabServiceLayout.setHorizontalGroup(
+            tabServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabDoctorLayout.setVerticalGroup(
-            tabDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabDoctorLayout.createSequentialGroup()
+        tabServiceLayout.setVerticalGroup(
+            tabServiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabServiceLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        tabHospital.setBackground(new java.awt.Color(255, 0, 51));
-        tabHospital.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabRoute.setBackground(new java.awt.Color(255, 0, 51));
+        tabRoute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabHospitalMouseClicked(evt);
+                tabRouteMouseClicked(evt);
             }
         });
 
@@ -153,15 +153,15 @@ public class Airport extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ROUTE");
 
-        javax.swing.GroupLayout tabHospitalLayout = new javax.swing.GroupLayout(tabHospital);
-        tabHospital.setLayout(tabHospitalLayout);
-        tabHospitalLayout.setHorizontalGroup(
-            tabHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabRouteLayout = new javax.swing.GroupLayout(tabRoute);
+        tabRoute.setLayout(tabRouteLayout);
+        tabRouteLayout.setHorizontalGroup(
+            tabRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabHospitalLayout.setVerticalGroup(
-            tabHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabHospitalLayout.createSequentialGroup()
+        tabRouteLayout.setVerticalGroup(
+            tabRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRouteLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -193,10 +193,10 @@ public class Airport extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabHospital1.setBackground(new java.awt.Color(255, 0, 51));
-        tabHospital1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabAirport.setBackground(new java.awt.Color(255, 0, 51));
+        tabAirport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabHospital1MouseClicked(evt);
+                tabAirportMouseClicked(evt);
             }
         });
 
@@ -205,15 +205,15 @@ public class Airport extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AIRPORT");
 
-        javax.swing.GroupLayout tabHospital1Layout = new javax.swing.GroupLayout(tabHospital1);
-        tabHospital1.setLayout(tabHospital1Layout);
-        tabHospital1Layout.setHorizontalGroup(
-            tabHospital1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabAirportLayout = new javax.swing.GroupLayout(tabAirport);
+        tabAirport.setLayout(tabAirportLayout);
+        tabAirportLayout.setHorizontalGroup(
+            tabAirportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabHospital1Layout.setVerticalGroup(
-            tabHospital1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabHospital1Layout.createSequentialGroup()
+        tabAirportLayout.setVerticalGroup(
+            tabAirportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabAirportLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -223,23 +223,23 @@ public class Airport extends javax.swing.JPanel {
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabHospital1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabAirport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sysMenuPanelLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(tabHospital1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -278,36 +278,36 @@ public class Airport extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPatientMouseClicked
+    private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
+        tabLocation.setVisible(true);
+        tabService.setVisible(true);
+        tabRoute.setVisible(true);
 //        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
 //        PatientProfile patientProfile = new PatientProfile(plist);
 //        sysSplit.setRightComponent(patientProfile);
         
-    }//GEN-LAST:event_tabPatientMouseClicked
+    }//GEN-LAST:event_tabLocationMouseClicked
 
-    private void tabDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDoctorMouseClicked
+    private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
+        tabLocation.setVisible(true);
+        tabService.setVisible(true);
+        tabRoute.setVisible(true);
 //        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
 //        DoctorProfile doctorProfile = new DoctorProfile(dlist);
 //        sysSplit.setRightComponent(doctorProfile);
         
         
-    }//GEN-LAST:event_tabDoctorMouseClicked
+    }//GEN-LAST:event_tabServiceMouseClicked
 
-    private void tabHospitalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabHospitalMouseClicked
+    private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
+        tabLocation.setVisible(true);
+        tabService.setVisible(true);
+        tabRoute.setVisible(true);
 //        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
 //        HospitalManagement hospitalManagement = new HospitalManagement(hptList);
@@ -315,13 +315,13 @@ public class Airport extends javax.swing.JPanel {
         
         
         
-    }//GEN-LAST:event_tabHospitalMouseClicked
+    }//GEN-LAST:event_tabRouteMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         // TODO add your handling code here:
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
+        tabLocation.setVisible(true);
+        tabService.setVisible(true);
+        tabRoute.setVisible(true);
 //        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
         sysSplit.setVisible(false);
@@ -329,9 +329,9 @@ public class Airport extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tabLogoutMouseClicked
 
-    private void tabHospital1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabHospital1MouseClicked
+    private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabHospital1MouseClicked
+    }//GEN-LAST:event_tabAirportMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -344,10 +344,10 @@ public class Airport extends javax.swing.JPanel {
     private javax.swing.JPanel sysEncounterPanel;
     private javax.swing.JPanel sysMenuPanel;
     private javax.swing.JSplitPane sysSplit;
-    private javax.swing.JPanel tabDoctor;
-    private javax.swing.JPanel tabHospital;
-    private javax.swing.JPanel tabHospital1;
+    private javax.swing.JPanel tabAirport;
+    private javax.swing.JPanel tabLocation;
     private javax.swing.JPanel tabLogout;
-    private javax.swing.JPanel tabPatient;
+    private javax.swing.JPanel tabRoute;
+    private javax.swing.JPanel tabService;
     // End of variables declaration//GEN-END:variables
 }

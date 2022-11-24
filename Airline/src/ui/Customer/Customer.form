@@ -70,9 +70,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabPatient" max="32767" attributes="0"/>
-                  <Component id="tabDoctor" max="32767" attributes="0"/>
-                  <Component id="tabHospital" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tabTicket" max="32767" attributes="0"/>
+                  <Component id="tabService" max="32767" attributes="0"/>
+                  <Component id="tabCustomer" alignment="0" max="32767" attributes="0"/>
                   <Component id="tabLogout" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -80,11 +80,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="tabHospital" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabCustomer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabPatient" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabTicket" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabDoctor" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabService" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="418" max="32767" attributes="0"/>
                       <Component id="tabLogout" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -93,14 +93,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="tabPatient">
+            <Container class="javax.swing.JPanel" name="tabTicket">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabPatientMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabTicketMouseClicked"/>
               </Events>
 
               <Layout>
@@ -134,14 +134,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="tabDoctor">
+            <Container class="javax.swing.JPanel" name="tabService">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabDoctorMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabServiceMouseClicked"/>
               </Events>
 
               <Layout>
@@ -175,14 +175,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="tabHospital">
+            <Container class="javax.swing.JPanel" name="tabCustomer">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabHospitalMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabCustomerMouseClicked"/>
               </Events>
 
               <Layout>

@@ -67,13 +67,13 @@ public class AirlineCompany extends javax.swing.JPanel {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
-        tabPatient = new javax.swing.JPanel();
+        tabAirplane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tabDoctor = new javax.swing.JPanel();
+        tabCrew = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        tabHospital = new javax.swing.JPanel();
+        tabRoute = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        tabEncounter = new javax.swing.JPanel();
+        tabIncome = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         tabLogout = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -89,11 +89,11 @@ public class AirlineCompany extends javax.swing.JPanel {
         sysMenuPanel.setBackground(new java.awt.Color(102, 102, 102));
         sysMenuPanel.setPreferredSize(new java.awt.Dimension(300, 800));
 
-        tabPatient.setBackground(new java.awt.Color(255, 0, 0));
-        tabPatient.setForeground(new java.awt.Color(51, 51, 51));
-        tabPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabAirplane.setBackground(new java.awt.Color(255, 0, 0));
+        tabAirplane.setForeground(new java.awt.Color(51, 51, 51));
+        tabAirplane.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabPatientMouseClicked(evt);
+                tabAirplaneMouseClicked(evt);
             }
         });
 
@@ -103,50 +103,50 @@ public class AirlineCompany extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("AIRPLANE");
 
-        javax.swing.GroupLayout tabPatientLayout = new javax.swing.GroupLayout(tabPatient);
-        tabPatient.setLayout(tabPatientLayout);
-        tabPatientLayout.setHorizontalGroup(
-            tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabAirplaneLayout = new javax.swing.GroupLayout(tabAirplane);
+        tabAirplane.setLayout(tabAirplaneLayout);
+        tabAirplaneLayout.setHorizontalGroup(
+            tabAirplaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabPatientLayout.setVerticalGroup(
-            tabPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPatientLayout.createSequentialGroup()
+        tabAirplaneLayout.setVerticalGroup(
+            tabAirplaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabAirplaneLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        tabDoctor.setBackground(new java.awt.Color(255, 0, 0));
-        tabDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabCrew.setBackground(new java.awt.Color(255, 0, 0));
+        tabCrew.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabDoctorMouseClicked(evt);
+                tabCrewMouseClicked(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PEOPLE");
+        jLabel2.setText("CREW");
 
-        javax.swing.GroupLayout tabDoctorLayout = new javax.swing.GroupLayout(tabDoctor);
-        tabDoctor.setLayout(tabDoctorLayout);
-        tabDoctorLayout.setHorizontalGroup(
-            tabDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabCrewLayout = new javax.swing.GroupLayout(tabCrew);
+        tabCrew.setLayout(tabCrewLayout);
+        tabCrewLayout.setHorizontalGroup(
+            tabCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabDoctorLayout.setVerticalGroup(
-            tabDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabDoctorLayout.createSequentialGroup()
+        tabCrewLayout.setVerticalGroup(
+            tabCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabCrewLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        tabHospital.setBackground(new java.awt.Color(255, 0, 0));
-        tabHospital.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabRoute.setBackground(new java.awt.Color(255, 0, 0));
+        tabRoute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabHospitalMouseClicked(evt);
+                tabRouteMouseClicked(evt);
             }
         });
 
@@ -156,24 +156,24 @@ public class AirlineCompany extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ROUTE");
 
-        javax.swing.GroupLayout tabHospitalLayout = new javax.swing.GroupLayout(tabHospital);
-        tabHospital.setLayout(tabHospitalLayout);
-        tabHospitalLayout.setHorizontalGroup(
-            tabHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabRouteLayout = new javax.swing.GroupLayout(tabRoute);
+        tabRoute.setLayout(tabRouteLayout);
+        tabRouteLayout.setHorizontalGroup(
+            tabRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabHospitalLayout.setVerticalGroup(
-            tabHospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabHospitalLayout.createSequentialGroup()
+        tabRouteLayout.setVerticalGroup(
+            tabRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabRouteLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
-        tabEncounter.setBackground(new java.awt.Color(255, 0, 0));
-        tabEncounter.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabIncome.setBackground(new java.awt.Color(255, 0, 0));
+        tabIncome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabEncounterMouseClicked(evt);
+                tabIncomeMouseClicked(evt);
             }
         });
 
@@ -182,15 +182,15 @@ public class AirlineCompany extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("INCOME");
 
-        javax.swing.GroupLayout tabEncounterLayout = new javax.swing.GroupLayout(tabEncounter);
-        tabEncounter.setLayout(tabEncounterLayout);
-        tabEncounterLayout.setHorizontalGroup(
-            tabEncounterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabIncomeLayout = new javax.swing.GroupLayout(tabIncome);
+        tabIncome.setLayout(tabIncomeLayout);
+        tabIncomeLayout.setHorizontalGroup(
+            tabIncomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabEncounterLayout.setVerticalGroup(
-            tabEncounterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabEncounterLayout.createSequentialGroup()
+        tabIncomeLayout.setVerticalGroup(
+            tabIncomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabIncomeLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -226,23 +226,23 @@ public class AirlineCompany extends javax.swing.JPanel {
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabAirplane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabCrew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabEncounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sysMenuPanelLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(tabHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -282,63 +282,63 @@ public class AirlineCompany extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPatientMouseClicked
+    private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
-        tabEncounter.setVisible(true);
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabIncome.setVisible(true);
         tabLogout.setVisible(true);
 //        PatientProfile patientProfile = new PatientProfile(plist);
 //        sysSplit.setRightComponent(patientProfile);
         
-    }//GEN-LAST:event_tabPatientMouseClicked
+    }//GEN-LAST:event_tabAirplaneMouseClicked
 
-    private void tabDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDoctorMouseClicked
+    private void tabCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCrewMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
-        tabEncounter.setVisible(true);
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabIncome.setVisible(true);
         tabLogout.setVisible(true);
 //        DoctorProfile doctorProfile = new DoctorProfile(dlist);
 //        sysSplit.setRightComponent(doctorProfile);
         
         
-    }//GEN-LAST:event_tabDoctorMouseClicked
+    }//GEN-LAST:event_tabCrewMouseClicked
 
-    private void tabHospitalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabHospitalMouseClicked
+    private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
-        tabEncounter.setVisible(true);
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabIncome.setVisible(true);
         tabLogout.setVisible(true);
 //        HospitalManagement hospitalManagement = new HospitalManagement(hptList);
 //        sysSplit.setRightComponent(hospitalManagement);
         
         
         
-    }//GEN-LAST:event_tabHospitalMouseClicked
+    }//GEN-LAST:event_tabRouteMouseClicked
 
-    private void tabEncounterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEncounterMouseClicked
+    private void tabIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIncomeMouseClicked
         
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
-        tabEncounter.setVisible(true);
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabIncome.setVisible(true);
         tabLogout.setVisible(true);
 //        EncounterManagement encounterManagement = new EncounterManagement(enList);
 //        sysSplit.setRightComponent(encounterManagement);
         
-    }//GEN-LAST:event_tabEncounterMouseClicked
+    }//GEN-LAST:event_tabIncomeMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         // TODO add your handling code here:
-        tabPatient.setVisible(true);
-        tabDoctor.setVisible(true);
-        tabHospital.setVisible(true);
-        tabEncounter.setVisible(true);
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabIncome.setVisible(true);
         tabLogout.setVisible(true);
         sysSplit.setVisible(false);
         
@@ -356,10 +356,10 @@ public class AirlineCompany extends javax.swing.JPanel {
     private javax.swing.JPanel sysEncounterPanel;
     private javax.swing.JPanel sysMenuPanel;
     private javax.swing.JSplitPane sysSplit;
-    private javax.swing.JPanel tabDoctor;
-    private javax.swing.JPanel tabEncounter;
-    private javax.swing.JPanel tabHospital;
+    private javax.swing.JPanel tabAirplane;
+    private javax.swing.JPanel tabCrew;
+    private javax.swing.JPanel tabIncome;
     private javax.swing.JPanel tabLogout;
-    private javax.swing.JPanel tabPatient;
+    private javax.swing.JPanel tabRoute;
     // End of variables declaration//GEN-END:variables
 }
