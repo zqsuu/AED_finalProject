@@ -1,63 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui.AirCompany;
 
 import model.AirlineCompany;
 
-
-
-
 /**
  *
  * @author HP
  */
-public class AirlineComPage extends javax.swing.JPanel {
-
+public class ComJF extends javax.swing.JFrame {
     AirlineCompany routeList;
-//    PatientDirectory plist;
-//    DoctorDirectory dlist;
-//    HospitalDirectory hptList;
-//    EncounterHistory enList;
-//    VitalSignsList vsList;
+
     /**
-     * Creates new form SystemAdmin
-     * @param plist
-     * @param dlist
-     * @param hptList
-     * @param enList
-     * @param vsList
+     * Creates new form ComJF
      */
-    public AirlineComPage(AirlineCompany routeList) {
+    public ComJF() {
         initComponents();
         if(routeList==null){
             routeList = new AirlineCompany();
         }else{
             this.routeList=routeList;
         }
-//        if(enList==null){
-//            enList = new EncounterHistory();
-//        }else{
-//            this.enList=enList;
-//        }
-//        if(dlist==null){
-//            dlist = new DoctorDirectory();
-//        }else{
-//            this.dlist=dlist;
-//        }
-//        if(hptList==null){
-//            hptList = new HospitalDirectory();
-//        }else{
-//            this.hptList=hptList;
-//        }
-//        if(vsList==null){
-//            vsList = new VitalSignsList();
-//        }else{
-//            this.vsList=vsList;
-//        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,7 +34,7 @@ public class AirlineComPage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jPanel1 = new javax.swing.JPanel();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
         tabAirplane = new javax.swing.JPanel();
@@ -82,10 +49,9 @@ public class AirlineComPage extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setPreferredSize(new java.awt.Dimension(1450, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1450, 800));
 
         sysSplit.setPreferredSize(new java.awt.Dimension(1450, 800));
 
@@ -261,7 +227,7 @@ public class AirlineComPage extends javax.swing.JPanel {
         sysEncounterPanel.setLayout(sysEncounterPanelLayout);
         sysEncounterPanelLayout.setHorizontalGroup(
             sysEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1326, Short.MAX_VALUE)
+            .addGap(0, 1355, Short.MAX_VALUE)
         );
         sysEncounterPanelLayout.setVerticalGroup(
             sysEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,48 +236,70 @@ public class AirlineComPage extends javax.swing.JPanel {
 
         sysSplit.setRightComponent(sysEncounterPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(sysSplit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sysSplit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1459, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
-        
+
         tabAirplane.setVisible(true);
         tabCrew.setVisible(true);
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        PatientProfile patientProfile = new PatientProfile(plist);
-//        sysSplit.setRightComponent(patientProfile);
-        
+        //        PatientProfile patientProfile = new PatientProfile(plist);
+        //        sysSplit.setRightComponent(patientProfile);
+
     }//GEN-LAST:event_tabAirplaneMouseClicked
 
     private void tabCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCrewMouseClicked
-        
+
         tabAirplane.setVisible(true);
         tabCrew.setVisible(true);
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        DoctorProfile doctorProfile = new DoctorProfile(dlist);
-//        sysSplit.setRightComponent(doctorProfile);
-        
-        
+        //        DoctorProfile doctorProfile = new DoctorProfile(dlist);
+        //        sysSplit.setRightComponent(doctorProfile);
+
     }//GEN-LAST:event_tabCrewMouseClicked
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
-        
+
         tabAirplane.setVisible(true);
         tabCrew.setVisible(true);
         tabRoute.setVisible(true);
@@ -319,21 +307,19 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabLogout.setVisible(true);
         RouteUi route = new RouteUi(routeList);
         sysSplit.setRightComponent(route);
-        
-        
-        
+
     }//GEN-LAST:event_tabRouteMouseClicked
 
     private void tabIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIncomeMouseClicked
-        
+
         tabAirplane.setVisible(true);
         tabCrew.setVisible(true);
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        EncounterManagement encounterManagement = new EncounterManagement(enList);
-//        sysSplit.setRightComponent(encounterManagement);
-        
+        //        EncounterManagement encounterManagement = new EncounterManagement(enList);
+        //        sysSplit.setRightComponent(encounterManagement);
+
     }//GEN-LAST:event_tabIncomeMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
@@ -344,10 +330,43 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
         sysSplit.setVisible(false);
-        
-        
+
     }//GEN-LAST:event_tabLogoutMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ComJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ComJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ComJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ComJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ComJF().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -355,7 +374,7 @@ public class AirlineComPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel sysEncounterPanel;
     private javax.swing.JPanel sysMenuPanel;
     private javax.swing.JSplitPane sysSplit;

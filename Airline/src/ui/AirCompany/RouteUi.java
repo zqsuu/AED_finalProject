@@ -7,6 +7,7 @@ package ui.AirCompany;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.*;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -18,20 +19,21 @@ import model.AirlineCompany;
  *
  * @author HP
  */
-public class Route extends javax.swing.JPanel {
+public class RouteUi extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
      */
     AirlineCompany routeList;
 
-    public Route(AirlineCompany routeList) {
+    public RouteUi(AirlineCompany routeList) {
         initComponents();
         displayRoute();
+        routeCount();
 
         this.routeList = routeList;
 
-        populateTable();
+//        populateTable();
     }
 
     /**
@@ -67,6 +69,8 @@ public class Route extends javax.swing.JPanel {
         txtFallTime = new javax.swing.JTextField();
         lblId19 = new javax.swing.JLabel();
         txtRN = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
+        btnRetrieve = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -119,20 +123,20 @@ public class Route extends javax.swing.JPanel {
 
         tblRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ROUTE NAME", "DEPARTURE", "DEPARTURE TIME", "DESTINATION", "FALL TIME", "FLY TIME", "AIPLANE TYPE"
+                "key", "ROUTE NAME", "DEPARTURE", "DEPARTURE TIME", "DESTINATION", "FALL TIME", "FLY TIME", "AIPLANE TYPE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -196,6 +200,22 @@ public class Route extends javax.swing.JPanel {
             }
         });
 
+        btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnRetrieve.setText("Retrieve");
+        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrieveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,9 +226,15 @@ public class Route extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1122, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnDelete)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetrieve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -223,17 +249,17 @@ public class Route extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblId19, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtDepature, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lblId19, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(26, 26, 26)
@@ -271,10 +297,14 @@ public class Route extends javax.swing.JPanel {
                     .addComponent(btnSave)
                     .addComponent(lblSearchContent)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId19))
+                    .addComponent(btnRetrieve)
+                    .addComponent(btnClear))
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId19)
+                    .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDepature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +323,7 @@ public class Route extends javax.swing.JPanel {
                     .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAirType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId8))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -314,8 +344,20 @@ public class Route extends javax.swing.JPanel {
         //delete row
         if (tblRoute.getSelectedRowCount() == 1) {
             //if single row is selected then delete
-            tblModel.removeRow(tblRoute.getSelectedRow());
-            JOptionPane.showMessageDialog(this, "This Doctor Deleted.");
+//            tblModel.removeRow(tblRoute.getSelectedRow());
+            try {
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                String query = "delete from airlinedb1.route where idkey = " + key;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Route deleted successfully!");
+                displayRoute();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "This Route Deleted.");
         } else {
             if (tblRoute.getRowCount() == 0) {
                 //if table is empty then display message
@@ -328,12 +370,13 @@ public class Route extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+    int key = 0;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
-        if (tblRoute.getSelectedRowCount() == 1) {
+        key = Integer.valueOf(tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString());
+        if (key == 0) {
             //If single row is selected then update
 
             String routeName = txtRN.getText();
@@ -344,21 +387,34 @@ public class Route extends javax.swing.JPanel {
             String fallTime = txtFallTime.getText();
             String type = txtAirType.getText();
 
-            //Set updated value on table row
-            tblModel.setValueAt(routeName, tblRoute.getSelectedRow(), 0);
-            tblModel.setValueAt(departure, tblRoute.getSelectedRow(), 1);
-            tblModel.setValueAt(fallAirport, tblRoute.getSelectedRow(), 2);
-            tblModel.setValueAt(flytime, tblRoute.getSelectedRow(), 3);
-            tblModel.setValueAt(departureTime, tblRoute.getSelectedRow(), 4);
-            tblModel.setValueAt(fallTime, tblRoute.getSelectedRow(), 5);
-            tblModel.setValueAt(type, tblRoute.getSelectedRow(), 6);
-            //Update data display
-            JOptionPane.showMessageDialog(this, "Update Successfully!");
+            try {
+                //ssl error
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?verifyServerCertificate=false&useSSL=true", "root", "Airline3306");
+                String query = "update route set route name = '" + routeName + "'" + ", departure = '" + departure + "'" + ", departure time = '" + departureTime + "'" + ", destination = '" + fallAirport + "'" + ", fall time = '" + fallTime + "'" + ", fly time = '" + flytime + "'" + ", type = '" + type + "'" + " where idkey = " + key;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Route updated successfully!");
+                displayRoute();
+                clear();
 
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//            //Set updated value on table row
+//            tblModel.setValueAt(routeName, tblRoute.getSelectedRow(), 0);
+//            tblModel.setValueAt(departure, tblRoute.getSelectedRow(), 1);
+//            tblModel.setValueAt(fallAirport, tblRoute.getSelectedRow(), 2);
+//            tblModel.setValueAt(flytime, tblRoute.getSelectedRow(), 3);
+//            tblModel.setValueAt(departureTime, tblRoute.getSelectedRow(), 4);
+//            tblModel.setValueAt(fallTime, tblRoute.getSelectedRow(), 5);
+//            tblModel.setValueAt(type, tblRoute.getSelectedRow(), 6);
+//            //Update data display
+//            JOptionPane.showMessageDialog(this, "Update Successfully!");
         } else {
-            if (tblRoute.getSelectedRowCount() == 0) {
+            if (tblRoute.getSelectedRow() == 0) {
                 //if table is empty.
-                JOptionPane.showMessageDialog(this, "Please Select an Doctor.");
+                JOptionPane.showMessageDialog(this, "Please Select an Route.");
             } else {
                 //if multiple rows are selected.
                 JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
@@ -369,8 +425,22 @@ public class Route extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     Connection con = null;
-    Statement st = null;
-    ResultSet rs = null;
+    Statement st = null, st1 = null;
+    ResultSet rs = null, rs1 = null;
+
+    int idkey = 0;
+
+    private void routeCount() {
+        try {
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idkey) from airlinedb1.route");
+            rs1.next();
+            idkey = rs1.getInt(1) + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -391,88 +461,69 @@ public class Route extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
+//                int patKey = 1;
+                routeCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                PreparedStatement add = con.prepareStatement("insert into tblRoute values(?,?,?,?,?,?,?)");
-                add.setString(1, txtRN.getText());
-                add.setString(2, txtDepature.getText());
-                add.setString(3, txtDestination.getText());
-                add.setString(4, txtFlyTime.getText());
-                add.setString(5, txtDepTime.getText());
-                add.setString(6, txtFallTime.getText());
-                add.setString(7, txtAirType.getText());
+//                String sql = "INSERT INTO route(route name, departure, departure time, destination, fall time, fly time, type) "
+//                                                             + "VALUES('"+txtRN.getText()
+//                                                             +"','"+txtDepature.getText()
+//                                                             +"','"+txtDepTime.getText()
+//                                                             +"','"+txtDestination.getText()
+//                                                             +"','"+txtFallTime.getText()
+//                                                             +"','"+txtFlyTime.getText()
+//                                                             +"','"+txtAirType.getText()+"')";
+//                Statement st = (Statement) con.prepareStatement(sql);
+//                st.execute(sql);
+                PreparedStatement add = con.prepareStatement("insert into route values(?,?,?,?,?,?,?,?)");
+                add.setInt(1, idkey);
+                add.setString(2, txtRN.getText());
+                add.setString(3, txtDepature.getText());
+                add.setString(4, txtDestination.getText());
+                add.setString(5, txtFlyTime.getText());
+                add.setString(6, txtDepTime.getText());
+                add.setString(7, txtFallTime.getText());
+                add.setString(8, txtAirType.getText());
 
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Route solved successfully!");
                 con.close();
                 displayRoute();
+                clear();
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-        }
-//        int id = Integer.parseInt(txtId.getText());
-//        String name = txtName.getText();
-//        String gender = txtGender.getText();
-//        int age = Integer.parseInt(txtAge.getText());
-//        long phoneNumber = Long.parseLong(txtPhone.getText());
-//        String password = txtPassword.getText();
-//        String field = txtField.getText();
-//        String standard = txtStandard.getText();
-//        double fee = Double.parseDouble(txtFee.getText());
-//
-//        person.doctor.Doctor dc = dlist.addDoctor();
-//
-//        dc.setId(id);
-//        dc.setName(name);
-//        dc.setGender(gender);
-//        dc.setAge(age);
-//        dc.setPhoneNumber(phoneNumber);
-//        dc.setPassword(password);
-//        dc.setField(field);
-//        dc.setStandard(standard);
-//        dc.setFee(fee);
-//        dc.setRole("DOCTOR");
-        JOptionPane.showMessageDialog(this, "New Doctor Profile added");
 
-//        txtId.setText("");
-//        txtName.setText("");
-//        //buttonGroup1.setClear();
-//        txtGender.setText("");
-//        txtAge.setText("");
-//        txtPhone.setText("");
-//        txtPassword.setText("");
-//        txtField.setText("");
-//        txtStandard.setText("");
-//        txtFee.setText("");
-        populateTable();
+        }
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void displayRoute(){
-        try{
+    private void displayRoute() {
+
+        try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from root.route");
-            //tblRoute.setModel(DbUtils.resultSetToTableModel(rs));
-            
-        } catch(Exception e) {
+            rs = st.executeQuery("Select * from airlinedb1.route");
+            tblRoute.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     private void tblRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteMouseClicked
         // TODO add your handling code here:
         DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
 
         //Set data to text field when raw is selected
-        String tblRouteName = tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString();
-        String tblDeparture = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
-        String tblDepTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
-        String tblDestination = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
-        String tblFallTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
-        String tblFlyTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
-        String tblType = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
+        key = Integer.parseInt(tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString());
+        String tblRouteName = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
+        String tblDeparture = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
+        String tblDepTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
+        String tblDestination = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
+        String tblFallTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
+        String tblFlyTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
+        String tblType = tblModel.getValueAt(tblRoute.getSelectedRow(), 7).toString();
 
         //Set to text field
         txtRN.setText(tblRouteName);
@@ -514,10 +565,32 @@ public class Route extends javax.swing.JPanel {
     private void txtRNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRNKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRNKeyPressed
+    private void clear() {
+        txtRN.setText("");
+        txtDepature.setText("");
+        txtDestination.setText("");
+        txtFlyTime.setText("");
+        txtDepTime.setText("");
+        txtFallTime.setText("");
+        txtAirType.setText("");
+    }
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
+        displayRoute();
+
+
+    }//GEN-LAST:event_btnRetrieveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRetrieve;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -543,11 +616,10 @@ public class Route extends javax.swing.JPanel {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
-
-        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
-        model.setRowCount(0);
-
+//    private void populateTable() {
+//
+//        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
+//        model.setRowCount(0);
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -562,5 +634,5 @@ public class Route extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-    }
+//    }
 }

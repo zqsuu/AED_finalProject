@@ -10,12 +10,15 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.ResultSetImpl;
 import java.sql.*;
 import java.sql.DriverManager;
+import model.AirlineCompany;
+import ui.AirCompany.ComJF;
 
 /**
  *
  * @author HP
  */
 public class LogIn extends javax.swing.JFrame {
+    AirlineCompany routeList;
 
     /**
      * Creates new form LogIn
@@ -226,8 +229,9 @@ public class LogIn extends javax.swing.JFrame {
             
             if(rs.next()){
                 dispose();
-                Homepage hp = new Homepage();
-                hp.show();
+                //Homepage hp = new Homepage();
+                ComJF com = new ComJF();
+                com.show();
             } else {
                 JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");
                 txtUserName.setText("");
