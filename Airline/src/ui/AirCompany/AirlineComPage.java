@@ -4,6 +4,8 @@
  */
 package ui.AirCompany;
 
+import model.AirlineCompany;
+
 
 
 
@@ -11,8 +13,9 @@ package ui.AirCompany;
  *
  * @author HP
  */
-public class AirlineCompany extends javax.swing.JPanel {
+public class AirlineComPage extends javax.swing.JPanel {
 
+    AirlineCompany routeList;
 //    PatientDirectory plist;
 //    DoctorDirectory dlist;
 //    HospitalDirectory hptList;
@@ -26,13 +29,13 @@ public class AirlineCompany extends javax.swing.JPanel {
      * @param enList
      * @param vsList
      */
-//    public AirlineCompany(PatientDirectory plist,DoctorDirectory dlist,HospitalDirectory hptList,EncounterHistory enList,VitalSignsList vsList) {
-//        initComponents();
-//        if(plist==null){
-//            plist = new PatientDirectory();
-//        }else{
-//            this.plist=plist;
-//        }
+    public AirlineComPage(AirlineCompany routeList) {
+        initComponents();
+        if(routeList==null){
+            routeList = new AirlineCompany();
+        }else{
+            this.routeList=routeList;
+        }
 //        if(enList==null){
 //            enList = new EncounterHistory();
 //        }else{
@@ -53,7 +56,7 @@ public class AirlineCompany extends javax.swing.JPanel {
 //        }else{
 //            this.vsList=vsList;
 //        }
-//    }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -314,8 +317,8 @@ public class AirlineCompany extends javax.swing.JPanel {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        HospitalManagement hospitalManagement = new HospitalManagement(hptList);
-//        sysSplit.setRightComponent(hospitalManagement);
+        Route route = new Route(routeList);
+        sysSplit.setRightComponent(route);
         
         
         

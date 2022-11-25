@@ -4,11 +4,15 @@
  */
 package ui.AirCompany;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
+import model.AirlineCompany;
 
 /**
  *
@@ -19,15 +23,16 @@ public class Route extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
-//    DoctorDirectory dlist;
-//    
-//    public People(DoctorDirectory dlist) {
-//        initComponents();
-//        
-//        this.dlist = dlist;
-//        
-//        populateTable();
-//    }
+    AirlineCompany routeList;
+
+    public Route(AirlineCompany routeList) {
+        initComponents();
+        displayRoute();
+
+        this.routeList = routeList;
+
+        populateTable();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -298,124 +303,114 @@ public class Route extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblRoute.getSelectedRow();
-        
-        if(selectedRowIndex<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete.");
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
             return;
         }
-        
+
         //Get tblList first
         DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
         //delete row
-        if(tblRoute.getSelectedRowCount()==1){
+        if (tblRoute.getSelectedRowCount() == 1) {
             //if single row is selected then delete
             tblModel.removeRow(tblRoute.getSelectedRow());
-            JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
-        }else{
-            if(tblRoute.getRowCount()==0){
+            JOptionPane.showMessageDialog(this, "This Doctor Deleted.");
+        } else {
+            if (tblRoute.getRowCount() == 0) {
                 //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");  
-            }else{
+                JOptionPane.showMessageDialog(this, "Table is Empty!");
+            } else {
                 //if table is not empty but other than one row is selected
                 JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
             }
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblRoute.getModel();
-//        if(tblDoctor.getSelectedRowCount() == 1){
-//            //If single row is selected then update
-//            
-//            int id = Integer.parseInt(txtId.getText());
-//            String name = txtName.getText();
-//            //Gender
-//            String gender = txtGender.getText();
-//            int age = Integer.parseInt(txtAge.getText());
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//            String password = txtPassword.getText();
-//            String field = txtField.getText();
-//            String standard = txtStandard.getText();
-//            double fee = Double.parseDouble(txtFee.getText());
-//            
-//            
-//            //Set updated value on table row
-//            tblModel.setValueAt(id, tblDoctor.getSelectedRow(), 0);
-//            tblModel.setValueAt(name, tblDoctor.getSelectedRow(), 1);
-//            tblModel.setValueAt(gender, tblDoctor.getSelectedRow(), 2);
-//            tblModel.setValueAt(age, tblDoctor.getSelectedRow(), 3);
-//            tblModel.setValueAt(phoneNumber, tblDoctor.getSelectedRow(), 4);
-//            tblModel.setValueAt(password, tblDoctor.getSelectedRow(), 5);
-//            tblModel.setValueAt(field, tblDoctor.getSelectedRow(), 6);
-//            tblModel.setValueAt(standard, tblDoctor.getSelectedRow(), 7);
-//            tblModel.setValueAt(fee, tblDoctor.getSelectedRow(), 8);
-//            
-//            
-//            
-//            //Update data display
-//            JOptionPane.showMessageDialog(this,"Update Successfully!");
-//            
-//        }else{
-//            if(tblDoctor.getSelectedRowCount() == 0){
-//                //if table is empty.
-//                JOptionPane.showMessageDialog(this,"Please Select an Doctor.");
-//            }else{
-//                //if multiple rows are selected.
-//                JOptionPane.showMessageDialog(this,"Please Select Single Row for Update!");
-//            }
-//        }
-        
-        
-        
-        
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
+        if (tblRoute.getSelectedRowCount() == 1) {
+            //If single row is selected then update
+
+            String routeName = txtRN.getText();
+            String departure = txtDepature.getText();
+            String fallAirport = txtDestination.getText();
+            int flytime = Integer.parseInt(txtFlyTime.getText());
+            String departureTime = txtDepTime.getText();
+            String fallTime = txtFallTime.getText();
+            String type = txtAirType.getText();
+
+            //Set updated value on table row
+            tblModel.setValueAt(routeName, tblRoute.getSelectedRow(), 0);
+            tblModel.setValueAt(departure, tblRoute.getSelectedRow(), 1);
+            tblModel.setValueAt(fallAirport, tblRoute.getSelectedRow(), 2);
+            tblModel.setValueAt(flytime, tblRoute.getSelectedRow(), 3);
+            tblModel.setValueAt(departureTime, tblRoute.getSelectedRow(), 4);
+            tblModel.setValueAt(fallTime, tblRoute.getSelectedRow(), 5);
+            tblModel.setValueAt(type, tblRoute.getSelectedRow(), 6);
+            //Update data display
+            JOptionPane.showMessageDialog(this, "Update Successfully!");
+
+        } else {
+            if (tblRoute.getSelectedRowCount() == 0) {
+                //if table is empty.
+                JOptionPane.showMessageDialog(this, "Please Select an Doctor.");
+            } else {
+                //if multiple rows are selected.
+                JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
+            }
+        }
+
+
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    Connection con = null;
+    Statement st = null;
+    ResultSet rs = null;
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-//        try{
-//            int id = Integer.parseInt(txtId.getText());
-//            int age = Integer.parseInt(txtAge.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Id/Age should be int!");
-//            return;
-//        }
-//        try{
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Phone/SSA Number should be long!");
-//            return;
-//        }
-//        try{
-//            double fee = Double.parseDouble(txtFee.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Fee should be double!");
-//            return;
-//        }
-        
-//        if(txtId.getText().equals("")||
-//                txtName.getText().equals("")||
-//                txtGender.getText().equals("")||
-//                txtAge.getText().equals("")||
-//                txtPhone.getText().equals("")||
-//                txtPassword.getText().equals("")||
-//                txtField.getText().equals("")||
-//                txtStandard.getText().equals("")||
-//                txtFee.getText().equals("")){
-//            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Successfully Stored!");
-//        }
+        try {
+            int flytime = Integer.parseInt(txtFlyTime.getText());
+        } catch (NumberFormatException exe) {
+            JOptionPane.showMessageDialog(this, "Datatype of flytime should be int!");
+            return;
+        }
 
+        if (txtRN.getText().equals("")
+                || txtDepature.getText().equals("")
+                || txtDestination.getText().equals("")
+                || txtFlyTime.getText().equals("")
+                || txtDepTime.getText().equals("")
+                || txtFallTime.getText().equals("")
+                || txtAirType.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Set All Data!");
+        } else {
+            try {
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                PreparedStatement add = con.prepareStatement("insert into tblRoute values(?,?,?,?,?,?,?)");
+                add.setString(1, txtRN.getText());
+                add.setString(2, txtDepature.getText());
+                add.setString(3, txtDestination.getText());
+                add.setString(4, txtFlyTime.getText());
+                add.setString(5, txtDepTime.getText());
+                add.setString(6, txtFallTime.getText());
+                add.setString(7, txtAirType.getText());
+
+                int row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Route solved successfully!");
+                con.close();
+                displayRoute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        }
 //        int id = Integer.parseInt(txtId.getText());
 //        String name = txtName.getText();
 //        String gender = txtGender.getText();
@@ -438,11 +433,7 @@ public class Route extends javax.swing.JPanel {
 //        dc.setStandard(standard);
 //        dc.setFee(fee);
 //        dc.setRole("DOCTOR");
-        
-
         JOptionPane.showMessageDialog(this, "New Doctor Profile added");
-        
-        
 
 //        txtId.setText("");
 //        txtName.setText("");
@@ -454,39 +445,45 @@ public class Route extends javax.swing.JPanel {
 //        txtField.setText("");
 //        txtStandard.setText("");
 //        txtFee.setText("");
-        
         populateTable();
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void displayRoute(){
+        try{
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from root.route");
+            //tblRoute.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void tblRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblRoute.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
+
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblRoute.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblRoute.getSelectedRow(), 8).toString();
-        
-        
-        
+        String tblRouteName = tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString();
+        String tblDeparture = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
+        String tblDepTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
+        String tblDestination = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
+        String tblFallTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
+        String tblFlyTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
+        String tblType = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
+
         //Set to text field
-//        txtId.setText(tblId);
-//        txtName.setText(tblName);
-//        txtGender.setText(tblGender);
-//        txtAge.setText(tblAge);
-//        txtPhone.setText(tblPhone);
-//        txtPassword.setText(tblPassword);
-//        txtField.setText(tblField);
-//        txtStandard.setText(tblStandard);
-//        txtFee.setText(tblFee);
-        
+        txtRN.setText(tblRouteName);
+        txtDepature.setText(tblDeparture);
+        txtDestination.setText(tblDestination);
+        txtFlyTime.setText(tblFlyTime);
+        txtDepTime.setText(tblDepTime);
+        txtFallTime.setText(tblFallTime);
+        txtAirType.setText(tblType);
+
+
     }//GEN-LAST:event_tblRouteMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -547,10 +544,10 @@ public class Route extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
         model.setRowCount(0);
-        
+
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -565,6 +562,5 @@ public class Route extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-        
     }
 }
