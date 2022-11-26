@@ -429,13 +429,18 @@ public class RouteUi extends javax.swing.JPanel {
 //            //Update data display
 //            JOptionPane.showMessageDialog(this, "Update Successfully!");
         } else {
-            if (tblRoute.getSelectedRow() == 1) {
+            try{
+                if (tblRoute.getSelectedRow() == 0) {
                 //if table is empty.
                 JOptionPane.showMessageDialog(this, "Please Select an Route.");
             } else {
                 //if multiple rows are selected.
                 JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
             }
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            
         }
 
 
