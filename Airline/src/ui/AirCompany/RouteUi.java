@@ -329,7 +329,24 @@ public class RouteUi extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
 
     }// </editor-fold>//GEN-END:initComponents
+    Connection con = null;
+    Statement st = null, st1 = null;
+    ResultSet rs = null, rs1 = null;
 
+    int idkey = 0;
+    int key = 0;
+    
+    private void routeCount() {
+        try {
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idkey) from airlinedb1.route");
+            rs1.next();
+            idkey = rs1.getInt(1) + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblRoute.getSelectedRow();
@@ -370,13 +387,13 @@ public class RouteUi extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
-    int key = 0;
+
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
-        key = Integer.valueOf(tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString());
-        if (key == 0) {
+        key = Integer.parseInt(tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString());
+        if (key != 0) {
             //If single row is selected then update
 
             String routeName = txtRN.getText();
@@ -389,8 +406,8 @@ public class RouteUi extends javax.swing.JPanel {
 
             try {
                 //ssl error
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?verifyServerCertificate=false&useSSL=true", "root", "Airline3306");
-                String query = "update route set route name = '" + routeName + "'" + ", departure = '" + departure + "'" + ", departure time = '" + departureTime + "'" + ", destination = '" + fallAirport + "'" + ", fall time = '" + fallTime + "'" + ", fly time = '" + flytime + "'" + ", type = '" + type + "'" + " where idkey = " + key;
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
+                String query = "UPDATE route SET rname = '" + routeName + "'" + ",departure = '" + departure + "'" + ",deptime = '" + departureTime + "'" + ",destination = '" + fallAirport + "'" + ",falltime = '" + fallTime + "'" + ",flytime = '" + flytime + "'" + ",type = '" + type + "'" + " WHERE idkey = " + key;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Route updated successfully!");
@@ -412,7 +429,7 @@ public class RouteUi extends javax.swing.JPanel {
 //            //Update data display
 //            JOptionPane.showMessageDialog(this, "Update Successfully!");
         } else {
-            if (tblRoute.getSelectedRow() == 0) {
+            if (tblRoute.getSelectedRow() == 1) {
                 //if table is empty.
                 JOptionPane.showMessageDialog(this, "Please Select an Route.");
             } else {
@@ -424,23 +441,7 @@ public class RouteUi extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    Connection con = null;
-    Statement st = null, st1 = null;
-    ResultSet rs = null, rs1 = null;
 
-    int idkey = 0;
-
-    private void routeCount() {
-        try {
-            st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idkey) from airlinedb1.route");
-            rs1.next();
-            idkey = rs1.getInt(1) + 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
