@@ -549,6 +549,8 @@ public class RouteUi extends javax.swing.JPanel {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         tblRoute.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+        clear();
+
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
