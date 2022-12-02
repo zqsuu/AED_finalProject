@@ -19,11 +19,13 @@ public class Route {
     String departureTime;
     String fallTime;
     ArrayList<Employee> employeeList;
-    char terminal;
+    char depatureTerminal;
+    char fallTerminal;
     int baggage;
     
+    
 
-    public Route(String routeName, Airport departureAirport, Airport fallAirport, Airplane airplane, int flytime, String departureTime, String fallTime, ArrayList<Employee> employeeList, char terminal, int baggage) {
+    public Route(String routeName, Airport departureAirport, Airport fallAirport, Airplane airplane, int flytime, String departureTime, String fallTime, ArrayList<Employee> employeeList, char depatureTerminal, char fallTerminal, int baggage) {
         this.routeName = routeName;
         this.departureAirport = departureAirport;
         this.fallAirport = fallAirport;
@@ -32,8 +34,10 @@ public class Route {
         this.departureTime = departureTime;
         this.fallTime = fallTime;
         this.employeeList = employeeList;
-        this.terminal = terminal;
+        this.depatureTerminal = depatureTerminal;
+        this.fallTerminal = fallTerminal;
         this.baggage = baggage;
+        
     }
 
     public String getRouteName() {
@@ -68,13 +72,7 @@ public class Route {
         return employeeList;
     }
 
-    public char getTerminal() {
-        return terminal;
-    }
-
-    public int getBaggage() {
-        return baggage;
-    }
+    
     
     
 }

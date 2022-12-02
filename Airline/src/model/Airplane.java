@@ -4,6 +4,8 @@
  */
 package model;
 
+import model.AirlineCompany;
+
 /**
  *
  * @author zhiqingsu
@@ -18,9 +20,10 @@ public class Airplane {
     String type;
     String company;
     Route route;
+    AirlineCompany airplaneCompany;
 
 
-    public Airplane(int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, String company) {
+    public Airplane(int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, String company, AirlineCompany airplaneCompany) {
         this.firstCapacity = firstCapacity;
         this.businessCapacity = businessCapacity;
         this.ecoCapacity = ecoCapacity;
@@ -30,6 +33,7 @@ public class Airplane {
         this.type = type;
         this.company = company;
         this.route = null;
+        this.airplaneCompany = airplaneCompany;
     }
 
     public int getPrice() {

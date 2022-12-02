@@ -74,7 +74,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtOrigin" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                      <Component id="txtTerminal" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                      <Component id="txtFallTerminal" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -136,7 +136,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtTerminal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFallTerminal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtOriginKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTerminal">
+    <Component class="javax.swing.JTextField" name="txtFallTerminal">
     </Component>
     <Component class="javax.swing.JLabel" name="lblId2">
       <Properties>
@@ -189,7 +189,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="TERMINAL"/>
+        <Property name="text" type="java.lang.String" value="FALL TERMINAL"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId">
@@ -215,7 +215,7 @@
                 <Column editable="true" title="Arrivals Id" type="java.lang.Integer"/>
                 <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
                 <Column editable="false" title="ORINGIN" type="java.lang.String"/>
-                <Column editable="false" title="TERMINAL" type="java.lang.String"/>
+                <Column editable="false" title="FALL TERMINAL" type="java.lang.String"/>
                 <Column editable="false" title="BAGGAGE" type="java.lang.String"/>
                 <Column editable="false" title="FALL TIME" type="java.lang.String"/>
               </Table>

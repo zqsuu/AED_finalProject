@@ -14,16 +14,16 @@ public class Employee {
     String password;
     String gender;
     String role;
-    int flyYear;
+    int flyYears;
     int age;
 
-    public Employee(String name, String id, String password, String gender, String role, int flyYear, int age) {
+    public Employee(String name, String id, String password, String gender, String role, int flyYears, int age) {
         this.name = name;
         this.id = id;
         this.password = password;
         this.gender = gender;
         this.role = role;
-        this.flyYear = flyYear;
+        this.flyYears = flyYears;
         this.age = age;
     }
 
@@ -43,8 +43,8 @@ public class Employee {
         return role;
     }
 
-    public int getFlyYear() {
-        return flyYear;
+    public int getFlyYears() {
+        return flyYears;
     }
 
     public int getAge() {

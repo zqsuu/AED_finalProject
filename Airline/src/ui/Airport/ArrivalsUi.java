@@ -5,6 +5,7 @@
 package ui.Airport;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,7 +17,6 @@ import javax.swing.table.TableRowSorter;
 import model.Airport;
 import net.proteanit.sql.DbUtils;
 
-
 /**
  *
  * @author HP
@@ -27,12 +27,12 @@ public class ArrivalsUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     Airport arrivalsList;
-    
+
     public ArrivalsUi(Airport arrivalsList) {
         initComponents();
-        
+
         this.arrivalsList = arrivalsList;
-        
+
 //        populateTable();
     }
 
@@ -49,7 +49,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         txtOrigin = new javax.swing.JTextField();
-        txtTerminal = new javax.swing.JTextField();
+        txtFallTerminal = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
@@ -87,7 +87,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
 
         lblId1.setForeground(new java.awt.Color(255, 255, 255));
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("TERMINAL");
+        lblId1.setText("FALL TERMINAL");
 
         lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -101,7 +101,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Arrivals Id", "ROUTE NAME", "ORINGIN", "TERMINAL", "BAGGAGE", "FALL TIME"
+                "Arrivals Id", "ROUTE NAME", "ORINGIN", "FALL TERMINAL", "BAGGAGE", "FALL TIME"
             }
         ) {
             Class[] types = new Class [] {
@@ -246,7 +246,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtFallTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +290,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                     .addComponent(lblId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFallTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,7 +311,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
     int idarrivals = 0;
     int arrivalsId = 0;
 
-    private void airportCount() {
+    private void arrivalsCount() {
         try {
             st1 = (Statement) con.createStatement();
             rs1 = st.executeQuery("select Max(idarrivals) from airlinedb1.arrivals");
@@ -339,38 +339,29 @@ public class ArrivalsUi extends javax.swing.JPanel {
     private void clear() {
         txtRN.setText("");
         txtOrigin.setText("");
-        txtTerminal.setText("");
+        txtFallTerminal.setText("");
         txtBaggage.setText("");
         txtFallTime.setText("");
     }
     private void tblArrivalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblArrivalsMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblArrivals.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblArrivals.getModel();
+
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblArrivals.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblArrivals.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblArrivals.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblArrivals.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblArrivals.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblArrivals.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblArrivals.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblArrivals.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblArrivals.getSelectedRow(), 8).toString();
-        
-        
-        
+        arrivalsId = Integer.parseInt(tblModel.getValueAt(tblArrivals.getSelectedRow(), 0).toString());
+        String tblRN = tblModel.getValueAt(tblArrivals.getSelectedRow(), 1).toString();
+        String tblOrigin = tblModel.getValueAt(tblArrivals.getSelectedRow(), 2).toString();
+        String tblFallTerminal = tblModel.getValueAt(tblArrivals.getSelectedRow(), 3).toString();
+        String tblBaggage = tblModel.getValueAt(tblArrivals.getSelectedRow(), 4).toString();
+        String tblFallTime = tblModel.getValueAt(tblArrivals.getSelectedRow(), 5).toString();
+
         //Set to text field
-//        txtId.setText(tblId);
-//        txtName.setText(tblName);
-//        txtGender.setText(tblGender);
-//        txtAge.setText(tblAge);
-//        txtPhone.setText(tblPhone);
-//        txtPassword.setText(tblPassword);
-//        txtField.setText(tblField);
-//        txtStandard.setText(tblStandard);
-//        txtFee.setText(tblFee);
-        
+        txtRN.setText(tblRN);
+        txtOrigin.setText(tblOrigin);
+        txtFallTerminal.setText(tblFallTerminal);
+        txtBaggage.setText(tblBaggage);
+        txtFallTime.setText(tblFallTime);
+
     }//GEN-LAST:event_tblArrivalsMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -401,31 +392,29 @@ public class ArrivalsUi extends javax.swing.JPanel {
     private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         // TODO add your handling code here:
 
-        if (txtName.getText().equals("")
-            || txtCity.getText().equals("")
-            || txtAddress.getText().equals("")
-            || txtRoute.getText().equals("")
-            || txtService.getText().equals("")
-            || txtRouteRequest.getText().equals("")) {
+        if (txtRN.getText().equals("")
+                || txtOrigin.getText().equals("")
+                || txtFallTerminal.getText().equals("")
+                || txtBaggage.getText().equals("")
+                || txtFallTime.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
-                airportCount();
+                arrivalsCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
 
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?,?,?,?)");
-                add.setInt(1, idairport);
-                add.setString(2, txtName.getText());
-                add.setString(3, txtCity.getText());
-                add.setString(4, txtAddress.getText());
-                add.setString(5, txtRoute.getText());
-                add.setString(6, txtService.getText());
-                add.setString(7, txtRouteRequest.getText());
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into arrivals values(?,?,?,?,?,?,?,?)");
+                add.setInt(1, idarrivals);
+                add.setString(2, txtRN.getText());
+                add.setString(3, txtOrigin.getText());
+                add.setString(4, txtFallTerminal.getText());
+                add.setString(5, txtBaggage.getText());
+                add.setString(6, txtFallTime.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Airport solved successfully!");
+                JOptionPane.showMessageDialog(this, "Arrival solved successfully!");
                 con.close();
-                displayAirport();
+                displayArrivals();
                 clear();
 
             } catch (Exception e) {
@@ -436,13 +425,13 @@ public class ArrivalsUi extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSave1ActionPerformed
 
     private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
-        displayAirport();
+        DefaultTableModel tblModel = (DefaultTableModel) tblArrivals.getModel();
+        displayArrivals();
     }//GEN-LAST:event_btnRetrieveActionPerformed
 
     private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblAirport.getSelectedRow();
+        int selectedRowIndex = tblArrivals.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete.");
@@ -450,18 +439,18 @@ public class ArrivalsUi extends javax.swing.JPanel {
         }
 
         //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblArrivals.getModel();
         //delete row
-        if (tblAirport.getSelectedRowCount() == 1) {
+        if (tblArrivals.getSelectedRowCount() == 1) {
             //if single row is selected then delete
             //            tblModel.removeRow(tblRoute.getSelectedRow());
             try {
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                String query = "delete from airlinedb1.airport where idairport = " + airportId;
+                String query = "delete from airlinedb1.airport where idairport = " + arrivalsId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Airport deleted successfully!");
-                displayAirport();
+                displayArrivals();
                 clear();
 
             } catch (Exception e) {
@@ -469,7 +458,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
             }
             JOptionPane.showMessageDialog(this, "This Airport Deleted.");
         } else {
-            if (tblAirport.getRowCount() == 0) {
+            if (tblArrivals.getRowCount() == 0) {
                 //if table is empty then display message
                 JOptionPane.showMessageDialog(this, "Table is Empty!");
             } else {
@@ -487,26 +476,25 @@ public class ArrivalsUi extends javax.swing.JPanel {
     private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
         // TODO add your handling code here:
         //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
-        airportId = Integer.parseInt(tblModel.getValueAt(tblAirport.getSelectedRow(), 1).toString());
-        if (airportId != 0) {
+        DefaultTableModel tblModel = (DefaultTableModel) tblArrivals.getModel();
+        arrivalsId = Integer.parseInt(tblModel.getValueAt(tblArrivals.getSelectedRow(), 1).toString());
+        if (arrivalsId != 0) {
             //If single row is selected then update
 
-            String name = txtName.getText();
-            String city = txtCity.getText();
-            String address = txtAddress.getText();
-            String route = txtRoute.getText();
-            String service = txtService.getText();
-            String routeRequest = txtRouteRequest.getText();
+            String routeName = txtRN.getText();
+            String origin = txtOrigin.getText();
+            String fallTerminal = txtFallTerminal.getText();
+            String baggage = txtBaggage.getText();
+            String fallTime = txtFallTime.getText();
 
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE airport SET name = '" + name + "'" + ",city = '" + city + "'" + ",address = '" + address + "'" + ",route = '" + route + "'" + ",service = '" + service + "'" + ",routeRequest = '" + routeRequest + "'" + " WHERE idairport = " + airportId;
+                String query = "UPDATE route SET routename = '" + routeName + "'" + ",departureairport = '" + origin + "'" + ",fallterminal = '" + fallTerminal + "'" + ",baggage = '" + baggage + "'" + ",falltime = '" + fallTime + "'" + " WHERE routename = " + routeName;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
-                JOptionPane.showMessageDialog(this, "Airport updated successfully!");
-                displayAirport();
+                JOptionPane.showMessageDialog(this, "Arrival updated successfully!");
+                displayArrivals();
                 clear();
 
             } catch (Exception e) {
@@ -514,15 +502,15 @@ public class ArrivalsUi extends javax.swing.JPanel {
             }
 
         } else {
-            try{
-                if (tblAirport.getSelectedRow() == 0) {
+            try {
+                if (tblArrivals.getSelectedRow() == 0) {
                     //if table is empty.
                     JOptionPane.showMessageDialog(this, "Please Select an Airport.");
                 } else {
                     //if multiple rows are selected.
                     JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
                 }
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -548,18 +536,18 @@ public class ArrivalsUi extends javax.swing.JPanel {
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblArrivals;
     private javax.swing.JTextField txtBaggage;
+    private javax.swing.JTextField txtFallTerminal;
     private javax.swing.JTextField txtFallTime;
     private javax.swing.JTextField txtOrigin;
     private javax.swing.JTextField txtRN;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTerminal;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblArrivals.getModel();
         model.setRowCount(0);
-        
+
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -574,6 +562,5 @@ public class ArrivalsUi extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-        
     }
 }
