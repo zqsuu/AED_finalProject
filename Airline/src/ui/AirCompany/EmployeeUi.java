@@ -4,30 +4,36 @@
  */
 package ui.AirCompany;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
+import model.AirlineCompany;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author HP
  */
-public class Crew extends javax.swing.JPanel {
+public class EmployeeUi extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
      */
-//    DoctorDirectory dlist;
-//    
-//    public People(DoctorDirectory dlist) {
-//        initComponents();
-//        
-//        this.dlist = dlist;
-//        
+    AirlineCompany employeeList;
+
+    public EmployeeUi(AirlineCompany employeeList) {
+        initComponents();
+
+        this.employeeList = employeeList;
+
 //        populateTable();
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,9 +47,6 @@ public class Crew extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
@@ -63,6 +66,11 @@ public class Crew extends javax.swing.JPanel {
         rbtnMale = new javax.swing.JRadioButton();
         lblId7 = new javax.swing.JLabel();
         txtFlyYears = new javax.swing.JTextField();
+        btnSave1 = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnUpdate1 = new javax.swing.JButton();
+        btnRetrieve = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 102, 102));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -71,30 +79,6 @@ public class Crew extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Flight Crew");
-
-        btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
 
         txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -122,7 +106,7 @@ public class Crew extends javax.swing.JPanel {
         lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId3.setText("AGE");
 
-        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Captain", "Pilot", "Stewardess", "Steward" }));
+        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a role>", "Captain", "Pilot", "Stewardess", "Steward" }));
         cbRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbRoleActionPerformed(evt);
@@ -135,20 +119,20 @@ public class Crew extends javax.swing.JPanel {
 
         tblCrew.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "NAME", "GENDER", "AGE", "ROLE", "FLY YEARS", "PASSWORD"
+                "Employee Id", "ID", "NAME", "GENDER", "AGE", "ROLE", "FLY YEARS", "PASSWORD"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -202,10 +186,77 @@ public class Crew extends javax.swing.JPanel {
         lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId7.setText("FLY YEARS");
 
+        btnSave1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnSave1.setForeground(new java.awt.Color(0, 0, 0));
+        btnSave1.setText("Save");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
+        btnDelete1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnDelete1.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete1.setText("Delete");
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete1ActionPerformed(evt);
+            }
+        });
+
+        btnUpdate1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnUpdate1.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpdate1.setText("Update");
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+
+        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnRetrieve.setForeground(new java.awt.Color(0, 0, 0));
+        btnRetrieve.setText("Retrieve");
+        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrieveActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 0, 0));
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave1)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetrieve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate1)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -244,27 +295,8 @@ public class Crew extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtFlyYears, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(207, 207, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnDelete)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnUpdate)
-                        .addGap(156, 156, 156)
-                        .addComponent(lblSearchContent)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(386, 392, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -273,13 +305,20 @@ public class Crew extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnSave)
-                    .addComponent(lblSearchContent)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSearchContent)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete1)
+                            .addComponent(btnUpdate1)
+                            .addComponent(btnSave1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRetrieve)
+                            .addComponent(btnClear))))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId)
@@ -308,203 +347,83 @@ public class Crew extends javax.swing.JPanel {
                     .addComponent(lblId3))
                 .addContainerGap(178, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblCrew.getSelectedRow();
-        
-        if(selectedRowIndex<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete.");
-            return;
+    Connection con = null;
+    Statement st = null, st1 = null;
+    ResultSet rs = null, rs1 = null;
+
+    int idemployee = 0;
+    int employeeId = 0;
+
+    private void employeeCount() {
+        try {
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idemployee) from airlinedb1.crew");
+            rs1.next();
+            idemployee = rs1.getInt(1) + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
-        //delete row
-        if(tblCrew.getSelectedRowCount()==1){
-            //if single row is selected then delete
-            tblModel.removeRow(tblCrew.getSelectedRow());
-            JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
-        }else{
-            if(tblCrew.getRowCount()==0){
-                //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");  
-            }else{
-                //if table is not empty but other than one row is selected
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
-            }
+
+    }
+
+    private void displayEmployee() {
+
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.crew");
+            tblCrew.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        
-        
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblCrew.getModel();
-//        if(tblDoctor.getSelectedRowCount() == 1){
-//            //If single row is selected then update
-//            
-//            int id = Integer.parseInt(txtId.getText());
-//            String name = txtName.getText();
-//            //Gender
-//            String gender = txtGender.getText();
-//            int age = Integer.parseInt(txtAge.getText());
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//            String password = txtPassword.getText();
-//            String field = txtField.getText();
-//            String standard = txtStandard.getText();
-//            double fee = Double.parseDouble(txtFee.getText());
-//            
-//            
-//            //Set updated value on table row
-//            tblModel.setValueAt(id, tblDoctor.getSelectedRow(), 0);
-//            tblModel.setValueAt(name, tblDoctor.getSelectedRow(), 1);
-//            tblModel.setValueAt(gender, tblDoctor.getSelectedRow(), 2);
-//            tblModel.setValueAt(age, tblDoctor.getSelectedRow(), 3);
-//            tblModel.setValueAt(phoneNumber, tblDoctor.getSelectedRow(), 4);
-//            tblModel.setValueAt(password, tblDoctor.getSelectedRow(), 5);
-//            tblModel.setValueAt(field, tblDoctor.getSelectedRow(), 6);
-//            tblModel.setValueAt(standard, tblDoctor.getSelectedRow(), 7);
-//            tblModel.setValueAt(fee, tblDoctor.getSelectedRow(), 8);
-//            
-//            
-//            
-//            //Update data display
-//            JOptionPane.showMessageDialog(this,"Update Successfully!");
-//            
-//        }else{
-//            if(tblDoctor.getSelectedRowCount() == 0){
-//                //if table is empty.
-//                JOptionPane.showMessageDialog(this,"Please Select an Doctor.");
-//            }else{
-//                //if multiple rows are selected.
-//                JOptionPane.showMessageDialog(this,"Please Select Single Row for Update!");
-//            }
-//        }
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    private void clear() {
+        txtId.setText("");
+        txtName.setText("");
+        txtAge.setText("");
+        rbtnFemale.setSelected(false);
+        rbtnMale.setSelected(false);
+        cbRole.setSelectedItem("<choose a role>");
+        txtFlyYears.setText("");
+        txtPassword.setText("");
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-//        try{
-//            int id = Integer.parseInt(txtId.getText());
-//            int age = Integer.parseInt(txtAge.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Id/Age should be int!");
-//            return;
-//        }
-//        try{
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Phone/SSA Number should be long!");
-//            return;
-//        }
-//        try{
-//            double fee = Double.parseDouble(txtFee.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Fee should be double!");
-//            return;
-//        }
-        
-//        if(txtId.getText().equals("")||
-//                txtName.getText().equals("")||
-//                txtGender.getText().equals("")||
-//                txtAge.getText().equals("")||
-//                txtPhone.getText().equals("")||
-//                txtPassword.getText().equals("")||
-//                txtField.getText().equals("")||
-//                txtStandard.getText().equals("")||
-//                txtFee.getText().equals("")){
-//            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Successfully Stored!");
-//        }
-
-//        int id = Integer.parseInt(txtId.getText());
-//        String name = txtName.getText();
-//        String gender = txtGender.getText();
-//        int age = Integer.parseInt(txtAge.getText());
-//        long phoneNumber = Long.parseLong(txtPhone.getText());
-//        String password = txtPassword.getText();
-//        String field = txtField.getText();
-//        String standard = txtStandard.getText();
-//        double fee = Double.parseDouble(txtFee.getText());
-//
-//        person.doctor.Doctor dc = dlist.addDoctor();
-//
-//        dc.setId(id);
-//        dc.setName(name);
-//        dc.setGender(gender);
-//        dc.setAge(age);
-//        dc.setPhoneNumber(phoneNumber);
-//        dc.setPassword(password);
-//        dc.setField(field);
-//        dc.setStandard(standard);
-//        dc.setFee(fee);
-//        dc.setRole("DOCTOR");
-        
-
-        JOptionPane.showMessageDialog(this, "New Doctor Profile added");
-        
-        
-
-//        txtId.setText("");
-//        txtName.setText("");
-//        //buttonGroup1.setClear();
-//        txtGender.setText("");
-//        txtAge.setText("");
-//        txtPhone.setText("");
-//        txtPassword.setText("");
-//        txtField.setText("");
-//        txtStandard.setText("");
-//        txtFee.setText("");
-        
-        populateTable();
-
-    }//GEN-LAST:event_btnSaveActionPerformed
-
+    }
     private void tblCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCrewMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblCrew.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
+
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblCrew.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblCrew.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblCrew.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblCrew.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblCrew.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblCrew.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblCrew.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblCrew.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblCrew.getSelectedRow(), 8).toString();
-        
-        
-        
+        employeeId = Integer.parseInt(tblModel.getValueAt(tblCrew.getSelectedRow(), 0).toString());
+        String tblId = tblModel.getValueAt(tblCrew.getSelectedRow(), 1).toString();
+        String tblName = tblModel.getValueAt(tblCrew.getSelectedRow(), 2).toString();
+        String tblGender = tblModel.getValueAt(tblCrew.getSelectedRow(), 3).toString();
+        String tblAge = tblModel.getValueAt(tblCrew.getSelectedRow(), 4).toString();
+        String tblRole = tblModel.getValueAt(tblCrew.getSelectedRow(), 5).toString();
+        String tblFlyYears = tblModel.getValueAt(tblCrew.getSelectedRow(), 6).toString();
+        String tblPassword = tblModel.getValueAt(tblCrew.getSelectedRow(), 7).toString();
+
         //Set to text field
-//        txtId.setText(tblId);
-//        txtName.setText(tblName);
-//        txtGender.setText(tblGender);
-//        txtAge.setText(tblAge);
-//        txtPhone.setText(tblPhone);
-//        txtPassword.setText(tblPassword);
-//        txtField.setText(tblField);
-//        txtStandard.setText(tblStandard);
-//        txtFee.setText(tblFee);
-        
+        txtId.setText(tblId);
+        txtName.setText(tblName);
+        if (tblGender.equals("Female")) {
+            rbtnFemale.setSelected(true);
+            rbtnMale.setSelected(false);
+        } else if (tblGender.equals("Male")) {
+            rbtnMale.setSelected(true);
+            rbtnFemale.setSelected(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Correct Gender Message!");
+        }
+        txtAge.setText(tblAge);
+        cbRole.setSelectedItem(tblRole);
+        txtFlyYears.setText(tblFlyYears);
+        txtPassword.setText(tblPassword);
+
+
     }//GEN-LAST:event_tblCrewMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -536,11 +455,153 @@ public class Crew extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnMaleActionPerformed
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int age = Integer.parseInt(txtAge.getText());
+            int flyYears = Integer.parseInt(txtFlyYears.getText());
+        } catch (NumberFormatException exe) {
+            JOptionPane.showMessageDialog(this, "Datatype of Age/FlyYears should be int!");
+            return;
+        }
+
+        if (txtId.getText().equals("")
+                || txtName.getText().equals("")
+                || buttonGroup1.getSelection().toString().equals(null)
+                || txtAge.getText().equals("")
+                || cbRole.getSelectedItem().equals("<choose a role>")
+                || txtFlyYears.getText().equals("")
+                || txtPassword.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Set All Data!");
+        } else {
+            try {
+                employeeCount();
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into crew values(?,?,?,?,?,?,?,?)");
+                add.setInt(1, idemployee);
+                add.setString(2, txtId.getText());
+                add.setString(3, txtName.getText());
+                add.setString(4, buttonGroup1.getSelection().toString());
+                add.setString(5, txtAge.getText());
+                add.setString(6, cbRole.getSelectedItem().toString());
+                add.setString(7, txtFlyYears.getText());
+                add.setString(8, txtPassword.getText());
+
+                int row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Employee solved successfully!");
+                con.close();
+                displayEmployee();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblCrew.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+
+        //Get tblList first
+        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
+        //delete row
+        if (tblCrew.getSelectedRowCount() == 1) {
+            //if single row is selected then delete
+            //            tblModel.removeRow(tblRoute.getSelectedRow());
+            try {
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                String query = "delete from airlinedb1.crew where idemployee = " + employeeId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
+                displayEmployee();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "This Employee Deleted.");
+        } else {
+            if (tblCrew.getRowCount() == 0) {
+                //if table is empty then display message
+                JOptionPane.showMessageDialog(this, "Table is Empty!");
+            } else {
+                //if table is not empty but other than one row is selected
+                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
+            }
+        }
+    }//GEN-LAST:event_btnDelete1ActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        // TODO add your handling code here:
+        //Get table Model1
+        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
+        employeeId = Integer.parseInt(tblModel.getValueAt(tblCrew.getSelectedRow(), 1).toString());
+        if (employeeId != 0) {
+            //If single row is selected then update
+
+            String id = txtId.getText();
+            String name = txtName.getText();
+            String gender = buttonGroup1.getSelection().toString();
+            int age = Integer.parseInt(txtAge.getText());
+            String role = cbRole.getSelectedItem().toString();
+            int flyYears = Integer.parseInt(txtFlyYears.getText());
+            String password = txtPassword.getText();
+
+            try {
+                //ssl error
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
+                String query = "UPDATE crew SET id = '" + id + "'" + ",name = '" + name + "'" + ",gender = '" + gender + "'" + ",age = '" + age + "'" + ",role = '" + role + "'" + ",flyyears = '" + flyYears + "'" + ",password = '" + password + "'" + " WHERE idemployee = " + employeeId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Employee updated successfully!");
+                displayEmployee();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            try {
+                if (tblCrew.getSelectedRow() == 0) {
+                    //if table is empty.
+                    JOptionPane.showMessageDialog(this, "Please Select an Employee.");
+                } else {
+                    //if multiple rows are selected.
+                    JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
+        displayEmployee();
+    }//GEN-LAST:event_btnRetrieveActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnRetrieve;
+    private javax.swing.JButton btnSave1;
+    private javax.swing.JButton btnUpdate1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbRole;
@@ -566,10 +627,10 @@ public class Crew extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblCrew.getModel();
         model.setRowCount(0);
-        
+
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -584,6 +645,5 @@ public class Crew extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-        
     }
 }

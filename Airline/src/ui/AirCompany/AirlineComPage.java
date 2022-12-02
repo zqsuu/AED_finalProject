@@ -16,6 +16,8 @@ import model.AirlineCompany;
 public class AirlineComPage extends javax.swing.JPanel {
 
     AirlineCompany routeList;
+    AirlineCompany airplaneList;
+    AirlineCompany employeeList;
 //    PatientDirectory plist;
 //    DoctorDirectory dlist;
 //    HospitalDirectory hptList;
@@ -292,8 +294,8 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        PatientProfile patientProfile = new PatientProfile(plist);
-//        sysSplit.setRightComponent(patientProfile);
+        AirplaneUi airplane = new AirplaneUi(airplaneList);
+        sysSplit.setRightComponent(airplane);
         
     }//GEN-LAST:event_tabAirplaneMouseClicked
 
@@ -304,8 +306,8 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        DoctorProfile doctorProfile = new DoctorProfile(dlist);
-//        sysSplit.setRightComponent(doctorProfile);
+        EmployeeUi employee = new EmployeeUi(employeeList);
+        sysSplit.setRightComponent(employee);
         
         
     }//GEN-LAST:event_tabCrewMouseClicked
@@ -331,8 +333,8 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-//        EncounterManagement encounterManagement = new EncounterManagement(enList);
-//        sysSplit.setRightComponent(encounterManagement);
+//        IncomeUi income = new IncomeUi(incomeList);
+//        sysSplit.setRightComponent(income);
         
     }//GEN-LAST:event_tabIncomeMouseClicked
 
