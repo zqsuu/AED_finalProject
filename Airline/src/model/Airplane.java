@@ -18,12 +18,11 @@ public class Airplane {
     int price;
     int serviceLife;
     String type;
-    String company;
     Route route;
     AirlineCompany airplaneCompany;
 
 
-    public Airplane(int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, String company, AirlineCompany airplaneCompany) {
+    public Airplane(int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, AirlineCompany airplaneCompany) {
         this.firstCapacity = firstCapacity;
         this.businessCapacity = businessCapacity;
         this.ecoCapacity = ecoCapacity;
@@ -31,7 +30,6 @@ public class Airplane {
         this.price = price;
         this.serviceLife = serviceLife;
         this.type = type;
-        this.company = company;
         this.route = null;
         this.airplaneCompany = airplaneCompany;
     }
@@ -94,20 +92,20 @@ public class Airplane {
         this.type = type;
     }
 
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public Route getRoute() {
         return route;
     }
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public AirlineCompany getAirplaneCompany() {
+        return airplaneCompany;
+    }
+
+    public void setAirplaneCompany(AirlineCompany airplaneCompany) {
+        this.airplaneCompany = airplaneCompany;
     }
     
     

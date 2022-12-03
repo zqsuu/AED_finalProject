@@ -14,21 +14,18 @@ public class Airport {
     String name;
     String city;
     String address;
-    char terminal;
-    int baggage;
     ArrayList<AirportService> airportService;
     ArrayList<Route> route;
     ArrayList<Route> routeRequest;
 
-    public Airport(String name, String city, String address, ArrayList<AirportService> airportService, char terminal, int baggage) {
+    public Airport(String name, String city, String address, ArrayList<AirportService> airportService) {
         this.name = name;
         this.city = city;
         this.address = address;
         this.airportService = airportService;
         this.route = new ArrayList<Route>();
         this.routeRequest = new ArrayList<Route>();
-        this.terminal = terminal;
-        this.baggage = baggage;
+        
     }
 
     public String getCity() {
@@ -92,13 +89,7 @@ public class Airport {
         return routeRequest;
     }
     
-    public char getTerminal() {
-        return terminal;
-    }
-
-    public int getBaggage() {
-        return baggage;
-    }
+    
     
     
 }

@@ -31,6 +31,8 @@ public class AirplaneUi extends javax.swing.JPanel {
         initComponents();
 
         this.airplaneList = airplaneList;
+        displayAirplane();
+        displayCompanyList();
 
 //        populateTable();
     }
@@ -58,7 +60,6 @@ public class AirplaneUi extends javax.swing.JPanel {
         lblSearchContent = new javax.swing.JLabel();
         txtEco = new javax.swing.JTextField();
         txtRoute = new javax.swing.JTextField();
-        txtCompany = new javax.swing.JTextField();
         txtType = new javax.swing.JTextField();
         lblId7 = new javax.swing.JLabel();
         lblId8 = new javax.swing.JLabel();
@@ -75,6 +76,7 @@ public class AirplaneUi extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        cbCompany = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -237,6 +239,8 @@ public class AirplaneUi extends javax.swing.JPanel {
             }
         });
 
+        cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a company>" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,10 +290,10 @@ public class AirplaneUi extends javax.swing.JPanel {
                                     .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblId9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(txtRoute, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblId1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,8 +350,8 @@ public class AirplaneUi extends javax.swing.JPanel {
                             .addComponent(lblId8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId7))
+                            .addComponent(lblId7)
+                            .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,9 +404,25 @@ public class AirplaneUi extends javax.swing.JPanel {
         }
     }
 
+    private void displayCompanyList() {
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.airlinecompany");
+            while (rs.next()) {
+
+                cbCompany.addItem(rs.getString("name"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void clear() {
         txtType.setText("");
-        txtCompany.setText("");
+        cbCompany.setSelectedItem("<choose a company>");
         txtRoute.setText("");
         txtFuel.setText("");
         txtPrice.setText("");
@@ -431,7 +451,7 @@ public class AirplaneUi extends javax.swing.JPanel {
             String tblEco = tblModel.getValueAt(tblAirplane.getSelectedRow(), 9).toString();
 
             txtType.setText(tblType);
-            txtCompany.setText(tblCompany);
+            cbCompany.setSelectedItem(tblCompany);
             txtRoute.setText(tblRoute);
             txtFuel.setText(tblFuel);
             txtPrice.setText(tblPrice);
@@ -439,7 +459,7 @@ public class AirplaneUi extends javax.swing.JPanel {
             txtFirst.setText(tblFirst);
             txtBusiness.setText(tblBusiness);
             txtEco.setText(tblEco);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -479,6 +499,7 @@ public class AirplaneUi extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        
         try {
             int fuel = Integer.parseInt(txtFuel.getText());
             int price = Integer.parseInt(txtPrice.getText());
@@ -493,7 +514,6 @@ public class AirplaneUi extends javax.swing.JPanel {
         }
 
         if (txtType.getText().equals("")
-                || txtCompany.getText().equals("")
                 || txtRoute.getText().equals("")
                 || txtFuel.getText().equals("")
                 || txtPrice.getText().equals("")
@@ -506,10 +526,10 @@ public class AirplaneUi extends javax.swing.JPanel {
             try {
                 airplaneCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplane values(?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplane values(?,?,?,?,?,?,?,?,?,?)");
                 add.setInt(1, idairplane);
                 add.setString(2, txtType.getText());
-                add.setString(3, txtCompany.getText());
+                add.setString(3, cbCompany.getSelectedItem().toString());
                 add.setString(4, txtRoute.getText());
                 add.setString(5, txtFuel.getText());
                 add.setString(6, txtPrice.getText());
@@ -586,12 +606,12 @@ public class AirplaneUi extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
-        airplaneId = Integer.parseInt(tblModel.getValueAt(tblAirplane.getSelectedRow(), 1).toString());
+        airplaneId = Integer.parseInt(tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString());
         if (airplaneId != 0) {
             //If single row is selected then update
 
             String type = txtType.getText();
-            String company = txtCompany.getText();
+            String company = cbCompany.getSelectedItem().toString();
             String route = txtRoute.getText();
             int fuel = Integer.parseInt(txtFuel.getText());
             int price = Integer.parseInt(txtPrice.getText());
@@ -603,7 +623,7 @@ public class AirplaneUi extends javax.swing.JPanel {
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE airplane SET type = '" + type + "'" + ",company = '" + company + "'" + ",route = '" + route + "'" + ",fuelconsumption = '" + fuel + "'" + ",price = '" + price + "'" + ",servicelife = '" + life + "'" + ",firstclass = '" + first + "'" + ",businessclass = '" + business + "'" + ",economyclass = '" + eco + "'" + " WHERE idairplane = " + airplaneId;
+                String query = "UPDATE airplane SET type = '" + type + "'" + ",airplanecompany = '" + company + "'" + ",route = '" + route + "'" + ",fuelconsumption = '" + fuel + "'" + ",price = '" + price + "'" + ",servicelife = '" + life + "'" + ",firstclass = '" + first + "'" + ",businessclass = '" + business + "'" + ",economyclass = '" + eco + "'" + " WHERE idairplane = " + airplaneId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Airplane updated successfully!");
@@ -640,6 +660,7 @@ public class AirplaneUi extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cbCompany;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
@@ -655,7 +676,6 @@ public class AirplaneUi extends javax.swing.JPanel {
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblAirplane;
     private javax.swing.JTextField txtBusiness;
-    private javax.swing.JTextField txtCompany;
     private javax.swing.JTextField txtEco;
     private javax.swing.JTextField txtFirst;
     private javax.swing.JTextField txtFuel;

@@ -84,10 +84,10 @@
                                   <Component id="lblId9" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCompany" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtType" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <Component id="txtRoute" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtType" alignment="0" pref="185" max="32767" attributes="0"/>
+                                  <Component id="txtRoute" alignment="0" pref="185" max="32767" attributes="0"/>
+                                  <Component id="cbCompany" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -163,8 +163,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtCompany" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblId7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbCompany" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -349,8 +349,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtRoute">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCompany">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtType">
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTypeKeyPressed"/>
@@ -497,6 +495,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbCompany">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="&lt;choose a company&gt;"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -31,6 +31,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         initComponents();
 
         this.employeeList = employeeList;
+        displayEmployee();
 
 //        populateTable();
     }
@@ -359,7 +360,7 @@ public class EmployeeUi extends javax.swing.JPanel {
     private void employeeCount() {
         try {
             st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idemployee) from airlinedb1.crew");
+            rs1 = st.executeQuery("select Max(idemployee) from airlinedb1.employee");
             rs1.next();
             idemployee = rs1.getInt(1) + 1;
         } catch (Exception e) {
@@ -373,7 +374,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.crew");
+            rs = st.executeQuery("Select * from airlinedb1.employee");
             tblCrew.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
@@ -385,8 +386,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         txtId.setText("");
         txtName.setText("");
         txtAge.setText("");
-        rbtnFemale.setSelected(false);
-        rbtnMale.setSelected(false);
+        buttonGroup1.clearSelection();
         cbRole.setSelectedItem("<choose a role>");
         txtFlyYears.setText("");
         txtPassword.setText("");
@@ -464,10 +464,12 @@ public class EmployeeUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Datatype of Age/FlyYears should be int!");
             return;
         }
+        
+        
 
-        if (txtId.getText().equals("")
+        if ((!(rbtnFemale.isSelected()||rbtnMale.isSelected()))
+                || txtId.getText().equals("")
                 || txtName.getText().equals("")
-                || buttonGroup1.getSelection().toString().equals(null)
                 || txtAge.getText().equals("")
                 || cbRole.getSelectedItem().equals("<choose a role>")
                 || txtFlyYears.getText().equals("")
@@ -475,13 +477,21 @@ public class EmployeeUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
+                
                 employeeCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into crew values(?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?)");
                 add.setInt(1, idemployee);
                 add.setString(2, txtId.getText());
                 add.setString(3, txtName.getText());
-                add.setString(4, buttonGroup1.getSelection().toString());
+                String gender = null;
+                if(rbtnFemale.isSelected()) {
+                    gender = "Female";
+                }
+                if(rbtnMale.isSelected()) {
+                    gender = "Male";
+                }
+                add.setString(4, gender);
                 add.setString(5, txtAge.getText());
                 add.setString(6, cbRole.getSelectedItem().toString());
                 add.setString(7, txtFlyYears.getText());
@@ -517,7 +527,7 @@ public class EmployeeUi extends javax.swing.JPanel {
             //            tblModel.removeRow(tblRoute.getSelectedRow());
             try {
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                String query = "delete from airlinedb1.crew where idemployee = " + employeeId;
+                String query = "delete from airlinedb1.employee where idemployee = " + employeeId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
@@ -549,7 +559,13 @@ public class EmployeeUi extends javax.swing.JPanel {
 
             String id = txtId.getText();
             String name = txtName.getText();
-            String gender = buttonGroup1.getSelection().toString();
+            String gender = null;
+                if(rbtnFemale.isSelected()) {
+                    gender = "Female";
+                }
+                if(rbtnMale.isSelected()) {
+                    gender = "Male";
+                }
             int age = Integer.parseInt(txtAge.getText());
             String role = cbRole.getSelectedItem().toString();
             int flyYears = Integer.parseInt(txtFlyYears.getText());
@@ -558,7 +574,7 @@ public class EmployeeUi extends javax.swing.JPanel {
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE crew SET id = '" + id + "'" + ",name = '" + name + "'" + ",gender = '" + gender + "'" + ",age = '" + age + "'" + ",role = '" + role + "'" + ",flyyears = '" + flyYears + "'" + ",password = '" + password + "'" + " WHERE idemployee = " + employeeId;
+                String query = "UPDATE employee SET id = '" + id + "'" + ",name = '" + name + "'" + ",gender = '" + gender + "'" + ",age = '" + age + "'" + ",role = '" + role + "'" + ",flyyears = '" + flyYears + "'" + ",password = '" + password + "'" + " WHERE idemployee = " + employeeId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Employee updated successfully!");

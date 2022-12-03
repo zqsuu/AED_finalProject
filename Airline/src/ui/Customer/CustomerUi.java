@@ -14,7 +14,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author HP
  */
-public class CustomerDetail extends javax.swing.JPanel {
+public class CustomerUi extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel

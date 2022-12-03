@@ -21,11 +21,11 @@ public class ComJF extends javax.swing.JFrame {
      */
     public ComJF() {
         initComponents();
-        if(routeList==null){
-            routeList = new AirlineCompany();
-        }else{
-            this.routeList=routeList;
-        }
+//        if(routeList==null){
+//            routeList = new AirlineCompany();
+//        }else{
+//            this.routeList=routeList;
+//        }
     }
 
     /**
@@ -50,6 +50,10 @@ public class ComJF extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         tabLogout = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        tabRouteCrew = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -194,6 +198,48 @@ public class ComJF extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        tabRouteCrew.setBackground(new java.awt.Color(255, 0, 0));
+        tabRouteCrew.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabRouteCrewMouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Route");
+
+        jLabel12.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("|");
+
+        jLabel13.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Crew");
+
+        javax.swing.GroupLayout tabRouteCrewLayout = new javax.swing.GroupLayout(tabRouteCrew);
+        tabRouteCrew.setLayout(tabRouteCrewLayout);
+        tabRouteCrewLayout.setHorizontalGroup(
+            tabRouteCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        tabRouteCrewLayout.setVerticalGroup(
+            tabRouteCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabRouteCrewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout sysMenuPanelLayout = new javax.swing.GroupLayout(sysMenuPanel);
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
@@ -203,6 +249,7 @@ public class ComJF extends javax.swing.JFrame {
             .addComponent(tabRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabRouteCrew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +262,9 @@ public class ComJF extends javax.swing.JFrame {
                 .addComponent(tabCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(tabRouteCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -336,6 +385,18 @@ public class ComJF extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tabLogoutMouseClicked
 
+    private void tabRouteCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteCrewMouseClicked
+        tabAirplane.setVisible(true);
+        tabCrew.setVisible(true);
+        tabRoute.setVisible(true);
+        tabRouteCrew.setVisible(true);
+        tabIncome.setVisible(true);
+        tabLogout.setVisible(true);
+        RouteCrewUi routeCrew = new RouteCrewUi();
+        sysSplit.setRightComponent(routeCrew);
+
+    }//GEN-LAST:event_tabRouteCrewMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -373,6 +434,9 @@ public class ComJF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -386,5 +450,6 @@ public class ComJF extends javax.swing.JFrame {
     private javax.swing.JPanel tabIncome;
     private javax.swing.JPanel tabLogout;
     private javax.swing.JPanel tabRoute;
+    private javax.swing.JPanel tabRouteCrew;
     // End of variables declaration//GEN-END:variables
 }
