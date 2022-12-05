@@ -481,10 +481,12 @@ public class RouteCrewUi extends javax.swing.JPanel {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
             rs2 = st.executeQuery("Select * from airlinedb1.employee Where role = 'Captain'");
+            
             while (rs2.next()) {
                 cbCaptain.addItem(rs2.getString("name"));
             }
             con.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -500,6 +502,8 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 cbPilot1.addItem(rs2.getString("name"));
                 cbPilot2.addItem(rs2.getString("name"));
             }
+            con.close();
+            rs3.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -518,6 +522,8 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 cbSt5.addItem(rs.getString("name"));
                 cbSt6.addItem(rs.getString("name"));
             }
+            con.close();
+            rs4.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,7 +7,7 @@
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/AirplaneUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Customer/Customer.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/Airport.java</file>
-            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Customer/CustomerDetail.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Customer/CustomerUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/airline/Airline.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Customer/Reservation.java</file>
@@ -21,7 +21,6 @@
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/airline/Homepage.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/AirportList.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/EmployeeUi.java</file>
-            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/RouteCrew.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/Airplane.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/AirportService.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/Route.java</file>
@@ -29,6 +28,7 @@
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/FlightReservation.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/DepartureRoute.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/model/Employee.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/RouteCrewUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/AirlineComPage.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/Location.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/airline/WelcomePage.java</file>
