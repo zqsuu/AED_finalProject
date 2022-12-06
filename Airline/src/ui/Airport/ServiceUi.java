@@ -576,7 +576,27 @@ public class ServiceUi extends javax.swing.JPanel {
                 PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airportservice values(?,?,?,?)");
                 add.setInt(1, idservice);
                 add.setString(2, cbService.getSelectedItem().toString());
-//                add.setString(3, txtDepature.getText());
+                String time = "";
+                
+                if (chb05.isSelected()) {
+                    time += chb05.getText() + " ";
+                } else
+                if (chb58.isSelected()) {
+                    time += chb58.getText() + " ";
+                } else
+                if (chb812.isSelected()) {
+                    time += chb812.getText() + " ";
+                } else
+                if (chb1216.isSelected()) {
+                    time += chb1216.getText() + " ";
+                } else
+                if (chb1620.isSelected()) {
+                    time += chb1620.getText() + " ";
+                } else
+                if (chb2024.isSelected()) {
+                    time += chb2024.getText() + " ";
+                }
+                add.setString(3, time);
                 add.setString(4, txtRemark.getText());
 
                 int row = add.executeUpdate();
