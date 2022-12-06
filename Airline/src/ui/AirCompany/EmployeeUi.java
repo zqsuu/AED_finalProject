@@ -31,7 +31,9 @@ public class EmployeeUi extends javax.swing.JPanel {
         initComponents();
 
         this.employeeList = employeeList;
+        employeeCount();
         displayEmployee();
+        clear();
 
 //        populateTable();
     }

@@ -30,7 +30,9 @@ public class AirportUi extends javax.swing.JPanel {
     
     public AirportUi(AirportList airportList) {
         initComponents();
-        
+        airportCount();
+        displayAirport();
+        clear();
         this.airportList = airportList;
         
 //        populateTable();
@@ -565,7 +567,7 @@ public class AirportUi extends javax.swing.JPanel {
                 airportCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
                 
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?,?,?)");
                 add.setInt(1, idairport);
                 add.setString(2, txtName.getText());
                 add.setString(3, txtCity.getText());

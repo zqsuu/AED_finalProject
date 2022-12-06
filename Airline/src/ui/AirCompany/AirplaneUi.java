@@ -31,8 +31,10 @@ public class AirplaneUi extends javax.swing.JPanel {
         initComponents();
 
         this.airplaneList = airplaneList;
+        airplaneCount();
         displayAirplane();
         displayCompanyList();
+        clear();
 
 //        populateTable();
     }

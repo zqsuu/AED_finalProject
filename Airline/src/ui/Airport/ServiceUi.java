@@ -4,10 +4,17 @@
  */
 package ui.Airport;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.Airport;
+import net.proteanit.sql.DbUtils;
 
 
 /**
@@ -19,15 +26,18 @@ public class ServiceUi extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
-//    DoctorDirectory dlist;
-//    
-//    public People(DoctorDirectory dlist) {
-//        initComponents();
-//        
-//        this.dlist = dlist;
-//        
+    Airport serviceList;
+    
+    public ServiceUi(Airport serviceList) {
+        initComponents();
+        displayService();
+        serviceCount();
+        clear();
+        
+        this.serviceList = serviceList;
+        
 //        populateTable();
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,17 +51,27 @@ public class ServiceUi extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAirportService = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbService = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
+        txtRemark = new javax.swing.JTextField();
+        lblId2 = new javax.swing.JLabel();
+        chb58 = new javax.swing.JCheckBox();
+        chb812 = new javax.swing.JCheckBox();
+        chb1216 = new javax.swing.JCheckBox();
+        chb1620 = new javax.swing.JCheckBox();
+        chb2024 = new javax.swing.JCheckBox();
+        chb05 = new javax.swing.JCheckBox();
+        btnUpdate1 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnDelete1 = new javax.swing.JButton();
+        btnSave1 = new javax.swing.JButton();
+        btnRetrieve = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -59,30 +79,6 @@ public class ServiceUi extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Airport Service");
-
-        btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
 
         lblId1.setForeground(new java.awt.Color(255, 255, 255));
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -94,20 +90,20 @@ public class ServiceUi extends javax.swing.JPanel {
 
         tblAirportService.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "SERVICE NAME", "TIME"
+                "Service Id", "SERVICE NAME", "TIME", "REMARK"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -143,9 +139,100 @@ public class ServiceUi extends javax.swing.JPanel {
         lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN" }));
+        cbService.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a service>", "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN" }));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "24 HOURS", " " }));
+
+        lblId2.setForeground(new java.awt.Color(255, 255, 255));
+        lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId2.setText("REMARK");
+
+        chb58.setText("5:00-8:00");
+        chb58.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb58ActionPerformed(evt);
+            }
+        });
+
+        chb812.setText("8:00-12:00");
+        chb812.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb812ActionPerformed(evt);
+            }
+        });
+
+        chb1216.setText("12:00-16:00");
+        chb1216.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb1216ActionPerformed(evt);
+            }
+        });
+
+        chb1620.setText("16:00-20:00");
+        chb1620.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb1620ActionPerformed(evt);
+            }
+        });
+
+        chb2024.setText("20:00-24:00");
+        chb2024.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb2024ActionPerformed(evt);
+            }
+        });
+
+        chb05.setText("0:00-5:00");
+        chb05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chb05ActionPerformed(evt);
+            }
+        });
+
+        btnUpdate1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnUpdate1.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpdate1.setText("Update");
+        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate1ActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 0, 0));
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnDelete1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnDelete1.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete1.setText("Delete");
+        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete1ActionPerformed(evt);
+            }
+        });
+
+        btnSave1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnSave1.setForeground(new java.awt.Color(0, 0, 0));
+        btnSave1.setText("Save");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
+        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnRetrieve.setForeground(new java.awt.Color(0, 0, 0));
+        btnRetrieve.setText("Retrieve");
+        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrieveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,34 +242,56 @@ public class ServiceUi extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnDelete)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave1)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetrieve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)))
                         .addGap(30, 30, 30)
+                        .addComponent(btnUpdate1)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(360, 360, 360))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRemark, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chb1216)
+                                    .addComponent(chb05))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, 185, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chb58)
+                                    .addComponent(chb1620))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chb2024)
+                                    .addComponent(chb812)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(201, 201, 201)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(137, 137, 137))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -191,191 +300,90 @@ public class ServiceUi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnSave)
-                    .addComponent(lblSearchContent)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSearchContent)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete1)
+                            .addComponent(btnUpdate1)
+                            .addComponent(btnSave1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRetrieve)
+                            .addComponent(btnClear))))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblId)
+                            .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId1)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(256, Short.MAX_VALUE))
+                    .addComponent(chb812)
+                    .addComponent(chb05)
+                    .addComponent(chb58))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chb1216)
+                    .addComponent(chb1620)
+                    .addComponent(chb2024))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRemark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId2))
+                .addGap(149, 149, 149))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblAirportService.getSelectedRow();
-        
-        if(selectedRowIndex<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete.");
-            return;
+     Connection con = null;
+    Statement st = null, st1 = null;
+    ResultSet rs = null, rs1 = null;
+
+    int idservice = 0;
+    int serviceId = 0;
+
+    private void serviceCount() {
+        try {
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idservice) from airlinedb1.airportservice");
+            rs1.next();
+            idservice = rs1.getInt(1) + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
-        //delete row
-        if(tblAirportService.getSelectedRowCount()==1){
-            //if single row is selected then delete
-            tblModel.removeRow(tblAirportService.getSelectedRow());
-            JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
-        }else{
-            if(tblAirportService.getRowCount()==0){
-                //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");  
-            }else{
-                //if table is not empty but other than one row is selected
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
-            }
+
+    }
+
+    private void displayService() {
+
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.airportservice");
+            tblAirportService.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        
-        
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirportService.getModel();
-//        if(tblDoctor.getSelectedRowCount() == 1){
-//            //If single row is selected then update
-//            
-//            int id = Integer.parseInt(txtId.getText());
-//            String name = txtName.getText();
-//            //Gender
-//            String gender = txtGender.getText();
-//            int age = Integer.parseInt(txtAge.getText());
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//            String password = txtPassword.getText();
-//            String field = txtField.getText();
-//            String standard = txtStandard.getText();
-//            double fee = Double.parseDouble(txtFee.getText());
-//            
-//            
-//            //Set updated value on table row
-//            tblModel.setValueAt(id, tblDoctor.getSelectedRow(), 0);
-//            tblModel.setValueAt(name, tblDoctor.getSelectedRow(), 1);
-//            tblModel.setValueAt(gender, tblDoctor.getSelectedRow(), 2);
-//            tblModel.setValueAt(age, tblDoctor.getSelectedRow(), 3);
-//            tblModel.setValueAt(phoneNumber, tblDoctor.getSelectedRow(), 4);
-//            tblModel.setValueAt(password, tblDoctor.getSelectedRow(), 5);
-//            tblModel.setValueAt(field, tblDoctor.getSelectedRow(), 6);
-//            tblModel.setValueAt(standard, tblDoctor.getSelectedRow(), 7);
-//            tblModel.setValueAt(fee, tblDoctor.getSelectedRow(), 8);
-//            
-//            
-//            
-//            //Update data display
-//            JOptionPane.showMessageDialog(this,"Update Successfully!");
-//            
-//        }else{
-//            if(tblDoctor.getSelectedRowCount() == 0){
-//                //if table is empty.
-//                JOptionPane.showMessageDialog(this,"Please Select an Doctor.");
-//            }else{
-//                //if multiple rows are selected.
-//                JOptionPane.showMessageDialog(this,"Please Select Single Row for Update!");
-//            }
-//        }
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-//        try{
-//            int id = Integer.parseInt(txtId.getText());
-//            int age = Integer.parseInt(txtAge.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Id/Age should be int!");
-//            return;
-//        }
-//        try{
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Phone/SSA Number should be long!");
-//            return;
-//        }
-//        try{
-//            double fee = Double.parseDouble(txtFee.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Fee should be double!");
-//            return;
-//        }
-        
-//        if(txtId.getText().equals("")||
-//                txtName.getText().equals("")||
-//                txtGender.getText().equals("")||
-//                txtAge.getText().equals("")||
-//                txtPhone.getText().equals("")||
-//                txtPassword.getText().equals("")||
-//                txtField.getText().equals("")||
-//                txtStandard.getText().equals("")||
-//                txtFee.getText().equals("")){
-//            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Successfully Stored!");
-//        }
-
-//        int id = Integer.parseInt(txtId.getText());
-//        String name = txtName.getText();
-//        String gender = txtGender.getText();
-//        int age = Integer.parseInt(txtAge.getText());
-//        long phoneNumber = Long.parseLong(txtPhone.getText());
-//        String password = txtPassword.getText();
-//        String field = txtField.getText();
-//        String standard = txtStandard.getText();
-//        double fee = Double.parseDouble(txtFee.getText());
-//
-//        person.doctor.Doctor dc = dlist.addDoctor();
-//
-//        dc.setId(id);
-//        dc.setName(name);
-//        dc.setGender(gender);
-//        dc.setAge(age);
-//        dc.setPhoneNumber(phoneNumber);
-//        dc.setPassword(password);
-//        dc.setField(field);
-//        dc.setStandard(standard);
-//        dc.setFee(fee);
-//        dc.setRole("DOCTOR");
-        
-
-        JOptionPane.showMessageDialog(this, "New Doctor Profile added");
-        
-        
-
-//        txtId.setText("");
-//        txtName.setText("");
-//        //buttonGroup1.setClear();
-//        txtGender.setText("");
-//        txtAge.setText("");
-//        txtPhone.setText("");
-//        txtPassword.setText("");
-//        txtField.setText("");
-//        txtStandard.setText("");
-//        txtFee.setText("");
-        
-        populateTable();
-
-    }//GEN-LAST:event_btnSaveActionPerformed
-
+    private void clear() {
+        cbService.setSelectedItem("<choose a service>");
+        txtRemark.setText("");
+        chb05.setSelected(false);
+        chb58.setSelected(false);
+        chb812.setSelected(false);
+        chb1216.setSelected(false);
+        chb1620.setSelected(false);
+        chb2024.setSelected(false);
+    }
     private void tblAirportServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirportServiceMouseClicked
         // TODO add your handling code here:
         DefaultTableModel tblModel = (DefaultTableModel)tblAirportService.getModel();
@@ -423,21 +431,191 @@ public class ServiceUi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    private void chb58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb58ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb58ActionPerformed
+
+    private void chb812ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb812ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb812ActionPerformed
+
+    private void chb1216ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb1216ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb1216ActionPerformed
+
+    private void chb1620ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb1620ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb1620ActionPerformed
+
+    private void chb2024ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb2024ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb2024ActionPerformed
+
+    private void chb05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chb05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chb05ActionPerformed
+
+    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        // TODO add your handling code here:
+        //Get table Model1
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
+        serviceId = Integer.parseInt(tblModel.getValueAt(tblAirportService.getSelectedRow(), 0).toString());
+        if (serviceId != 0) {
+            //If single row is selected then update
+
+            String name = cbService.getSelectedItem().toString();
+            String time = null;
+            String remark = txtRemark.getText();
+
+            try {
+                //ssl error
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
+                String query = "UPDATE airportservice SET name = '" + name + "'" + ",time = '" + time + "'" + ",remark = '" + remark + "'" + " WHERE idservice = " + serviceId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Service updated successfully!");
+                displayService();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //            //Set updated value on table row
+            //            tblModel.setValueAt(routeName, tblRoute.getSelectedRow(), 0);
+            //            tblModel.setValueAt(departure, tblRoute.getSelectedRow(), 1);
+            //            tblModel.setValueAt(fallAirport, tblRoute.getSelectedRow(), 2);
+            //            tblModel.setValueAt(flytime, tblRoute.getSelectedRow(), 3);
+            //            tblModel.setValueAt(departureTime, tblRoute.getSelectedRow(), 4);
+            //            tblModel.setValueAt(fallTime, tblRoute.getSelectedRow(), 5);
+            //            tblModel.setValueAt(type, tblRoute.getSelectedRow(), 6);
+            //            //Update data displays
+            //            JOptionPane.showMessageDialog(this, "Update Successfully!");
+        } else {
+            try{
+                if (tblAirportService.getSelectedRow() == 0) {
+                    //if table is empty.
+                    JOptionPane.showMessageDialog(this, "Please Select a Service.");
+                } else {
+                    //if multiple rows are selected.
+                    JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
+                }
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblAirportService.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+
+        //Get tblList first
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
+        //delete row
+        if (tblAirportService.getSelectedRowCount() == 1) {
+            //if single row is selected then delete
+            //            tblModel.removeRow(tblRoute.getSelectedRow());
+            try {
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                String query = "delete from airlinedb1.airportservice where idservice = " + serviceId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Service deleted successfully!");
+                displayService();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "This Service Deleted.");
+        } else {
+            if (tblAirportService.getRowCount() == 0) {
+                //if table is empty then display message
+                JOptionPane.showMessageDialog(this, "Table is Empty!");
+            } else {
+                //if table is not empty but other than one row is selected
+                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
+            }
+        }
+
+    }//GEN-LAST:event_btnDelete1ActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        // TODO add your handling code here:
+        
+
+        if (cbService.getSelectedItem().equals("<choose a service>")
+            || chb05.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Set All Data!");
+        } else {
+            try {
+                //                int patKey = 1;
+                serviceCount();
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+               
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airportservice values(?,?,?,?)");
+                add.setInt(1, idservice);
+                add.setString(2, cbService.getSelectedItem().toString());
+//                add.setString(3, txtDepature.getText());
+                add.setString(4, txtRemark.getText());
+
+                int row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Service solved successfully!");
+                con.close();
+                displayService();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
+        displayService();
+
+    }//GEN-LAST:event_btnRetrieveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnRetrieve;
+    private javax.swing.JButton btnSave1;
+    private javax.swing.JButton btnUpdate1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cbService;
+    private javax.swing.JCheckBox chb05;
+    private javax.swing.JCheckBox chb1216;
+    private javax.swing.JCheckBox chb1620;
+    private javax.swing.JCheckBox chb2024;
+    private javax.swing.JCheckBox chb58;
+    private javax.swing.JCheckBox chb812;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
+    private javax.swing.JLabel lblId2;
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblAirportService;
+    private javax.swing.JTextField txtRemark;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 

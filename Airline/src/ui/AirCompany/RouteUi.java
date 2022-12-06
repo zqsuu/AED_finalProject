@@ -30,6 +30,7 @@ public class RouteUi extends javax.swing.JPanel {
         initComponents();
         displayRoute();
         routeCount();
+        clear();
 
         this.routeList = routeList;
 

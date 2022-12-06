@@ -11,6 +11,7 @@ package model;
 public class AirportService {
     String name;
     String time;
+    String remark;
 
     public AirportService(String name, String time) {
         this.name = name;
@@ -31,6 +32,14 @@ public class AirportService {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     
     

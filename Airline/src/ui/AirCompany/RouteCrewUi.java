@@ -27,11 +27,13 @@ public class RouteCrewUi extends javax.swing.JPanel {
 //    DoctorDirectory dlist;
     public RouteCrewUi() {
         initComponents();
+        arrangeCount();
         displayArrange();
         displayRNList();
         displayEmployee1();
         displayEmployee2();
         displayEmployee3();
+        clear();
 
 //        populateTable();
     }

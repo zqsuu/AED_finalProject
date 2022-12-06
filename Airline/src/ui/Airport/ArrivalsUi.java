@@ -30,6 +30,9 @@ public class ArrivalsUi extends javax.swing.JPanel {
 
     public ArrivalsUi(Airport arrivalsList) {
         initComponents();
+        arrivalsCount();
+        displayArrivals();
+        clear();
 
         this.arrivalsList = arrivalsList;
 
@@ -403,7 +406,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                 arrivalsCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
 
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into arrivals values(?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into arrivals values(?,?,?,?,?,?)");
                 add.setInt(1, idarrivals);
                 add.setString(2, txtRN.getText());
                 add.setString(3, txtOrigin.getText());

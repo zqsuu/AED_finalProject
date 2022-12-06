@@ -1,42 +1,29 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui.Airport;
 
 import model.Airport;
 import model.AirportList;
 
-
-
 /**
  *
  * @author HP
  */
-public class AirportPage extends javax.swing.JPanel {
-
+public class AirportJF extends javax.swing.JFrame {
     
     AirportList airportList;
     Airport arrivalsList;
     Airport serviceList;
+
     /**
-     * Creates new form SystemAdmin
-     * @param plist
-     * @param dlist
-     * @param hptList
-     * @param enList
-     * @param vsList
+     * Creates new form AirportJF
      */
-    public AirportPage() {
+    public AirportJF() {
         initComponents();
-//        if(plist==null){
-//            plist = new PatientDirectory();
-//        }else{
-//            this.plist=plist;
-//        }
-        
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +33,7 @@ public class AirportPage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jPanel1 = new javax.swing.JPanel();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
         tabLocation = new javax.swing.JPanel();
@@ -63,10 +50,9 @@ public class AirportPage extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setPreferredSize(new java.awt.Dimension(1450, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1450, 800));
 
         sysSplit.setPreferredSize(new java.awt.Dimension(1450, 800));
 
@@ -276,35 +262,58 @@ public class AirportPage extends javax.swing.JPanel {
 
         sysSplit.setRightComponent(sysEncounterPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(sysSplit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sysSplit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1450, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
-        
+
         tabLocation.setVisible(true);
         tabService.setVisible(true);
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-//        PatientProfile patientProfile = new PatientProfile(plist);
-//        sysSplit.setRightComponent(patientProfile);
-        
+        //        PatientProfile patientProfile = new PatientProfile(plist);
+        //        sysSplit.setRightComponent(patientProfile);
+
     }//GEN-LAST:event_tabLocationMouseClicked
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
-        
+
         tabLocation.setVisible(true);
         tabService.setVisible(true);
         tabArrivals.setVisible(true);
@@ -312,12 +321,11 @@ public class AirportPage extends javax.swing.JPanel {
         tabLogout.setVisible(true);
         ServiceUi service = new ServiceUi(serviceList);
         sysSplit.setRightComponent(service);
-        
-        
+
     }//GEN-LAST:event_tabServiceMouseClicked
 
     private void tabArrivalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabArrivalsMouseClicked
-        
+
         tabLocation.setVisible(true);
         tabService.setVisible(true);
         tabArrivals.setVisible(true);
@@ -325,9 +333,7 @@ public class AirportPage extends javax.swing.JPanel {
         tabLogout.setVisible(true);
         ArrivalsUi arrivals = new ArrivalsUi(arrivalsList);
         sysSplit.setRightComponent(arrivals);
-        
-        
-        
+
     }//GEN-LAST:event_tabArrivalsMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
@@ -338,8 +344,7 @@ public class AirportPage extends javax.swing.JPanel {
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
         sysSplit.setVisible(false);
-        
-        
+
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
@@ -356,6 +361,40 @@ public class AirportPage extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabDeparturesMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AirportJF().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -364,7 +403,7 @@ public class AirportPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel sysEncounterPanel;
     private javax.swing.JPanel sysMenuPanel;
     private javax.swing.JSplitPane sysSplit;
