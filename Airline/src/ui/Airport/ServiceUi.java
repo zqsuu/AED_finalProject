@@ -389,28 +389,35 @@ public class ServiceUi extends javax.swing.JPanel {
         DefaultTableModel tblModel = (DefaultTableModel)tblAirportService.getModel();
         
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblAirportService.getSelectedRow(), 0).toString();
+        serviceId = Integer.parseInt(tblModel.getValueAt(tblAirportService.getSelectedRow(), 0).toString());
         String tblName = tblModel.getValueAt(tblAirportService.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblAirportService.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblAirportService.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblAirportService.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblAirportService.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblAirportService.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblAirportService.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblAirportService.getSelectedRow(), 8).toString();
+        String tblTime = tblModel.getValueAt(tblAirportService.getSelectedRow(), 2).toString();
+        String tblRemark = tblModel.getValueAt(tblAirportService.getSelectedRow(), 3).toString();
         
         
         
         //Set to text field
-//        txtId.setText(tblId);
-//        txtName.setText(tblName);
-//        txtGender.setText(tblGender);
-//        txtAge.setText(tblAge);
-//        txtPhone.setText(tblPhone);
-//        txtPassword.setText(tblPassword);
-//        txtField.setText(tblField);
-//        txtStandard.setText(tblStandard);
-//        txtFee.setText(tblFee);
+        cbService.setSelectedItem(tblName);
+        txtRemark.setText(tblRemark);
+        if (tblTime.contains("0:00-5:00")) {
+            chb05.setSelected(true);
+        }
+        if (tblTime.contains("5:00-8:00")) {
+            chb58.setSelected(true);
+        }
+        if (tblTime.contains("8:00-12:00")) {
+            chb812.setSelected(true);
+        }
+        if (tblTime.contains("12:00-16:00")) {
+            chb1216.setSelected(true);
+        }
+        if (tblTime.contains("16:00-20:00")) {
+            chb1620.setSelected(true);
+        }
+        if (tblTime.contains("20:00-24:00")) {
+            chb2024.setSelected(true);
+        }
+
         
     }//GEN-LAST:event_tblAirportServiceMouseClicked
 
