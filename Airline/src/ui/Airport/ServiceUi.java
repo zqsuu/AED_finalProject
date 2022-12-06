@@ -16,7 +16,6 @@ import javax.swing.table.TableRowSorter;
 import model.Airport;
 import net.proteanit.sql.DbUtils;
 
-
 /**
  *
  * @author HP
@@ -27,15 +26,15 @@ public class ServiceUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     Airport serviceList;
-    
+
     public ServiceUi(Airport serviceList) {
         initComponents();
         displayService();
         serviceCount();
         clear();
-        
+
         this.serviceList = serviceList;
-        
+
 //        populateTable();
     }
 
@@ -58,7 +57,6 @@ public class ServiceUi extends javax.swing.JPanel {
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
         cbService = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         txtRemark = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
         chb58 = new javax.swing.JCheckBox();
@@ -140,8 +138,6 @@ public class ServiceUi extends javax.swing.JPanel {
         lblSearchContent.setText("Search Content:");
 
         cbService.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a service>", "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "24 HOURS", " " }));
 
         lblId2.setForeground(new java.awt.Color(255, 255, 255));
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -287,10 +283,8 @@ public class ServiceUi extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(137, 137, 137))
+                        .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(420, 420, 420))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,16 +308,10 @@ public class ServiceUi extends javax.swing.JPanel {
                             .addComponent(btnRetrieve)
                             .addComponent(btnClear))))
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId)
-                            .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId)
+                    .addComponent(cbService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId1)
                     .addComponent(chb812)
@@ -342,7 +330,7 @@ public class ServiceUi extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-     Connection con = null;
+    Connection con = null;
     Statement st = null, st1 = null;
     ResultSet rs = null, rs1 = null;
 
@@ -386,16 +374,15 @@ public class ServiceUi extends javax.swing.JPanel {
     }
     private void tblAirportServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirportServiceMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirportService.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
+        clear();
+
         //Set data to text field when raw is selected
         serviceId = Integer.parseInt(tblModel.getValueAt(tblAirportService.getSelectedRow(), 0).toString());
         String tblName = tblModel.getValueAt(tblAirportService.getSelectedRow(), 1).toString();
         String tblTime = tblModel.getValueAt(tblAirportService.getSelectedRow(), 2).toString();
         String tblRemark = tblModel.getValueAt(tblAirportService.getSelectedRow(), 3).toString();
-        
-        
-        
+
         //Set to text field
         cbService.setSelectedItem(tblName);
         txtRemark.setText(tblRemark);
@@ -418,7 +405,7 @@ public class ServiceUi extends javax.swing.JPanel {
             chb2024.setSelected(true);
         }
 
-        
+
     }//GEN-LAST:event_tblAirportServiceMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -466,12 +453,37 @@ public class ServiceUi extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblAirportService.getModel();
+
         serviceId = Integer.parseInt(tblModel.getValueAt(tblAirportService.getSelectedRow(), 0).toString());
         if (serviceId != 0) {
             //If single row is selected then update
 
-            String name = cbService.getSelectedItem().toString();
-            String time = null;
+            String name = "";
+            if (cbService.getSelectedItem().equals("<choose a service>")) {
+                JOptionPane.showMessageDialog(null, "Please Choose a Service!");
+            } else {
+                name = cbService.getSelectedItem().toString();
+            }
+
+            String time = "";
+            if (chb05.isSelected()) {
+                time += chb05.getText() + " ";
+            }
+            if (chb58.isSelected()) {
+                time += chb58.getText() + " ";
+            }
+            if (chb812.isSelected()) {
+                time += chb812.getText() + " ";
+            }
+            if (chb1216.isSelected()) {
+                time += chb1216.getText() + " ";
+            }
+            if (chb1620.isSelected()) {
+                time += chb1620.getText() + " ";
+            }
+            if (chb2024.isSelected()) {
+                time += chb2024.getText() + " ";
+            }
             String remark = txtRemark.getText();
 
             try {
@@ -488,18 +500,8 @@ public class ServiceUi extends javax.swing.JPanel {
                 e.printStackTrace();
             }
 
-            //            //Set updated value on table row
-            //            tblModel.setValueAt(routeName, tblRoute.getSelectedRow(), 0);
-            //            tblModel.setValueAt(departure, tblRoute.getSelectedRow(), 1);
-            //            tblModel.setValueAt(fallAirport, tblRoute.getSelectedRow(), 2);
-            //            tblModel.setValueAt(flytime, tblRoute.getSelectedRow(), 3);
-            //            tblModel.setValueAt(departureTime, tblRoute.getSelectedRow(), 4);
-            //            tblModel.setValueAt(fallTime, tblRoute.getSelectedRow(), 5);
-            //            tblModel.setValueAt(type, tblRoute.getSelectedRow(), 6);
-            //            //Update data displays
-            //            JOptionPane.showMessageDialog(this, "Update Successfully!");
         } else {
-            try{
+            try {
                 if (tblAirportService.getSelectedRow() == 0) {
                     //if table is empty.
                     JOptionPane.showMessageDialog(this, "Please Select a Service.");
@@ -507,7 +509,7 @@ public class ServiceUi extends javax.swing.JPanel {
                     //if multiple rows are selected.
                     JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
                 }
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -562,37 +564,41 @@ public class ServiceUi extends javax.swing.JPanel {
 
     private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         // TODO add your handling code here:
-        
 
-        if (cbService.getSelectedItem().equals("<choose a service>")
-            || chb05.equals("")) {
+        if (cbService.getSelectedItem().equals("<choose a service>")) {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
                 //                int patKey = 1;
                 serviceCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-               
+
                 PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airportservice values(?,?,?,?)");
                 add.setInt(1, idservice);
-                add.setString(2, cbService.getSelectedItem().toString());
+                String service = "";
+                if (cbService.getSelectedItem().equals("<choose a service>")) {
+                    JOptionPane.showMessageDialog(null, "Please Choose a Service!");
+                } else {
+                    service = cbService.getSelectedItem().toString();
+                }
+                add.setString(2, service);
                 String time = "";
-                
+
                 if (chb05.isSelected()) {
                     time += chb05.getText() + " ";
-                } else
+                }
                 if (chb58.isSelected()) {
                     time += chb58.getText() + " ";
-                } else
+                }
                 if (chb812.isSelected()) {
                     time += chb812.getText() + " ";
-                } else
+                }
                 if (chb1216.isSelected()) {
                     time += chb1216.getText() + " ";
-                } else
+                }
                 if (chb1620.isSelected()) {
                     time += chb1620.getText() + " ";
-                } else
+                }
                 if (chb2024.isSelected()) {
                     time += chb2024.getText() + " ";
                 }
@@ -600,7 +606,7 @@ public class ServiceUi extends javax.swing.JPanel {
                 add.setString(4, txtRemark.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Service solved successfully!");
+                JOptionPane.showMessageDialog(this, "Service saved successfully!");
                 con.close();
                 displayService();
                 clear();
@@ -634,7 +640,6 @@ public class ServiceUi extends javax.swing.JPanel {
     private javax.swing.JCheckBox chb2024;
     private javax.swing.JCheckBox chb58;
     private javax.swing.JCheckBox chb812;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
@@ -647,10 +652,10 @@ public class ServiceUi extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblAirportService.getModel();
         model.setRowCount(0);
-        
+
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -665,6 +670,5 @@ public class ServiceUi extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-        
     }
 }

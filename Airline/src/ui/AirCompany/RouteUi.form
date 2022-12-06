@@ -46,64 +46,82 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="lblId" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
-                                              <Component id="lblId1" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtDepature" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                              <Component id="txtDestination" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblId19" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtRN" min="-2" pref="185" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="lblId18" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtFallTime" min="-2" pref="185" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="lblId17" min="-2" pref="112" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtDepTime" min="-2" pref="185" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblId2" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtFlyTime" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblId8" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtAirType" min="-2" pref="185" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnUpdate" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                              <Component id="lblSearchContent" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtSearch" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnUpdate" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="lblSearchContent" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtSearch" min="-2" pref="210" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="386" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblId" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="lblId1" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtDepature" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="txtDestination" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblId19" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtRN" min="-2" pref="185" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="lblId18" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtFallTime" min="-2" pref="185" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblId17" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="lblId22" min="-2" pref="98" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cbCompany" max="32767" attributes="0"/>
+                                  <Component id="txtDepTime" pref="185" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblId2" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtFlyTime" min="-2" pref="185" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblId8" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtAirType" min="-2" pref="185" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblId20" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="lblId9" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                  <Component id="lblId21" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="txtFp" max="32767" attributes="0"/>
+                  <Component id="txtEp" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtBp" alignment="0" pref="185" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,33 +145,55 @@
                   <Component id="btnRetrieve" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnClear" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblId19" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtRN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbCompany" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId22" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDepature" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDepTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId17" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtDepature" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDepTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFallTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblId2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFlyTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAirType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtFp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtBp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId20" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtEp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDestination" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFallTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblId2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFlyTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAirType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId8" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="148" max="32767" attributes="0"/>
+              <EmptySpace pref="128" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -260,19 +300,43 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
+              <Table columnCount="12" rowCount="4">
                 <Column editable="false" title="key" type="java.lang.Integer"/>
                 <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
+                <Column editable="true" title="COMPANY" type="java.lang.String"/>
                 <Column editable="false" title="DEPARTURE" type="java.lang.String"/>
                 <Column editable="false" title="DEPARTURE TIME" type="java.lang.String"/>
                 <Column editable="false" title="DESTINATION" type="java.lang.String"/>
                 <Column editable="false" title="FALL TIME" type="java.lang.String"/>
                 <Column editable="false" title="FLY TIME" type="java.lang.Integer"/>
                 <Column editable="false" title="AIPLANE TYPE" type="java.lang.String"/>
+                <Column editable="false" title="FIRST PRICE" type="java.lang.Integer"/>
+                <Column editable="false" title="BUSI-PRICE" type="java.lang.Integer"/>
+                <Column editable="false" title="ECO-PRICE" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -422,6 +486,64 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetrieveActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId20">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="BUSINESS CLASS PRICE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtBp">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEp">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId9">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="ECONOMY CLASS PRICE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId21">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="FIRST CLASS PRICE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtFp">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFpKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbCompany">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="&lt;choose a company&gt;"/>
+            <StringItem index="1" value=" "/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId22">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="COMPANY"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

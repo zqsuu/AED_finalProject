@@ -4,6 +4,9 @@
  */
 package ui.Customer;
 
+import model.Customer;
+import model.CustomerList;
+
 
 
 
@@ -11,13 +14,11 @@ package ui.Customer;
  *
  * @author HP
  */
-public class Customer extends javax.swing.JPanel {
+public class CustomerPage extends javax.swing.JPanel {
 
-//    PatientDirectory plist;
-//    DoctorDirectory dlist;
-//    HospitalDirectory hptList;
-//    EncounterHistory enList;
-//    VitalSignsList vsList;
+
+    CustomerList customerList;
+    Customer reservationList;
     /**
      * Creates new form SystemAdmin
      * @param plist
@@ -26,34 +27,15 @@ public class Customer extends javax.swing.JPanel {
      * @param enList
      * @param vsList
      */
-//    public AirlineCompany(PatientDirectory plist,DoctorDirectory dlist,HospitalDirectory hptList,EncounterHistory enList,VitalSignsList vsList) {
-//        initComponents();
-//        if(plist==null){
-//            plist = new PatientDirectory();
+    public CustomerPage() {
+        initComponents();
+//        if(customerList==null){
+//            customerList = new CustomerList();
 //        }else{
-//            this.plist=plist;
+//            this.customerList=customerList;
 //        }
-//        if(enList==null){
-//            enList = new EncounterHistory();
-//        }else{
-//            this.enList=enList;
-//        }
-//        if(dlist==null){
-//            dlist = new DoctorDirectory();
-//        }else{
-//            this.dlist=dlist;
-//        }
-//        if(hptList==null){
-//            hptList = new HospitalDirectory();
-//        }else{
-//            this.hptList=hptList;
-//        }
-//        if(vsList==null){
-//            vsList = new VitalSignsList();
-//        }else{
-//            this.vsList=vsList;
-//        }
-//    }
+        
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +49,7 @@ public class Customer extends javax.swing.JPanel {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
-        tabTicket = new javax.swing.JPanel();
+        tabReservation = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tabService = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -87,27 +69,27 @@ public class Customer extends javax.swing.JPanel {
         sysMenuPanel.setBackground(new java.awt.Color(102, 102, 102));
         sysMenuPanel.setPreferredSize(new java.awt.Dimension(300, 800));
 
-        tabTicket.setBackground(new java.awt.Color(255, 0, 0));
-        tabTicket.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabReservation.setBackground(new java.awt.Color(255, 0, 0));
+        tabReservation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabTicketMouseClicked(evt);
+                tabReservationMouseClicked(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TICKET");
+        jLabel1.setText("RESERVATION");
 
-        javax.swing.GroupLayout tabTicketLayout = new javax.swing.GroupLayout(tabTicket);
-        tabTicket.setLayout(tabTicketLayout);
-        tabTicketLayout.setHorizontalGroup(
-            tabTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabReservationLayout = new javax.swing.GroupLayout(tabReservation);
+        tabReservation.setLayout(tabReservationLayout);
+        tabReservationLayout.setHorizontalGroup(
+            tabReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        tabTicketLayout.setVerticalGroup(
-            tabTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabTicketLayout.createSequentialGroup()
+        tabReservationLayout.setVerticalGroup(
+            tabReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabReservationLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -195,7 +177,7 @@ public class Customer extends javax.swing.JPanel {
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +188,7 @@ public class Customer extends javax.swing.JPanel {
                 .addGap(87, 87, 87)
                 .addComponent(tabCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 418, Short.MAX_VALUE)
@@ -247,21 +229,20 @@ public class Customer extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabTicketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTicketMouseClicked
+    private void tabReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabReservationMouseClicked
         
-        tabTicket.setVisible(true);
+        tabReservation.setVisible(true);
         tabService.setVisible(true);
         tabCustomer.setVisible(true);
-//        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
-//        PatientProfile patientProfile = new PatientProfile(plist);
-//        sysSplit.setRightComponent(patientProfile);
+        ReservationUi reservation = new ReservationUi(reservationList);
+        sysSplit.setRightComponent(reservation);
         
-    }//GEN-LAST:event_tabTicketMouseClicked
+    }//GEN-LAST:event_tabReservationMouseClicked
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
         
-        tabTicket.setVisible(true);
+        tabReservation.setVisible(true);
         tabService.setVisible(true);
         tabCustomer.setVisible(true);
 //        tabEncounter.setVisible(true);
@@ -274,13 +255,12 @@ public class Customer extends javax.swing.JPanel {
 
     private void tabCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCustomerMouseClicked
         
-        tabTicket.setVisible(true);
+        tabReservation.setVisible(true);
         tabService.setVisible(true);
         tabCustomer.setVisible(true);
-//        tabEncounter.setVisible(true);
         tabLogout.setVisible(true);
-//        HospitalManagement hospitalManagement = new HospitalManagement(hptList);
-//        sysSplit.setRightComponent(hospitalManagement);
+        CustomerUi customerUi = new CustomerUi(customerList);
+        sysSplit.setRightComponent(customerUi);
         
         
         
@@ -288,7 +268,7 @@ public class Customer extends javax.swing.JPanel {
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         // TODO add your handling code here:
-        tabTicket.setVisible(true);
+        tabReservation.setVisible(true);
         tabService.setVisible(true);
         tabCustomer.setVisible(true);
 //        tabEncounter.setVisible(true);
@@ -310,7 +290,7 @@ public class Customer extends javax.swing.JPanel {
     private javax.swing.JSplitPane sysSplit;
     private javax.swing.JPanel tabCustomer;
     private javax.swing.JPanel tabLogout;
+    private javax.swing.JPanel tabReservation;
     private javax.swing.JPanel tabService;
-    private javax.swing.JPanel tabTicket;
     // End of variables declaration//GEN-END:variables
 }

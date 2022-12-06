@@ -91,11 +91,9 @@
                       <Component id="lblId" min="-2" pref="98" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cbService" min="-2" pref="185" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
-                      <Component id="jComboBox3" min="-2" pref="185" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="420" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,20 +124,11 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
-                      <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbService" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbService" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="chb812" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -271,19 +260,6 @@
             <StringItem index="2" value="LUGGAGE STORAGE"/>
             <StringItem index="3" value="FOOD SERVICE"/>
             <StringItem index="4" value="CHECK-IN"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox3">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="24 HOURS"/>
-            <StringItem index="1" value=" "/>
           </StringArray>
         </Property>
       </Properties>

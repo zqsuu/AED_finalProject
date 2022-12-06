@@ -70,7 +70,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabTicket" max="32767" attributes="0"/>
+                  <Component id="tabReservation" max="32767" attributes="0"/>
                   <Component id="tabService" max="32767" attributes="0"/>
                   <Component id="tabCustomer" alignment="0" max="32767" attributes="0"/>
                   <Component id="tabLogout" alignment="0" max="32767" attributes="0"/>
@@ -82,7 +82,7 @@
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="tabCustomer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabTicket" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabReservation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tabService" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="418" max="32767" attributes="0"/>
@@ -93,14 +93,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="tabTicket">
+            <Container class="javax.swing.JPanel" name="tabReservation">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabTicketMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabReservationMouseClicked"/>
               </Events>
 
               <Layout>
@@ -129,7 +129,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="TICKET"/>
+                    <Property name="text" type="java.lang.String" value="RESERVATION"/>
                   </Properties>
                 </Component>
               </SubComponents>

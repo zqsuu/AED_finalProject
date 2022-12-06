@@ -577,7 +577,7 @@ public class AirportUi extends javax.swing.JPanel {
                 add.setString(7, txtRouteRequest.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Airport solved successfully!");
+                JOptionPane.showMessageDialog(this, "Airport saved successfully!");
                 con.close();
                 displayAirport();
                 clear();

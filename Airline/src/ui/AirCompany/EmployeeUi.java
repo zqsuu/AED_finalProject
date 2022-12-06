@@ -500,7 +500,7 @@ public class EmployeeUi extends javax.swing.JPanel {
                 add.setString(8, txtPassword.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Employee solved successfully!");
+                JOptionPane.showMessageDialog(this, "Employee saved successfully!");
                 con.close();
                 displayEmployee();
                 clear();

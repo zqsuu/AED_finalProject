@@ -415,7 +415,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                 add.setString(6, txtFallTime.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Arrival solved successfully!");
+                JOptionPane.showMessageDialog(this, "Arrival saved successfully!");
                 con.close();
                 displayArrivals();
                 clear();

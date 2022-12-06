@@ -22,11 +22,17 @@ public class Route {
     String depatureTerminal;
     String fallTerminal;
     String baggage;
+    int firstPrice;
+    int businessPrice;
+    int ecoPrice;
+    AirlineCompany company;
     
     
 
-    public Route(String routeName, Airport departureAirport, Airport fallAirport, Airplane airplane, int flytime, String departureTime, String fallTime, ArrayList<Employee> employeeList, String depatureTerminal, String fallTerminal, String baggage) {
+    public Route(String routeName, AirlineCompany company,Airport departureAirport, Airport fallAirport, Airplane airplane, int flytime, String departureTime, String fallTime, ArrayList<Employee> employeeList, 
+            String depatureTerminal, String fallTerminal, String baggage, int firstPrice, int businessPrice, int ecoPrice) {
         this.routeName = routeName;
+        this.company = company;
         this.departureAirport = departureAirport;
         this.fallAirport = fallAirport;
         this.airplane = airplane;
@@ -37,6 +43,9 @@ public class Route {
         this.depatureTerminal = depatureTerminal;
         this.fallTerminal = fallTerminal;
         this.baggage = baggage;
+        this.firstPrice = firstPrice;
+        this.businessPrice = businessPrice;
+        this.ecoPrice = ecoPrice;
         
     }
 
@@ -82,6 +91,38 @@ public class Route {
 
     public String getBaggage() {
         return baggage;
+    }
+
+    public int getFirstPrice() {
+        return firstPrice;
+    }
+
+    public void setFirstPrice(int firstPrice) {
+        this.firstPrice = firstPrice;
+    }
+
+    public int getBusinessPrice() {
+        return businessPrice;
+    }
+
+    public void setBusinessPrice(int businessPrice) {
+        this.businessPrice = businessPrice;
+    }
+
+    public int getEcoPrice() {
+        return ecoPrice;
+    }
+
+    public void setEcoPrice(int ecoPrice) {
+        this.ecoPrice = ecoPrice;
+    }
+
+    public AirlineCompany getCompany() {
+        return company;
+    }
+
+    public void setCompany(AirlineCompany company) {
+        this.company = company;
     }
     
     
