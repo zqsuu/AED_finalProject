@@ -529,6 +529,7 @@ public class AirplaneUi extends javax.swing.JPanel {
                 airplaneCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
                 PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplane values(?,?,?,?,?,?,?,?,?,?)");
+                
                 add.setInt(1, idairplane);
                 add.setString(2, txtType.getText());
                 add.setString(3, cbCompany.getSelectedItem().toString());

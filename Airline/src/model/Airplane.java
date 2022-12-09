@@ -11,6 +11,7 @@ import model.AirlineCompany;
  * @author zhiqingsu
  */
 public class Airplane {
+    String manufacturer;
     int firstCapacity;
     int businessCapacity;
     int ecoCapacity;
@@ -22,7 +23,8 @@ public class Airplane {
     AirlineCompany airplaneCompany;
 
 
-    public Airplane(int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, AirlineCompany airplaneCompany) {
+    public Airplane(String manufacturer,int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, AirlineCompany airplaneCompany) {
+        this.manufacturer = manufacturer;
         this.firstCapacity = firstCapacity;
         this.businessCapacity = businessCapacity;
         this.ecoCapacity = ecoCapacity;

@@ -19,6 +19,7 @@ public class AirlineCompany {
     ArrayList<Employee> employee;
     ArrayList<Route> route;
     ArrayList<FlightReservation> order;
+    ArrayList<EmployeeArrange> arrange;
 
     public AirlineCompany(String name, String id, String password) {
         this.name = name;
@@ -27,14 +28,12 @@ public class AirlineCompany {
         this.airplane = new ArrayList<Airplane>();
         this.employee = new ArrayList<Employee>();
         this.route = new ArrayList<Route>();
+        arrange = new ArrayList<EmployeeArrange>();
     }
 
     public AirlineCompany() {
         this.route = new ArrayList<Route>();
     }
-
-    
-    
 
     
 
@@ -50,6 +49,11 @@ public class AirlineCompany {
         return password;
     }
 
+    public void addOrder(FlightReservation fr){
+        order.add(fr);
+    }
+    
+    
     public ArrayList<Airplane> getAirplane() {
         return airplane;
     }
@@ -118,5 +122,12 @@ public class AirlineCompany {
         }
         income -= r.getAirplane().getFuelConsumption() * r.getFlytime();
         return income;
+    }
+    
+    public void addArrange(EmployeeArrange ea){
+        arrange.add(ea);
+    }
+    public void removeArrange(EmployeeArrange ea){
+        arrange.remove(ea);
     }
 }

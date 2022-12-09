@@ -4,27 +4,78 @@
  */
 package ui.airline;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+
 import javax.swing.JOptionPane;
-import com.mysql.jdbc.ResultSetImpl;
-import java.sql.*;
-import java.sql.DriverManager;
+import model.AirCompanyList;
 import model.AirlineCompany;
+import model.AirportList;
+import model.Customer;
+import model.CustomerList;
+import model.ManufacturerList;
+import model.SystemAdmin;
 import ui.AirCompany.ComJF;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Airport;
+import model.Manufacturer;
+import ui.Airplane.AirplaneUi;
+import ui.Airport.AirportJF;
+import ui.Customer.CustomerJF;
 
 /**
  *
  * @author HP
  */
 public class LogIn extends javax.swing.JFrame {
-    AirlineCompany routeList;
-
+    AirCompanyList companyList;
+    CustomerList customerList;
+    AirportList airportList;
+    ManufacturerList manufacturerList;
+    ArrayList<SystemAdmin> systemAdmin;
+    
+    String code;
+    
     /**
      * Creates new form LogIn
      */
     public LogIn() {
         initComponents();
+        if(customerList==null){
+            customerList = new CustomerList();
+        }else{
+            this.customerList=customerList;
+        }
+        //初始化combo box选择角色
+        cbRole.addItem("Customer");
+        cbRole.addItem("Airport");
+        cbRole.addItem("Airline Company");
+        cbRole.addItem("Manufacturer");
+        cbRole.addItem("System Admin");
+        
+        txtUserName.setText("");
+        txtPassword.setText("");
+        
+        //初始化存储list
+        companyList = new AirCompanyList();
+        customerList = new CustomerList();
+        airportList = new AirportList();
+        manufacturerList = new ManufacturerList();
+        systemAdmin = new ArrayList<SystemAdmin>();
+        
+        //初始化注册界面
+        btnGender.add(rbtnFemale);
+        btnGender.add(rbtnMale);
+        SignUp.setSize(400, 500);
+        
+        
+        //从数据库中导入初始数据
+        initial();
+        
+    }
+    
+    public AirCompanyList getAirCompany(){
+        return companyList;
     }
 
     /**
@@ -36,6 +87,29 @@ public class LogIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SignUp = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        okjbn = new javax.swing.JButton();
+        canceljbn = new javax.swing.JButton();
+        lblId = new javax.swing.JLabel();
+        txtPassport = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        rbtnMale = new javax.swing.JRadioButton();
+        rbtnFemale = new javax.swing.JRadioButton();
+        lblId4 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        lblId3 = new javax.swing.JLabel();
+        txtPassword1 = new javax.swing.JTextField();
+        lblId1 = new javax.swing.JLabel();
+        lblId2 = new javax.swing.JLabel();
+        lblId5 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        lblId6 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        sendEmail = new javax.swing.JButton();
+        lblId7 = new javax.swing.JLabel();
+        txtCode = new javax.swing.JTextField();
+        btnGender = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblTitleLogin1 = new javax.swing.JLabel();
         lblTitleLogin2 = new javax.swing.JLabel();
@@ -49,7 +123,190 @@ public class LogIn extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         cbRole = new javax.swing.JComboBox<>();
         lblUserName1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnLogin1 = new javax.swing.JButton();
+
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Customer Sign Up");
+
+        okjbn.setText("OK");
+        okjbn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okjbnActionPerformed(evt);
+            }
+        });
+
+        canceljbn.setText("Cancel");
+        canceljbn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canceljbnActionPerformed(evt);
+            }
+        });
+
+        lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId.setText("NAME");
+
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+        });
+
+        rbtnMale.setText("Male");
+
+        rbtnFemale.setText("Female");
+
+        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId4.setText("AGE");
+
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgeKeyTyped(evt);
+            }
+        });
+
+        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId3.setText("GENDER");
+
+        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId1.setText("PASSPORT");
+
+        lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId2.setText("PASSWORD");
+
+        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId5.setText("USER ID");
+
+        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId6.setText("EMAIL");
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
+
+        sendEmail.setText("Send Vierfy Email");
+        sendEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendEmailActionPerformed(evt);
+            }
+        });
+
+        lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId7.setText("VERIFY CODE");
+
+        txtCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodeKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SignUpLayout = new javax.swing.GroupLayout(SignUp.getContentPane());
+        SignUp.getContentPane().setLayout(SignUpLayout);
+        SignUpLayout.setHorizontalGroup(
+            SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                        .addComponent(okjbn)
+                        .addGap(59, 59, 59)
+                        .addComponent(canceljbn)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                        .addComponent(sendEmail)
+                        .addGap(77, 77, 77))))
+            .addGroup(SignUpLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SignUpLayout.createSequentialGroup()
+                        .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SignUpLayout.createSequentialGroup()
+                        .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SignUpLayout.createSequentialGroup()
+                        .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbtnFemale)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtnMale))
+                    .addGroup(SignUpLayout.createSequentialGroup()
+                        .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(SignUpLayout.createSequentialGroup()
+                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPassport, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                            .addComponent(lblId5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpLayout.createSequentialGroup()
+                            .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        SignUpLayout.setVerticalGroup(
+            SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SignUpLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel11)
+                .addGap(34, 34, 34)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId5))
+                .addGap(18, 18, 18)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId2))
+                .addGap(18, 18, 18)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId3)
+                    .addComponent(rbtnFemale)
+                    .addComponent(rbtnMale))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId6)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sendEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(SignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(okjbn)
+                    .addComponent(canceljbn))
+                .addGap(37, 37, 37))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +362,11 @@ public class LogIn extends javax.swing.JFrame {
         txtPassword.setCaretColor(new java.awt.Color(204, 255, 255));
         txtPassword.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         txtPassword.setMargin(new java.awt.Insets(0, 0, 2, 0));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         chbShowPassword.setBackground(new java.awt.Color(51, 51, 51));
         chbShowPassword.setForeground(new java.awt.Color(204, 255, 255));
@@ -131,13 +393,18 @@ public class LogIn extends javax.swing.JFrame {
 
         cbRole.setBackground(new java.awt.Color(51, 51, 51));
         cbRole.setForeground(new java.awt.Color(255, 255, 255));
-        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "customer", "systemAdmin", "airportAdmin", "companyAdmin", "supplier" }));
+        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a role>" }));
         cbRole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255)));
 
         lblUserName1.setForeground(new java.awt.Color(204, 255, 255));
         lblUserName1.setText("ROLE");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btnLogin1.setText("Customer Sign UP");
+        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogin1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,33 +412,29 @@ public class LogIn extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(101, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUserName)
+                        .addComponent(chbShowPassword)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPassword)
+                        .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserName)
-                            .addComponent(chbShowPassword)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtPassword)
-                            .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
+                        .addGap(37, 37, 37)
+                        .addComponent(btnLogin1)))
+                .addGap(92, 92, 92))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUserName1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(lblUserName1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -188,7 +451,9 @@ public class LogIn extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnReset))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin1)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,94 +480,80 @@ public class LogIn extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1","root","Airline3306");
-            
+        try{           
             String username = txtUserName.getText();
             String password = txtPassword.getText();
-            String role = cbRole.getSelectedItem().toString();
+            String role = String.valueOf(cbRole.getSelectedItem());
+            boolean exist = false;
             
-            Statement stm = (Statement) con.createStatement();
-            String sql = "select * from login where username = '"+username+"' and password = '"+password+"' and role = '"+role+"'";
-            ResultSet rs = stm.executeQuery(sql);
-            
-            if(rs.next()){
-                dispose();
-                //Homepage hp = new Homepage();
-                ComJF com = new ComJF();
-                com.show();
-            } else {
-                JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");
-                txtUserName.setText("");
-                txtPassword.setText("");
-                cbRole.setSelectedItem(null);
+            if(role.equals("Customer")){
+                for(Customer c:customerList.getCustomerList()){
+                    if(c.getName().equals(username)){
+                        if(c.getPassword().equals(password)){
+                            exist = true;
+                            CustomerJF cusJF = new CustomerJF(this,c);
+                            cusJF.setVisible(true);
+                            JOptionPane.showMessageDialog(this, "Login as a customer");
+                        }
+                        else
+                            JOptionPane.showMessageDialog(this, "Incorrect username or password!");
+                            break;
+                        
+                    }
+                }
+            }
+            else if(role.equals("Airport")){
+                for(Airport air : airportList.getAirportList()){
+                    if(air.getName().equals(username)){
+                        if(air.getPassword().equals(password)){
+                            exist = true;
+                            AirportJF airJF = new AirportJF(this,air);
+                            airJF.setVisible(true);
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+            else if(role.equals("Airline Company")){
+                for(AirlineCompany air : companyList.getAirCompany()){
+                    if(air.getName().equals(username)){
+                        if(air.getPassword().equals(password)){
+                            exist = true;
+                            ComJF comJF = new ComJF(this,air);
+                            comJF.setVisible(true);
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+            else if(role.equals("Manufacturer")){
+                for(Manufacturer manu : manufacturerList.getManufacturerList()){
+                    if(manu.getName().equals(username)){
+                        if(manu.getPassword().equals(password)){
+                            exist = true;
+                            AirplaneUi airUI = new AirplaneUi(this,manu,null,"manu");
+                            airUI.setVisible(true);
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
+            else{//system admin
+                
             }
             
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+            if(!exist){
+                JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");             
+            }
+            txtUserName.setText(null);
+            txtPassword.setText(null);
             
+        }catch(Exception e){
+            System.out.println(e.getMessage());         
         }
-
-//        String userName = txtUserName.getText();
-//        String password = txtPassword.getText();
-//        String role = cbRole.getSelectedItem().toString();
-//        boolean isAuthenticated = false;
-//        for (Patient p : plist.getPlist()) {
-//            if (p.getName().equals(userName) && p.getPassword().equals(password)) {
-//                if (p.getRole().equals("PATIENT")) {
-//                    isAuthenticated = true;
-//                    PatientPage PatientPage = new PatientPage(plist, dlist, hptList, enList, vsList, comList, userName);
-//                    SplitPane1.setRightComponent(PatientPage);
-//                }
-//            }
-//
-//        }
-//
-//        for (Doctor d : dlist.getDlist()) {
-//            if (d.getName().equals(userName) && d.getPassword().equals(password)) {
-//                if (d.getRole().equals("DOCTOR")) {
-//                    isAuthenticated = true;
-//                    DoctorPage doctorPage = new DoctorPage(dlist, enList, userName);
-//                    SplitPane1.setRightComponent(doctorPage);
-//                }
-//            }
-//
-//        }
-//
-//        if (!isAuthenticated) {
-//            if (userName.equals("systemAdmin") && password.equals("password") && role.equals("systemAdmin")) {
-//                SystemAdmin systemAdmin = new SystemAdmin(plist, dlist, hptList, enList, vsList);
-//                SplitPane1.setRightComponent(systemAdmin);
-//                //            new SystemAdminJF().setVisible(true);
-//                //            this.setVisible(false);
-//
-//            } //            else if (userName.equals("patient") && password.equals("password") && role.equals("Patient")) {
-//                ////            new PatientPage(plist,enList,comList,hptList).setVisible(true);
-//                //                PatientPage PatientPage = new PatientPage(plist, dlist, hptList, enList, vsList, comList, "");
-//                //                SplitPane1.setRightComponent(PatientPage);
-//                ////            this.setVisible(false);
-//                //            }
-//            //            else if (userName.equals("doctor") && password.equals("password") && role.equals("Doctor")) {
-//                //                DoctorPage doctorPage = new DoctorPage(dlist, enList,"");
-//                //                SplitPane1.setRightComponent(doctorPage);
-//                ////            new DoctorPageJF(dlist,enList).setVisible(true);
-//                ////            this.setVisible(false);
-//                //            }
-//            else if (userName.equals("communityAdmin") && password.equals("password") && role.equals("communityAdmin")) {
-//                CommunityPage communityPage = new CommunityPage(comList, cityList, houseList);
-//                SplitPane1.setRightComponent(communityPage);
-//                //            new CommunityAdminJF(comList).setVisible(true);
-//                //            this.setVisible(false);
-//            } else if (userName.equals("hospitalAdmin") && password.equals("password") && role.equals("hospitalAdmin")) {
-//                SystemAdmin systemAdmin = new SystemAdmin(plist, dlist, hptList, enList, vsList);
-//                SplitPane1.setRightComponent(systemAdmin);
-//                //            new SystemAdminJF().setVisible(true);
-//                //            this.setVisible(false);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Incorrect username or password!");
-//            }
-//        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -316,9 +567,145 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserNameActionPerformed
 
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+        // TODO add your handling code here:
+        txtPassword1.setText("");
+        txtName.setText("");
+        txtPassport.setText("");
+        txtAge.setText("");
+        btnGender.add(rbtnFemale);
+        btnGender.add(rbtnMale);
+        rbtnFemale.setSelected(true);txtId.setText("");
+        txtPassword.setText("");
+        txtName.setText("");
+        txtPassport.setText("");
+        txtAge.setText("");
+        rbtnFemale.setSelected(true);
+        SignUp.setVisible(true);
+    }//GEN-LAST:event_btnLogin1ActionPerformed
+
+    private void okjbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okjbnActionPerformed
+        // TODO add your handling code here:
+        
+        //判断id和email是不是唯一
+        String id = txtId.getText();
+        String password = txtPassword1.getText();
+        String name = txtName.getText();
+        String passport = txtPassport.getText();
+        int age = Integer.parseInt(txtAge.getText());
+        String gender;
+        if(rbtnFemale.isSelected())
+            gender = "female";
+        else
+            gender = "male";
+        String email = txtEmail.getText();
+        String verify = txtCode.getText();
+        
+        if(code.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please verify email");
+            return;
+        }
+        if(id.isEmpty()||password.isEmpty()||name.isEmpty()||passport.isEmpty()||email.isEmpty()||verify.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Please enter all information");
+            return;
+        }
+        if(!code.equals(verify)){
+            JOptionPane.showMessageDialog(this,"Wrong verify code");
+            return;
+        }
+
+        
+        //String id,String password,String name,String gender,int age,String passport,String email
+        Customer cus = new Customer(id,password,name,gender,age,passport,email);
+        customerList.addCustomer(cus);
+        cus.updateDB();
+        
+        JOptionPane.showMessageDialog(this,"Sign Up Successfully");
+        SignUp.dispose();
+        txtPassword1.setText("");
+        txtName.setText("");
+        txtPassport.setText("");
+        txtAge.setText("");
+        rbtnFemale.setSelected(true);
+        txtId.setText("");
+
+    }//GEN-LAST:event_okjbnActionPerformed
+
+    private void canceljbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canceljbnActionPerformed
+        // TODO add your handling code here:
+
+        SignUp.dispose();
+    }//GEN-LAST:event_canceljbnActionPerformed
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        // TODO add your handling code here:
+        char ch = evt.getKeyChar();
+        if(!((ch>='a'&&ch<='z')||ch=='-'||ch==' '||(ch>='A'&&ch<='Z')))
+            evt.consume();
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
+        // TODO add your handling code here:
+        if(txtAge.getText().length()==2)
+        evt.consume();
+        else{
+            char ch = evt.getKeyChar();
+            if(ch<'0'||ch>'9')
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAgeKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void sendEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendEmailActionPerformed
+        // TODO add your handling code here:
+        String email = txtEmail.getText();
+        EmailVerify ev = new EmailVerify();
+        String send = ev.sendEmail(email);
+        if(send.equals("email wrong"))
+            JOptionPane.showMessageDialog(this,"Please enter valid email address");
+        else if(send.equals("fail"))
+            JOptionPane.showMessageDialog(this,"Email sending failed, please try again");
+        else{
+            code = send;
+            JOptionPane.showMessageDialog(this,"Email sending successful");
+        }
+        
+    }//GEN-LAST:event_sendEmailActionPerformed
+
+    private void txtCodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodeKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodeKeyTyped
+
+    //从数据库中导入初始数据
+    public void initial(){
+        try {
+            CustomerList cl = new CustomerList();
+            ArrayList<Customer> customerList = cl.getAllCustomer();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "initial().getAllCustomer()");
+        }
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -342,6 +729,13 @@ public class LogIn extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -350,21 +744,45 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog SignUp;
+    private javax.swing.ButtonGroup btnGender;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogin1;
     private javax.swing.JButton btnReset;
+    private javax.swing.JButton canceljbn;
     private javax.swing.JComboBox<String> cbRole;
     private javax.swing.JCheckBox chbShowPassword;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblId1;
+    private javax.swing.JLabel lblId2;
+    private javax.swing.JLabel lblId3;
+    private javax.swing.JLabel lblId4;
+    private javax.swing.JLabel lblId5;
+    private javax.swing.JLabel lblId6;
+    private javax.swing.JLabel lblId7;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitleLogin1;
     private javax.swing.JLabel lblTitleLogin2;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JLabel lblUserName1;
+    private javax.swing.JButton okjbn;
+    private javax.swing.JRadioButton rbtnFemale;
+    private javax.swing.JRadioButton rbtnMale;
+    private javax.swing.JButton sendEmail;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassport;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword1;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

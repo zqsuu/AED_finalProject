@@ -12,13 +12,14 @@ import java.util.ArrayList;
  */
 public class Airport {
     String name;
+    String password;
     String city;
     String address;
     ArrayList<AirportService> airportService;
     ArrayList<Route> route;
     ArrayList<Route> routeRequest;
 
-    public Airport(String name, String city, String address, ArrayList<AirportService> airportService) {
+    public Airport(String name, String city, String address) {
         this.name = name;
         this.city = city;
         this.address = address;
@@ -36,6 +37,16 @@ public class Airport {
         this.city = city;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    
     public String getAddress() {
         return address;
     }

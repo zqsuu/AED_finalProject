@@ -11,24 +11,56 @@ import java.util.Date;
  * @author zhiqingsu
  */
 public class FlightReservation {
-    Route route;
     int price;
-    Customer passenger;
+    int count;
+    String id;
     String flightClass;
-    String seat;
+    String state; // purchased/cancelled
     String company;
+    Route route;
+    Customer passenger;   
     Date date;
 
-    public FlightReservation(Route route, int price, Customer passenger, String flightClass, String seat, String company, Date date) {
+    public FlightReservation(Route route, String id,int price, Customer passenger, String flightClass, int count, String company, Date date) {
+        this.id = id;
         this.route = route;
         this.price = price;
+        this.count = count;
         this.passenger = passenger;
         this.flightClass = flightClass;
-        this.seat = seat;
         this.company = company;
         this.date = date;
+        state = "purchased";
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
+    
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    
+    
     public Route getRoute() {
         return route;
     }
@@ -45,9 +77,7 @@ public class FlightReservation {
         return flightClass;
     }
 
-    public String getSeat() {
-        return seat;
-    }
+
 
     public String getCompany() {
         return company;
@@ -58,7 +88,9 @@ public class FlightReservation {
     }
 
     
-    
+    public void updateDB(){
+        
+    }
     
     
 }

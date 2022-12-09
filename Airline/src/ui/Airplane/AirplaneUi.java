@@ -5,30 +5,46 @@
 package ui.Airplane;
 
 import ui.AirCompany.*;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
+import model.AirlineCompany;
+import model.Manufacturer;
+import net.proteanit.sql.DbUtils;
+import ui.airline.LogIn;
 
 /**
  *
  * @author HP
  */
-public class Airplane extends javax.swing.JPanel {
+public class AirplaneUi extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
      */
-//    DoctorDirectory dlist;
-//    
-//    public People(DoctorDirectory dlist) {
-//        initComponents();
-//        
-//        this.dlist = dlist;
-//        
+    AirlineCompany airplaneList;
+    LogIn login;
+
+    public AirplaneUi(LogIn login,Manufacturer manu,AirlineCompany airline,String type){
+        
+    }
+    public AirplaneUi(AirlineCompany airplaneList) {
+        initComponents();
+
+        this.airplaneList = airplaneList;
+        airplaneCount();
+        displayAirplane();
+        displayCompanyList();
+        clear();
+
 //        populateTable();
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,9 +58,6 @@ public class Airplane extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         txtFirst = new javax.swing.JTextField();
         txtBusiness = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
@@ -56,7 +69,6 @@ public class Airplane extends javax.swing.JPanel {
         lblSearchContent = new javax.swing.JLabel();
         txtEco = new javax.swing.JTextField();
         txtRoute = new javax.swing.JTextField();
-        txtCompany = new javax.swing.JTextField();
         txtType = new javax.swing.JTextField();
         lblId7 = new javax.swing.JLabel();
         lblId8 = new javax.swing.JLabel();
@@ -68,6 +80,12 @@ public class Airplane extends javax.swing.JPanel {
         lblId11 = new javax.swing.JLabel();
         lblId12 = new javax.swing.JLabel();
         lblId3 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        btnRetrieve = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        cbCompany = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -75,30 +93,6 @@ public class Airplane extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Airplane");
-
-        btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
 
         txtFirst.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -120,20 +114,20 @@ public class Airplane extends javax.swing.JPanel {
 
         tblAirplane.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "TYPE", "COMPANY", "ROUTE", "FUEL CONSUMPTION", "PRICE", "SERVICE LIFE", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS"
+                "Airplane Id", "TYPE", "COMPANY", "ROUTE", "FUEL CONSUMPTION", "PRICE", "SERVICE LIFE", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -209,6 +203,53 @@ public class Airplane extends javax.swing.JPanel {
         lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId3.setText("PASSENGER CAPACITY");
 
+        btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(0, 0, 0));
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnRetrieve.setForeground(new java.awt.Color(0, 0, 0));
+        btnRetrieve.setText("Retrieve");
+        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrieveActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 0, 0));
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a company>" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,11 +260,17 @@ public class Airplane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnDelete)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSave)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(btnDelete))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnRetrieve)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnClear)))
                                 .addGap(30, 30, 30)
                                 .addComponent(btnUpdate)
                                 .addGap(156, 156, 156)
@@ -252,10 +299,10 @@ public class Airplane extends javax.swing.JPanel {
                                     .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblId9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(txtRoute, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblId1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,9 +316,6 @@ public class Airplane extends javax.swing.JPanel {
                             .addComponent(txtEco, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(255, 255, 255))))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -280,13 +324,20 @@ public class Airplane extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnSave)
-                    .addComponent(lblSearchContent)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblSearchContent)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnSave))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRetrieve)
+                            .addComponent(btnClear))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblId3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,8 +359,8 @@ public class Airplane extends javax.swing.JPanel {
                             .addComponent(lblId8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId7))
+                            .addComponent(lblId7)
+                            .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,205 +377,103 @@ public class Airplane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLife, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblAirplane.getSelectedRow();
-        
-        if(selectedRowIndex<0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete.");
-            return;
+    Connection con = null;
+    Statement st = null, st1 = null;
+    ResultSet rs = null, rs1 = null;
+
+    int idairplane = 0;
+    int airplaneId = 0;
+
+    private void airplaneCount() {
+        try {
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplane");
+            rs1.next();
+            idairplane = rs1.getInt(1) + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
-        //delete row
-        if(tblAirplane.getSelectedRowCount()==1){
-            //if single row is selected then delete
-            tblModel.removeRow(tblAirplane.getSelectedRow());
-            JOptionPane.showMessageDialog(this,"This Doctor Deleted.");
-        }else{
-            if(tblAirplane.getRowCount()==0){
-                //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");  
-            }else{
-                //if table is not empty but other than one row is selected
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
+
+    }
+
+    private void displayAirplane() {
+
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.airplane");
+            tblAirplane.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void displayCompanyList() {
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.airlinecompany");
+            while (rs.next()) {
+
+                cbCompany.addItem(rs.getString("name"));
+
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        
-        
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirplane.getModel();
-//        if(tblDoctor.getSelectedRowCount() == 1){
-//            //If single row is selected then update
-//            
-//            int id = Integer.parseInt(txtId.getText());
-//            String name = txtName.getText();
-//            //Gender
-//            String gender = txtGender.getText();
-//            int age = Integer.parseInt(txtAge.getText());
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//            String password = txtPassword.getText();
-//            String field = txtField.getText();
-//            String standard = txtStandard.getText();
-//            double fee = Double.parseDouble(txtFee.getText());
-//            
-//            
-//            //Set updated value on table row
-//            tblModel.setValueAt(id, tblDoctor.getSelectedRow(), 0);
-//            tblModel.setValueAt(name, tblDoctor.getSelectedRow(), 1);
-//            tblModel.setValueAt(gender, tblDoctor.getSelectedRow(), 2);
-//            tblModel.setValueAt(age, tblDoctor.getSelectedRow(), 3);
-//            tblModel.setValueAt(phoneNumber, tblDoctor.getSelectedRow(), 4);
-//            tblModel.setValueAt(password, tblDoctor.getSelectedRow(), 5);
-//            tblModel.setValueAt(field, tblDoctor.getSelectedRow(), 6);
-//            tblModel.setValueAt(standard, tblDoctor.getSelectedRow(), 7);
-//            tblModel.setValueAt(fee, tblDoctor.getSelectedRow(), 8);
-//            
-//            
-//            
-//            //Update data display
-//            JOptionPane.showMessageDialog(this,"Update Successfully!");
-//            
-//        }else{
-//            if(tblDoctor.getSelectedRowCount() == 0){
-//                //if table is empty.
-//                JOptionPane.showMessageDialog(this,"Please Select an Doctor.");
-//            }else{
-//                //if multiple rows are selected.
-//                JOptionPane.showMessageDialog(this,"Please Select Single Row for Update!");
-//            }
-//        }
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    private void clear() {
+        txtType.setText("");
+        cbCompany.setSelectedItem("<choose a company>");
+        txtRoute.setText("");
+        txtFuel.setText("");
+        txtPrice.setText("");
+        txtLife.setText("");
+        txtFirst.setText("");
+        txtBusiness.setText("");
+        txtEco.setText("");
+    }
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-//        try{
-//            int id = Integer.parseInt(txtId.getText());
-//            int age = Integer.parseInt(txtAge.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Id/Age should be int!");
-//            return;
-//        }
-//        try{
-//            long phoneNumber = Long.parseLong(txtPhone.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Phone/SSA Number should be long!");
-//            return;
-//        }
-//        try{
-//            double fee = Double.parseDouble(txtFee.getText());
-//        }catch (NumberFormatException exe)
-//        {           
-//            JOptionPane.showMessageDialog(this, "Datatype of Fee should be double!");
-//            return;
-//        }
-        
-//        if(txtId.getText().equals("")||
-//                txtName.getText().equals("")||
-//                txtGender.getText().equals("")||
-//                txtAge.getText().equals("")||
-//                txtPhone.getText().equals("")||
-//                txtPassword.getText().equals("")||
-//                txtField.getText().equals("")||
-//                txtStandard.getText().equals("")||
-//                txtFee.getText().equals("")){
-//            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Successfully Stored!");
-//        }
-
-//        int id = Integer.parseInt(txtId.getText());
-//        String name = txtName.getText();
-//        String gender = txtGender.getText();
-//        int age = Integer.parseInt(txtAge.getText());
-//        long phoneNumber = Long.parseLong(txtPhone.getText());
-//        String password = txtPassword.getText();
-//        String field = txtField.getText();
-//        String standard = txtStandard.getText();
-//        double fee = Double.parseDouble(txtFee.getText());
-//
-//        person.doctor.Doctor dc = dlist.addDoctor();
-//
-//        dc.setId(id);
-//        dc.setName(name);
-//        dc.setGender(gender);
-//        dc.setAge(age);
-//        dc.setPhoneNumber(phoneNumber);
-//        dc.setPassword(password);
-//        dc.setField(field);
-//        dc.setStandard(standard);
-//        dc.setFee(fee);
-//        dc.setRole("DOCTOR");
-        
-
-        JOptionPane.showMessageDialog(this, "New Doctor Profile added");
-        
-        
-
-//        txtId.setText("");
-//        txtName.setText("");
-//        //buttonGroup1.setClear();
-//        txtGender.setText("");
-//        txtAge.setText("");
-//        txtPhone.setText("");
-//        txtPassword.setText("");
-//        txtField.setText("");
-//        txtStandard.setText("");
-//        txtFee.setText("");
-        
-        populateTable();
-
-    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirplaneMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)tblAirplane.getModel();
-        
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
+
         //Set data to text field when raw is selected
-        String tblId = tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString();
-        String tblName = tblModel.getValueAt(tblAirplane.getSelectedRow(), 1).toString();
-        String tblGender = tblModel.getValueAt(tblAirplane.getSelectedRow(), 2).toString();
-        String tblAge = tblModel.getValueAt(tblAirplane.getSelectedRow(), 3).toString();
-        String tblPhone = tblModel.getValueAt(tblAirplane.getSelectedRow(), 4).toString();
-        String tblPassword = tblModel.getValueAt(tblAirplane.getSelectedRow(), 5).toString();
-        String tblField = tblModel.getValueAt(tblAirplane.getSelectedRow(), 6).toString();
-        String tblStandard = tblModel.getValueAt(tblAirplane.getSelectedRow(), 7).toString();
-        String tblFee = tblModel.getValueAt(tblAirplane.getSelectedRow(), 8).toString();
-        
-        
-        
-        //Set to text field
-//        txtId.setText(tblId);
-//        txtName.setText(tblName);
-//        txtGender.setText(tblGender);
-//        txtAge.setText(tblAge);
-//        txtPhone.setText(tblPhone);
-//        txtPassword.setText(tblPassword);
-//        txtField.setText(tblField);
-//        txtStandard.setText(tblStandard);
-//        txtFee.setText(tblFee);
-        
+        try {
+            airplaneId = Integer.parseInt(tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString());
+            String tblType = tblModel.getValueAt(tblAirplane.getSelectedRow(), 1).toString();
+            String tblCompany = tblModel.getValueAt(tblAirplane.getSelectedRow(), 2).toString();
+            String tblRoute = tblModel.getValueAt(tblAirplane.getSelectedRow(), 3).toString();
+            String tblFuel = tblModel.getValueAt(tblAirplane.getSelectedRow(), 4).toString();
+            String tblPrice = tblModel.getValueAt(tblAirplane.getSelectedRow(), 5).toString();
+            String tblLife = tblModel.getValueAt(tblAirplane.getSelectedRow(), 6).toString();
+            String tblFirst = tblModel.getValueAt(tblAirplane.getSelectedRow(), 7).toString();
+            String tblBusiness = tblModel.getValueAt(tblAirplane.getSelectedRow(), 8).toString();
+            String tblEco = tblModel.getValueAt(tblAirplane.getSelectedRow(), 9).toString();
+
+            txtType.setText(tblType);
+            cbCompany.setSelectedItem(tblCompany);
+            txtRoute.setText(tblRoute);
+            txtFuel.setText(tblFuel);
+            txtPrice.setText(tblPrice);
+            txtLife.setText(tblLife);
+            txtFirst.setText(tblFirst);
+            txtBusiness.setText(tblBusiness);
+            txtEco.setText(tblEco);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_tblAirplaneMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -538,6 +487,7 @@ public class Airplane extends javax.swing.JPanel {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         tblAirplane.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+        clear();
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -556,13 +506,171 @@ public class Airplane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFuelKeyPressed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            int fuel = Integer.parseInt(txtFuel.getText());
+            int price = Integer.parseInt(txtPrice.getText());
+            int life = Integer.parseInt(txtLife.getText());
+            int first = Integer.parseInt(txtFirst.getText());
+            int business = Integer.parseInt(txtBusiness.getText());
+            int eco = Integer.parseInt(txtEco.getText());
+
+        } catch (NumberFormatException exe) {
+            JOptionPane.showMessageDialog(this, "Datatype of FuelConsumption/Price/Life/FirstClass/BusinessClass/EcoClass should be int!");
+            return;
+        }
+
+        if (txtType.getText().equals("")
+                || txtRoute.getText().equals("")
+                || txtFuel.getText().equals("")
+                || txtPrice.getText().equals("")
+                || txtLife.getText().equals("")
+                || txtFirst.getText().equals("")
+                || txtBusiness.getText().equals("")
+                || txtEco.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Set All Data!");
+        } else {
+            try {
+                airplaneCount();
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplane values(?,?,?,?,?,?,?,?,?,?)");
+                
+                add.setInt(1, idairplane);
+                add.setString(2, txtType.getText());
+                add.setString(3, cbCompany.getSelectedItem().toString());
+                add.setString(4, txtRoute.getText());
+                add.setString(5, txtFuel.getText());
+                add.setString(6, txtPrice.getText());
+                add.setString(7, txtLife.getText());
+                add.setString(8, txtFirst.getText());
+                add.setString(9, txtBusiness.getText());
+                add.setString(10, txtEco.getText());
+
+                int row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Airplane solved successfully!");
+                con.close();
+                displayAirplane();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
+        displayAirplane();
+
+    }//GEN-LAST:event_btnRetrieveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblAirplane.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+
+        //Get tblList first
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
+        //delete row
+        if (tblAirplane.getSelectedRowCount() == 1) {
+            //if single row is selected then delete
+            //            tblModel.removeRow(tblRoute.getSelectedRow());
+            try {
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                String query = "delete from airlinedb1.airplane where idairplane = " + airplaneId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Airplane deleted successfully!");
+                displayAirplane();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "This Airplane Deleted.");
+        } else {
+            if (tblAirplane.getRowCount() == 0) {
+                //if table is empty then display message
+                JOptionPane.showMessageDialog(this, "Table is Empty!");
+            } else {
+                //if table is not empty but other than one row is selected
+                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
+            }
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        //Get table Model1
+        DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
+        airplaneId = Integer.parseInt(tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString());
+        if (airplaneId != 0) {
+            //If single row is selected then update
+
+            String type = txtType.getText();
+            String company = cbCompany.getSelectedItem().toString();
+            String route = txtRoute.getText();
+            int fuel = Integer.parseInt(txtFuel.getText());
+            int price = Integer.parseInt(txtPrice.getText());
+            int life = Integer.parseInt(txtLife.getText());
+            int first = Integer.parseInt(txtFirst.getText());
+            int business = Integer.parseInt(txtBusiness.getText());
+            int eco = Integer.parseInt(txtEco.getText());
+
+            try {
+                //ssl error
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
+                String query = "UPDATE airplane SET type = '" + type + "'" + ",airplanecompany = '" + company + "'" + ",route = '" + route + "'" + ",fuelconsumption = '" + fuel + "'" + ",price = '" + price + "'" + ",servicelife = '" + life + "'" + ",firstclass = '" + first + "'" + ",businessclass = '" + business + "'" + ",economyclass = '" + eco + "'" + " WHERE idairplane = " + airplaneId;
+                Statement add = (Statement) con.createStatement();
+                add.executeUpdate(query);
+                JOptionPane.showMessageDialog(this, "Airplane updated successfully!");
+                displayAirplane();
+                clear();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            try {
+                if (tblAirplane.getSelectedRow() == 0) {
+                    //if table is empty.
+                    JOptionPane.showMessageDialog(this, "Please Select an Airplane.");
+                } else {
+                    //if multiple rows are selected.
+                    JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRetrieve;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cbCompany;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
@@ -578,7 +686,6 @@ public class Airplane extends javax.swing.JPanel {
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblAirplane;
     private javax.swing.JTextField txtBusiness;
-    private javax.swing.JTextField txtCompany;
     private javax.swing.JTextField txtEco;
     private javax.swing.JTextField txtFirst;
     private javax.swing.JTextField txtFuel;
@@ -590,10 +697,10 @@ public class Airplane extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblAirplane.getModel();
         model.setRowCount(0);
-        
+
 //        for (Doctor dc : dlist.getDlist()){
 //            Object[] row = new Object[9];
 //            row[0] = dc.getId();
@@ -608,6 +715,5 @@ public class Airplane extends javax.swing.JPanel {
 //            
 //            model.addRow(row);
 //        }
-        
     }
 }

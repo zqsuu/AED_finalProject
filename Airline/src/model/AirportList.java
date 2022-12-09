@@ -15,6 +15,10 @@ public class AirportList {
     
     ArrayList<Airport> airportList ;
 
+    public AirportList(){
+        this.airportList = new ArrayList<Airport>();
+    }
+    
     public AirportList(ArrayList<Airport> airportList) {
         this.airportList = airportList;
     }

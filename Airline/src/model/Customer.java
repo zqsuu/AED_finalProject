@@ -4,30 +4,42 @@
  */
 package model;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author zhiqingsu
  */
 public class Customer {
+
     String id;
     String password;
     String name;
     String gender;
     int age;
     String passport;
+    String email;
     ArrayList<FlightReservation> reservation;
-    
-    public Customer(String id,String password,String name,String gender,int age,String passport){
+
+    public Customer(String id, String password, String name, String gender, int age, String passport, String email) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.passport = passport;
+        this.email = email;
         reservation = new ArrayList<FlightReservation>();
     }
+
+    public Customer() {
+    }
+    
 
     public String getId() {
         return id;
@@ -77,17 +89,36 @@ public class Customer {
         this.passport = passport;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+
     public ArrayList<FlightReservation> getReservation() {
         return reservation;
     }
 
-    
-    public void addReservation(FlightReservation fr){
+    public void addReservation(FlightReservation fr) {
         reservation.add(fr);
     }
-    
-    public void removeReservation(FlightReservation fr){
+
+    public void removeReservation(FlightReservation fr) {
         reservation.remove(fr);
     }
+
+    public void updateDB() {
+
+    }
+
+    static Connection con = null;
+    static Statement st = null;
+    static ResultSet rs = null;
+
     
+
 }

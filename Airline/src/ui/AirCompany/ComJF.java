@@ -5,6 +5,7 @@
 package ui.AirCompany;
 
 import model.AirlineCompany;
+import ui.airline.LogIn;
 
 /**
  *
@@ -14,6 +15,8 @@ public class ComJF extends javax.swing.JFrame {
     AirlineCompany routeList;
     AirlineCompany airplaneList;
     AirlineCompany employeeList;
+    AirlineCompany airlineCompany;
+    LogIn login;
     
 
     /**
@@ -21,11 +24,19 @@ public class ComJF extends javax.swing.JFrame {
      */
     public ComJF() {
         initComponents();
-//        if(routeList==null){
+        this.login = login;
+
+    }
+    public ComJF(LogIn login,AirlineCompany air) {
+        initComponents();
+        this.login = login;
+        airlineCompany = air;
+        //        if(routeList==null){
 //            routeList = new AirlineCompany();
 //        }else{
 //            this.routeList=routeList;
 //        }
+        
     }
 
     /**

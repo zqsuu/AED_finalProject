@@ -4,8 +4,11 @@
  */
 package ui.Airport;
 
+import java.util.ArrayList;
 import model.Airport;
 import model.AirportList;
+import model.AirportService;
+import ui.airline.LogIn;
 
 /**
  *
@@ -16,11 +19,13 @@ public class AirportJF extends javax.swing.JFrame {
     AirportList airportList;
     Airport arrivalsList;
     Airport serviceList;
+    Airport air;
+    LogIn login;
 
     /**
      * Creates new form AirportJF
      */
-    public AirportJF() {
+    public AirportJF(LogIn login,Airport air) {
         initComponents();
     }
 
@@ -391,7 +396,9 @@ public class AirportJF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AirportJF().setVisible(true);
+                   
+                Airport airp = new Airport("Logan","Boston","MA");
+                new AirportJF(null, airp).setVisible(true);
             }
         });
     }
