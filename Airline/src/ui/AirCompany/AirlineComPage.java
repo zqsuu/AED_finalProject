@@ -5,6 +5,7 @@
 package ui.AirCompany;
 
 import model.AirlineCompany;
+import model.EmployeeArrangeList;
 
 
 
@@ -18,6 +19,7 @@ public class AirlineComPage extends javax.swing.JPanel {
     AirlineCompany routeList;
     AirlineCompany airplaneList;
     AirlineCompany employeeList;
+    EmployeeArrangeList employeeArrangeList;
 //    PatientDirectory plist;
 //    DoctorDirectory dlist;
 //    HospitalDirectory hptList;
@@ -411,7 +413,7 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabRouteCrew.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        RouteCrewUi routeCrew = new RouteCrewUi();
+        RouteCrewUi routeCrew = new RouteCrewUi(employeeArrangeList);
         sysSplit.setRightComponent(routeCrew);
         
         

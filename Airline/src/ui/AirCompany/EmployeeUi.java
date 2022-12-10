@@ -31,8 +31,8 @@ public class EmployeeUi extends javax.swing.JPanel {
         initComponents();
 
         this.employeeList = employeeList;
-        employeeCount();
         displayEmployee();
+        employeeCount();
         clear();
 
 //        populateTable();
@@ -109,7 +109,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId3.setText("AGE");
 
-        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a role>", "Captain", "Pilot", "Stewardess", "Steward" }));
+        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a role>", "Captain", "Pilot", "Steward/Stewardess", " " }));
         cbRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbRoleActionPerformed(evt);
@@ -555,7 +555,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblCrew.getModel();
-        employeeId = Integer.parseInt(tblModel.getValueAt(tblCrew.getSelectedRow(), 1).toString());
+        employeeId = Integer.parseInt(tblModel.getValueAt(tblCrew.getSelectedRow(), 0).toString());
         if (employeeId != 0) {
             //If single row is selected then update
 

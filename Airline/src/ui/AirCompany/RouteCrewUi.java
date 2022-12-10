@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.AirlineCompany;
+import model.EmployeeArrangeList;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -24,15 +26,14 @@ public class RouteCrewUi extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
-//    DoctorDirectory dlist;
-    public RouteCrewUi() {
+    EmployeeArrangeList employeeArrangeList;
+    public RouteCrewUi(EmployeeArrangeList employeeArrangeList) {
         initComponents();
-        arrangeCount();
+        this.employeeArrangeList = employeeArrangeList;
         displayArrange();
+        arrangeCount();
         displayRNList();
-        displayEmployee1();
-//        displayEmployee2();
-//        displayEmployee3();
+        displayEmployee();
         clear();
 
 //        populateTable();
@@ -50,7 +51,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        lblId1 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         lblId6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,7 +74,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
         cbSt4 = new javax.swing.JComboBox<>();
         cbSt3 = new javax.swing.JComboBox<>();
         cbRN = new javax.swing.JComboBox<>();
-        cbType = new javax.swing.JComboBox<>();
         lblId24 = new javax.swing.JLabel();
         cbSt5 = new javax.swing.JComboBox<>();
         cbSt6 = new javax.swing.JComboBox<>();
@@ -91,10 +90,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Airline Route Crew Arrangement");
-
-        lblId1.setForeground(new java.awt.Color(255, 255, 255));
-        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("AIPLANE TYPE");
 
         lblId.setForeground(new java.awt.Color(255, 255, 255));
         lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -216,8 +211,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
         });
 
         cbRN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a route>" }));
-
-        cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "null" }));
 
         lblId24.setForeground(new java.awt.Color(255, 255, 255));
         lblId24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -354,19 +347,13 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(362, 362, 362)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbType, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbCaptain, cbPilot1, cbPilot2, cbRN, cbSt1, cbSt2, cbSt3, cbSt4, cbSt5, cbSt6, cbType});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbCaptain, cbPilot1, cbPilot2, cbRN, cbSt1, cbSt2, cbSt3, cbSt4, cbSt5, cbSt6});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,11 +380,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId)
                     .addComponent(cbRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId1)
-                    .addComponent(cbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId6)
                     .addComponent(lblId18)
@@ -426,10 +409,10 @@ public class RouteCrewUi extends javax.swing.JPanel {
                     .addComponent(cbSt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbSt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblId25))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbCaptain, cbPilot1, cbPilot2, cbRN, cbSt1, cbSt2, cbSt3, cbSt4, cbSt5, cbSt6, cbType});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cbCaptain, cbPilot1, cbPilot2, cbRN, cbSt1, cbSt2, cbSt3, cbSt4, cbSt5, cbSt6});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -447,6 +430,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
             rs1 = st.executeQuery("select Max(idarrange) from airlinedb1.routecrew");
             rs1.next();
             idarrange = rs1.getInt(1) + 1;
+            rs1.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -460,6 +444,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
             st = (Statement) con.createStatement();
             rs = st.executeQuery("Select * from airlinedb1.routecrew");
             tblArrange.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -475,34 +460,15 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 cbRN.addItem(rs.getString("routename"));
             }
             rs.close();
-            
-            String routename = cbRN.getSelectedItem().toString();
-            rsType = st.executeQuery("Select * from airlinedb1.route Where routename = " + routename);
-            while (rsType.next()) {
-                cbRN.addItem(rsType.getString("routename"));
-            }
-            rsType.close();
+           
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-//    private void displayAirplaneType() {
-//        try {
-//            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-//            st = (Statement) con.createStatement();
-//            String routename = cbRN.getSelectedItem().toString();
-//            rsType = st.executeQuery("Select * from airlinedb1.route Where routename = " + routename);
-//            while (rsType.next()) {
-//                cbRN.addItem(rsType.getString("routename"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-    private void displayEmployee1() {
+    private void displayEmployee() {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
@@ -542,7 +508,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
 
     private void clear() {
         cbRN.setSelectedItem("<choose a route>");
-        cbType.setSelectedItem("null");
         cbCaptain.setSelectedItem("<choose a captain>");
         cbPilot1.setSelectedItem("<choose pilot 1>");
         cbPilot2.setSelectedItem("<choose pilot 2>");
@@ -560,20 +525,18 @@ public class RouteCrewUi extends javax.swing.JPanel {
         //Set data to text field when raw is selected
         arrangeId = Integer.parseInt(tblModel.getValueAt(tblArrange.getSelectedRow(), 0).toString());
         String tblRouteName = tblModel.getValueAt(tblArrange.getSelectedRow(), 1).toString();
-        String tblType = tblModel.getValueAt(tblArrange.getSelectedRow(), 2).toString();
-        String tblCaptain = tblModel.getValueAt(tblArrange.getSelectedRow(), 3).toString();
-        String tblPilot1 = tblModel.getValueAt(tblArrange.getSelectedRow(), 4).toString();
-        String tblPilot2 = tblModel.getValueAt(tblArrange.getSelectedRow(), 5).toString();
-        String tblSt1 = tblModel.getValueAt(tblArrange.getSelectedRow(), 6).toString();
-        String tblSt2 = tblModel.getValueAt(tblArrange.getSelectedRow(), 7).toString();
-        String tblSt3 = tblModel.getValueAt(tblArrange.getSelectedRow(), 8).toString();
-        String tblSt4 = tblModel.getValueAt(tblArrange.getSelectedRow(), 9).toString();
-        String tblSt5 = tblModel.getValueAt(tblArrange.getSelectedRow(), 10).toString();
-        String tblSt6 = tblModel.getValueAt(tblArrange.getSelectedRow(), 11).toString();
+        String tblCaptain = tblModel.getValueAt(tblArrange.getSelectedRow(), 2).toString();
+        String tblPilot1 = tblModel.getValueAt(tblArrange.getSelectedRow(), 3).toString();
+        String tblPilot2 = tblModel.getValueAt(tblArrange.getSelectedRow(), 4).toString();
+        String tblSt1 = tblModel.getValueAt(tblArrange.getSelectedRow(), 5).toString();
+        String tblSt2 = tblModel.getValueAt(tblArrange.getSelectedRow(), 6).toString();
+        String tblSt3 = tblModel.getValueAt(tblArrange.getSelectedRow(), 7).toString();
+        String tblSt4 = tblModel.getValueAt(tblArrange.getSelectedRow(), 8).toString();
+        String tblSt5 = tblModel.getValueAt(tblArrange.getSelectedRow(), 9).toString();
+        String tblSt6 = tblModel.getValueAt(tblArrange.getSelectedRow(), 10).toString();
 
         //Set to text field
         cbRN.setSelectedItem(tblRouteName);
-        cbType.setSelectedItem(tblType);
         cbCaptain.setSelectedItem(tblCaptain);
         cbPilot1.setSelectedItem(tblPilot1);
         cbPilot2.setSelectedItem(tblPilot2);
@@ -658,7 +621,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
             //If single row is selected then update
 
             String routeName = cbRN.getSelectedItem().toString();
-            String type = cbType.getSelectedItem().toString();
+//            String type = cbType.getSelectedItem().toString();
             String captain = cbCaptain.getSelectedItem().toString();
             String pilot1 = cbPilot1.getSelectedItem().toString();
             String pilot2 = cbPilot2.getSelectedItem().toString();
@@ -672,7 +635,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE routecrew SET routename = '" + routeName + "'" + ",airlinetype = '" + type + "'" + ",captain = '" + captain + "'" + ",pilot1 = '" + pilot1 + "'" + ",pilot2 = '" + pilot2 + "'"
+                String query = "UPDATE routecrew SET routename = '" + routeName + "'" + ",captain = '" + captain + "'" + ",pilot1 = '" + pilot1 + "'" + ",pilot2 = '" + pilot2 + "'"
                         + ",st1 = '" + st1 + "'" + ",st2 = '" + st2 + "'" + ",st3 = '" + st3 + "'" + ",st4 = '" + st4 + "'" + ",st5 = '" + st5 + "'" + ",st6 = '" + st6 + "'" + " WHERE idarrange = " + arrangeId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
@@ -705,7 +668,7 @@ public class RouteCrewUi extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         if (cbRN.getSelectedItem().equals("<choose a route>")
-                || cbType.getSelectedItem().equals("null")
+//                || cbType.getSelectedItem().equals("null")
                 || cbCaptain.getSelectedItem().equals("<choose a captain>")
                 || cbPilot1.getSelectedItem().equals("<choose pilot 1>")
                 || cbPilot2.getSelectedItem().equals("<choose pilot 2>")
@@ -719,19 +682,18 @@ public class RouteCrewUi extends javax.swing.JPanel {
                 arrangeCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
 
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into routecrew values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into routecrew values(?,?,?,?,?,?,?,?,?,?,?)");
                 add.setInt(1, idarrange);
                 add.setString(2, cbRN.getSelectedItem().toString());
-                add.setString(3, cbType.getSelectedItem().toString());
-                add.setString(4, cbCaptain.getSelectedItem().toString());
-                add.setString(5, cbPilot1.getSelectedItem().toString());
-                add.setString(6, cbPilot2.getSelectedItem().toString());
-                add.setString(7, cbSt1.getSelectedItem().toString());
-                add.setString(8, cbSt2.getSelectedItem().toString());
-                add.setString(9, cbSt3.getSelectedItem().toString());
-                add.setString(10, cbSt4.getSelectedItem().toString());
-                add.setString(11, cbSt5.getSelectedItem().toString());
-                add.setString(12, cbSt6.getSelectedItem().toString());
+                add.setString(3, cbCaptain.getSelectedItem().toString());
+                add.setString(4, cbPilot1.getSelectedItem().toString());
+                add.setString(5, cbPilot2.getSelectedItem().toString());
+                add.setString(6, cbSt1.getSelectedItem().toString());
+                add.setString(7, cbSt2.getSelectedItem().toString());
+                add.setString(8, cbSt3.getSelectedItem().toString());
+                add.setString(9, cbSt4.getSelectedItem().toString());
+                add.setString(10, cbSt5.getSelectedItem().toString());
+                add.setString(11, cbSt6.getSelectedItem().toString());
 
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Arrangement solved successfully!");
@@ -778,11 +740,9 @@ public class RouteCrewUi extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbSt4;
     private javax.swing.JComboBox<String> cbSt5;
     private javax.swing.JComboBox<String> cbSt6;
-    private javax.swing.JComboBox<String> cbType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId11;
     private javax.swing.JLabel lblId12;
     private javax.swing.JLabel lblId17;

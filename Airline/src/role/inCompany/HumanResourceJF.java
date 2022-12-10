@@ -6,6 +6,7 @@ package role.inCompany;
 
 import ui.AirCompany.*;
 import model.AirlineCompany;
+import model.EmployeeArrangeList;
 import ui.airline.LogIn;
 
 /**
@@ -17,6 +18,7 @@ public class HumanResourceJF extends javax.swing.JFrame {
     AirlineCompany airplaneList;
     AirlineCompany employeeList;
     AirlineCompany airlineCompany;
+    EmployeeArrangeList employeeArrangeList;
     LogIn login;
     
 
@@ -297,7 +299,7 @@ public class HumanResourceJF extends javax.swing.JFrame {
 
     private void tabRouteCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteCrewMouseClicked
         
-        RouteCrewUi routeCrew = new RouteCrewUi();
+        RouteCrewUi routeCrew = new RouteCrewUi(employeeArrangeList);
         sysSplit.setRightComponent(routeCrew);
 
     }//GEN-LAST:event_tabRouteCrewMouseClicked

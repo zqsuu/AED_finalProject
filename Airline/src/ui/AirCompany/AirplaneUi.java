@@ -31,9 +31,9 @@ public class AirplaneUi extends javax.swing.JPanel {
         initComponents();
 
         this.airplaneList = airplaneList;
-        airplaneCount();
         displayAirplane();
         displayCompanyList();
+        airplaneCount();
         clear();
 
 //        populateTable();
@@ -381,18 +381,6 @@ public class AirplaneUi extends javax.swing.JPanel {
     int idairplane = 0;
     int airplaneId = 0;
 
-    private void airplaneCount() {
-        try {
-            st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplane");
-            rs1.next();
-            idairplane = rs1.getInt(1) + 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void displayAirplane() {
 
         try {
@@ -401,6 +389,18 @@ public class AirplaneUi extends javax.swing.JPanel {
             rs = st.executeQuery("Select * from airlinedb1.airplane");
             tblAirplane.setModel(DbUtils.resultSetToTableModel(rs));
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void airplaneCount() {
+        try {
+//            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st1 = (Statement) con.createStatement();
+            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplane");
+            rs1.next();
+            idairplane = rs1.getInt(1) + 1;
         } catch (Exception e) {
             e.printStackTrace();
         }

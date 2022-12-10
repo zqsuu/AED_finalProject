@@ -6,6 +6,7 @@ package role.systemAdmin;
 
 import ui.AirCompany.*;
 import model.AirlineCompany;
+import model.EmployeeArrangeList;
 import ui.airline.LogIn;
 
 /**
@@ -17,6 +18,7 @@ public class SysComJF extends javax.swing.JFrame {
     AirlineCompany airplaneList;
     AirlineCompany employeeList;
     AirlineCompany airlineCompany;
+    EmployeeArrangeList employeeArrangeList;
     LogIn login;
     
 
@@ -401,7 +403,7 @@ public class SysComJF extends javax.swing.JFrame {
         tabRouteCrew.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        RouteCrewUi routeCrew = new RouteCrewUi();
+        RouteCrewUi routeCrew = new RouteCrewUi( employeeArrangeList);
         sysSplit.setRightComponent(routeCrew);
 
     }//GEN-LAST:event_tabRouteCrewMouseClicked

@@ -255,8 +255,8 @@
             <StringItem index="0" value="&lt;choose a role&gt;"/>
             <StringItem index="1" value="Captain"/>
             <StringItem index="2" value="Pilot"/>
-            <StringItem index="3" value="Stewardess"/>
-            <StringItem index="4" value="Steward"/>
+            <StringItem index="3" value="Steward/Stewardess"/>
+            <StringItem index="4" value=" "/>
           </StringArray>
         </Property>
       </Properties>

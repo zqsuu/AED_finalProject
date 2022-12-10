@@ -134,8 +134,7 @@ public class AirportUi extends javax.swing.JPanel {
         lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
 
-        txtName.setBackground(new java.awt.Color(102, 102, 102));
-        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        txtName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtName.setMargin(new java.awt.Insets(0, 0, 2, 0));
         txtName.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         txtName.addActionListener(new java.awt.event.ActionListener() {
