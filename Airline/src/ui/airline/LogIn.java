@@ -23,6 +23,9 @@ import java.util.logging.Logger;
 import model.Airport;
 import role.Manufacturer;
 import role.User;
+import role.inCompany.HumanResourceJF;
+import role.inCompany.ProductManagerJF;
+import role.inCompany.RouteManagerJF;
 import role.systemAdmin.SystemAdminJF;
 import ui.Airplane.AirplaneUi;
 import ui.Airplane.ManufacturerJF;
@@ -556,23 +559,54 @@ public class LogIn extends javax.swing.JFrame {
                             }
                         }
                     }
-
                 }
 
             } else if (role.equals("Human Resource")) {
-                for (User sys : userList.getSystemAdmin()) {
-                    if (sys.getName().equals(username)) {
-                        if (sys.getPassword().equals(password)) {
-                            exist = true;
-                            SystemAdminJF sysJF = new SystemAdminJF();
-                            sysJF.setVisible(true);
-                        } else {
-                            break;
+                for (User hr : userList.getSystemAdmin()) {
+                    if (hr.getRole().equals("Human Resource")) {
+                        if (hr.getName().equals(username)) {
+                            if (hr.getPassword().equals(password)) {
+                                exist = true;
+                                HumanResourceJF hrJF = new HumanResourceJF();
+                                hrJF.setVisible(true);
+                            } else {
+                                break;
+                            }
                         }
                     }
                 }
 
-            }
+            }  else if (role.equals("Product Manager")) {
+                for (User pm : userList.getSystemAdmin()) {
+                    if (pm.getRole().equals("Product Manager")) {
+                        if (pm.getName().equals(username)) {
+                            if (pm.getPassword().equals(password)) {
+                                exist = true;
+                                ProductManagerJF pmJF = new ProductManagerJF();
+                                pmJF.setVisible(true);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            } else if (role.equals("Route Manager")) {
+                for (User routem : userList.getSystemAdmin()) {
+                    if (routem.getRole().equals("Route Manager")) {
+                        if (routem.getName().equals(username)) {
+                            if (routem.getPassword().equals(password)) {
+                                exist = true;
+                                RouteManagerJF routemJF = new RouteManagerJF();
+                                routemJF.setVisible(true);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            } 
 
             if (!exist) {
                 JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");
@@ -791,7 +825,7 @@ public class LogIn extends javax.swing.JFrame {
 
             //Connect to sysadmin table in MySQL
             ResultSet rsSystemAdmin = st.executeQuery("Select * from airlinedb1.user");
-            System.out.println("\nSystem Admin: username - password");
+            System.out.println("\nUser: [role] - [username] - [password]");
 
             while (rsSystemAdmin.next()) {
 
