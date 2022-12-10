@@ -30,8 +30,8 @@ public class ArrivalsUi extends javax.swing.JPanel {
 
     public ArrivalsUi(Airport arrivalsList) {
         initComponents();
-        arrivalsCount();
         displayArrivals();
+        arrivalsCount();
         clear();
 
         this.arrivalsList = arrivalsList;

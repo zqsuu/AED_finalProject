@@ -30,8 +30,8 @@ public class AirportUi extends javax.swing.JPanel {
     
     public AirportUi(AirportList airportList) {
         initComponents();
-        airportCount();
         displayAirport();
+        airportCount();
         clear();
         this.airportList = airportList;
         
@@ -55,22 +55,18 @@ public class AirportUi extends javax.swing.JPanel {
         tblAirport = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearchContent = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
         lblId2 = new javax.swing.JLabel();
         txtCity = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         lblId3 = new javax.swing.JLabel();
-        lblId4 = new javax.swing.JLabel();
-        txtRoute = new javax.swing.JTextField();
-        lblId5 = new javax.swing.JLabel();
-        txtService = new javax.swing.JTextField();
-        lblId6 = new javax.swing.JLabel();
-        txtRouteRequest = new javax.swing.JTextField();
         btnSave1 = new javax.swing.JButton();
         btnRetrieve = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnDelete1 = new javax.swing.JButton();
         btnUpdate1 = new javax.swing.JButton();
+        lblId1 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -85,20 +81,20 @@ public class AirportUi extends javax.swing.JPanel {
 
         tblAirport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Airport Id", "AIRPORT NAME", "CITY", "ADDRESS", "ROUTE", "SERVICE", "ROUTE REQUEST"
+                "Airport Id", "AIRPORT NAME", "CITY", "ADDRESS", "PASSWORD"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, true, true, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,23 +129,6 @@ public class AirportUi extends javax.swing.JPanel {
         lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchContent.setText("Search Content:");
-
-        txtName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtName.setMargin(new java.awt.Insets(0, 0, 2, 0));
-        txtName.setSelectedTextColor(new java.awt.Color(153, 153, 153));
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNameKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNameKeyReleased(evt);
-            }
-        });
 
         lblId2.setForeground(new java.awt.Color(255, 255, 255));
         lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -186,60 +165,6 @@ public class AirportUi extends javax.swing.JPanel {
         lblId3.setForeground(new java.awt.Color(255, 255, 255));
         lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId3.setText("ADDRESS");
-
-        lblId4.setForeground(new java.awt.Color(255, 255, 255));
-        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId4.setText("ROUTE");
-
-        txtRoute.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRouteActionPerformed(evt);
-            }
-        });
-        txtRoute.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRouteKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRouteKeyReleased(evt);
-            }
-        });
-
-        lblId5.setForeground(new java.awt.Color(255, 255, 255));
-        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId5.setText("SERVICE");
-
-        txtService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtServiceActionPerformed(evt);
-            }
-        });
-        txtService.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtServiceKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtServiceKeyReleased(evt);
-            }
-        });
-
-        lblId6.setForeground(new java.awt.Color(255, 255, 255));
-        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId6.setText("ROUTE REQUEST");
-
-        txtRouteRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRouteRequestActionPerformed(evt);
-            }
-        });
-        txtRouteRequest.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRouteRequestKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRouteRequestKeyReleased(evt);
-            }
-        });
 
         btnSave1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnSave1.setForeground(new java.awt.Color(0, 0, 0));
@@ -286,67 +211,85 @@ public class AirportUi extends javax.swing.JPanel {
             }
         });
 
+        lblId1.setForeground(new java.awt.Color(255, 255, 255));
+        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId1.setText("PASSWORD");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSave1)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(btnDelete1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRetrieve)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnClear)))
-                                .addGap(30, 30, 30)
-                                .addComponent(btnUpdate1)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRouteRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSave1)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtService, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnRetrieve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate1)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(395, 395, 395)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,31 +312,23 @@ public class AirportUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRetrieve)
                             .addComponent(btnClear))))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId4))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId)))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId5))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId2)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId1)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtRouteRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId6))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblId3)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId3))
+                .addGap(128, 128, 128))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -433,9 +368,7 @@ public class AirportUi extends javax.swing.JPanel {
         txtName.setText("");
         txtCity.setText("");
         txtAddress.setText("");
-        txtRoute.setText("");
-        txtService.setText("");
-        txtRouteRequest.setText("");
+        txtPassword.setText("");
     }
     
     
@@ -446,19 +379,15 @@ public class AirportUi extends javax.swing.JPanel {
         //Set data to text field when raw is selected
         airportId = Integer.parseInt(tblModel.getValueAt(tblAirport.getSelectedRow(), 0).toString());
         String tblName = tblModel.getValueAt(tblAirport.getSelectedRow(), 1).toString();
-        String tblCity = tblModel.getValueAt(tblAirport.getSelectedRow(), 2).toString();
-        String tblAddress = tblModel.getValueAt(tblAirport.getSelectedRow(), 3).toString();
-        String tblRoute = tblModel.getValueAt(tblAirport.getSelectedRow(), 4).toString();
-        String tblService = tblModel.getValueAt(tblAirport.getSelectedRow(), 5).toString();
-        String tblRouteRequest = tblModel.getValueAt(tblAirport.getSelectedRow(), 6).toString();
+        String tblPassword = tblModel.getValueAt(tblAirport.getSelectedRow(), 2).toString();
+        String tblCity = tblModel.getValueAt(tblAirport.getSelectedRow(), 3).toString();
+        String tblAddress = tblModel.getValueAt(tblAirport.getSelectedRow(), 4).toString();
         
         //Set to text field
         txtName.setText(tblName);
+        txtPassword.setText(tblPassword);
         txtCity.setText(tblCity);
         txtAddress.setText(tblAddress);
-        txtRoute.setText(tblRoute);
-        txtService.setText(tblService);
-        txtRouteRequest.setText(tblRouteRequest);
         
     }//GEN-LAST:event_tblAirportMouseClicked
 
@@ -473,23 +402,12 @@ public class AirportUi extends javax.swing.JPanel {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
         tblAirport.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+        clear();
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameKeyPressed
-
-    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
         // TODO add your handling code here:
@@ -515,65 +433,25 @@ public class AirportUi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressKeyReleased
 
-    private void txtRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRouteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteActionPerformed
-
-    private void txtRouteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRouteKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteKeyPressed
-
-    private void txtRouteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRouteKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteKeyReleased
-
-    private void txtServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtServiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtServiceActionPerformed
-
-    private void txtServiceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServiceKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtServiceKeyPressed
-
-    private void txtServiceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServiceKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtServiceKeyReleased
-
-    private void txtRouteRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRouteRequestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteRequestActionPerformed
-
-    private void txtRouteRequestKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRouteRequestKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteRequestKeyPressed
-
-    private void txtRouteRequestKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRouteRequestKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRouteRequestKeyReleased
-
     private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         // TODO add your handling code here:
         
         if (txtName.getText().equals("")
             || txtCity.getText().equals("")
             || txtAddress.getText().equals("")
-            || txtRoute.getText().equals("")
-            || txtService.getText().equals("")
-            || txtRouteRequest.getText().equals("")) {
+            || txtPassword.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
                 airportCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
                 
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?)");
                 add.setInt(1, idairport);
                 add.setString(2, txtName.getText());
-                add.setString(3, txtCity.getText());
-                add.setString(4, txtAddress.getText());
-                add.setString(5, txtRoute.getText());
-                add.setString(6, txtService.getText());
-                add.setString(7, txtRouteRequest.getText());
+                add.setString(3, txtPassword.getText());
+                add.setString(4, txtCity.getText());
+                add.setString(5, txtAddress.getText());
 
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Airport saved successfully!");
@@ -643,23 +521,19 @@ public class AirportUi extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Get table Model1
         DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
-        airportId = Integer.parseInt(tblModel.getValueAt(tblAirport.getSelectedRow(), 1).toString());
+        airportId = Integer.parseInt(tblModel.getValueAt(tblAirport.getSelectedRow(), 0).toString());
         if (airportId != 0) {
             //If single row is selected then update
 
             String name = txtName.getText();
+            String password = txtPassword.getText();
             String city = txtCity.getText();
             String address = txtAddress.getText();
-            String route = txtRoute.getText();
-            String service = txtService.getText();
-            String routeRequest = txtRouteRequest.getText();
             
-            
-
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE airport SET name = '" + name + "'" + ",city = '" + city + "'" + ",address = '" + address + "'" + ",route = '" + route + "'" + ",service = '" + service + "'" + ",routeRequest = '" + routeRequest + "'" + " WHERE idairport = " + airportId;
+                String query = "UPDATE airport SET name = '" + name + "'" + ",password = '" + password + "'" + ",city = '" + city + "'" + ",address = '" + address + "'" + " WHERE idairport = " + airportId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Airport updated successfully!");
@@ -687,6 +561,30 @@ public class AirportUi extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUpdate1ActionPerformed
 
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
@@ -699,20 +597,16 @@ public class AirportUi extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId2;
     private javax.swing.JLabel lblId3;
-    private javax.swing.JLabel lblId4;
-    private javax.swing.JLabel lblId5;
-    private javax.swing.JLabel lblId6;
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblAirport;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtRoute;
-    private javax.swing.JTextField txtRouteRequest;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtService;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {

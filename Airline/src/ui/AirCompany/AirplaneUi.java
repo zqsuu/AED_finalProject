@@ -542,7 +542,7 @@ public class AirplaneUi extends javax.swing.JPanel {
                 add.setString(10, txtEco.getText());
 
                 int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Airplane solved successfully!");
+                JOptionPane.showMessageDialog(this, "Airplane sasved successfully!");
                 con.close();
                 displayAirplane();
                 clear();
