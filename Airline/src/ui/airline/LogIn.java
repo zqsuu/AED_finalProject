@@ -26,6 +26,7 @@ import role.User;
 import role.inCompany.HumanResourceJF;
 import role.inCompany.ProductManagerJF;
 import role.inCompany.RouteManagerJF;
+import role.incustomer.ReservationManagerJF;
 import role.systemAdmin.SystemAdminJF;
 import ui.Airplane.AirplaneUi;
 import ui.Airplane.ManufacturerJF;
@@ -63,6 +64,9 @@ public class LogIn extends javax.swing.JFrame {
         cbRole.addItem("Manufacturer");
         cbRole.addItem("System Admin");
         cbRole.addItem("Human Resource");
+        cbRole.addItem("Product Manager");
+        cbRole.addItem("Route Manager");
+        cbRole.addItem("Reservation Manager");
 
         txtUserName.setText("");
         txtPassword.setText("");
@@ -606,7 +610,22 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
 
-            } 
+            } else if (role.equals("Reservation Manager")) {
+                for (User reserm : userList.getSystemAdmin()) {
+                    if (reserm.getRole().equals("Reservation Manager")) {
+                        if (reserm.getName().equals(username)) {
+                            if (reserm.getPassword().equals(password)) {
+                                exist = true;
+                                ReservationManagerJF reservationJF = new ReservationManagerJF();
+                                reservationJF.setVisible(true);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
 
             if (!exist) {
                 JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");
