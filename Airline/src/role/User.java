@@ -8,19 +8,20 @@ package role;
  *
  * @author HP
  */
-public class SystemAdmin {
+public class User {
     String name;
     String id;
     String password;
+    String role;
 
-    public SystemAdmin() {
+    public User() {
     }
     
-    public SystemAdmin(String name, String id, String password) {
+    public User(String name, String id, String password, String role) {
         this.name = name;
         this.id = id;
         this.password = password;
-    }
+        this.role = role;    }
 
     public String getName() {
         return name;
@@ -44,6 +45,14 @@ public class SystemAdmin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
     
     

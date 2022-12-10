@@ -147,7 +147,7 @@ public class AirportJF extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        tabLogout.setBackground(new java.awt.Color(204, 0, 51));
+        tabLogout.setBackground(new java.awt.Color(153, 0, 0));
         tabLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabLogoutMouseClicked(evt);
@@ -347,13 +347,9 @@ public class AirportJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabArrivalsMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
-        // TODO add your handling code here:
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        sysSplit.setVisible(false);
+        this.setVisible(false);
+        LogIn login = new LogIn();
+        login.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
 

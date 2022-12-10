@@ -151,7 +151,7 @@ public class SystemAdminJF extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Airport");
 
-        tabClose.setBackground(new java.awt.Color(102, 0, 0));
+        tabClose.setBackground(new java.awt.Color(153, 0, 0));
         tabClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabCloseMouseClicked(evt);
@@ -279,8 +279,8 @@ public class SystemAdminJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabAirplaneMouseClicked
 
     private void tabCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCustomerMouseClicked
-        CustomerJF cusJF = new CustomerJF();
-        cusJF.setVisible(true);
+        SysCustomerJF syscusJF = new SysCustomerJF();
+        syscusJF.setVisible(true);
     }//GEN-LAST:event_tabCustomerMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked

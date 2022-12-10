@@ -10,29 +10,29 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class SystemAdminList {
-    ArrayList<SystemAdmin> sysAdmin;
+public class UserList {
+    ArrayList<User> sysAdmin;
 
-    public SystemAdminList() {
-        sysAdmin = new ArrayList<SystemAdmin>();
+    public UserList() {
+        sysAdmin = new ArrayList<User>();
     }
     
 
 
-    public ArrayList<SystemAdmin> getSystemAdmin() {
+    public ArrayList<User> getSystemAdmin() {
         return sysAdmin;
     }
 
-    public void setSystemAdmin(ArrayList<SystemAdmin> sysAdmin) {
+    public void setSystemAdmin(ArrayList<User> sysAdmin) {
         this.sysAdmin = sysAdmin;
     }
     
     
-    public void addSystemAdmin(SystemAdmin s) {
+    public void addSystemAdmin(User s) {
         sysAdmin.add(s);
     }
     
-    public void removeSystemAdmin(SystemAdmin s) {
+    public void removeSystemAdmin(User s) {
         sysAdmin.remove(s);
     }
 }

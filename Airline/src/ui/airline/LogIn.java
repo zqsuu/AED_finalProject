@@ -15,14 +15,14 @@ import model.AirportList;
 import model.Customer;
 import model.CustomerList;
 import role.ManufacturerList;
-import role.SystemAdminList;
+import role.UserList;
 import ui.AirCompany.ComJF;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Airport;
 import role.Manufacturer;
-import role.SystemAdmin;
+import role.User;
 import role.systemAdmin.SystemAdminJF;
 import ui.Airplane.AirplaneUi;
 import ui.Airplane.ManufacturerJF;
@@ -39,7 +39,7 @@ public class LogIn extends javax.swing.JFrame {
     CustomerList customerList;
     AirportList airportList;
     ManufacturerList manufacturerList;
-    SystemAdminList systemAdminList;
+    UserList userList;
 
     String code;
 
@@ -59,6 +59,7 @@ public class LogIn extends javax.swing.JFrame {
         cbRole.addItem("Airline Company");
         cbRole.addItem("Manufacturer");
         cbRole.addItem("System Admin");
+        cbRole.addItem("Human Resource");
 
         txtUserName.setText("");
         txtPassword.setText("");
@@ -68,7 +69,7 @@ public class LogIn extends javax.swing.JFrame {
         customerList = new CustomerList();
         airportList = new AirportList();
         manufacturerList = new ManufacturerList();
-        systemAdminList = new SystemAdminList();
+        userList = new UserList();
 
         //初始化注册界面
         btnGender.add(rbtnFemale);
@@ -543,7 +544,23 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
             } else if (role.equals("System Admin")) {
-                for (SystemAdmin sys : systemAdminList.getSystemAdmin()) {
+                for (User sys : userList.getSystemAdmin()) {
+                    if (sys.getRole().equals("System Admin")) {
+                        if (sys.getName().equals(username)) {
+                            if (sys.getPassword().equals(password)) {
+                                exist = true;
+                                SystemAdminJF sysJF = new SystemAdminJF();
+                                sysJF.setVisible(true);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+            } else if (role.equals("Human Resource")) {
+                for (User sys : userList.getSystemAdmin()) {
                     if (sys.getName().equals(username)) {
                         if (sys.getPassword().equals(password)) {
                             exist = true;
@@ -741,7 +758,7 @@ public class LogIn extends javax.swing.JFrame {
                 System.out.println(air.getName() + " - " + air.getPassword());
             }
             rsAirport.close();
-            
+
             //Connect to Airline Company table in MySQL
             ResultSet rsAirlineCompany = st.executeQuery("Select * from airlinedb1.airlinecompany");
             System.out.println("\nAirline Company: username - password");
@@ -756,7 +773,7 @@ public class LogIn extends javax.swing.JFrame {
                 System.out.println(airlineCompany.getName() + " - " + airlineCompany.getPassword());
             }
             rsAirlineCompany.close();
-            
+
             //Connect to manufacturer table in MySQL
             ResultSet rsManufacturer = st.executeQuery("Select * from airlinedb1.manufacturer");
             System.out.println("\nManufacturer: username - password");
@@ -771,19 +788,20 @@ public class LogIn extends javax.swing.JFrame {
                 System.out.println(manu.getName() + " - " + manu.getPassword());
             }
             rsManufacturer.close();
-            
-             //Connect to sysadmin table in MySQL
-            ResultSet rsSystemAdmin = st.executeQuery("Select * from airlinedb1.sysadmin");
+
+            //Connect to sysadmin table in MySQL
+            ResultSet rsSystemAdmin = st.executeQuery("Select * from airlinedb1.user");
             System.out.println("\nSystem Admin: username - password");
 
             while (rsSystemAdmin.next()) {
 
-                SystemAdmin sys = new SystemAdmin();
-                sys.setName(rsSystemAdmin.getString("name"));
-                sys.setId(rsSystemAdmin.getString("id"));
-                sys.setPassword(rsSystemAdmin.getString("password"));
-                systemAdminList.addSystemAdmin(sys);
-                System.out.println(sys.getName() + " - " + sys.getPassword());
+                User user = new User();
+                user.setName(rsSystemAdmin.getString("name"));
+                user.setId(rsSystemAdmin.getString("id"));
+                user.setPassword(rsSystemAdmin.getString("password"));
+                user.setRole(rsSystemAdmin.getString("role"));
+                userList.addSystemAdmin(user);
+                System.out.println(user.getRole() + " - " + user.getName() + " - " + user.getPassword());
             }
             rsSystemAdmin.close();
 

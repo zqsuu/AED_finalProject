@@ -151,7 +151,7 @@ public class AirportPage extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        tabLogout.setBackground(new java.awt.Color(204, 0, 51));
+        tabLogout.setBackground(new java.awt.Color(153, 0, 0));
         tabLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabLogoutMouseClicked(evt);

@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.Customer;
+package role.incustomer;
 
+import ui.Customer.*;
 import ui.Airport.*;
 import model.Airport;
 import model.AirportList;
@@ -16,7 +17,7 @@ import ui.airline.LogIn;
  *
  * @author HP
  */
-public class CustomerJF extends javax.swing.JFrame {
+public class ReservationManagerJF extends javax.swing.JFrame {
     
     Customer customer;
     LogIn login;
@@ -24,11 +25,11 @@ public class CustomerJF extends javax.swing.JFrame {
     /**
      * Creates new form AirportJF
      */
-    public CustomerJF() {
+    public ReservationManagerJF() {
         initComponents();
         this.login = login;
     }
-    public CustomerJF(LogIn login,Customer cus) {
+    public ReservationManagerJF(LogIn login,Customer cus) {
         initComponents();
         this.login = login;
         this.customer = customer;
@@ -308,7 +309,6 @@ public class CustomerJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabCustomerMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
-        // TODO add your handling code here:
         this.setVisible(false);
         LogIn login = new LogIn();
         login.setVisible(true);
@@ -339,14 +339,22 @@ public class CustomerJF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationManagerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationManagerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationManagerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReservationManagerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -362,7 +370,7 @@ public class CustomerJF extends javax.swing.JFrame {
                 //String id,String password,String name,String gender,int age,String passport
                 
                 Customer cus = new Customer("cus","123","David","male",18,"China","dfg@163.com");
-                new CustomerJF(null,cus).setVisible(true);
+                new ReservationManagerJF(null,cus).setVisible(true);
             }
         });
     }
