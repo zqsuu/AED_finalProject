@@ -215,9 +215,9 @@
                 <Column editable="true" title="Arrivals Id" type="java.lang.Integer"/>
                 <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
                 <Column editable="false" title="ORINGIN" type="java.lang.String"/>
+                <Column editable="false" title="FALL TIME" type="java.lang.String"/>
                 <Column editable="false" title="FALL TERMINAL" type="java.lang.String"/>
                 <Column editable="false" title="BAGGAGE" type="java.lang.String"/>
-                <Column editable="false" title="FALL TIME" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

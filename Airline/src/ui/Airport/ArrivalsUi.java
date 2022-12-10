@@ -106,7 +106,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Arrivals Id", "ROUTE NAME", "ORINGIN", "FALL TERMINAL", "BAGGAGE", "FALL TIME"
+                "Arrivals Id", "ROUTE NAME", "ORINGIN", "FALL TIME", "FALL TERMINAL", "BAGGAGE"
             }
         ) {
             Class[] types = new Class [] {
@@ -335,7 +335,7 @@ public class ArrivalsUi extends javax.swing.JPanel {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.arrivals");
+            rs = st.executeQuery("Select 'idkey','routename','departureairport','falltime','fallterminal','baggage' from airlinedb1.route");
             tblArrivals.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
