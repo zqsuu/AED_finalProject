@@ -26,13 +26,15 @@ public class ServiceUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     Airport serviceList;
+    String airportname;
 
-    public ServiceUi(Airport serviceList) {
+    public ServiceUi(String name) {
         initComponents();
         displayService();
         serviceCount();
         clear();
 
+        this.airportname = name;
         this.serviceList = serviceList;
 
 //        populateTable();

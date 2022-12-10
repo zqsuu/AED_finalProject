@@ -81,10 +81,12 @@ public class RouteUi extends javax.swing.JPanel {
         cbDepAirport = new javax.swing.JComboBox<>();
         cbFallAirport = new javax.swing.JComboBox<>();
         cbAirplaneType = new javax.swing.JComboBox<>();
-        cbTerminal = new javax.swing.JComboBox<>();
+        cbDepTerminal = new javax.swing.JComboBox<>();
         lblId10 = new javax.swing.JLabel();
         lblId11 = new javax.swing.JLabel();
         cbBaggage = new javax.swing.JComboBox<>();
+        cbFallTerminal = new javax.swing.JComboBox<>();
+        lblId12 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -131,20 +133,20 @@ public class RouteUi extends javax.swing.JPanel {
         tblRoute.setForeground(new java.awt.Color(0, 0, 0));
         tblRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "key", "ROUTE NAME", "COMPANY", "DEP-AIRPORT", "FALL-AIRPORT", "DEP-TIME", "FALL-TIME", "FLY TIME", "AIPLANE TYPE", "FIRST PRICE", "BUSI-PRICE", "ECO-PRICE", "TERMINAL", "BAGGAGE"
+                "key", "ROUTE NAME", "COMPANY", "DEP-AIRPORT", "FALL-AIRPORT", "DEP-TIME", "FALL-TIME", "FLY TIME", "AIPLANE TYPE", "FIRST PRICE", "BUSI-PRICE", "ECO-PRICE", "DEP-TERMINAL", "FALL-TERMINAL", "BAGGAGE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false, false, false, false, false, false, true, true
+                false, false, true, false, false, false, false, false, false, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -260,17 +262,23 @@ public class RouteUi extends javax.swing.JPanel {
 
         cbAirplaneType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a type>" }));
 
-        cbTerminal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a terminal>", "A", "B", "C" }));
+        cbDepTerminal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a terminal>", "A", "B", "C" }));
 
         lblId10.setForeground(new java.awt.Color(255, 255, 255));
         lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId10.setText("TERMINAL");
+        lblId10.setText("DEPARTURE TERMINAL");
 
         lblId11.setForeground(new java.awt.Color(255, 255, 255));
         lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId11.setText("BAGGAGE");
 
         cbBaggage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a baggage>", "A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" }));
+
+        cbFallTerminal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a terminal>", "A", "B", "C" }));
+
+        lblId12.setForeground(new java.awt.Color(255, 255, 255));
+        lblId12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId12.setText("FALL TERMINAL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -312,8 +320,7 @@ public class RouteUi extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cbDepAirport, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtRN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                    .addComponent(cbFallAirport, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cbFallAirport, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(85, 85, 85)
                                 .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,43 +328,51 @@ public class RouteUi extends javax.swing.JPanel {
                                 .addComponent(cbAirplaneType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblId17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId22, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblId17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId22, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(28, 28, 28)
+                                        .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblId20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblId21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblId11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtFp)
-                            .addComponent(txtEp, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBp, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(cbTerminal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbBaggage, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)))
+                                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtBp)
+                                    .addComponent(txtEp, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbDepTerminal, 0, 206, Short.MAX_VALUE)
+                                    .addComponent(txtFp))
+                                .addGap(161, 161, 161))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblId12, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbBaggage, 0, 206, Short.MAX_VALUE)
+                                    .addComponent(cbFallTerminal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -381,7 +396,7 @@ public class RouteUi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRetrieve)
                     .addComponent(btnClear))
-                .addGap(82, 82, 82)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,15 +427,11 @@ public class RouteUi extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbDepTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblId10))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblId2)
-                                .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId11)))
+                                .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId19)
@@ -437,7 +448,15 @@ public class RouteUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId8)
                             .addComponent(cbAirplaneType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFallTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId11))
+                .addGap(41, 41, 41))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
@@ -558,7 +577,8 @@ public class RouteUi extends javax.swing.JPanel {
             int Fp = Integer.parseInt(txtFp.getText());
             int Bp = Integer.parseInt(txtBp.getText());
             int Ep = Integer.parseInt(txtEp.getText());
-            String terminal = cbTerminal.getSelectedItem().toString();
+            String depterminal = cbDepTerminal.getSelectedItem().toString();
+            String fallterminal = cbFallTerminal.getSelectedItem().toString();
             String baggage = cbBaggage.getSelectedItem().toString();
             
 
@@ -566,7 +586,7 @@ public class RouteUi extends javax.swing.JPanel {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
                 String query = "UPDATE route SET routename = '" + routeName + "'" + ",company = '" + company + "'" + ",departureairport = '" + depAirport + "'" + ",fallairport = '" + fallAirport + "'" + ",departuretime = '" + departureTime + "'" + ",falltime = '" + fallTime + "'" + ",flytime = '" + flytime + "'" + ",type = '" + type + "'"
-                         + ",firstprice = '" + Fp + "'" + ",businessprice = '" + Bp + "'" + ",economyprice = '" + Ep + "'" + ",terminal = '" + terminal + "'" + ",baggage = '" + baggage + "'"+ " WHERE idkey = " + key;
+                         + ",firstprice = '" + Fp + "'" + ",businessprice = '" + Bp + "'" + ",economyprice = '" + Ep + "'" + ",departureterminal = '" + depterminal + "'" + ",fallterminal = '" + fallterminal + "'" + ",baggage = '" + baggage + "'"+ " WHERE idkey = " + key;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Route updated successfully!");
@@ -617,7 +637,8 @@ public class RouteUi extends javax.swing.JPanel {
                 || txtFp.getText().equals("")
                 || txtBp.getText().equals("")
                 || txtEp.getText().equals("")
-                || cbTerminal.getSelectedItem().equals("<choose a terminal>")
+                || cbDepTerminal.getSelectedItem().equals("<choose a terminal>")
+                || cbFallTerminal.getSelectedItem().equals("<choose a terminal>")
                 || cbBaggage.getSelectedItem().equals("<choose a baggage>")) {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else if(cbDepAirport.getSelectedItem().equals(cbFallAirport.getSelectedItem().toString())) {
@@ -627,7 +648,7 @@ public class RouteUi extends javax.swing.JPanel {
                 routeCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
 
-                PreparedStatement add = con.prepareStatement("insert into route values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement add = con.prepareStatement("insert into route values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 add.setInt(1, idkey);
                 add.setString(2, txtRN.getText());
                 add.setString(3, cbCompany.getSelectedItem().toString());
@@ -640,8 +661,9 @@ public class RouteUi extends javax.swing.JPanel {
                 add.setString(10, txtFp.getText());
                 add.setString(11, txtBp.getText());
                 add.setString(12, txtEp.getText());
-                add.setString(13, cbTerminal.getSelectedItem().toString());
-                add.setString(14, cbBaggage.getSelectedItem().toString());
+                add.setString(13, cbDepTerminal.getSelectedItem().toString());
+                add.setString(14, cbFallTerminal.getSelectedItem().toString());
+                add.setString(15, cbBaggage.getSelectedItem().toString());
                 
 
                 int row = add.executeUpdate();
@@ -688,8 +710,9 @@ public class RouteUi extends javax.swing.JPanel {
         String tblFp = tblModel.getValueAt(tblRoute.getSelectedRow(), 9).toString();
         String tblBp = tblModel.getValueAt(tblRoute.getSelectedRow(), 10).toString();
         String tblEp = tblModel.getValueAt(tblRoute.getSelectedRow(), 11).toString();
-        String tblTerminal = tblModel.getValueAt(tblRoute.getSelectedRow(), 12).toString();
-        String tblBaggage = tblModel.getValueAt(tblRoute.getSelectedRow(), 13).toString();
+        String tblDepTerminal = tblModel.getValueAt(tblRoute.getSelectedRow(), 12).toString();
+        String tblFallTerminal = tblModel.getValueAt(tblRoute.getSelectedRow(), 13).toString();
+        String tblBaggage = tblModel.getValueAt(tblRoute.getSelectedRow(), 14).toString();
 
         //Set to text field
         txtRN.setText(tblRouteName);
@@ -703,7 +726,8 @@ public class RouteUi extends javax.swing.JPanel {
         txtFp.setText(tblFp);
         txtBp.setText(tblBp);
         txtEp.setText(tblEp);
-        cbTerminal.setSelectedItem(tblTerminal);
+        cbDepTerminal.setSelectedItem(tblDepTerminal);
+        cbFallTerminal.setSelectedItem(tblFallTerminal);
         cbBaggage.setSelectedItem(tblBaggage);
 
 
@@ -750,7 +774,8 @@ public class RouteUi extends javax.swing.JPanel {
         txtFp.setText("");
         txtBp.setText("");
         txtEp.setText("");
-        cbTerminal.setSelectedItem("<choose a terminal>");
+        cbDepTerminal.setSelectedItem("<choose a terminal>");
+        cbFallTerminal.setSelectedItem("<choose a terminal>");
         cbBaggage.setSelectedItem("<choose a baggage>");
 
     }
@@ -783,13 +808,15 @@ public class RouteUi extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbBaggage;
     private javax.swing.JComboBox<String> cbCompany;
     private javax.swing.JComboBox<String> cbDepAirport;
+    private javax.swing.JComboBox<String> cbDepTerminal;
     private javax.swing.JComboBox<String> cbFallAirport;
-    private javax.swing.JComboBox<String> cbTerminal;
+    private javax.swing.JComboBox<String> cbFallTerminal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId10;
     private javax.swing.JLabel lblId11;
+    private javax.swing.JLabel lblId12;
     private javax.swing.JLabel lblId17;
     private javax.swing.JLabel lblId18;
     private javax.swing.JLabel lblId19;
