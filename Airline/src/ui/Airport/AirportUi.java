@@ -27,13 +27,14 @@ public class AirportUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     AirportList airportList;
+    String airportname;
     
-    public AirportUi(AirportList airportList) {
+    public AirportUi(String airportname) {
         initComponents();
         displayAirport();
         airportCount();
         clear();
-        this.airportList = airportList;
+        this.airportname = airportname;
         
 //        populateTable();
     }

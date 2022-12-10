@@ -6,6 +6,7 @@ package ui.Airport;
 
 import model.Airport;
 import model.AirportList;
+import ui.airline.LogIn;
 
 
 
@@ -16,9 +17,8 @@ import model.AirportList;
 public class AirportPage extends javax.swing.JPanel {
 
     
-    AirportList airportList;
-    Airport arrivalsList;
-    Airport serviceList;
+    Airport airport;
+    LogIn login;
     /**
      * Creates new form SystemAdmin
      * @param plist
@@ -29,11 +29,13 @@ public class AirportPage extends javax.swing.JPanel {
      */
     public AirportPage() {
         initComponents();
-//        if(plist==null){
-//            plist = new PatientDirectory();
-//        }else{
-//            this.plist=plist;
-//        }
+        this.login = login;
+    }
+    
+    public AirportPage(LogIn login,Airport air) {
+        initComponents();
+        this.login = login;
+        this.airport = airport;
         
     }
     
@@ -310,7 +312,7 @@ public class AirportPage extends javax.swing.JPanel {
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-        ServiceUi service = new ServiceUi(serviceList);
+        ServiceUi service = new ServiceUi(airport.getName());
         sysSplit.setRightComponent(service);
         
         
@@ -323,7 +325,7 @@ public class AirportPage extends javax.swing.JPanel {
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-        ArrivalsUi arrivals = new ArrivalsUi(arrivalsList);
+        ArrivalsUi arrivals = new ArrivalsUi(airport.getName());
         sysSplit.setRightComponent(arrivals);
         
         
@@ -348,8 +350,8 @@ public class AirportPage extends javax.swing.JPanel {
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-        AirportUi airport = new AirportUi(airportList);
-        sysSplit.setRightComponent(airport);
+        AirportUi airportUi = new AirportUi(airport.getName());
+        sysSplit.setRightComponent(airportUi);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabDeparturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDeparturesMouseClicked
