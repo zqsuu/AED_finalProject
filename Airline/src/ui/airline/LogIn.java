@@ -4,22 +4,28 @@
  */
 package ui.airline;
 
-
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import model.AirCompanyList;
 import model.AirlineCompany;
 import model.AirportList;
 import model.Customer;
 import model.CustomerList;
-import model.ManufacturerList;
-import model.SystemAdmin;
+import role.ManufacturerList;
+import role.SystemAdminList;
 import ui.AirCompany.ComJF;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Airport;
-import model.Manufacturer;
+import role.Manufacturer;
+import role.SystemAdmin;
+import role.systemAdmin.SystemAdminJF;
 import ui.Airplane.AirplaneUi;
+import ui.Airplane.ManufacturerJF;
 import ui.Airport.AirportJF;
 import ui.Customer.CustomerJF;
 
@@ -28,23 +34,24 @@ import ui.Customer.CustomerJF;
  * @author HP
  */
 public class LogIn extends javax.swing.JFrame {
+
     AirCompanyList companyList;
     CustomerList customerList;
     AirportList airportList;
     ManufacturerList manufacturerList;
-    ArrayList<SystemAdmin> systemAdmin;
-    
+    SystemAdminList systemAdminList;
+
     String code;
-    
+
     /**
      * Creates new form LogIn
      */
     public LogIn() {
         initComponents();
-        if(customerList==null){
+        if (customerList == null) {
             customerList = new CustomerList();
-        }else{
-            this.customerList=customerList;
+        } else {
+            this.customerList = customerList;
         }
         //初始化combo box选择角色
         cbRole.addItem("Customer");
@@ -52,29 +59,28 @@ public class LogIn extends javax.swing.JFrame {
         cbRole.addItem("Airline Company");
         cbRole.addItem("Manufacturer");
         cbRole.addItem("System Admin");
-        
+
         txtUserName.setText("");
         txtPassword.setText("");
-        
+
         //初始化存储list
         companyList = new AirCompanyList();
         customerList = new CustomerList();
         airportList = new AirportList();
         manufacturerList = new ManufacturerList();
-        systemAdmin = new ArrayList<SystemAdmin>();
-        
+        systemAdminList = new SystemAdminList();
+
         //初始化注册界面
         btnGender.add(rbtnFemale);
         btnGender.add(rbtnMale);
         SignUp.setSize(400, 500);
-        
-        
+
         //从数据库中导入初始数据
         initial();
-        
+
     }
-    
-    public AirCompanyList getAirCompany(){
+
+    public AirCompanyList getAirCompany() {
         return companyList;
     }
 
@@ -480,79 +486,85 @@ public class LogIn extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        try{           
+        try {
             String username = txtUserName.getText();
             String password = txtPassword.getText();
             String role = String.valueOf(cbRole.getSelectedItem());
             boolean exist = false;
-            
-            if(role.equals("Customer")){
-                for(Customer c:customerList.getCustomerList()){
-                    if(c.getName().equals(username)){
-                        if(c.getPassword().equals(password)){
+
+            if (role.equals("Customer")) {
+                for (Customer c : customerList.getCustomerList()) {
+                    if (c.getName().equals(username)) {
+                        if (c.getPassword().equals(password)) {
                             exist = true;
-                            CustomerJF cusJF = new CustomerJF(this,c);
+                            CustomerJF cusJF = new CustomerJF(this, c);
                             cusJF.setVisible(true);
-                            JOptionPane.showMessageDialog(this, "Login as a customer");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Incorrect password!");
                         }
-                        else
-                            JOptionPane.showMessageDialog(this, "Incorrect username or password!");
-                            break;
-                        
+                        break;
+
                     }
                 }
-            }
-            else if(role.equals("Airport")){
-                for(Airport air : airportList.getAirportList()){
-                    if(air.getName().equals(username)){
-                        if(air.getPassword().equals(password)){
+            } else if (role.equals("Airport")) {
+                for (Airport air : airportList.getAirportList()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
                             exist = true;
-                            AirportJF airJF = new AirportJF(this,air);
+                            AirportJF airJF = new AirportJF(this, air);
                             airJF.setVisible(true);
-                        }
-                        else
+                        } else {
                             break;
+                        }
                     }
                 }
-            }
-            else if(role.equals("Airline Company")){
-                for(AirlineCompany air : companyList.getAirCompany()){
-                    if(air.getName().equals(username)){
-                        if(air.getPassword().equals(password)){
+            } else if (role.equals("Airline Company")) {
+                for (AirlineCompany air : companyList.getAirCompany()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
                             exist = true;
-                            ComJF comJF = new ComJF(this,air);
+                            ComJF comJF = new ComJF(this, air);
                             comJF.setVisible(true);
-                        }
-                        else
+                        } else {
                             break;
+                        }
                     }
                 }
-            }
-            else if(role.equals("Manufacturer")){
-                for(Manufacturer manu : manufacturerList.getManufacturerList()){
-                    if(manu.getName().equals(username)){
-                        if(manu.getPassword().equals(password)){
+            } else if (role.equals("Manufacturer")) {
+                for (Manufacturer manu : manufacturerList.getManufacturerList()) {
+                    if (manu.getName().equals(username)) {
+                        if (manu.getPassword().equals(password)) {
                             exist = true;
-                            AirplaneUi airUI = new AirplaneUi(this,manu,null,"manu");
-                            airUI.setVisible(true);
-                        }
-                        else
+                            ManufacturerJF manufacturer = new ManufacturerJF(this, manu, null, "manu");
+                            manufacturer.setVisible(true);
+                        } else {
                             break;
+                        }
                     }
                 }
+            } else if (role.equals("System Admin")) {
+                for (SystemAdmin sys : systemAdminList.getSystemAdmin()) {
+                    if (sys.getName().equals(username)) {
+                        if (sys.getPassword().equals(password)) {
+                            exist = true;
+                            SystemAdminJF sysJF = new SystemAdminJF();
+                            sysJF.setVisible(true);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
             }
-            else{//system admin
-                
-            }
-            
-            if(!exist){
-                JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");             
+
+            if (!exist) {
+                JOptionPane.showMessageDialog(this, "Username or Password or Role is wrong...");
             }
             txtUserName.setText(null);
             txtPassword.setText(null);
-            
-        }catch(Exception e){
-            System.out.println(e.getMessage());         
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -579,7 +591,8 @@ public class LogIn extends javax.swing.JFrame {
         txtAge.setText("");
         btnGender.add(rbtnFemale);
         btnGender.add(rbtnMale);
-        rbtnFemale.setSelected(true);txtId.setText("");
+        rbtnFemale.setSelected(true);
+        txtId.setText("");
         txtPassword.setText("");
         txtName.setText("");
         txtPassport.setText("");
@@ -590,7 +603,7 @@ public class LogIn extends javax.swing.JFrame {
 
     private void okjbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okjbnActionPerformed
         // TODO add your handling code here:
-        
+
         //判断id和email是不是唯一
         String id = txtId.getText();
         String password = txtPassword1.getText();
@@ -598,33 +611,33 @@ public class LogIn extends javax.swing.JFrame {
         String passport = txtPassport.getText();
         int age = Integer.parseInt(txtAge.getText());
         String gender;
-        if(rbtnFemale.isSelected())
+        if (rbtnFemale.isSelected()) {
             gender = "female";
-        else
+        } else {
             gender = "male";
+        }
         String email = txtEmail.getText();
         String verify = txtCode.getText();
-        
-        if(code.isEmpty()){
-            JOptionPane.showMessageDialog(this,"Please verify email");
+
+        if (code.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please verify email");
             return;
         }
-        if(id.isEmpty()||password.isEmpty()||name.isEmpty()||passport.isEmpty()||email.isEmpty()||verify.isEmpty()){
-            JOptionPane.showMessageDialog(this,"Please enter all information");
+        if (id.isEmpty() || password.isEmpty() || name.isEmpty() || passport.isEmpty() || email.isEmpty() || verify.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter all information");
             return;
         }
-        if(!code.equals(verify)){
-            JOptionPane.showMessageDialog(this,"Wrong verify code");
+        if (!code.equals(verify)) {
+            JOptionPane.showMessageDialog(this, "Wrong verify code");
             return;
         }
 
-        
         //String id,String password,String name,String gender,int age,String passport,String email
-        Customer cus = new Customer(id,password,name,gender,age,passport,email);
+        Customer cus = new Customer(id, password, name, gender, age, passport, email);
         customerList.addCustomer(cus);
         cus.updateDB();
-        
-        JOptionPane.showMessageDialog(this,"Sign Up Successfully");
+
+        JOptionPane.showMessageDialog(this, "Sign Up Successfully");
         SignUp.dispose();
         txtPassword1.setText("");
         txtName.setText("");
@@ -644,7 +657,7 @@ public class LogIn extends javax.swing.JFrame {
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
         // TODO add your handling code here:
         char ch = evt.getKeyChar();
-        if(!((ch>='a'&&ch<='z')||ch=='-'||ch==' '||(ch>='A'&&ch<='Z')))
+        if (!((ch >= 'a' && ch <= 'z') || ch == '-' || ch == ' ' || (ch >= 'A' && ch <= 'Z')))
             evt.consume();
     }//GEN-LAST:event_txtNameKeyTyped
 
@@ -654,12 +667,13 @@ public class LogIn extends javax.swing.JFrame {
 
     private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
         // TODO add your handling code here:
-        if(txtAge.getText().length()==2)
-        evt.consume();
-        else{
-            char ch = evt.getKeyChar();
-            if(ch<'0'||ch>'9')
+        if (txtAge.getText().length() == 2)
             evt.consume();
+        else {
+            char ch = evt.getKeyChar();
+            if (ch < '0' || ch > '9') {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtAgeKeyTyped
 
@@ -672,15 +686,15 @@ public class LogIn extends javax.swing.JFrame {
         String email = txtEmail.getText();
         EmailVerify ev = new EmailVerify();
         String send = ev.sendEmail(email);
-        if(send.equals("email wrong"))
-            JOptionPane.showMessageDialog(this,"Please enter valid email address");
-        else if(send.equals("fail"))
-            JOptionPane.showMessageDialog(this,"Email sending failed, please try again");
-        else{
+        if (send.equals("email wrong")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid email address");
+        } else if (send.equals("fail")) {
+            JOptionPane.showMessageDialog(this, "Email sending failed, please try again");
+        } else {
             code = send;
-            JOptionPane.showMessageDialog(this,"Email sending successful");
+            JOptionPane.showMessageDialog(this, "Email sending successful");
         }
-        
+
     }//GEN-LAST:event_sendEmailActionPerformed
 
     private void txtCodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodeKeyTyped
@@ -688,24 +702,101 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodeKeyTyped
 
     //从数据库中导入初始数据
-    public void initial(){
+    public void initial() {
         try {
-            CustomerList cl = new CustomerList();
-            ArrayList<Customer> customerList = cl.getAllCustomer();
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            Statement st = (Statement) con.createStatement();
+
+            //Connect to customer table in MySQL
+            ResultSet rsCustomer = st.executeQuery("Select * from airlinedb1.customer");
+            System.out.println("Customer: username - password");
+
+            while (rsCustomer.next()) {
+
+                Customer customer = new Customer();
+                customer.setId(rsCustomer.getString("id"));
+                customer.setPassword(rsCustomer.getString("password"));
+                customer.setName(rsCustomer.getString("name"));
+                customer.setGender(rsCustomer.getString("gender"));
+                customer.setAge(rsCustomer.getInt("age"));
+                customer.setPassport(rsCustomer.getString("passport"));
+                customer.setEmail(rsCustomer.getString("email"));
+                customerList.addCustomer(customer);
+                System.out.println(customer.getName() + " - " + customer.getPassword());
+            }
+            rsCustomer.close();
+
+            //Connect to airport table in MySQL
+            ResultSet rsAirport = st.executeQuery("Select * from airlinedb1.airport");
+            System.out.println("\nAirport: username - password");
+
+            while (rsAirport.next()) {
+
+                Airport air = new Airport();
+                air.setName(rsAirport.getString("name"));
+                air.setPassword(rsAirport.getString("password"));
+                air.setCity(rsAirport.getString("city"));
+                air.setAddress(rsAirport.getString("address"));
+                airportList.addAirport(air);
+                System.out.println(air.getName() + " - " + air.getPassword());
+            }
+            rsAirport.close();
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "initial().getAllCustomer()");
+            //Connect to Airline Company table in MySQL
+            ResultSet rsAirlineCompany = st.executeQuery("Select * from airlinedb1.airlinecompany");
+            System.out.println("\nAirline Company: username - password");
+
+            while (rsAirlineCompany.next()) {
+
+                AirlineCompany airlineCompany = new AirlineCompany();
+                airlineCompany.setName(rsAirlineCompany.getString("name"));
+                airlineCompany.setId(rsAirlineCompany.getString("id"));
+                airlineCompany.setPassword(rsAirlineCompany.getString("password"));
+                companyList.addAirCompany(airlineCompany);
+                System.out.println(airlineCompany.getName() + " - " + airlineCompany.getPassword());
+            }
+            rsAirlineCompany.close();
+            
+            //Connect to manufacturer table in MySQL
+            ResultSet rsManufacturer = st.executeQuery("Select * from airlinedb1.manufacturer");
+            System.out.println("\nManufacturer: username - password");
+
+            while (rsManufacturer.next()) {
+
+                Manufacturer manu = new Manufacturer();
+                manu.setName(rsManufacturer.getString("name"));
+                manu.setId(rsManufacturer.getString("id"));
+                manu.setPassword(rsManufacturer.getString("password"));
+                manufacturerList.addManufacturer(manu);
+                System.out.println(manu.getName() + " - " + manu.getPassword());
+            }
+            rsManufacturer.close();
+            
+             //Connect to sysadmin table in MySQL
+            ResultSet rsSystemAdmin = st.executeQuery("Select * from airlinedb1.sysadmin");
+            System.out.println("\nSystem Admin: username - password");
+
+            while (rsSystemAdmin.next()) {
+
+                SystemAdmin sys = new SystemAdmin();
+                sys.setName(rsSystemAdmin.getString("name"));
+                sys.setId(rsSystemAdmin.getString("id"));
+                sys.setPassword(rsSystemAdmin.getString("password"));
+                systemAdminList.addSystemAdmin(sys);
+                System.out.println(sys.getName() + " - " + sys.getPassword());
+            }
+            rsSystemAdmin.close();
+
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -744,7 +835,7 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog SignUp;

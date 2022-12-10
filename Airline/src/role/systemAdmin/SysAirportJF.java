@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.Airport;
+package role.systemAdmin;
 
+import ui.Airport.*;
 import java.util.ArrayList;
 import model.Airport;
 import model.AirportList;
@@ -14,7 +15,7 @@ import ui.airline.LogIn;
  *
  * @author HP
  */
-public class AirportJF extends javax.swing.JFrame {
+public class SysAirportJF extends javax.swing.JFrame {
     
     AirportList airportList;
     Airport arrivalsList;
@@ -25,12 +26,12 @@ public class AirportJF extends javax.swing.JFrame {
     /**
      * Creates new form AirportJF
      */
-    public AirportJF() {
+    public SysAirportJF() {
         initComponents();
         this.login = login;
     }
     
-    public AirportJF(LogIn login,Airport air) {
+    public SysAirportJF(LogIn login,Airport air) {
         initComponents();
     }
 
@@ -347,13 +348,9 @@ public class AirportJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabArrivalsMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
-        // TODO add your handling code here:
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        sysSplit.setVisible(false);
+        this.setVisible(false);
+        SystemAdminJF sysJF = new SystemAdminJF();
+        sysJF.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
 
@@ -388,14 +385,15 @@ public class AirportJF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -403,7 +401,7 @@ public class AirportJF extends javax.swing.JFrame {
             public void run() {
                    
                 Airport airp = new Airport("Logan","Boston","MA");
-                new AirportJF(null, airp).setVisible(true);
+                new SysAirportJF(null, airp).setVisible(true);
             }
         });
     }

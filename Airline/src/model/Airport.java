@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author zhiqingsu
  */
 public class Airport {
+
     String name;
     String password;
     String city;
@@ -19,14 +20,18 @@ public class Airport {
     ArrayList<Route> route;
     ArrayList<Route> routeRequest;
 
+    public Airport() {
+    }
+
+    
     public Airport(String name, String city, String address) {
         this.name = name;
+        this.password = password;
         this.city = city;
         this.address = address;
         this.airportService = airportService;
         this.route = new ArrayList<Route>();
         this.routeRequest = new ArrayList<Route>();
-        
     }
 
     public String getCity() {
@@ -45,8 +50,6 @@ public class Airport {
         this.password = password;
     }
 
-    
-    
     public String getAddress() {
         return address;
     }
@@ -54,8 +57,6 @@ public class Airport {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    
 
     public String getName() {
         return name;
@@ -73,22 +74,19 @@ public class Airport {
         this.airportService = airportService;
     }
 
-
-    
-
-    public void addRoute(Route r){
+    public void addRoute(Route r) {
         route.add(r);
     }
-    
-    public void addRouteRequest(Route r){
+
+    public void addRouteRequest(Route r) {
         routeRequest.add(r);
     }
-    
-    public void removeRoute(Route r){
+
+    public void removeRoute(Route r) {
         route.remove(r);
     }
-    
-    public void removeRouteRequest(Route r){
+
+    public void removeRouteRequest(Route r) {
         routeRequest.remove(r);
     }
 
@@ -99,8 +97,5 @@ public class Airport {
     public ArrayList<Route> getRouteRequest() {
         return routeRequest;
     }
-    
-    
-    
-    
+
 }

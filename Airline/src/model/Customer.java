@@ -115,9 +115,6 @@ public class Customer {
 
     }
 
-    static Connection con = null;
-    static Statement st = null;
-    static ResultSet rs = null;
 
     
 

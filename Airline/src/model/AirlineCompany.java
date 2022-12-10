@@ -35,6 +35,38 @@ public class AirlineCompany {
         this.route = new ArrayList<Route>();
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAirplane(ArrayList<Airplane> airplane) {
+        this.airplane = airplane;
+    }
+
+    public void setEmployee(ArrayList<Employee> employee) {
+        this.employee = employee;
+    }
+
+    public void setRoute(ArrayList<Route> route) {
+        this.route = route;
+    }
+
+    public void setOrder(ArrayList<FlightReservation> order) {
+        this.order = order;
+    }
+
+    public void setArrange(ArrayList<EmployeeArrange> arrange) {
+        this.arrange = arrange;
+    }
+
     
 
     public String getName() {

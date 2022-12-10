@@ -9,6 +9,7 @@ import model.Airport;
 import model.AirportList;
 import model.Customer;
 import model.CustomerList;
+import role.systemAdmin.SystemAdminJF;
 import ui.airline.LogIn;
 
 /**
@@ -23,6 +24,10 @@ public class CustomerJF extends javax.swing.JFrame {
     /**
      * Creates new form AirportJF
      */
+    public CustomerJF() {
+        initComponents();
+        this.login = login;
+    }
     public CustomerJF(LogIn login,Customer cus) {
         initComponents();
         this.login = login;
@@ -304,8 +309,9 @@ public class CustomerJF extends javax.swing.JFrame {
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         // TODO add your handling code here:
-        dispose();
-        login.setVisible(true);
+        this.setVisible(false);
+        SystemAdminJF sysJF = new SystemAdminJF();
+        sysJF.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
 

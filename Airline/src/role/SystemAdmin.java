@@ -2,48 +2,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
-
-
-import java.util.ArrayList;
+package role;
 
 /**
  *
- * @author zhiqingsu
+ * @author HP
  */
-public class Manufacturer {
+public class SystemAdmin {
     String name;
     String id;
     String password;
-    ArrayList<Airplane> airplane;
 
-    public Manufacturer(String name, String id, String password) {
+    public SystemAdmin() {
+    }
+    
+    public SystemAdmin(String name, String id, String password) {
         this.name = name;
         this.id = id;
         this.password = password;
-        this.airplane = new ArrayList<Airplane>();
-    }
-    
-    public void addAirplane(Airplane a){
-        airplane.add(a);
-    }
-    
-    public ArrayList<Airplane> getAirplane(){
-        return airplane;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
         return password;
     }
-    
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     
 }
