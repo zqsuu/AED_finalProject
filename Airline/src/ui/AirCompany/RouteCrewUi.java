@@ -31,8 +31,8 @@ public class RouteCrewUi extends javax.swing.JPanel {
         displayArrange();
         displayRNList();
         displayEmployee1();
-        displayEmployee2();
-        displayEmployee3();
+//        displayEmployee2();
+//        displayEmployee3();
         clear();
 
 //        populateTable();
@@ -435,15 +435,16 @@ public class RouteCrewUi extends javax.swing.JPanel {
 
     Connection con = null;
     Statement st = null, st1 = null;
-    ResultSet rs = null, rs1 = null, rs2 = null, rs3 = null, rs4 = null;
+    ResultSet rs = null, rs1 = null, rs2 = null, rs3 = null, rs4 = null, rsType = null;
 
     int idarrange = 0;
     int arrangeId = 0;
 
     private void arrangeCount() {
         try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplane");
+            rs1 = st.executeQuery("select Max(idarrange) from airlinedb1.routecrew");
             rs1.next();
             idarrange = rs1.getInt(1) + 1;
         } catch (Exception e) {
@@ -473,10 +474,33 @@ public class RouteCrewUi extends javax.swing.JPanel {
             while (rs.next()) {
                 cbRN.addItem(rs.getString("routename"));
             }
+            rs.close();
+            
+            String routename = cbRN.getSelectedItem().toString();
+            rsType = st.executeQuery("Select * from airlinedb1.route Where routename = " + routename);
+            while (rsType.next()) {
+                cbRN.addItem(rsType.getString("routename"));
+            }
+            rsType.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+//    private void displayAirplaneType() {
+//        try {
+//            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+//            st = (Statement) con.createStatement();
+//            String routename = cbRN.getSelectedItem().toString();
+//            rsType = st.executeQuery("Select * from airlinedb1.route Where routename = " + routename);
+//            while (rsType.next()) {
+//                cbRN.addItem(rsType.getString("routename"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void displayEmployee1() {
         try {
@@ -487,6 +511,26 @@ public class RouteCrewUi extends javax.swing.JPanel {
             while (rs2.next()) {
                 cbCaptain.addItem(rs2.getString("name"));
             }
+            rs2.close();
+            
+            rs3 = st.executeQuery("Select * from airlinedb1.employee Where role = 'Pilot'");
+            while (rs3.next()) {
+                cbPilot1.addItem(rs3.getString("name"));
+                cbPilot2.addItem(rs3.getString("name"));
+            }
+            rs3.close();
+            
+            rs4 = st.executeQuery("Select * from airlinedb1.employee Where role = 'Steward/Stewardess'");
+            while (rs4.next()) {
+                cbSt1.addItem(rs4.getString("name"));
+                cbSt2.addItem(rs4.getString("name"));
+                cbSt3.addItem(rs4.getString("name"));
+                cbSt4.addItem(rs4.getString("name"));
+                cbSt5.addItem(rs4.getString("name"));
+                cbSt6.addItem(rs4.getString("name"));
+            }
+            rs4.close();
+            
             con.close();
             
         } catch (Exception e) {
@@ -495,41 +539,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
         
     }
     
-    private void displayEmployee2() {
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rs3 = st.executeQuery("Select * from airlinedb1.employee Where role = 'Pilot'");
-            while (rs3.next()) {
-                cbPilot1.addItem(rs2.getString("name"));
-                cbPilot2.addItem(rs2.getString("name"));
-            }
-            con.close();
-            rs3.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void displayEmployee3(){
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rs4 = st.executeQuery("Select * from airlinedb1.employee Where role = 'Steward' and 'Stewardess'");
-            while (rs4.next()) {
-                cbSt1.addItem(rs.getString("name"));
-                cbSt2.addItem(rs.getString("name"));
-                cbSt3.addItem(rs.getString("name"));
-                cbSt4.addItem(rs.getString("name"));
-                cbSt5.addItem(rs.getString("name"));
-                cbSt6.addItem(rs.getString("name"));
-            }
-            con.close();
-            rs4.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void clear() {
         cbRN.setSelectedItem("<choose a route>");

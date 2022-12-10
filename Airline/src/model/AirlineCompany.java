@@ -67,8 +67,6 @@ public class AirlineCompany {
         this.arrange = arrange;
     }
 
-    
-
     public String getName() {
         return name;
     }
@@ -81,11 +79,10 @@ public class AirlineCompany {
         return password;
     }
 
-    public void addOrder(FlightReservation fr){
+    public void addOrder(FlightReservation fr) {
         order.add(fr);
     }
-    
-    
+
     public ArrayList<Airplane> getAirplane() {
         return airplane;
     }
@@ -155,11 +152,63 @@ public class AirlineCompany {
         income -= r.getAirplane().getFuelConsumption() * r.getFlytime();
         return income;
     }
-    
-    public void addArrange(EmployeeArrange ea){
+
+    public void addArrange(EmployeeArrange ea) {
         arrange.add(ea);
     }
-    public void removeArrange(EmployeeArrange ea){
+
+    public void removeArrange(EmployeeArrange ea) {
         arrange.remove(ea);
     }
+
+//    String query = "INSERT into featuredfilms_INFO (movieId, genres)" + "VALUES (?, ?)";
+//    PreparedStatement preparedStmt = conn.prepareStatement(query);
+//
+//    preparedStmt.setString (
+//    1, ID);
+//    for (String realGenre : genre
+//
+//    
+//        ) {
+//    preparedStmt.setString(2, realGenre);
+//        preparedStmt.executeUpdate();
+//}
+    
+//        try {
+//  connection con
+//        .setAutoCommit(false);
+//        PreparedStatement prepStmt = con.prepareStatement(
+//                "insert into product(code,name,price,available) values (?,?,?,?");
+//        Iterator<Product> it = li.iterator();
+//        while (it.hasNext()) {
+//            Product p = it.next();
+//            prepStmt.setString(1, p.getCode());
+//            prepStmt.setString(2, p.getCode());
+//            prepStmt.setInt(3, p.getPrice());
+//            prepStmt.setBoolean(4, p.isAvailable());
+//            prepStmt.addBatch();
+//
+//        }
+//        int[] numUpdates = prepStmt.executeBatch();
+//        for (int i = 0; i < numUpdates.length; i++) {
+//            if (numUpdates[i] == -2) {
+//                System.out.println("Execution " + i
+//                        + ": unknown number of rows updated");
+//            } else {
+//                System.out.println("Execution " + i
+//                        + "successful: " + numUpdates[i] + " rows updated");
+//            }
+//        }
+//        con.commit();
+//    }
+//    catch(BatchUpdateException b
+
+//
+//) {
+//  // process BatchUpdateException
+//} 
+    
+    
+    
+    
 }
