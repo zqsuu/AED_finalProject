@@ -4,6 +4,8 @@
  */
 package role.inAirport;
 
+import java.awt.Desktop;
+import java.net.URI;
 import ui.Airport.*;
 import java.util.ArrayList;
 import model.Airport;
@@ -16,9 +18,8 @@ import ui.airline.LogIn;
  * @author HP
  */
 public class AirportServiceManagerJF extends javax.swing.JFrame {
-    
 
-    Airport airport ;
+    Airport airport;
     LogIn login;
 
     /**
@@ -28,12 +29,12 @@ public class AirportServiceManagerJF extends javax.swing.JFrame {
         initComponents();
         this.login = login;
     }
-    
-    public AirportServiceManagerJF(LogIn login,Airport air) {
+
+    public AirportServiceManagerJF(LogIn login, Airport air) {
         initComponents();
         this.login = login;
         this.airport = air;
-        
+
     }
 
     /**
@@ -252,7 +253,6 @@ public class AirportServiceManagerJF extends javax.swing.JFrame {
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-       
         ServiceUi service = new ServiceUi(airport.getName());
         sysSplit.setRightComponent(service);
 
@@ -266,15 +266,23 @@ public class AirportServiceManagerJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        
+
         AirportUi airportUi = new AirportUi(airport.getName());
         sysSplit.setRightComponent(airportUi);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
 
-        //        PatientProfile patientProfile = new PatientProfile(plist);
-        //        sysSplit.setRightComponent(patientProfile);
+        Desktop dp = java.awt.Desktop.getDesktop();
+        URI uri = java.net.URI.create("https://www.google.com/maps/search/" + airport.getName() + "airport/");
+        try {
+            if (dp.isSupported(java.awt.Desktop.Action.BROWSE)) {
+//获取系统默认浏览器打开链接
+                dp.browse(uri);
+            }
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_tabLocationMouseClicked
 
     /**
@@ -314,8 +322,8 @@ public class AirportServiceManagerJF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                   
-                Airport airp = new Airport("Logan","Boston","MA");
+
+                Airport airp = new Airport("Logan", "Boston", "MA");
                 new AirportServiceManagerJF(null, airp).setVisible(true);
             }
         });

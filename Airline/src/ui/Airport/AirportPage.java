@@ -16,7 +16,7 @@ import ui.airline.LogIn;
  */
 public class AirportPage extends javax.swing.JPanel {
 
-    
+    AirportList airportList;
     Airport airport;
     LogIn login;
     /**

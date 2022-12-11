@@ -31,10 +31,13 @@ public class AirportUi extends javax.swing.JPanel {
     
     public AirportUi(String airportname) {
         initComponents();
+        this.airportname = airportname;
         displayAirport();
-        airportCount();
+//        airportCount();
         clear();
         this.airportname = airportname;
+//        this.airportList = airportList;
+        
         
 //        populateTable();
     }
@@ -60,10 +63,7 @@ public class AirportUi extends javax.swing.JPanel {
         txtCity = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         lblId3 = new javax.swing.JLabel();
-        btnSave1 = new javax.swing.JButton();
-        btnRetrieve = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
         btnUpdate1 = new javax.swing.JButton();
         lblId1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -88,7 +88,7 @@ public class AirportUi extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Airport Id", "AIRPORT NAME", "CITY", "ADDRESS", "PASSWORD"
+                "Airport Id", "AIRPORT NAME", "PASSWORD", "CITY", "ADDRESS"
             }
         ) {
             Class[] types = new Class [] {
@@ -167,39 +167,12 @@ public class AirportUi extends javax.swing.JPanel {
         lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId3.setText("ADDRESS");
 
-        btnSave1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnSave1.setForeground(new java.awt.Color(0, 0, 0));
-        btnSave1.setText("Save");
-        btnSave1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSave1ActionPerformed(evt);
-            }
-        });
-
-        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnRetrieve.setForeground(new java.awt.Color(0, 0, 0));
-        btnRetrieve.setText("Retrieve");
-        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetrieveActionPerformed(evt);
-            }
-        });
-
         btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnClear.setForeground(new java.awt.Color(0, 0, 0));
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
-            }
-        });
-
-        btnDelete1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnDelete1.setForeground(new java.awt.Color(0, 0, 0));
-        btnDelete1.setText("Delete");
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
             }
         });
 
@@ -254,18 +227,10 @@ public class AirportUi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSave1)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnDelete1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRetrieve)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnClear)))
-                        .addGap(30, 30, 30)
                         .addComponent(btnUpdate1)
-                        .addGap(156, 156, 156)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClear)
+                        .addGap(271, 271, 271)
                         .addComponent(lblSearchContent)
                         .addGap(18, 18, 18)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,20 +265,12 @@ public class AirportUi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblSearchContent)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDelete1)
-                            .addComponent(btnUpdate1)
-                            .addComponent(btnSave1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRetrieve)
-                            .addComponent(btnClear))))
-                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchContent)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate1)
+                    .addComponent(btnClear))
+                .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -340,24 +297,24 @@ public class AirportUi extends javax.swing.JPanel {
     int idairport = 0;
     int airportId = 0;
 
-    private void airportCount() {
-        try {
-            st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idairport) from airlinedb1.airport");
-            rs1.next();
-            idairport = rs1.getInt(1) + 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    private void airportCount() {
+//        try {
+//            st1 = (Statement) con.createStatement();
+//            rs1 = st.executeQuery("select Max(idairport) from airlinedb1.airport ");
+//            rs1.next();
+//            idairport = rs1.getInt(1) + 1;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     private void displayAirport() {
 
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.airport");
+            rs = st.executeQuery("Select * from airlinedb1.airport Where name = '" + airportname +"'");
             tblAirport.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
@@ -434,89 +391,10 @@ public class AirportUi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressKeyReleased
 
-    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
-        // TODO add your handling code here:
-        
-        if (txtName.getText().equals("")
-            || txtCity.getText().equals("")
-            || txtAddress.getText().equals("")
-            || txtPassword.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-        } else {
-            try {
-                airportCount();
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airport values(?,?,?,?,?)");
-                add.setInt(1, idairport);
-                add.setString(2, txtName.getText());
-                add.setString(3, txtPassword.getText());
-                add.setString(4, txtCity.getText());
-                add.setString(5, txtAddress.getText());
-
-                int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Airport saved successfully!");
-                con.close();
-                displayAirport();
-                clear();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-    }//GEN-LAST:event_btnSave1ActionPerformed
-
-    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
-        displayAirport();
-
-    }//GEN-LAST:event_btnRetrieveActionPerformed
-
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
 
         clear();
     }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblAirport.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
-            return;
-        }
-
-        //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblAirport.getModel();
-        //delete row
-        if (tblAirport.getSelectedRowCount() == 1) {
-            //if single row is selected then delete
-            //            tblModel.removeRow(tblRoute.getSelectedRow());
-            try {
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                String query = "delete from airlinedb1.airport where idairport = " + airportId;
-                Statement add = (Statement) con.createStatement();
-                add.executeUpdate(query);
-                JOptionPane.showMessageDialog(this, "Airport deleted successfully!");
-                displayAirport();
-                clear();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            JOptionPane.showMessageDialog(this, "This Airport Deleted.");
-        } else {
-            if (tblAirport.getRowCount() == 0) {
-                //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");
-            } else {
-                //if table is not empty but other than one row is selected
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
-            }
-        }
-
-    }//GEN-LAST:event_btnDelete1ActionPerformed
 
     private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
         // TODO add your handling code here:
@@ -589,9 +467,6 @@ public class AirportUi extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnDelete1;
-    private javax.swing.JButton btnRetrieve;
-    private javax.swing.JButton btnSave1;
     private javax.swing.JButton btnUpdate1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;

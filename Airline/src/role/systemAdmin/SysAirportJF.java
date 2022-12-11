@@ -4,6 +4,8 @@
  */
 package role.systemAdmin;
 
+import java.awt.Desktop;
+import java.net.URI;
 import ui.Airport.*;
 import java.util.ArrayList;
 import model.Airport;
@@ -48,8 +50,6 @@ public class SysAirportJF extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         sysSplit = new javax.swing.JSplitPane();
         sysMenuPanel = new javax.swing.JPanel();
-        tabLocation = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         tabService = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tabArrivals = new javax.swing.JPanel();
@@ -70,32 +70,6 @@ public class SysAirportJF extends javax.swing.JFrame {
 
         sysMenuPanel.setBackground(new java.awt.Color(102, 102, 102));
         sysMenuPanel.setPreferredSize(new java.awt.Dimension(300, 800));
-
-        tabLocation.setBackground(new java.awt.Color(255, 0, 0));
-        tabLocation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabLocationMouseClicked(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LOCATION");
-
-        javax.swing.GroupLayout tabLocationLayout = new javax.swing.GroupLayout(tabLocation);
-        tabLocation.setLayout(tabLocationLayout);
-        tabLocationLayout.setHorizontalGroup(
-            tabLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        tabLocationLayout.setVerticalGroup(
-            tabLocationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabLocationLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
 
         tabService.setBackground(new java.awt.Color(255, 0, 0));
         tabService.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +205,6 @@ public class SysAirportJF extends javax.swing.JFrame {
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabArrivals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,9 +222,7 @@ public class SysAirportJF extends javax.swing.JFrame {
                 .addComponent(tabDepartures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(tabService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -312,21 +283,8 @@ public class SysAirportJF extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
-
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        //        PatientProfile patientProfile = new PatientProfile(plist);
-        //        sysSplit.setRightComponent(patientProfile);
-
-    }//GEN-LAST:event_tabLocationMouseClicked
-
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        
         SysServiceUi service = new SysServiceUi(serviceList);
         sysSplit.setRightComponent(service);
 
@@ -346,7 +304,7 @@ public class SysAirportJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        
+
         SysAirportUi airport = new SysAirportUi(airportList);
         sysSplit.setRightComponent(airport);
     }//GEN-LAST:event_tabAirportMouseClicked
@@ -397,7 +355,6 @@ public class SysAirportJF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -410,7 +367,6 @@ public class SysAirportJF extends javax.swing.JFrame {
     private javax.swing.JPanel tabAirport;
     private javax.swing.JPanel tabArrivals;
     private javax.swing.JPanel tabDepartures;
-    private javax.swing.JPanel tabLocation;
     private javax.swing.JPanel tabLogout;
     private javax.swing.JPanel tabService;
     // End of variables declaration//GEN-END:variables

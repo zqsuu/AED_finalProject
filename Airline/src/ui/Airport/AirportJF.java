@@ -4,6 +4,8 @@
  */
 package ui.Airport;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.util.ArrayList;
 import model.Airport;
 import model.AirportList;
@@ -15,9 +17,9 @@ import ui.airline.LogIn;
  * @author HP
  */
 public class AirportJF extends javax.swing.JFrame {
-    
 
-    Airport airport ;
+    Airport airport;
+    AirportList airportList;
     LogIn login;
 
     /**
@@ -27,12 +29,12 @@ public class AirportJF extends javax.swing.JFrame {
         initComponents();
         this.login = login;
     }
-    
-    public AirportJF(LogIn login,Airport air) {
+
+    public AirportJF(LogIn login, Airport air) {
         initComponents();
         this.login = login;
         this.airport = air;
-        
+
     }
 
     /**
@@ -312,24 +314,20 @@ public class AirportJF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
+        Desktop dp = java.awt.Desktop.getDesktop();
+        URI uri = java.net.URI.create("https://www.google.com/maps/search/" + airport.getName() + "airport/");
+        try {
+            if (dp.isSupported(java.awt.Desktop.Action.BROWSE)) {
+//获取系统默认浏览器打开链接
+                dp.browse(uri);
+            }
+        } catch (Exception e) {
 
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        //        PatientProfile patientProfile = new PatientProfile(plist);
-        //        sysSplit.setRightComponent(patientProfile);
-
+        }
     }//GEN-LAST:event_tabLocationMouseClicked
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
         ServiceUi service = new ServiceUi(airport.getName());
         sysSplit.setRightComponent(service);
 
@@ -350,16 +348,16 @@ public class AirportJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        
+
         AirportUi airportUi = new AirportUi(airport.getName());
         sysSplit.setRightComponent(airportUi);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabDeparturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDeparturesMouseClicked
-        
+
         DeparturesUi departures = new DeparturesUi(airport.getRoute(), airport.getName());
         sysSplit.setRightComponent(departures);
-        
+
     }//GEN-LAST:event_tabDeparturesMouseClicked
 
     /**
@@ -392,8 +390,8 @@ public class AirportJF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                   
-                Airport airp = new Airport("Logan","Boston","MA");
+
+                Airport airp = new Airport("Logan", "Boston", "MA");
                 new AirportJF(null, airp).setVisible(true);
             }
         });

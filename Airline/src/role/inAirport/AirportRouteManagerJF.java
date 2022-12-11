@@ -4,6 +4,8 @@
  */
 package role.inAirport;
 
+import java.awt.Desktop;
+import java.net.URI;
 import ui.Airport.*;
 import java.util.ArrayList;
 import model.Airport;
@@ -16,9 +18,8 @@ import ui.airline.LogIn;
  * @author HP
  */
 public class AirportRouteManagerJF extends javax.swing.JFrame {
-    
 
-    Airport airport ;
+    Airport airport;
     LogIn login;
 
     /**
@@ -28,12 +29,12 @@ public class AirportRouteManagerJF extends javax.swing.JFrame {
         initComponents();
         this.login = login;
     }
-    
-    public AirportRouteManagerJF(LogIn login,Airport air) {
+
+    public AirportRouteManagerJF(LogIn login, Airport air) {
         initComponents();
         this.login = login;
         this.airport = air;
-        
+
     }
 
     /**
@@ -282,9 +283,16 @@ public class AirportRouteManagerJF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLocationMouseClicked
+        Desktop dp = java.awt.Desktop.getDesktop();
+        URI uri = java.net.URI.create("https://www.google.com/maps/search/" + airport.getName() + "airport/");
+        try {
+            if (dp.isSupported(java.awt.Desktop.Action.BROWSE)) {
+//获取系统默认浏览器打开链接
+                dp.browse(uri);
+            }
+        } catch (Exception e) {
 
-        //        PatientProfile patientProfile = new PatientProfile(plist);
-        //        sysSplit.setRightComponent(patientProfile);
+        }
 
     }//GEN-LAST:event_tabLocationMouseClicked
 
@@ -303,16 +311,16 @@ public class AirportRouteManagerJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        
+
         AirportUi airportUi = new AirportUi(airport.getName());
         sysSplit.setRightComponent(airportUi);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabDeparturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDeparturesMouseClicked
-        
+
         DeparturesUi departures = new DeparturesUi(airport.getRoute(), airport.getName());
         sysSplit.setRightComponent(departures);
-        
+
     }//GEN-LAST:event_tabDeparturesMouseClicked
 
     /**
@@ -348,8 +356,8 @@ public class AirportRouteManagerJF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                   
-                Airport airp = new Airport("Logan","Boston","MA");
+
+                Airport airp = new Airport("Logan", "Boston", "MA");
                 new AirportRouteManagerJF(null, airp).setVisible(true);
             }
         });
