@@ -17,10 +17,8 @@ import ui.airline.LogIn;
  */
 public class SysAirportJF extends javax.swing.JFrame {
     
-    AirportList airportList;
-    Airport arrivalsList;
-    Airport serviceList;
-    Airport air;
+
+    Airport airport ;
     LogIn login;
 
     /**
@@ -33,6 +31,9 @@ public class SysAirportJF extends javax.swing.JFrame {
     
     public SysAirportJF(LogIn login,Airport air) {
         initComponents();
+        this.login = login;
+        this.airport = air;
+        
     }
 
     /**
@@ -330,19 +331,14 @@ public class SysAirportJF extends javax.swing.JFrame {
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-        ServiceUi service = new ServiceUi(serviceList);
+        ServiceUi service = new ServiceUi(airport.getName());
         sysSplit.setRightComponent(service);
 
     }//GEN-LAST:event_tabServiceMouseClicked
 
     private void tabArrivalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabArrivalsMouseClicked
 
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        ArrivalsUi arrivals = new ArrivalsUi(arrivalsList);
+        ArrivalsUi arrivals = new ArrivalsUi(airport.getRoute(), airport.getName());
         sysSplit.setRightComponent(arrivals);
 
     }//GEN-LAST:event_tabArrivalsMouseClicked
@@ -355,17 +351,16 @@ public class SysAirportJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        AirportUi airport = new AirportUi(airportList);
-        sysSplit.setRightComponent(airport);
+        
+        AirportUi airportUi = new AirportUi(airport.getName());
+        sysSplit.setRightComponent(airportUi);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabDeparturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDeparturesMouseClicked
-        // TODO add your handling code here:
+        
+        DeparturesUi departures = new DeparturesUi(airport.getRoute(), airport.getName());
+        sysSplit.setRightComponent(departures);
+        
     }//GEN-LAST:event_tabDeparturesMouseClicked
 
     /**
@@ -393,6 +388,8 @@ public class SysAirportJF extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SysAirportJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
