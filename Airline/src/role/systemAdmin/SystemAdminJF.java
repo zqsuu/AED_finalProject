@@ -268,31 +268,32 @@ public class SystemAdminJF extends javax.swing.JFrame {
 
     private void tabCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCompanyMouseClicked
         
+        this.setVisible(false);
         SysComJF syscomJF = new SysComJF();
         syscomJF.setVisible(true);
     }//GEN-LAST:event_tabCompanyMouseClicked
 
     private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
         
+        this.setVisible(false);
         SysManufacturerJF sysmanuJF = new SysManufacturerJF();
         sysmanuJF.setVisible(true);
     }//GEN-LAST:event_tabAirplaneMouseClicked
 
     private void tabCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCustomerMouseClicked
+        this.setVisible(false);
         SysCustomerJF syscusJF = new SysCustomerJF();
         syscusJF.setVisible(true);
     }//GEN-LAST:event_tabCustomerMouseClicked
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
-        
+        this.setVisible(false);
         SysAirportJF sysairportJF = new SysAirportJF();
         sysairportJF.setVisible(true);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        SystemAdminJF sysJF = new SystemAdminJF();
-        this.setVisible(false);
-        sysJF.setVisible(true);
+        
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void tabCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCloseMouseClicked

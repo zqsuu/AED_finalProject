@@ -3,14 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/IncomeUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/AirplaneUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/systemAdmin/SysAirportJF.java</file>
-            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportPage.java</file>
-            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/ServiceUi.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/inAirport/AirportRouteManagerJF.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/ArrivalsUi.java</file>
             <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/DeparturesUi.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/inCompany/ProductManagerJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/inAirport/AirportServiceManagerJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/ComJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/AirportPage.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/RouteCrewUi.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/AirlineComPage.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/RouteUi.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/Airport/ServiceUi.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/inCompany/HumanResourceJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/airline/LogIn.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/role/systemAdmin/SystemAdminJF.java</file>
+            <file>file:/C:/Users/HP/Documents/GitHub/AED_finalProject/Airline/src/ui/AirCompany/EmployeeUi.java</file>
         </group>
     </open-files>
 </project-private>

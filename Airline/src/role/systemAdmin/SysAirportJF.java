@@ -16,9 +16,12 @@ import ui.airline.LogIn;
  * @author HP
  */
 public class SysAirportJF extends javax.swing.JFrame {
-    
 
-    Airport airport ;
+    AirportList airportList;
+    Airport arrivalsList;
+    Airport departuresList;
+    Airport serviceList;
+    Airport air;
     LogIn login;
 
     /**
@@ -28,12 +31,9 @@ public class SysAirportJF extends javax.swing.JFrame {
         initComponents();
         this.login = login;
     }
-    
-    public SysAirportJF(LogIn login,Airport air) {
+
+    public SysAirportJF(LogIn login, Airport air) {
         initComponents();
-        this.login = login;
-        this.airport = air;
-        
     }
 
     /**
@@ -326,19 +326,14 @@ public class SysAirportJF extends javax.swing.JFrame {
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
-        ServiceUi service = new ServiceUi(airport.getName());
+        
+        SysServiceUi service = new SysServiceUi(serviceList);
         sysSplit.setRightComponent(service);
 
     }//GEN-LAST:event_tabServiceMouseClicked
 
     private void tabArrivalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabArrivalsMouseClicked
-
-        ArrivalsUi arrivals = new ArrivalsUi(airport.getRoute(), airport.getName());
+        SysArrivalsUi arrivals = new SysArrivalsUi(arrivalsList);
         sysSplit.setRightComponent(arrivals);
 
     }//GEN-LAST:event_tabArrivalsMouseClicked
@@ -352,15 +347,13 @@ public class SysAirportJF extends javax.swing.JFrame {
 
     private void tabAirportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirportMouseClicked
         
-        AirportUi airportUi = new AirportUi(airport.getName());
-        sysSplit.setRightComponent(airportUi);
+        SysAirportUi airport = new SysAirportUi(airportList);
+        sysSplit.setRightComponent(airport);
     }//GEN-LAST:event_tabAirportMouseClicked
 
     private void tabDeparturesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabDeparturesMouseClicked
-        
-        DeparturesUi departures = new DeparturesUi(airport.getRoute(), airport.getName());
-        sysSplit.setRightComponent(departures);
-        
+        SysDeparturesUi arrivals = new SysDeparturesUi(departuresList);
+        sysSplit.setRightComponent(arrivals);
     }//GEN-LAST:event_tabDeparturesMouseClicked
 
     /**
@@ -396,8 +389,8 @@ public class SysAirportJF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                   
-                Airport airp = new Airport("Logan","Boston","MA");
+
+                Airport airp = new Airport("Logan", "Boston", "MA");
                 new SysAirportJF(null, airp).setVisible(true);
             }
         });
