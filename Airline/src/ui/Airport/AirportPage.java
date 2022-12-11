@@ -325,7 +325,7 @@ public class AirportPage extends javax.swing.JPanel {
         tabArrivals.setVisible(true);
         tabAirport.setVisible(true);
         tabLogout.setVisible(true);
-        ArrivalsUi arrivals = new ArrivalsUi(airport.getName());
+        ArrivalsUi arrivals = new ArrivalsUi(airport.getRoute(),airport.getName());
         sysSplit.setRightComponent(arrivals);
         
         

@@ -52,7 +52,7 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblId19" min="-2" pref="98" max="-2" attributes="0"/>
@@ -62,24 +62,17 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblId" min="-2" pref="98" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtOrigin" min="-2" pref="185" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblId1" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbTerminal" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblId2" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbBaggage" pref="185" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtFallAirport" min="-2" pref="185" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblId18" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="lblId18" min="-2" pref="137" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtFallTime" min="-2" pref="185" max="-2" attributes="0"/>
+                              <Component id="txtDepartureTime" min="-2" pref="185" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblId1" min="-2" pref="145" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbTerminal" min="-2" pref="185" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -111,32 +104,27 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtRN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId19" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFallAirport" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtFallTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDepartureTime" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbTerminal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblId2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbBaggage" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="153" max="32767" attributes="0"/>
+              <EmptySpace pref="181" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,25 +139,16 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Arrivals"/>
+        <Property name="text" type="java.lang.String" value="Departures"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOrigin">
+    <Component class="javax.swing.JTextField" name="txtFallAirport">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtOriginKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFallAirportKeyPressed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblId2">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="BAGGAGE"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId1">
       <Properties>
@@ -177,7 +156,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="FALL TERMINAL"/>
+        <Property name="text" type="java.lang.String" value="DEPARTURE TERMINAL"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId">
@@ -186,7 +165,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ORIGIN"/>
+        <Property name="text" type="java.lang.String" value="FALL AIRPORT"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -196,25 +175,19 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblArrivals">
+        <Component class="javax.swing.JTable" name="tblDeparture">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="Arrivals Id" type="java.lang.Integer"/>
+              <Table columnCount="5" rowCount="4">
+                <Column editable="true" title="Departures Id" type="java.lang.Integer"/>
                 <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
-                <Column editable="false" title="ORINGIN" type="java.lang.String"/>
-                <Column editable="false" title="FALL TIME" type="java.lang.String"/>
-                <Column editable="false" title="FALL TERMINAL" type="java.lang.String"/>
-                <Column editable="false" title="BAGGAGE" type="java.lang.String"/>
+                <Column editable="false" title="FALL AIRPORT" type="java.lang.String"/>
+                <Column editable="false" title="DEPARTURE TIME" type="java.lang.String"/>
+                <Column editable="false" title="DEPARTURE TERMINAL" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -247,7 +220,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblArrivalsMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDepartureMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -276,10 +249,10 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="FALL TIME"/>
+        <Property name="text" type="java.lang.String" value="DEPARTURE TIME"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFallTime">
+    <Component class="javax.swing.JTextField" name="txtDepartureTime">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -351,28 +324,6 @@
             <StringItem index="1" value="T1"/>
             <StringItem index="2" value="T2"/>
             <StringItem index="3" value="T3"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cbBaggage">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="11">
-            <StringItem index="0" value="&lt;choose a baggage&gt;"/>
-            <StringItem index="1" value="A1"/>
-            <StringItem index="2" value="A2"/>
-            <StringItem index="3" value="B1"/>
-            <StringItem index="4" value="B2"/>
-            <StringItem index="5" value="C1"/>
-            <StringItem index="6" value="C2"/>
-            <StringItem index="7" value="D1"/>
-            <StringItem index="8" value="D2"/>
-            <StringItem index="9" value="E1"/>
-            <StringItem index="10" value="E2"/>
           </StringArray>
         </Property>
       </Properties>

@@ -507,6 +507,7 @@ public class LogIn extends javax.swing.JFrame {
                             exist = true;
                             CustomerJF cusJF = new CustomerJF(this, c);
                             cusJF.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             JOptionPane.showMessageDialog(this, "Incorrect password!");
                         }
@@ -521,6 +522,7 @@ public class LogIn extends javax.swing.JFrame {
                             exist = true;
                             AirportJF airJF = new AirportJF(this, air);
                             airJF.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             break;
                         }
@@ -533,6 +535,7 @@ public class LogIn extends javax.swing.JFrame {
                             exist = true;
                             ComJF comJF = new ComJF(this, air);
                             comJF.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             break;
                         }
@@ -545,6 +548,7 @@ public class LogIn extends javax.swing.JFrame {
                             exist = true;
                             ManufacturerJF manufacturer = new ManufacturerJF(this, manu, null, "manu");
                             manufacturer.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             break;
                         }
@@ -558,6 +562,7 @@ public class LogIn extends javax.swing.JFrame {
                                 exist = true;
                                 SystemAdminJF sysJF = new SystemAdminJF();
                                 sysJF.setVisible(true);
+                                this.setVisible(false);
                             } else {
                                 break;
                             }
@@ -573,6 +578,7 @@ public class LogIn extends javax.swing.JFrame {
                                 exist = true;
                                 HumanResourceJF hrJF = new HumanResourceJF();
                                 hrJF.setVisible(true);
+                                this.setVisible(false);
                             } else {
                                 break;
                             }
@@ -580,7 +586,7 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
 
-            }  else if (role.equals("Product Manager")) {
+            } else if (role.equals("Product Manager")) {
                 for (User pm : userList.getSystemAdmin()) {
                     if (pm.getRole().equals("Product Manager")) {
                         if (pm.getName().equals(username)) {
@@ -588,6 +594,7 @@ public class LogIn extends javax.swing.JFrame {
                                 exist = true;
                                 ProductManagerJF pmJF = new ProductManagerJF();
                                 pmJF.setVisible(true);
+                                this.setVisible(false);
                             } else {
                                 break;
                             }
