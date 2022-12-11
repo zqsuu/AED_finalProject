@@ -23,6 +23,8 @@ import java.util.logging.Logger;
 import model.Airport;
 import role.Manufacturer;
 import role.User;
+import role.inAirport.AirportRouteManagerJF;
+import role.inAirport.AirportServiceManagerJF;
 import role.inCompany.HumanResourceJF;
 import role.inCompany.ProductManagerJF;
 import role.inCompany.RouteManagerJF;
@@ -533,48 +535,42 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
             } else if (role.equals("Company Human Resource")) {
-                for (User hr : userList.getSystemAdmin()) {
-                    if (hr.getRole().equals("Human Resource")) {
-                        if (hr.getName().equals(username)) {
-                            if (hr.getPassword().equals(password)) {
-                                exist = true;
-                                HumanResourceJF hrJF = new HumanResourceJF();
-                                hrJF.setVisible(true);
-                                this.setVisible(false);
-                            } else {
-                                break;
-                            }
+                for (AirlineCompany hr : companyList.getAirCompany()) {
+                    if (hr.getName().equals(username)) {
+                        if (hr.getPassword().equals(password)) {
+                            exist = true;
+                            HumanResourceJF hrJF = new HumanResourceJF();
+                            hrJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
                         }
                     }
                 }
 
             } else if (role.equals("Company Product Manager")) {
-                for (User pm : userList.getSystemAdmin()) {
-                    if (pm.getRole().equals("Product Manager")) {
-                        if (pm.getName().equals(username)) {
-                            if (pm.getPassword().equals(password)) {
-                                exist = true;
-                                ProductManagerJF pmJF = new ProductManagerJF();
-                                pmJF.setVisible(true);
-                                this.setVisible(false);
-                            } else {
-                                break;
-                            }
+                for (AirlineCompany pm : companyList.getAirCompany()) {
+                    if (pm.getName().equals(username)) {
+                        if (pm.getPassword().equals(password)) {
+                            exist = true;
+                            ProductManagerJF pmJF = new ProductManagerJF();
+                            pmJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
                         }
                     }
                 }
 
             } else if (role.equals("Company Route Manager")) {
-                for (User routem : userList.getSystemAdmin()) {
-                    if (routem.getRole().equals("Route Manager")) {
-                        if (routem.getName().equals(username)) {
-                            if (routem.getPassword().equals(password)) {
-                                exist = true;
-                                RouteManagerJF routemJF = new RouteManagerJF();
-                                routemJF.setVisible(true);
-                            } else {
-                                break;
-                            }
+                for (AirlineCompany routem : companyList.getAirCompany()) {
+                    if (routem.getName().equals(username)) {
+                        if (routem.getPassword().equals(password)) {
+                            exist = true;
+                            RouteManagerJF routemJF = new RouteManagerJF();
+                            routemJF.setVisible(true);
+                        } else {
+                            break;
                         }
                     }
                 }
@@ -612,7 +608,7 @@ public class LogIn extends javax.swing.JFrame {
                     if (air.getName().equals(username)) {
                         if (air.getPassword().equals(password)) {
                             exist = true;
-                            AirportJF airJF = new AirportJF(this, air);
+                            AirportRouteManagerJF airJF = new AirportRouteManagerJF(this, air);
                             airJF.setVisible(true);
                             this.setVisible(false);
                         } else {
@@ -625,7 +621,7 @@ public class LogIn extends javax.swing.JFrame {
                     if (air.getName().equals(username)) {
                         if (air.getPassword().equals(password)) {
                             exist = true;
-                            AirportJF airJF = new AirportJF(this, air);
+                            AirportServiceManagerJF airJF = new AirportServiceManagerJF(this, air);
                             airJF.setVisible(true);
                             this.setVisible(false);
                         } else {
