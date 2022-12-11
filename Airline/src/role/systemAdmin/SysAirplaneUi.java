@@ -41,7 +41,6 @@ public class SysAirplaneUi extends javax.swing.JPanel {
         this.airplaneList = airplaneList;
         airplaneCount();
         displayAirplane();
-        displayCompanyList();
         clear();
 
 //        populateTable();
@@ -58,42 +57,39 @@ public class SysAirplaneUi extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txtFirst = new javax.swing.JTextField();
         txtBusiness = new javax.swing.JTextField();
-        lblId2 = new javax.swing.JLabel();
-        lblId1 = new javax.swing.JLabel();
-        lblId = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        lblId4 = new javax.swing.JLabel();
+        lblId5 = new javax.swing.JLabel();
+        lblId6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tblAirplane = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
-        lblSearchContent = new javax.swing.JLabel();
+        lblSearchContent1 = new javax.swing.JLabel();
         txtEco = new javax.swing.JTextField();
-        txtRoute = new javax.swing.JTextField();
+        txtManufacturer = new javax.swing.JTextField();
         txtType = new javax.swing.JTextField();
-        lblId7 = new javax.swing.JLabel();
-        lblId8 = new javax.swing.JLabel();
-        lblId9 = new javax.swing.JLabel();
+        lblId13 = new javax.swing.JLabel();
+        lblId14 = new javax.swing.JLabel();
         txtFuel = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
-        txtLife = new javax.swing.JTextField();
-        lblId10 = new javax.swing.JLabel();
-        lblId11 = new javax.swing.JLabel();
-        lblId12 = new javax.swing.JLabel();
-        lblId3 = new javax.swing.JLabel();
+        lblId15 = new javax.swing.JLabel();
+        lblId16 = new javax.swing.JLabel();
+        lblId17 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnRetrieve = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        cbCompany = new javax.swing.JComboBox<>();
+        tabClose = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Airplane");
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Airplane");
 
         txtFirst.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -101,34 +97,34 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
         });
 
-        lblId2.setForeground(new java.awt.Color(255, 255, 255));
-        lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId2.setText("ECONOMY CLASS");
+        lblId4.setForeground(new java.awt.Color(255, 255, 255));
+        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId4.setText("ECONOMY CLASS");
 
-        lblId1.setForeground(new java.awt.Color(255, 255, 255));
-        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("BUSINESS CLASS");
+        lblId5.setForeground(new java.awt.Color(255, 255, 255));
+        lblId5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId5.setText("BUSINESS CLASS");
 
-        lblId.setForeground(new java.awt.Color(255, 255, 255));
-        lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId.setText("FIRST CLASS");
+        lblId6.setForeground(new java.awt.Color(255, 255, 255));
+        lblId6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId6.setText("FIRST CLASS");
 
         tblAirplane.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Airplane Id", "TYPE", "COMPANY", "ROUTE", "FUEL CONSUMPTION", "PRICE", "SERVICE LIFE", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS"
+                "Airplane Id", "TYPE", "MANUFACTURER", "FUEL CONSUMPTION", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS", "PRICE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,7 +140,7 @@ public class SysAirplaneUi extends javax.swing.JPanel {
                 tblAirplaneMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblAirplane);
+        jScrollPane2.setViewportView(tblAirplane);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,9 +156,9 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
         });
 
-        lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
-        lblSearchContent.setText("Search Content:");
+        lblSearchContent1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        lblSearchContent1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSearchContent1.setText("Search Content:");
 
         txtType.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -170,17 +166,13 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
         });
 
-        lblId7.setForeground(new java.awt.Color(255, 255, 255));
-        lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId7.setText("COMPANY");
+        lblId13.setForeground(new java.awt.Color(255, 255, 255));
+        lblId13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId13.setText("TYPE");
 
-        lblId8.setForeground(new java.awt.Color(255, 255, 255));
-        lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId8.setText("TYPE");
-
-        lblId9.setForeground(new java.awt.Color(255, 255, 255));
-        lblId9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId9.setText("ROUTE");
+        lblId14.setForeground(new java.awt.Color(255, 255, 255));
+        lblId14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId14.setText("MANUFACTURER");
 
         txtFuel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -188,21 +180,17 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
         });
 
-        lblId10.setForeground(new java.awt.Color(255, 255, 255));
-        lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId10.setText("SERVICE LIFE");
+        lblId15.setForeground(new java.awt.Color(255, 255, 255));
+        lblId15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId15.setText("PRICE");
 
-        lblId11.setForeground(new java.awt.Color(255, 255, 255));
-        lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId11.setText("PRICE");
+        lblId16.setForeground(new java.awt.Color(255, 255, 255));
+        lblId16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId16.setText("FUEL CONSUMPTION");
 
-        lblId12.setForeground(new java.awt.Color(255, 255, 255));
-        lblId12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId12.setText("FUEL CONSUMPTION");
-
-        lblId3.setForeground(new java.awt.Color(255, 255, 255));
-        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId3.setText("PASSENGER CAPACITY");
+        lblId17.setForeground(new java.awt.Color(255, 255, 255));
+        lblId17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId17.setText("PASSENGER CAPACITY");
 
         btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 0, 0));
@@ -249,85 +237,101 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
         });
 
-        cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a company>" }));
+        tabClose.setBackground(new java.awt.Color(153, 0, 0));
+        tabClose.setForeground(new java.awt.Color(153, 0, 0));
+        tabClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabCloseMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tabCloseLayout = new javax.swing.GroupLayout(tabClose);
+        tabClose.setLayout(tabCloseLayout);
+        tabCloseLayout.setHorizontalGroup(
+            tabCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+        tabCloseLayout.setVerticalGroup(
+            tabCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 38, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSave)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(btnDelete))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRetrieve)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnClear)))
-                                .addGap(30, 30, 30)
-                                .addComponent(btnUpdate)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetrieve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate)
+                        .addGap(156, 156, 156)
+                        .addComponent(lblSearchContent1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tabClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblId13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(9, 9, 9)
+                                                .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtManufacturer)
+                                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId12))))
+                                        .addComponent(lblId15, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblId16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFuel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(107, 107, 107)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblId5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblId17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblId4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFuel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLife, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                    .addComponent(txtRoute, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                    .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblId1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(lblId3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(lblId2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBusiness, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEco, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(255, 255, 255))))
+                                    .addComponent(txtBusiness, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEco, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(255, 255, 255)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblSearchContent)
+                        .addComponent(lblSearchContent1)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -338,47 +342,44 @@ public class SysAirplaneUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRetrieve)
                             .addComponent(btnClear))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblId3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFuel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId16)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId15)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblId17)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId))
+                            .addComponent(lblId6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBusiness, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId1))
+                            .addComponent(lblId5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId2)
-                            .addComponent(txtEco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId7)
-                            .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFuel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLife, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                            .addComponent(lblId4)
+                            .addComponent(txtEco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(95, 95, 95)
+                .addComponent(tabClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -386,15 +387,15 @@ public class SysAirplaneUi extends javax.swing.JPanel {
     Statement st = null, st1 = null;
     ResultSet rs = null, rs1 = null;
 
-    int idairplane = 0;
+    int idairplanetype = 0;
     int airplaneId = 0;
 
     private void airplaneCount() {
         try {
             st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplane");
+            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplanetype");
             rs1.next();
-            idairplane = rs1.getInt(1) + 1;
+            idairplanetype = rs1.getInt(1) + 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -406,7 +407,7 @@ public class SysAirplaneUi extends javax.swing.JPanel {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.airplane");
+            rs = st.executeQuery("Select * from airlinedb1.airplanetype");
             tblAirplane.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
@@ -414,34 +415,22 @@ public class SysAirplaneUi extends javax.swing.JPanel {
         }
     }
 
-    private void displayCompanyList() {
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.airlinecompany");
-            while (rs.next()) {
-
-                cbCompany.addItem(rs.getString("name"));
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
 
     private void clear() {
         txtType.setText("");
-        cbCompany.setSelectedItem("<choose a company>");
-        txtRoute.setText("");
+        txtManufacturer.setText("");
         txtFuel.setText("");
-        txtPrice.setText("");
-        txtLife.setText("");
         txtFirst.setText("");
         txtBusiness.setText("");
         txtEco.setText("");
+        txtPrice.setText("");
     }
 
+
+    private void txtFirstKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstKeyPressed
 
     private void tblAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAirplaneMouseClicked
         // TODO add your handling code here:
@@ -451,30 +440,24 @@ public class SysAirplaneUi extends javax.swing.JPanel {
         try {
             airplaneId = Integer.parseInt(tblModel.getValueAt(tblAirplane.getSelectedRow(), 0).toString());
             String tblType = tblModel.getValueAt(tblAirplane.getSelectedRow(), 1).toString();
-            String tblCompany = tblModel.getValueAt(tblAirplane.getSelectedRow(), 2).toString();
-            String tblRoute = tblModel.getValueAt(tblAirplane.getSelectedRow(), 3).toString();
-            String tblFuel = tblModel.getValueAt(tblAirplane.getSelectedRow(), 4).toString();
-            String tblPrice = tblModel.getValueAt(tblAirplane.getSelectedRow(), 5).toString();
-            String tblLife = tblModel.getValueAt(tblAirplane.getSelectedRow(), 6).toString();
-            String tblFirst = tblModel.getValueAt(tblAirplane.getSelectedRow(), 7).toString();
-            String tblBusiness = tblModel.getValueAt(tblAirplane.getSelectedRow(), 8).toString();
-            String tblEco = tblModel.getValueAt(tblAirplane.getSelectedRow(), 9).toString();
+            String tblManu = tblModel.getValueAt(tblAirplane.getSelectedRow(), 2).toString();
+            String tblFuel = tblModel.getValueAt(tblAirplane.getSelectedRow(), 3).toString();
+            String tblFirst = tblModel.getValueAt(tblAirplane.getSelectedRow(), 4).toString();
+            String tblBusiness = tblModel.getValueAt(tblAirplane.getSelectedRow(), 5).toString();
+            String tblEco = tblModel.getValueAt(tblAirplane.getSelectedRow(), 6).toString();
+            String tblPrice = tblModel.getValueAt(tblAirplane.getSelectedRow(), 7).toString();
 
             txtType.setText(tblType);
-            cbCompany.setSelectedItem(tblCompany);
-            txtRoute.setText(tblRoute);
+            txtManufacturer.setText(tblManu);
             txtFuel.setText(tblFuel);
-            txtPrice.setText(tblPrice);
-            txtLife.setText(tblLife);
             txtFirst.setText(tblFirst);
             txtBusiness.setText(tblBusiness);
             txtEco.setText(tblEco);
+            txtPrice.setText(tblPrice);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }//GEN-LAST:event_tblAirplaneMouseClicked
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -495,10 +478,6 @@ public class SysAirplaneUi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtFirstKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFirstKeyPressed
-
     private void txtTypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTypeKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTypeKeyPressed
@@ -509,45 +488,41 @@ public class SysAirplaneUi extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             int fuel = Integer.parseInt(txtFuel.getText());
             int price = Integer.parseInt(txtPrice.getText());
-            int life = Integer.parseInt(txtLife.getText());
             int first = Integer.parseInt(txtFirst.getText());
             int business = Integer.parseInt(txtBusiness.getText());
             int eco = Integer.parseInt(txtEco.getText());
 
         } catch (NumberFormatException exe) {
-            JOptionPane.showMessageDialog(this, "Datatype of FuelConsumption/Price/Life/FirstClass/BusinessClass/EcoClass should be int!");
+            JOptionPane.showMessageDialog(this, "Datatype of FuelConsumption/Price/FirstClass/BusinessClass/EcoClass should be int!");
             return;
         }
 
         if (txtType.getText().equals("")
-                || txtRoute.getText().equals("")
-                || txtFuel.getText().equals("")
-                || txtPrice.getText().equals("")
-                || txtLife.getText().equals("")
-                || txtFirst.getText().equals("")
-                || txtBusiness.getText().equals("")
-                || txtEco.getText().equals("")) {
+            || txtManufacturer.getText().equals("")
+            || txtFuel.getText().equals("")
+            || txtPrice.getText().equals("")
+            || txtFirst.getText().equals("")
+            || txtBusiness.getText().equals("")
+            || txtEco.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
                 airplaneCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplane values(?,?,?,?,?,?,?,?,?,?)");
-                
-                add.setInt(1, idairplane);
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into airplanetype values(?,?,?,?,?,?,?,?)");
+
+                add.setInt(1, idairplanetype);
                 add.setString(2, txtType.getText());
-                add.setString(3, cbCompany.getSelectedItem().toString());
-                add.setString(4, txtRoute.getText());
-                add.setString(5, txtFuel.getText());
-                add.setString(6, txtPrice.getText());
-                add.setString(7, txtLife.getText());
-                add.setString(8, txtFirst.getText());
-                add.setString(9, txtBusiness.getText());
-                add.setString(10, txtEco.getText());
+                add.setString(3, txtManufacturer.getText());
+                add.setString(4, txtFuel.getText());
+                add.setString(5, txtFirst.getText());
+                add.setString(6, txtBusiness.getText());
+                add.setString(7, txtEco.getText());
+                add.setString(8, txtPrice.getText());
 
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Airplane solved successfully!");
@@ -565,7 +540,6 @@ public class SysAirplaneUi extends javax.swing.JPanel {
     private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
         DefaultTableModel tblModel = (DefaultTableModel) tblAirplane.getModel();
         displayAirplane();
-
     }//GEN-LAST:event_btnRetrieveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -585,7 +559,7 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             //            tblModel.removeRow(tblRoute.getSelectedRow());
             try {
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                String query = "delete from airlinedb1.airplane where idairplane = " + airplaneId;
+                String query = "delete from airlinedb1.airplanetype where idairplanetype = " + airplaneId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Airplane deleted successfully!");
@@ -605,7 +579,6 @@ public class SysAirplaneUi extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
             }
         }
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -622,19 +595,17 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             //If single row is selected then update
 
             String type = txtType.getText();
-            String company = cbCompany.getSelectedItem().toString();
-            String route = txtRoute.getText();
+            String maufacturer = txtManufacturer.getText();
             int fuel = Integer.parseInt(txtFuel.getText());
-            int price = Integer.parseInt(txtPrice.getText());
-            int life = Integer.parseInt(txtLife.getText());
             int first = Integer.parseInt(txtFirst.getText());
             int business = Integer.parseInt(txtBusiness.getText());
             int eco = Integer.parseInt(txtEco.getText());
+            int price = Integer.parseInt(txtPrice.getText());
 
             try {
                 //ssl error
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE airplane SET type = '" + type + "'" + ",airplanecompany = '" + company + "'" + ",route = '" + route + "'" + ",fuelconsumption = '" + fuel + "'" + ",price = '" + price + "'" + ",servicelife = '" + life + "'" + ",firstclass = '" + first + "'" + ",businessclass = '" + business + "'" + ",economyclass = '" + eco + "'" + " WHERE idairplane = " + airplaneId;
+                String query = "UPDATE airplanetype SET type = '" + type + "'" + ",manufacturer = '" + maufacturer + "'" + ",fuelconsumption = '" + fuel + "'" + ",first = '" + first + "'" + ",business = '" + business + "'" + ",eco = '" + eco + "'" + ",price = '" + price + "'" + " WHERE idairplanetype = " + airplaneId;
                 Statement add = (Statement) con.createStatement();
                 add.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "Airplane updated successfully!");
@@ -659,8 +630,13 @@ public class SysAirplaneUi extends javax.swing.JPanel {
             }
 
         }
-
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void tabCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCloseMouseClicked
+        this.setVisible(false);
+        LogIn login = new LogIn();
+        login.setVisible(true);
+    }//GEN-LAST:event_tabCloseMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -671,28 +647,25 @@ public class SysAirplaneUi extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbCompany;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblId1;
-    private javax.swing.JLabel lblId10;
-    private javax.swing.JLabel lblId11;
-    private javax.swing.JLabel lblId12;
-    private javax.swing.JLabel lblId2;
-    private javax.swing.JLabel lblId3;
-    private javax.swing.JLabel lblId7;
-    private javax.swing.JLabel lblId8;
-    private javax.swing.JLabel lblId9;
-    private javax.swing.JLabel lblSearchContent;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblId13;
+    private javax.swing.JLabel lblId14;
+    private javax.swing.JLabel lblId15;
+    private javax.swing.JLabel lblId16;
+    private javax.swing.JLabel lblId17;
+    private javax.swing.JLabel lblId4;
+    private javax.swing.JLabel lblId5;
+    private javax.swing.JLabel lblId6;
+    private javax.swing.JLabel lblSearchContent1;
+    private javax.swing.JPanel tabClose;
     private javax.swing.JTable tblAirplane;
     private javax.swing.JTextField txtBusiness;
     private javax.swing.JTextField txtEco;
     private javax.swing.JTextField txtFirst;
     private javax.swing.JTextField txtFuel;
-    private javax.swing.JTextField txtLife;
+    private javax.swing.JTextField txtManufacturer;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtRoute;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtType;
     // End of variables declaration//GEN-END:variables

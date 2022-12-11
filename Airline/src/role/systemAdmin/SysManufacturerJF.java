@@ -199,7 +199,7 @@ public class SysManufacturerJF extends javax.swing.JFrame {
 
     private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
 
-        AirplaneUi airplane = new AirplaneUi(airplaneList);
+        SysAirplaneUi airplane = new SysAirplaneUi(airplaneList);
         sysSplit.setRightComponent(airplane);
 
     }//GEN-LAST:event_tabAirplaneMouseClicked
