@@ -252,11 +252,7 @@ public class AirportServiceManagerJF extends javax.swing.JFrame {
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        tabLocation.setVisible(true);
-        tabService.setVisible(true);
-        tabArrivals.setVisible(true);
-        tabAirport.setVisible(true);
-        tabLogout.setVisible(true);
+       
         ServiceUi service = new ServiceUi(airport.getName());
         sysSplit.setRightComponent(service);
 

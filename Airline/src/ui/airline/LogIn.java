@@ -58,15 +58,17 @@ public class LogIn extends javax.swing.JFrame {
             this.customerList = customerList;
         }
         //初始化combo box选择角色
-        cbRole.addItem("Customer");
-        cbRole.addItem("Airport");
-        cbRole.addItem("Airline Company");
-        cbRole.addItem("Manufacturer");
-        cbRole.addItem("System Admin");
-        cbRole.addItem("Human Resource");
-        cbRole.addItem("Product Manager");
-        cbRole.addItem("Route Manager");
-        cbRole.addItem("Reservation Manager");
+        cbRole.addItem("System Admin");//SystemAdmin-0
+        cbRole.addItem("Airline Company");//CompanyAdmin-1
+        cbRole.addItem("Company Human Resource");//1.1
+        cbRole.addItem("Company Product Manager");//1.2
+        cbRole.addItem("Company Route Manager");//1.3
+        cbRole.addItem("Manufacturer");//AirplaneAdmin-2
+        cbRole.addItem("Airport");//AirportAdmin-3
+        cbRole.addItem("Airport Route Manager");//3.1
+        cbRole.addItem("Airport Service Manager");//3.2
+        cbRole.addItem("Customer");//Customer-4
+        cbRole.addItem("Reservation Manager");//4.1
 
         txtUserName.setText("");
         txtPassword.setText("");
@@ -500,61 +502,8 @@ public class LogIn extends javax.swing.JFrame {
             String role = String.valueOf(cbRole.getSelectedItem());
             boolean exist = false;
 
-            if (role.equals("Customer")) {
-                for (Customer c : customerList.getCustomerList()) {
-                    if (c.getName().equals(username)) {
-                        if (c.getPassword().equals(password)) {
-                            exist = true;
-                            CustomerJF cusJF = new CustomerJF(this, c);
-                            cusJF.setVisible(true);
-                            this.setVisible(false);
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Incorrect password!");
-                        }
-                        break;
-
-                    }
-                }
-            } else if (role.equals("Airport")) {
-                for (Airport air : airportList.getAirportList()) {
-                    if (air.getName().equals(username)) {
-                        if (air.getPassword().equals(password)) {
-                            exist = true;
-                            AirportJF airJF = new AirportJF(this, air);
-                            airJF.setVisible(true);
-                            this.setVisible(false);
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            } else if (role.equals("Airline Company")) {
-                for (AirlineCompany air : companyList.getAirCompany()) {
-                    if (air.getName().equals(username)) {
-                        if (air.getPassword().equals(password)) {
-                            exist = true;
-                            ComJF comJF = new ComJF(this, air);
-                            comJF.setVisible(true);
-                            this.setVisible(false);
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            } else if (role.equals("Manufacturer")) {
-                for (Manufacturer manu : manufacturerList.getManufacturerList()) {
-                    if (manu.getName().equals(username)) {
-                        if (manu.getPassword().equals(password)) {
-                            exist = true;
-                            ManufacturerJF manufacturer = new ManufacturerJF(this, manu, null, "manu");
-                            manufacturer.setVisible(true);
-                            this.setVisible(false);
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            } else if (role.equals("System Admin")) {
+            //role: System Admin;
+            if (role.equals("System Admin")) {
                 for (User sys : userList.getSystemAdmin()) {
                     if (sys.getRole().equals("System Admin")) {
                         if (sys.getName().equals(username)) {
@@ -569,8 +518,21 @@ public class LogIn extends javax.swing.JFrame {
                         }
                     }
                 }
-
-            } else if (role.equals("Human Resource")) {
+            } //role: Airline Company; 3 roles in company: Human Resource, Product Manager, Route Manager;
+            else if (role.equals("Airline Company")) {
+                for (AirlineCompany air : companyList.getAirCompany()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
+                            exist = true;
+                            ComJF comJF = new ComJF(this, air);
+                            comJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            } else if (role.equals("Company Human Resource")) {
                 for (User hr : userList.getSystemAdmin()) {
                     if (hr.getRole().equals("Human Resource")) {
                         if (hr.getName().equals(username)) {
@@ -586,7 +548,7 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
 
-            } else if (role.equals("Product Manager")) {
+            } else if (role.equals("Company Product Manager")) {
                 for (User pm : userList.getSystemAdmin()) {
                     if (pm.getRole().equals("Product Manager")) {
                         if (pm.getName().equals(username)) {
@@ -602,7 +564,7 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
 
-            } else if (role.equals("Route Manager")) {
+            } else if (role.equals("Company Route Manager")) {
                 for (User routem : userList.getSystemAdmin()) {
                     if (routem.getRole().equals("Route Manager")) {
                         if (routem.getName().equals(username)) {
@@ -617,6 +579,76 @@ public class LogIn extends javax.swing.JFrame {
                     }
                 }
 
+            } //role: airplane manufacturer;
+            else if (role.equals("Manufacturer")) {
+                for (Manufacturer manu : manufacturerList.getManufacturerList()) {
+                    if (manu.getName().equals(username)) {
+                        if (manu.getPassword().equals(password)) {
+                            exist = true;
+                            ManufacturerJF manufacturer = new ManufacturerJF(this, manu, null, "manu");
+                            manufacturer.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            } //role: Airport; 2 roles in airport: Airport Route Manager, Airport Service Manager;
+            else if (role.equals("Airport")) {
+                for (Airport air : airportList.getAirportList()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
+                            exist = true;
+                            AirportJF airJF = new AirportJF(this, air);
+                            airJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            } else if (role.equals("Airport Route Manager")) {
+                for (Airport air : airportList.getAirportList()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
+                            exist = true;
+                            AirportJF airJF = new AirportJF(this, air);
+                            airJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            } else if (role.equals("Airport Service Manager")) {
+                for (Airport air : airportList.getAirportList()) {
+                    if (air.getName().equals(username)) {
+                        if (air.getPassword().equals(password)) {
+                            exist = true;
+                            AirportJF airJF = new AirportJF(this, air);
+                            airJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            } //role: Customer; 1 role in customer: Reservation Manager;
+            else if (role.equals("Customer")) {
+                for (Customer c : customerList.getCustomerList()) {
+                    if (c.getName().equals(username)) {
+                        if (c.getPassword().equals(password)) {
+                            exist = true;
+                            CustomerJF cusJF = new CustomerJF(this, c);
+                            cusJF.setVisible(true);
+                            this.setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Incorrect password!");
+                        }
+                        break;
+
+                    }
+                }
             } else if (role.equals("Reservation Manager")) {
                 for (User reserm : userList.getSystemAdmin()) {
                     if (reserm.getRole().equals("Reservation Manager")) {
