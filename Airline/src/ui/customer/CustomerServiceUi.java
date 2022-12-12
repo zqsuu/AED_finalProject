@@ -456,7 +456,7 @@ public class CustomerServiceUi extends javax.swing.JPanel {
             ResultSet rs = st.executeQuery("Select * from airlinedb1.customerservice");
             while(rs.next()){
                 if(rs.getString("customer").equals(customer)){
-                    Object[] row = new Object[12];
+                    Object[] row = new Object[5];
                     row[0] = rs.getString("airport");
                     row[1] = rs.getString("bus");
                     row[2] = rs.getString("luggage");

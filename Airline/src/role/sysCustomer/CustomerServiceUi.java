@@ -61,41 +61,7 @@ public class CustomerServiceUi extends javax.swing.JPanel {
             
             
             
-            rs = st.executeQuery("Select * from airlinedb1.airportservice");
-            while(rs.next()){
-                if(rs.getString("name").equals("SHUTTLE BUS")){
-                    cbBus.addItem("");
-                    content = rs.getString("time");
-                    time = content.split(" ");
-                    for(String t:time){
-                        cbBus.addItem(t);
-                    }
-                }
-                else if(rs.getString("name").equals("LUGGAGE STORAGE")){
-                    cbLuggage.addItem("");
-                    content = rs.getString("time");
-                    time = content.split(" ");
-                    for(String t:time){
-                        cbLuggage.addItem(t);
-                    }
-                }
-                else if(rs.getString("name").equals("FOOD SERVICE")){
-                    cbFood.addItem("");
-                    content = rs.getString("time");
-                    time = content.split(" ");
-                    for(String t:time){
-                        cbFood.addItem(t);
-                    }
-                }
-                else{
-                    cbCheck.addItem("");
-                    content = rs.getString("time");
-                    time = content.split(" ");
-                    for(String t:time){
-                        cbCheck.addItem(t);
-                    }
-                }
-            }
+            
         
         }catch(Exception e){
             e.printStackTrace();
@@ -233,15 +199,15 @@ public class CustomerServiceUi extends javax.swing.JPanel {
         try{
             ResultSet rs = st.executeQuery("Select * from airlinedb1.customerservice");
             while(rs.next()){
-                if(rs.getString("customer").equals(customer)){
-                    Object[] row = new Object[12];
+                
+                    Object[] row = new Object[5];
                     row[0] = rs.getString("airport");
                     row[1] = rs.getString("bus");
                     row[2] = rs.getString("luggage");
                     row[3] = rs.getString("food");
                     row[4] = rs.getString("check");
                     model.addRow(row);   
-                }
+                
                 
             }
         }catch(Exception e){
