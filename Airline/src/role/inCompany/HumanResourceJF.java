@@ -324,11 +324,6 @@ public class HumanResourceJF extends javax.swing.JFrame {
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
         RouteUi route = new RouteUi(airlineCompany);
         sysSplit.setRightComponent(route);
 
