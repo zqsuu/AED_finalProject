@@ -22,6 +22,12 @@ public class Airplane {
     Route route;
     AirlineCompany airplaneCompany;
 
+    public Airplane(){
+        serviceLife=0;
+        route = null;
+        airplaneCompany = null;
+             
+    }
 
     public Airplane(String manufacturer,int firstCapacity, int businessCapacity, int ecoCapacity, int fuelConsumption, int price, int serviceLife, String type, AirlineCompany airplaneCompany) {
         this.manufacturer = manufacturer;
@@ -35,7 +41,32 @@ public class Airplane {
         this.route = null;
         this.airplaneCompany = airplaneCompany;
     }
+    
+    
+    //适用于company购买指定型号飞机
+    public Airplane(Airplane a,AirlineCompany air){
+        this.manufacturer = a.getManufacturer();
+        this.firstCapacity = a.getFirstCapacity();
+        this.businessCapacity = a.getBusinessCapacity();
+        this.ecoCapacity = a.getEcoCapacity();
+        this.fuelConsumption = a.getFuelConsumption();
+        this.price = a.getPrice();
+        this.serviceLife = 0;
+        this.type = a.getType();
+        this.route = null;
+        this.airplaneCompany = air;
+    }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    
+    
     public int getPrice() {
         return price;
     }
@@ -110,7 +141,9 @@ public class Airplane {
         this.airplaneCompany = airplaneCompany;
     }
     
-    
+    public void updateDB(){
+        
+    }
             
             
 }

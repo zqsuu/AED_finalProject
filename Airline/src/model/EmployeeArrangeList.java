@@ -15,6 +15,7 @@ public class EmployeeArrangeList {
     ArrayList<EmployeeArrange> employeeArrangeList;
 
     public EmployeeArrangeList() {
+        employeeArrangeList = new ArrayList<EmployeeArrange>();
     }
 
     public EmployeeArrangeList(ArrayList<EmployeeArrange> employeeArrangeList) {

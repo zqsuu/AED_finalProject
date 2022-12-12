@@ -33,7 +33,7 @@ import role.systemAdmin.SystemAdminJF;
 import ui.Airplane.AirplaneUi;
 import ui.Airplane.ManufacturerJF;
 import ui.Airport.AirportJF;
-import ui.Customer.CustomerJF;
+import ui.customer.CustomerJF;
 
 /**
  *

@@ -45,7 +45,7 @@
                       <Component id="lblArrTerminal" min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="lblArrTime" min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="lblClass" min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="lblQuantity" min="-2" pref="87" max="-2" attributes="0"/>
+                      <Component id="lblSeat" min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="lblPrice" min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
@@ -105,7 +105,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSeat" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -200,7 +200,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantity"/>
+            <Property name="text" type="java.lang.String" value="Seat"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
@@ -248,7 +248,7 @@
             <Property name="text" type="java.lang.String" value="Date"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuantity">
+        <Component class="javax.swing.JLabel" name="lblSeat">
           <Properties>
             <Property name="text" type="java.lang.String" value="Date"/>
           </Properties>
@@ -289,10 +289,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="97" pref="394" max="32767" attributes="0"/>
+                              <EmptySpace min="97" pref="484" max="32767" attributes="0"/>
                               <Component id="lblSearchContent" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="searchVariable" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchVariable" min="-2" pref="94" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="txtSearch" min="-2" pref="210" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -304,27 +304,32 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="lblId13" min="-2" pref="98" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtDate" min="-2" pref="172" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblId16" min="-2" pref="98" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="chooseClass" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="lblId14" min="-2" pref="98" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtQuantity" min="-2" pref="130" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cbDate" min="-2" pref="198" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="lblId16" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="chooseClass" min="-2" pref="125" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblId14" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtSeat" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="btnSearch1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="495" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnSearch1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="495" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -344,13 +349,15 @@
                   <Component id="btnClear" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblId13" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId16" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chooseClass" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblId14" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblId13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblId16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chooseClass" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblId14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSeat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="cbDate" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="btnSearch1" min="-2" max="-2" attributes="0"/>
@@ -382,20 +389,38 @@
         <Component class="javax.swing.JTable" name="tblReservation">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="4">
+              <Table columnCount="12" rowCount="4">
                 <Column editable="false" title="ROUTE NAME" type="java.lang.String"/>
                 <Column editable="false" title="COMPANY" type="java.lang.String"/>
-                <Column editable="false" title="DEPARTURE AIRPORT" type="java.lang.String"/>
-                <Column editable="false" title="DEPARTURE TIME" type="java.lang.String"/>
-                <Column editable="false" title="ARRIVAL AIRPORT" type="java.lang.String"/>
-                <Column editable="false" title="ARRIVAL TIME" type="java.lang.String"/>
+                <Column editable="false" title="DEP AIRPORT" type="java.lang.String"/>
+                <Column editable="true" title="DEP TERMINAL" type="java.lang.Object"/>
+                <Column editable="false" title="DEP TIME" type="java.lang.String"/>
+                <Column editable="false" title="ARR AIRPORT" type="java.lang.String"/>
+                <Column editable="true" title="ARR TERMINAL" type="java.lang.Object"/>
+                <Column editable="false" title="ARR TIME" type="java.lang.String"/>
                 <Column editable="false" title="FIRST CLASS" type="java.lang.String"/>
                 <Column editable="false" title="BUSINESS CLASS" type="java.lang.String"/>
                 <Column editable="false" title="ECONOMY CLASS" type="java.lang.String"/>
+                <Column editable="false" title="BAGGAGE" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -477,7 +502,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="QUANTITY"/>
+        <Property name="text" type="java.lang.String" value="SEAT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId13">
@@ -503,9 +528,7 @@
     <Component class="javax.swing.JComboBox" name="searchVariable">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="&lt;choose a company&gt;"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -521,19 +544,12 @@
         <Property name="text" type="java.lang.String" value="CLASS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDate">
+    <Component class="javax.swing.JTextField" name="txtSeat">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDateActionPerformed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDateKeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDateKeyReleased"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtQuantity">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQuantityActionPerformed"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQuantityKeyTyped"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQuantityKeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQuantityKeyReleased"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSeatActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSeatKeyTyped"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSeatKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSeatKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnClear">
@@ -550,9 +566,7 @@
     <Component class="javax.swing.JComboBox" name="chooseClass">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="&lt;choose a company&gt;"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -569,6 +583,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearch1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="cbDate">
     </Component>
   </SubComponents>
 </Form>

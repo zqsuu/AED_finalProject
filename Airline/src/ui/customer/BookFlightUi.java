@@ -2,11 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Customer;
+package ui.customer;
 
 
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -20,7 +25,7 @@ import model.FlightReservation;
 import model.Route;
 import java.util.ArrayList;
 import model.Airplane;
-//import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 
 /**
@@ -33,24 +38,39 @@ public class BookFlightUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     Customer customer;
-    ArrayList<AirlineCompany> companyList;
+
     
-    AirlineCompany bookCompany;
-    FlightReservation bookFlight;
-    Route bookRoute;
+    Connection con;
+    Statement st;
+    
+    FlightReservation fr;
     
     public BookFlightUi(Customer customer,AirCompanyList air) {
         initComponents();
         
         this.customer = customer;
-        this.companyList = air.getAirCompany();
         
         searchVariable.addItem("Company");
         searchVariable.addItem("Departure Airport");
         searchVariable.addItem("Arrival Airport");
-
         
-        populateTable();
+        chooseClass.addItem("First Class");
+        chooseClass.addItem("Business Class");
+        chooseClass.addItem("Economy Class");
+        
+        BookConfirm.setSize(400, 400);
+        
+        try{
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            
+            populateTable();
+        
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }  
+        
         
 
         txtSearch.setText("");
@@ -90,7 +110,7 @@ public class BookFlightUi extends javax.swing.JPanel {
         lblArrTerminal = new javax.swing.JLabel();
         lblArrTime = new javax.swing.JLabel();
         lblClass = new javax.swing.JLabel();
-        lblQuantity = new javax.swing.JLabel();
+        lblSeat = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,13 +120,13 @@ public class BookFlightUi extends javax.swing.JPanel {
         lblId14 = new javax.swing.JLabel();
         lblId13 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
-        searchVariable = new javax.swing.JComboBox<String>();
+        searchVariable = new javax.swing.JComboBox<>();
         lblId16 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
+        txtSeat = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
-        chooseClass = new javax.swing.JComboBox<String>();
+        chooseClass = new javax.swing.JComboBox<>();
         btnSearch1 = new javax.swing.JButton();
+        cbDate = new com.toedter.calendar.JDateChooser();
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -146,7 +166,7 @@ public class BookFlightUi extends javax.swing.JPanel {
 
         jLabel21.setText("Class");
 
-        jLabel22.setText("Quantity");
+        jLabel22.setText("Seat");
 
         jLabel23.setText("Total price");
 
@@ -166,7 +186,7 @@ public class BookFlightUi extends javax.swing.JPanel {
 
         lblClass.setText("Date");
 
-        lblQuantity.setText("Date");
+        lblSeat.setText("Date");
 
         lblPrice.setText("Date");
 
@@ -207,7 +227,7 @@ public class BookFlightUi extends javax.swing.JPanel {
                     .addComponent(lblArrTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblArrTime, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76))
         );
@@ -255,7 +275,7 @@ public class BookFlightUi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BookConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(lblQuantity))
+                    .addComponent(lblSeat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BookConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
@@ -276,20 +296,20 @@ public class BookFlightUi extends javax.swing.JPanel {
 
         tblReservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ROUTE NAME", "COMPANY", "DEPARTURE AIRPORT", "DEPARTURE TIME", "ARRIVAL AIRPORT", "ARRIVAL TIME", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS"
+                "ROUTE NAME", "COMPANY", "DEP AIRPORT", "DEP TERMINAL", "DEP TIME", "ARR AIRPORT", "ARR TERMINAL", "ARR TIME", "FIRST CLASS", "BUSINESS CLASS", "ECONOMY CLASS", "BAGGAGE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, true, false, false, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -327,7 +347,7 @@ public class BookFlightUi extends javax.swing.JPanel {
 
         lblId14.setForeground(new java.awt.Color(255, 255, 255));
         lblId14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId14.setText("QUANTITY");
+        lblId14.setText("SEAT");
 
         lblId13.setForeground(new java.awt.Color(255, 255, 255));
         lblId13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -341,40 +361,24 @@ public class BookFlightUi extends javax.swing.JPanel {
             }
         });
 
-        searchVariable.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "<choose a company>" }));
-
         lblId16.setForeground(new java.awt.Color(255, 255, 255));
         lblId16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId16.setText("CLASS");
 
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
+        txtSeat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
+                txtSeatActionPerformed(evt);
             }
         });
-        txtDate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDateKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDateKeyReleased(evt);
-            }
-        });
-
-        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantityActionPerformed(evt);
-            }
-        });
-        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSeat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtQuantityKeyTyped(evt);
+                txtSeatKeyTyped(evt);
             }
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtQuantityKeyPressed(evt);
+                txtSeatKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtQuantityKeyReleased(evt);
+                txtSeatKeyReleased(evt);
             }
         });
 
@@ -385,8 +389,6 @@ public class BookFlightUi extends javax.swing.JPanel {
                 btnClearActionPerformed(evt);
             }
         });
-
-        chooseClass.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "<choose a company>" }));
 
         btnSearch1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         btnSearch1.setText("Apply");
@@ -408,10 +410,10 @@ public class BookFlightUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(97, 394, Short.MAX_VALUE)
+                                .addGap(97, 484, Short.MAX_VALUE)
                                 .addComponent(lblSearchContent)
-                                .addGap(28, 28, 28)
-                                .addComponent(searchVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -420,24 +422,27 @@ public class BookFlightUi extends javax.swing.JPanel {
                                 .addComponent(btnClear)
                                 .addGap(40, 40, 40)))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblId13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblId16, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(chooseClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(146, 146, 146))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSearch1)
-                .addGap(495, 495, 495))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(lblId16, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(chooseClass, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblId14, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(btnSearch1)
+                                .addGap(495, 495, 495))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,39 +459,47 @@ public class BookFlightUi extends javax.swing.JPanel {
                     .addComponent(searchVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear))
                 .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId13)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId16)
-                    .addComponent(chooseClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId14)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblId13)
+                        .addComponent(lblId16)
+                        .addComponent(chooseClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId14)
+                        .addComponent(txtSeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(btnSearch1)
                 .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void populateTable(){
+    private void populateTable() throws SQLException{
         DefaultTableModel model = (DefaultTableModel)tblReservation.getModel();
         model.setRowCount(0);
         
-        for(AirlineCompany air : companyList){
-            for(Route route:air.getRoute()){
-                Object[] row = new Object[9];
-                row[0] = route.getRouteName();
-                row[1] = air.getName();
-                row[2] = route.getDepartureAirport().getName();
-                row[3] = route.getDepartureTime();
-                row[4] = route.getFallAirport().getName();
-                row[5] = route.getFallTime();
-                row[6] = route.getFirstPrice();
-                row[7] = route.getBusinessPrice();
-                row[8] = route.getEcoPrice();
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.route");
+            while(rs.next()){
+                Object[] row = new Object[12];
+                row[0] = rs.getString("routename");
+                row[1] = rs.getString("company");
+                row[2] = rs.getString("departureairport");
+                row[3] = rs.getString("departureterminal");
+                row[4] = rs.getString("departuretime");
+                row[5] = rs.getString("fallairport");
+                row[6] = rs.getString("fallterminal");
+                row[7] = rs.getString("falltime");
+                row[8] = rs.getString("firstprice");
+                row[9] = rs.getString("businessprice");
+                row[10] = rs.getString("economyprice");
+                row[11] = rs.getString("baggage");
                 model.addRow(row);   
             }
-            
-        }
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }      
+        
     }
     
     
@@ -501,12 +514,7 @@ public class BookFlightUi extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        // TODO add your handling code here:
-        //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblReservation.getModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblReservation.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -523,64 +531,61 @@ public class BookFlightUi extends javax.swing.JPanel {
         if(search.isEmpty())
             return;
         boolean choose = false;
-        for(AirlineCompany company:companyList){
-            choose = false;
-            for(Route route:company.getRoute()){
+        
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.route");
+            while(rs.next()){
                 choose = false;
-                if(variable.equals("Company")&&company.getName().equals(search))
+                if(variable.equals("Company")&&rs.getString("company").equals(search))
                     choose = true;
-                else if(variable.equals("Departure Airport")&&route.getDepartureAirport().getName().equals(search))
+                else if(variable.equals("Departure Airport")&&rs.getString("departureairport").equals(search))
                     choose = true;
-                else if(variable.equals("Arrival Airport")&&route.getFallAirport().getName().equals(search))
+                else if(variable.equals("Arrival Airport")&&rs.getString("fallairport").equals(search))
                     choose = true;
                 if(choose){
-                    Object[] row = new Object[9];
-                    row[0] = route.getRouteName();
-                    row[1] = company.getName();
-                    row[2] = route.getDepartureAirport().getName();
-                    row[3] = route.getDepartureTime();
-                    row[4] = route.getFallAirport().getName();
-                    row[5] = route.getFallTime();
-                    row[6] = route.getFirstPrice();
-                    row[7] = route.getBusinessPrice();
-                    row[8] = route.getEcoPrice();
-                    model.addRow(row);     
-            }
+                    Object[] row = new Object[12];
+                    row[0] = rs.getString("routename");
+                    row[1] = rs.getString("company");
+                    row[2] = rs.getString("departureairport");
+                    row[3] = rs.getString("departureterminal");
+                    row[4] = rs.getString("departuretime");
+                    row[5] = rs.getString("fallairport");
+                    row[6] = rs.getString("fallterminal");
+                    row[7] = rs.getString("falltime");
+                    row[8] = rs.getString("firstprice");
+                    row[9] = rs.getString("businessprice");
+                    row[10] = rs.getString("economyprice");
+                    row[11] = rs.getString("baggage");
+                    model.addRow(row);   
+                }
             }
             
-        }
+        }catch(Exception e){
+            e.printStackTrace();
+        }   
+        
+        
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+    private void txtSeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
+    }//GEN-LAST:event_txtSeatActionPerformed
 
-    private void txtDateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyPressed
+    private void txtSeatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeatKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateKeyPressed
+    }//GEN-LAST:event_txtSeatKeyPressed
 
-    private void txtDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyReleased
+    private void txtSeatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeatKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateKeyReleased
-
-    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityActionPerformed
-
-    private void txtQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityKeyPressed
-
-    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityKeyReleased
+    }//GEN-LAST:event_txtSeatKeyReleased
 
     private void okjbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okjbnActionPerformed
         // TODO add your handling code here:
         
-        bookCompany.addOrder(bookFlight);
-        customer.addReservation(bookFlight);
-        bookFlight.updateDB();
+        if(fr==null)
+            return;
+        fr.updateDB();
 
         JOptionPane.showMessageDialog(this,"Book Successfully");
         BookConfirm.dispose();
@@ -594,7 +599,12 @@ public class BookFlightUi extends javax.swing.JPanel {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        populateTable();
+        try{
+            populateTable();
+        }catch(Exception e){
+            e.printStackTrace();
+        }  
+        
         txtSearch.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -606,99 +616,83 @@ public class BookFlightUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row");    
             return;
         }
-        int quantity = Integer.parseInt(txtQuantity.getText());
         String airclass = String.valueOf(chooseClass.getSelectedItem());
-        //date需要修改
-        String date = txtDate.getText();
-        if(quantity<=0){
-            JOptionPane.showMessageDialog(this, "Please enter valid ticket quantity");    
+      
+        
+        Date date = cbDate.getDate();
+        
+        String seat = txtSeat.getText();
+        if(seat.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a seat number");    
             return;
         }
-        String name = String.valueOf(model.getValueAt(index, 0));
+        
+        
+        String route = String.valueOf(model.getValueAt(index, 0));
         String company = String.valueOf(model.getValueAt(index, 1));
-//        String depAirport = String.valueOf(model.getValueAt(index, 2));
-//        String depTime = String.valueOf(model.getValueAt(index, 3));
-//        String arrAirport = String.valueOf(model.getValueAt(index, 4));
-//        String arrTime = String.valueOf(model.getValueAt(index, 5));
-//        String firstPrice = String.valueOf(model.getValueAt(index, 6));
-//        String busiPrice = String.valueOf(model.getValueAt(index, 7));
-//        String ecoPrice = String.valueOf(model.getValueAt(index, 8));
-        for(AirlineCompany air:companyList){
-            if(air.getName().equals(company)){
-                for(Route route:air.getRoute()){
-                    if(route.getRouteName().equals(name)){
-                        bookRoute = route;
-                        bookCompany = air;
-                        break;
-                    }
-                }
-            }
-        }
-        Airplane plane = bookRoute.getAirplane();
-        int price=0;
-        if(airclass.equals("First")){
-            if(quantity>plane.getFirstCapacity()){
-                JOptionPane.showMessageDialog(this, "Ticket quantity is larger than capacity");    
-                return;
-            }
-            price = quantity*bookRoute.getFirstPrice();
-        }
-        else if(airclass.equals("Business")){
-            if(quantity>plane.getBusinessCapacity()){
-                JOptionPane.showMessageDialog(this, "Ticket quantity is larger than capacity");    
-                return;
-            }
-            price = quantity*bookRoute.getBusinessPrice();
-        }
-        else{
-            if(quantity>plane.getEcoCapacity()){
-                JOptionPane.showMessageDialog(this, "Ticket quantity is larger than capacity");    
-                return;
-            }
-            price = quantity*bookRoute.getEcoPrice();
-        }
-        
-        //Route route, String id,int price, Customer passenger, String flightClass, int count, String company, Date date
-        try{
-            Date flightDate = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-            bookFlight = new FlightReservation(bookRoute,generateReservationId(),price,customer,airclass,quantity,bookCompany.getName(),flightDate);
-        
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Invalid date format");  
-            return;
-        }
+        String depAir = String.valueOf(model.getValueAt(index, 2));
+        String depTerminal = String.valueOf(model.getValueAt(index, 3));
+        String depTime = String.valueOf(model.getValueAt(index, 4));
+        String arrAir = String.valueOf(model.getValueAt(index, 5));
+        String arrTerminal = String.valueOf(model.getValueAt(index, 6));
+        String arrTime = String.valueOf(model.getValueAt(index, 7));
+        int price;
+        if(airclass.equals("First Class"))
+            price = Integer.parseInt(String.valueOf(model.getValueAt(index, 8)));
+        else if(airclass.equals("Business Class"))
+            price = Integer.parseInt(String.valueOf(model.getValueAt(index, 9)));
+        else
+            price = Integer.parseInt(String.valueOf(model.getValueAt(index, 10)));
         
         
-        lblDate.setText(date);
-        lblCompany.setText(bookFlight.getCompany());
-        lblDepAirport.setText(bookRoute.getDepartureAirport().getName());
-        lblDepTerminal.setText(bookRoute.getDepatureTerminal());
-        lblDepTime.setText(bookRoute.getDepartureTime());
-        lblArrAirport.setText(bookRoute.getFallAirport().getName());
-        lblArrTerminal.setText(bookRoute.getFallTerminal());
-        lblArrTime.setText(bookRoute.getFallTime());
+        fr = new FlightReservation(route,customer.getPassport(),generateReservationId(),price,customer.getName(),airclass,seat,company,date);
+        
+        lblDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(date));
+        lblCompany.setText(company);
+        lblDepAirport.setText(depAir);
+        lblDepTerminal.setText(depTerminal);
+        lblDepTime.setText(depTime);
+        lblArrAirport.setText(arrAir);
+        lblArrTerminal.setText(arrTerminal);
+        lblArrTime.setText(arrTime);
         lblClass.setText(airclass);
-        lblQuantity.setText(String.valueOf(quantity));
+        lblSeat.setText(seat);
         lblPrice.setText(String.valueOf(price));
         BookConfirm.setVisible(true);
     }//GEN-LAST:event_btnSearch1ActionPerformed
 
     public String generateReservationId(){
-        //String id = RandomStringUtils.randomAlphanumeric(8);
+        String id = RandomStringUtils.randomAlphanumeric(8);
         
         //增加判断重复
+        try{
+            while(true){
+                Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+                String query = "SELECT * FROM flightreservation WHERE reservationid = '" + id+"'";
+                Statement search = (Statement) con.createStatement();
+                ResultSet rs = search.executeQuery(query);
+                while(rs.next());
+                if(rs.getRow()==1)
+                    id = RandomStringUtils.randomAlphanumeric(8);
+                else
+                    break;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         
-        //return id;
-        return "eef";
+        
+        return id;
     }
     
     
-    private void txtQuantityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyTyped
+    private void txtSeatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeatKeyTyped
         // TODO add your handling code here:
         char ch = evt.getKeyChar();
         if(ch>'9'||ch<'0')
             evt.consume();
-    }//GEN-LAST:event_txtQuantityKeyTyped
+    }//GEN-LAST:event_txtSeatKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -707,6 +701,7 @@ public class BookFlightUi extends javax.swing.JPanel {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch1;
     private javax.swing.JButton canceljbn;
+    private com.toedter.calendar.JDateChooser cbDate;
     private javax.swing.JComboBox<String> chooseClass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -735,14 +730,13 @@ public class BookFlightUi extends javax.swing.JPanel {
     private javax.swing.JLabel lblId14;
     private javax.swing.JLabel lblId16;
     private javax.swing.JLabel lblPrice;
-    private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblSearchContent;
+    private javax.swing.JLabel lblSeat;
     private javax.swing.JButton okjbn;
     private javax.swing.JComboBox<String> searchVariable;
     private javax.swing.JTable tblReservation;
-    private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtSeat;
     // End of variables declaration//GEN-END:variables
 
 

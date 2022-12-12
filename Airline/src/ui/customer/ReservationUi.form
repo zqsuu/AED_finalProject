@@ -102,24 +102,23 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblId13" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="lblId9" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="lblId6" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="lblId10" min="-2" pref="98" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="lblId10" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtClass" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                       <Component id="lblId12" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtPrice" min="-2" pref="130" max="-2" attributes="0"/>
                                       <EmptySpace pref="45" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblId13" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <Component id="lblId9" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <Component id="lblId6" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtDate" pref="135" max="32767" attributes="0"/>
                                           <Component id="txtArrAirport" alignment="1" max="32767" attributes="0"/>
@@ -165,7 +164,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtCompany" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                           <Component id="txtArrTime" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="txtQuantity" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="txtSeat" min="-2" pref="130" max="-2" attributes="0"/>
                           <Component id="txtDepTime" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
@@ -216,10 +215,10 @@
                           <Component id="lblId9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDepAirport" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtArrAirport" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblId6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtArrAirport" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -231,46 +230,45 @@
                               <Component id="lblId8" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblId11" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtArrTerminal" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtArrTerminal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtArrTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="txtDepTime" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblId18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtArrTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblId10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtClass" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblId12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblId12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtSeat" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblId7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace pref="170" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -298,20 +296,26 @@
         <Component class="javax.swing.JTable" name="tblReservation">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="4">
+              <Table columnCount="10" rowCount="4">
                 <Column editable="false" title="RESERVATIONID" type="java.lang.String"/>
+                <Column editable="true" title="ROUTE" type="java.lang.Object"/>
                 <Column editable="false" title="DATE" type="java.lang.String"/>
                 <Column editable="false" title="STATE" type="java.lang.String"/>
                 <Column editable="false" title="COMPANY" type="java.lang.String"/>
                 <Column editable="false" title="DEPARTURE" type="java.lang.String"/>
                 <Column editable="false" title="ARRIVAL" type="java.lang.String"/>
                 <Column editable="false" title="CLASS" type="java.lang.String"/>
-                <Column editable="false" title="QUANTITY" type="java.lang.Integer"/>
+                <Column editable="false" title="SEAT" type="java.lang.String"/>
                 <Column editable="false" title="PRICE" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -393,7 +397,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="QUANTITY"/>
+        <Property name="text" type="java.lang.String" value="SEAT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblId8">
@@ -483,8 +487,12 @@
     <Component class="javax.swing.JComboBox" name="searchVariable">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="&lt;choose a company&gt;"/>
+          <StringArray count="5">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="ReservationId"/>
+            <StringItem index="2" value="Company"/>
+            <StringItem index="3" value="State"/>
+            <StringItem index="4" value="Class"/>
           </StringArray>
         </Property>
       </Properties>
@@ -637,12 +645,12 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtClassKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtQuantity">
+    <Component class="javax.swing.JTextField" name="txtSeat">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQuantityKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSeatKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnClear">

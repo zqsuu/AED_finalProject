@@ -8,7 +8,6 @@ import model.Airport;
 import ui.AirCompany.ComJF;
 import ui.Airplane.ManufacturerJF;
 import ui.Airport.AirportJF;
-import ui.Customer.CustomerJF;
 import ui.airline.LogIn;
 
 /**

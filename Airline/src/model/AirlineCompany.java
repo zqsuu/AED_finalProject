@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -28,13 +31,28 @@ public class AirlineCompany {
         this.airplane = new ArrayList<Airplane>();
         this.employee = new ArrayList<Employee>();
         this.route = new ArrayList<Route>();
+        this.order = new ArrayList<FlightReservation>();
         arrange = new ArrayList<EmployeeArrange>();
     }
 
     public AirlineCompany() {
+        this.airplane = new ArrayList<Airplane>();
+        this.employee = new ArrayList<Employee>();
         this.route = new ArrayList<Route>();
+        this.order = new ArrayList<FlightReservation>();
+        arrange = new ArrayList<EmployeeArrange>();
     }
 
+    public ArrayList<FlightReservation> getOrder() {
+        return order;
+    }
+
+    public ArrayList<EmployeeArrange> getArrange() {
+        return arrange;
+    }
+
+    
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -119,39 +137,7 @@ public class AirlineCompany {
         employee.remove(e);
     }
 
-    public int companyIncome() {
-        int income = 0;
-        ArrayList<Route> r = new ArrayList<Route>();
-        for (FlightReservation f : order) {
-            income += f.getPrice();
-            boolean isCalculated = false;
-            for (Route rou : r) {
-                if (f.getRoute() == rou) {
-                    isCalculated = true;
-                    break;
-                }
-            }
-            if (!isCalculated) {
-                income -= f.getRoute().getAirplane().getFuelConsumption() * f.getRoute().getFlytime();
-                r.add(f.getRoute());
-            }
-        }
-        for (Airplane air : airplane) {
-            income -= air.getPrice();
-        }
-        return income;
-    }
-
-    public int routeIncome(Route r) {
-        int income = 0;
-        for (FlightReservation f : order) {
-            if (f.getRoute() == r) {
-                income += f.getPrice();
-            }
-        }
-        income -= r.getAirplane().getFuelConsumption() * r.getFlytime();
-        return income;
-    }
+   
 
     public void addArrange(EmployeeArrange ea) {
         arrange.add(ea);
@@ -160,55 +146,17 @@ public class AirlineCompany {
     public void removeArrange(EmployeeArrange ea) {
         arrange.remove(ea);
     }
-
-//    String query = "INSERT into featuredfilms_INFO (movieId, genres)" + "VALUES (?, ?)";
-//    PreparedStatement preparedStmt = conn.prepareStatement(query);
-//
-//    preparedStmt.setString (
-//    1, ID);
-//    for (String realGenre : genre
-//
-//    
-//        ) {
-//    preparedStmt.setString(2, realGenre);
-//        preparedStmt.executeUpdate();
-//}
-    
-//        try {
-//  connection con
-//        .setAutoCommit(false);
-//        PreparedStatement prepStmt = con.prepareStatement(
-//                "insert into product(code,name,price,available) values (?,?,?,?");
-//        Iterator<Product> it = li.iterator();
-//        while (it.hasNext()) {
-//            Product p = it.next();
-//            prepStmt.setString(1, p.getCode());
-//            prepStmt.setString(2, p.getCode());
-//            prepStmt.setInt(3, p.getPrice());
-//            prepStmt.setBoolean(4, p.isAvailable());
-//            prepStmt.addBatch();
-//
-//        }
-//        int[] numUpdates = prepStmt.executeBatch();
-//        for (int i = 0; i < numUpdates.length; i++) {
-//            if (numUpdates[i] == -2) {
-//                System.out.println("Execution " + i
-//                        + ": unknown number of rows updated");
-//            } else {
-//                System.out.println("Execution " + i
-//                        + "successful: " + numUpdates[i] + " rows updated");
-//            }
-//        }
-//        con.commit();
-//    }
-//    catch(BatchUpdateException b
-
-//
-//) {
-//  // process BatchUpdateException
-//} 
-    
-    
-    
+ 
+    public void updateDB(){
+        try{
+            
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            Statement add = (Statement) con.createStatement();    
+            String query = "UPDATE airlinecompany SET name = '" + name +"' ,password='"+password+ "'";
+            add.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
 }

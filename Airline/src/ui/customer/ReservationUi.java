@@ -2,10 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Customer;
+package ui.customer;
 
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,20 +36,31 @@ public class ReservationUi extends javax.swing.JPanel {
      */
     Customer customer;
     
+    Connection con;
+    Statement st;
+    
     public ReservationUi(Customer customer) {
         initComponents();
         
         this.customer = customer;
+        
+        RefundConfirm.setSize(400,200);
+        
+        try{
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            
+            populateTable();
+        
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }  
         populateTable();
         
         populateDetail();
         txtSearch.setText("");
         
-        searchVariable.addItem("ReservationId");
-        searchVariable.addItem("Company");
-        searchVariable.addItem("State");
-        searchVariable.addItem("Class");
-        searchVariable.addItem("Quantity");
         
     }
 
@@ -78,7 +93,7 @@ public class ReservationUi extends javax.swing.JPanel {
         lblId13 = new javax.swing.JLabel();
         btnRefund = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        searchVariable = new javax.swing.JComboBox<String>();
+        searchVariable = new javax.swing.JComboBox<>();
         lblId16 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
         txtCompany = new javax.swing.JTextField();
@@ -94,7 +109,7 @@ public class ReservationUi extends javax.swing.JPanel {
         txtDepTime = new javax.swing.JTextField();
         txtArrTime = new javax.swing.JTextField();
         txtClass = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
+        txtSeat = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
@@ -155,20 +170,20 @@ public class ReservationUi extends javax.swing.JPanel {
 
         tblReservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "RESERVATIONID", "DATE", "STATE", "COMPANY", "DEPARTURE", "ARRIVAL", "CLASS", "QUANTITY", "PRICE"
+                "RESERVATIONID", "ROUTE", "DATE", "STATE", "COMPANY", "DEPARTURE", "ARRIVAL", "CLASS", "SEAT", "PRICE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -206,7 +221,7 @@ public class ReservationUi extends javax.swing.JPanel {
 
         lblId7.setForeground(new java.awt.Color(255, 255, 255));
         lblId7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId7.setText("QUANTITY");
+        lblId7.setText("SEAT");
 
         lblId8.setForeground(new java.awt.Color(255, 255, 255));
         lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -255,7 +270,7 @@ public class ReservationUi extends javax.swing.JPanel {
             }
         });
 
-        searchVariable.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "<choose a company>" }));
+        searchVariable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "ReservationId", "Company", "State", "Class" }));
 
         lblId16.setForeground(new java.awt.Color(255, 255, 255));
         lblId16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -427,10 +442,10 @@ public class ReservationUi extends javax.swing.JPanel {
             }
         });
 
-        txtQuantity.setEditable(false);
-        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSeat.setEditable(false);
+        txtSeat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtQuantityKeyPressed(evt);
+                txtSeatKeyPressed(evt);
             }
         });
 
@@ -455,22 +470,21 @@ public class ReservationUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(280, 280, 280)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblId13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(38, 38, 38)
+                                        .addGap(32, 32, 32)
                                         .addComponent(lblId12, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblId13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblId6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                                             .addComponent(txtArrAirport, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -506,7 +520,7 @@ public class ReservationUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtArrTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSearch)
@@ -546,10 +560,10 @@ public class ReservationUi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId9)
                             .addComponent(txtDepAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtArrAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId6, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(lblId6)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,34 +571,33 @@ public class ReservationUi extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtDepTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblId8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblId11)
-                            .addComponent(txtArrTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtArrTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblId18)
+                                .addComponent(txtArrTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId18)
-                            .addComponent(txtArrTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId10)
-                            .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId10)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId12)
-                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId12)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId7)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(179, Short.MAX_VALUE))
+                            .addComponent(txtSeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId7))))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -592,19 +605,40 @@ public class ReservationUi extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblReservation.getModel();
         model.setRowCount(0);
         
-        for(FlightReservation r : customer.getReservation()){
-            Object[] row = new Object[9];
-            row[0] = r.getId();
-            row[1] = r.getDate();
-            row[2] = r.getState();
-            row[3] = r.getCompany();
-            row[4] = r.getRoute().getDepartureAirport().getName();
-            row[5] = r.getRoute().getFallAirport().getName();
-            row[6] = r.getClass();
-            row[7] = r.getCount();
-            row[8] = r.getPrice();
-            model.addRow(row);   
-        }
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.flightreservation");
+            while(rs.next()){
+                if(rs.getString("passengername").equals(customer.getName())){
+                    Object[] row = new Object[10];
+                    row[0] = rs.getString("reservationid");
+                    row[1] = rs.getString("route");
+                    row[2] = rs.getString("date");
+                    row[3] = rs.getString("state");
+                    row[4] = rs.getString("company");
+                    row[7] = rs.getString("class");
+                    row[8] = rs.getString("seat");
+                    row[9] = rs.getInt("price");
+
+                    model.addRow(row);   
+                }
+                
+            }
+            ResultSet route;
+            for(int i=0;i<model.getRowCount();i++){
+                route = st.executeQuery("Select * from airlinedb1.route");
+                while(route.next()){
+                    if(route.getString("routename").equals(String.valueOf(model.getValueAt(i, 1)))){
+                        model.setValueAt(route.getString("departureairport"), i, 5);
+                        model.setValueAt(route.getString("fallairport"), i, 6);
+                        route.close();
+                        break;
+                    }
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }      
     }
     
     public void populateDetail(){
@@ -621,37 +655,55 @@ public class ReservationUi extends javax.swing.JPanel {
             txtArrTerminal.setText("");
             txtArrTime.setText("");
             txtPrice.setText("");
-            txtQuantity.setText("");
+            txtSeat.setText("");
             txtClass.setText("");
         }
         else{
-            Route r=null;
-            String state = String.valueOf(model.getValueAt(index, 2));
-            String company = String.valueOf(model.getValueAt(index, 3));
-            String depAirport = String.valueOf(model.getValueAt(index, 4));
-            String arrAirport = String.valueOf(model.getValueAt(index, 5));
-            String airclass = String.valueOf(model.getValueAt(index, 6));
-            int price = Integer.parseInt(String.valueOf(model.getValueAt(index, 8)));
-            int quantity = Integer.parseInt(String.valueOf(model.getValueAt(index, 7)));
+            String id = String.valueOf(model.getValueAt(index, 0));
+            String state = String.valueOf(model.getValueAt(index, 3));
+            String company = String.valueOf(model.getValueAt(index, 4));
+            String depAirport = String.valueOf(model.getValueAt(index, 5));
+            String arrAirport = String.valueOf(model.getValueAt(index, 6));
+            String airclass = String.valueOf(model.getValueAt(index, 7));
+            String seat = String.valueOf(model.getValueAt(index, 8));
+            String price = String.valueOf(model.getValueAt(index, 9));
+            
           
-            for(FlightReservation fr:customer.getReservation()){
-                if(fr.getId().equals(String.valueOf(model.getValueAt(index, 0)))){
-                    r = fr.getRoute();
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.flightreservation");
+            String name = "";
+            while(rs.next()){
+                if(rs.getString("reservationid").equals(id)){
+                    txtDate.setText(String.valueOf(model.getValueAt(index, 1)));
+                    txtCompany.setText(company);
+                    txtState.setText(state);
+                    txtDepAirport.setText(depAirport);
+                    txtArrAirport.setText(arrAirport);
+                    txtPrice.setText(price);
+                    txtSeat.setText(seat);
+                    txtClass.setText(airclass);
+                    name = rs.getString("route");
+                    
+                } 
+            }
+            rs.close();
+            ResultSet route = st.executeQuery("Select * from airlinedb1.route");
+            while(route.next()){
+                if(route.getString("routename").equals(name)){
+                    txtDepTerminal.setText(route.getString("departureterminal"));
+                    txtDepTime.setText(route.getString("departuretime"));
+                    txtArrTerminal.setText(route.getString("fallterminal"));
+                    txtArrTime.setText(route.getString("falltime"));
                     break;
                 }
             }
-            txtDate.setText(String.valueOf(model.getValueAt(index, 1)));
-            txtCompany.setText(company);
-            txtState.setText(state);
-            txtDepAirport.setText(depAirport);
-            txtDepTerminal.setText(r.getDepatureTerminal());
-            txtDepTime.setText(r.getDepartureTime());
-            txtArrAirport.setText(arrAirport);
-            txtArrTerminal.setText(r.getFallTerminal());
-            txtArrTime.setText(r.getFallTime());
-            txtPrice.setText(String.valueOf(model.getValueAt(index, 8)));
-            txtQuantity.setText(String.valueOf(model.getValueAt(index, 7)));
-            txtClass.setText(airclass);
+            route.next();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }      
+            
         }
     }
     
@@ -666,11 +718,7 @@ public class ReservationUi extends javax.swing.JPanel {
 
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
         // TODO add your handling code here:
-        //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblReservation.getModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblReservation.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+
     }//GEN-LAST:event_txtSearchKeyPressed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -690,7 +738,7 @@ public class ReservationUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row");    
             return;
         }
-        if(!String.valueOf(tblModel.getValueAt(reservationId, 1)).equals("purchased")){
+        if(!String.valueOf(tblModel.getValueAt(reservationId, 3)).equals("purchased")){
             JOptionPane.showMessageDialog(this, "Selected reservation are not refundable");  
             return;
         }
@@ -706,45 +754,55 @@ public class ReservationUi extends javax.swing.JPanel {
         if(search.isEmpty())
             return;
         boolean choose = false;
-        for(FlightReservation r:customer.getReservation()){
-            choose = false;
-            if(variable.equals("Company")&&r.getCompany().equals(search))
-                choose = true;
-            else if(variable.equals("ReservationId")&&r.getId().equals(search))
-                choose = true;
-            else if(variable.equals("Class")&&r.getClass().equals(search))
-                choose = true;
-            else if(variable.equals("Quantity")&&String.valueOf(r.getCount()).equals(search))
-                choose = true;
-            else if(variable.equals("State")&&r.getState().equals(search))
-                choose = true;
-            if(choose){
-                Object[] row = new Object[9];
-                row[0] = r.getId();
-                row[1] = r.getDate();
-                row[2] = r.getState();
-                row[3] = r.getCompany();
-                row[4] = r.getRoute().getDepartureAirport().getName();
-                row[5] = r.getRoute().getFallAirport().getName();
-                row[6] = r.getClass();
-                row[7] = r.getCount();
-                row[8] = r.getPrice();
-                model.addRow(row);   
+        if(variable.isEmpty())
+            return;
+        
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.flightreservation");
+            
+            while(rs.next()){
+                choose = false;
+                if(variable.equals("Company")&&rs.getString("company").equals(search))
+                    choose = true;
+                else if(variable.equals("ReservationId")&&rs.getString("reservationid").equals(search))
+                    choose = true;
+                else if(variable.equals("State")&&rs.getString("state").equals(search))
+                    choose = true;
+                else if(variable.equals("Class")&&rs.getString("class").equals(search))
+                    choose = true;
+                if(choose){
+                    Object[] row = new Object[10];
+                    row[0] = rs.getString("reservationid");
+                    row[1] = rs.getString("route");
+                    row[2] = rs.getDate("date");
+                    row[3] = rs.getString("state");
+                    row[4] = rs.getString("company");
+                    row[7] = rs.getString("class");
+                    row[8] = rs.getString("seat");
+                    row[9] = rs.getInt("price");           
+                    model.addRow(row);   
+                }
             }
-        }
+            rs.close();
+            ResultSet route;
+            for(int i=0;i<model.getRowCount();i++){
+                route = st.executeQuery("Select * from airlinedb1.route");
+                while(route.next()){
+                    if(route.getString("routename").equals(String.valueOf(model.getValueAt(i, 1)))){
+                        model.setValueAt(route.getString("departureairport"), i, 5);
+                        model.setValueAt(route.getString("fallairport"), i, 6);
+                        route.close();
+                        break;
+                    }
+                }
+            }
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }   
+        
     }//GEN-LAST:event_btnSearchActionPerformed
-
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
-    private void txtDateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateKeyPressed
-
-    private void txtDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateKeyReleased
 
     private void txtCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCompanyActionPerformed
         // TODO add your handling code here:
@@ -854,25 +912,33 @@ public class ReservationUi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClassKeyReleased
 
-    private void txtQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyPressed
+    private void txtSeatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeatKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantityKeyPressed
+    }//GEN-LAST:event_txtSeatKeyPressed
 
     private void okjbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okjbnActionPerformed
         // TODO add your handling code here:
         
         DefaultTableModel tblModel = (DefaultTableModel) tblReservation.getModel();
         int index = tblReservation.getSelectedRow();
-        String id = String.valueOf(tblModel.getValueAt(index, 0));
-        for(FlightReservation fr:customer.getReservation()){
-            if(fr.getId().equals(id)){
-                fr.setState("cancelled");
-                fr.updateDB();
-                break;
-            }
+        if(index<0){
+            JOptionPane.showMessageDialog(this,"Please select a row");
+            return;
         }
+        String id = String.valueOf(tblModel.getValueAt(index, 0));
+        
+        try{
+            String query = "UPDATE airlinedb1.flightreservation SET state = 'refund' WHERE reservationid = '" + id+"'";
+            st.executeUpdate(query);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }  
+        
 
         JOptionPane.showMessageDialog(this,"Refund Successfully");
+        populateTable();
+        populateDetail();
         RefundConfirm.dispose();
     }//GEN-LAST:event_okjbnActionPerformed
 
@@ -888,6 +954,18 @@ public class ReservationUi extends javax.swing.JPanel {
         populateDetail();
         txtSearch.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateKeyReleased
+
+    private void txtDateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateKeyPressed
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -926,8 +1004,8 @@ public class ReservationUi extends javax.swing.JPanel {
     private javax.swing.JTextField txtDepTerminal;
     private javax.swing.JTextField txtDepTime;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtSeat;
     private javax.swing.JTextField txtState;
     // End of variables declaration//GEN-END:variables
 

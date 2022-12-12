@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+//
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
-import net.proteanit.sql.DbUtils;
+
 
 /**
  *
@@ -25,6 +28,7 @@ public class Customer {
     String passport;
     String email;
     ArrayList<FlightReservation> reservation;
+    ArrayList<CustomerService> service;
 
     public Customer(String id, String password, String name, String gender, int age, String passport, String email) {
         this.id = id;
@@ -35,10 +39,31 @@ public class Customer {
         this.passport = passport;
         this.email = email;
         reservation = new ArrayList<FlightReservation>();
+        service = new ArrayList<CustomerService>();
     }
 
     public Customer() {
+        reservation = new ArrayList<FlightReservation>();
+        service = new ArrayList<CustomerService>();
     }
+
+    public void addService(CustomerService c){
+        service.add(c);
+    }
+    
+    public void removeService(CustomerService c){
+        service.remove(c);
+    }
+    
+    public ArrayList<CustomerService> getService() {
+        return service;
+    }
+
+    public void setService(ArrayList<CustomerService> service) {
+        this.service = service;
+    }
+    
+    
     
 
     public String getId() {
@@ -112,7 +137,18 @@ public class Customer {
     }
 
     public void updateDB() {
+        try{
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            String query = "UPDATE airlinedb1.customer SET password = '" + password + "' ,name = '" + name + "',email = '" + email + "',gender = '" + gender + "',age = '" + age + "'WHERE id = '" + id+"'";
+            Statement add = (Statement) con.createStatement();
+            add.executeUpdate(query);
 
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
 
 

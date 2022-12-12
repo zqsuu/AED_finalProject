@@ -21,6 +21,8 @@ public class Airport {
     ArrayList<Route> routeRequest;
 
     public Airport() {
+        route = new ArrayList<Route>();
+        routeRequest = new ArrayList<Route>();
     }
 
     

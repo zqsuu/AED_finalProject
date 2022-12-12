@@ -27,7 +27,50 @@ public class Route {
     int ecoPrice;
     AirlineCompany company;
     
-    
+    public Route(){
+        employeeList = new ArrayList<Employee>();
+        airplane = null;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
+    }
+
+    public void setDepartureAirport(Airport departureAirport) {
+        this.departureAirport = departureAirport;
+    }
+
+    public void setFallAirport(Airport fallAirport) {
+        this.fallAirport = fallAirport;
+    }
+
+    public void setFlytime(int flytime) {
+        this.flytime = flytime;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void setFallTime(String fallTime) {
+        this.fallTime = fallTime;
+    }
+
+    public void setEmployeeList(ArrayList<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    public void setDepatureTerminal(String depatureTerminal) {
+        this.depatureTerminal = depatureTerminal;
+    }
+
+    public void setFallTerminal(String fallTerminal) {
+        this.fallTerminal = fallTerminal;
+    }
+
+    public void setBaggage(String baggage) {
+        this.baggage = baggage;
+    }
 
     public Route(String routeName, AirlineCompany company,Airport departureAirport, Airport fallAirport, Airplane airplane, int flytime, String departureTime, String fallTime, ArrayList<Employee> employeeList, 
             String depatureTerminal, String fallTerminal, String baggage, int firstPrice, int businessPrice, int ecoPrice) {
@@ -48,6 +91,12 @@ public class Route {
         this.ecoPrice = ecoPrice;
         
     }
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
+    
+    
 
     public String getRouteName() {
         return routeName;
@@ -126,7 +175,9 @@ public class Route {
     }
     
     
-
+    public void updateDB(){
+        
+    }
     
     
     

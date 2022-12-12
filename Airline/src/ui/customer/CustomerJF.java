@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.Customer;
+package ui.customer;
 
 import ui.Airport.*;
 import model.Airport;
 import model.AirportList;
 import model.Customer;
 import model.CustomerList;
-import role.systemAdmin.SystemAdminJF;
 import ui.airline.LogIn;
 
 /**
@@ -24,14 +23,10 @@ public class CustomerJF extends javax.swing.JFrame {
     /**
      * Creates new form AirportJF
      */
-    public CustomerJF() {
-        initComponents();
-        this.login = login;
-    }
     public CustomerJF(LogIn login,Customer cus) {
         initComponents();
         this.login = login;
-        this.customer = customer;
+        this.customer = cus;
     }
 
     /**
@@ -289,13 +284,9 @@ public class CustomerJF extends javax.swing.JFrame {
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        tabReservation.setVisible(true);
-        tabService.setVisible(true);
-        tabCustomer.setVisible(true);
-        //        tabEncounter.setVisible(true);
-        tabLogout.setVisible(true);
-        //        DoctorProfile doctorProfile = new DoctorProfile(dlist);
-        //        sysSplit.setRightComponent(doctorProfile);
+ 
+        CustomerServiceUi service = new CustomerServiceUi(customer.getName(),customer.getPassport());
+        sysSplit.setRightComponent(service);
 
     }//GEN-LAST:event_tabServiceMouseClicked
 
@@ -309,8 +300,7 @@ public class CustomerJF extends javax.swing.JFrame {
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        LogIn login = new LogIn();
+        dispose();
         login.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
@@ -360,7 +350,6 @@ public class CustomerJF extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //String id,String password,String name,String gender,int age,String passport
-                
                 Customer cus = new Customer("cus","123","David","male",18,"China","dfg@163.com");
                 new CustomerJF(null,cus).setVisible(true);
             }

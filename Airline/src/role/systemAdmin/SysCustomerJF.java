@@ -4,13 +4,15 @@
  */
 package role.systemAdmin;
 
-import ui.Customer.*;
 import ui.Airport.*;
 import model.Airport;
 import model.AirportList;
 import model.Customer;
 import model.CustomerList;
 import ui.airline.LogIn;
+import ui.customer.BookFlightUi;
+import ui.customer.CustomerUi;
+import ui.customer.ReservationUi;
 
 /**
  *

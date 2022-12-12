@@ -13,9 +13,13 @@ public class AirportService {
     String time;
     String remark;
 
-    public AirportService(String name, String time) {
+    public AirportService(String name, String time,String remark) {
         this.name = name;
         this.time = time;
+        if(remark == null)
+            this.remark = "";
+        else
+            this.remark = remark;
     }
 
     public String getName() {
