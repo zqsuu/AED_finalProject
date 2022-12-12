@@ -4,8 +4,7 @@
  */
 package role.inCompany;
 
-import ui.AirCompany.RouteUi;
-import ui.AirCompany.RouteCrewUi;
+import ui.AirCompany.*;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
 import ui.airline.LogIn;
@@ -31,15 +30,12 @@ public class RouteManagerJF extends javax.swing.JFrame {
         this.login = login;
 
     }
+    
+    
     public RouteManagerJF(LogIn login,AirlineCompany air) {
         initComponents();
         this.login = login;
         airlineCompany = air;
-        //        if(routeList==null){
-//            routeList = new AirlineCompany();
-//        }else{
-//            this.routeList=routeList;
-//        }
         
     }
 
@@ -182,9 +178,9 @@ public class RouteManagerJF extends javax.swing.JFrame {
             .addGroup(sysMenuPanelLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(tabRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227)
+                .addGap(239, 239, 239)
                 .addComponent(tabRouteCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -248,21 +244,19 @@ public class RouteManagerJF extends javax.swing.JFrame {
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
 
-        RouteUi route = new RouteUi(routeList);
+        RouteUi route = new RouteUi(airlineCompany);
         sysSplit.setRightComponent(route);
 
     }//GEN-LAST:event_tabRouteMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
-        // TODO add your handling code here:
         this.setVisible(false);
-        LogIn login = new LogIn();
         login.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabRouteCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteCrewMouseClicked
-   
+        
         RouteCrewUi routeCrew = new RouteCrewUi();
         sysSplit.setRightComponent(routeCrew);
 
@@ -293,6 +287,18 @@ public class RouteManagerJF extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RouteManagerJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

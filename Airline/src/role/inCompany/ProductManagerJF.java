@@ -4,8 +4,9 @@
  */
 package role.inCompany;
 
-import ui.AirCompany.RouteUi;
+import ui.AirCompany.*;
 import model.AirlineCompany;
+import model.EmployeeArrangeList;
 import ui.airline.LogIn;
 
 /**
@@ -17,6 +18,7 @@ public class ProductManagerJF extends javax.swing.JFrame {
     AirlineCompany airplaneList;
     AirlineCompany employeeList;
     AirlineCompany airlineCompany;
+    EmployeeArrangeList employeeArrangeList;
     LogIn login;
     
 
@@ -28,15 +30,12 @@ public class ProductManagerJF extends javax.swing.JFrame {
         this.login = login;
 
     }
+    
+    
     public ProductManagerJF(LogIn login,AirlineCompany air) {
         initComponents();
         this.login = login;
         airlineCompany = air;
-        //        if(routeList==null){
-//            routeList = new AirlineCompany();
-//        }else{
-//            this.routeList=routeList;
-//        }
         
     }
 
@@ -58,6 +57,8 @@ public class ProductManagerJF extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         tabLogout = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        tabOrder = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,7 +118,7 @@ public class ProductManagerJF extends javax.swing.JFrame {
         tabIncomeLayout.setVerticalGroup(
             tabIncomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabIncomeLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -148,6 +149,32 @@ public class ProductManagerJF extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        tabOrder.setBackground(new java.awt.Color(255, 0, 0));
+        tabOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabOrderMouseClicked(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("ORDER");
+
+        javax.swing.GroupLayout tabOrderLayout = new javax.swing.GroupLayout(tabOrder);
+        tabOrder.setLayout(tabOrderLayout);
+        tabOrderLayout.setHorizontalGroup(
+            tabOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        tabOrderLayout.setVerticalGroup(
+            tabOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabOrderLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
         javax.swing.GroupLayout sysMenuPanelLayout = new javax.swing.GroupLayout(sysMenuPanel);
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
@@ -155,6 +182,7 @@ public class ProductManagerJF extends javax.swing.JFrame {
             .addComponent(tabRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +191,9 @@ public class ProductManagerJF extends javax.swing.JFrame {
                 .addComponent(tabRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(146, 146, 146)
                 .addComponent(tabIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                .addGap(152, 152, 152)
+                .addComponent(tabOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -227,26 +257,29 @@ public class ProductManagerJF extends javax.swing.JFrame {
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
 
-        RouteUi route = new RouteUi(routeList);
+        
+        RouteUi route = new RouteUi(airlineCompany);
         sysSplit.setRightComponent(route);
 
     }//GEN-LAST:event_tabRouteMouseClicked
 
     private void tabIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIncomeMouseClicked
 
-        
-        //        EncounterManagement encounterManagement = new EncounterManagement(enList);
-        //        sysSplit.setRightComponent(encounterManagement);
+        IncomeUi income = new IncomeUi(airlineCompany);
+        sysSplit.setRightComponent(income);
 
     }//GEN-LAST:event_tabIncomeMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
-        // TODO add your handling code here:
         this.setVisible(false);
-        LogIn login = new LogIn();
         login.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
+
+    private void tabOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabOrderMouseClicked
+        OrderUi routeCrew = new OrderUi(airlineCompany);
+        sysSplit.setRightComponent(routeCrew);
+    }//GEN-LAST:event_tabOrderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -281,6 +314,14 @@ public class ProductManagerJF extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -292,6 +333,7 @@ public class ProductManagerJF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel;
@@ -300,6 +342,7 @@ public class ProductManagerJF extends javax.swing.JFrame {
     private javax.swing.JSplitPane sysSplit;
     private javax.swing.JPanel tabIncome;
     private javax.swing.JPanel tabLogout;
+    private javax.swing.JPanel tabOrder;
     private javax.swing.JPanel tabRoute;
     // End of variables declaration//GEN-END:variables
 }
