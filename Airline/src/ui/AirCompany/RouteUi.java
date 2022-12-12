@@ -4,8 +4,13 @@
  */
 package ui.AirCompany;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Statement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 import java.sql.*;
 import net.proteanit.sql.DbUtils;
 
@@ -14,6 +19,9 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.AirlineCompany;
+import model.Airport;
+import model.AirportList;
+import model.Route;
 
 /**
  *
@@ -24,16 +32,35 @@ public class RouteUi extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
-    AirlineCompany routeList;
+    AirlineCompany airlineCompany;
+    AirportList airportList;
+    
+    Connection con;
+    Statement st;
 
-    public RouteUi(AirlineCompany routeList) {
+    public RouteUi(AirlineCompany air) {
         initComponents();
-        displayRoute();
-        displayComList();
-        routeCount();
-        clear();
+        
+        airlineCompany = air;
+        
+        try{
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.airport");
+            while(rs.next()){
+                cbDep.addItem(rs.getString("name"));
+                cbArr.addItem(rs.getString("name"));
+            }
+            
+            populateTable();
+        
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }  
 
-        this.routeList = routeList;
+        
 
 //        populateTable();
     }
@@ -50,43 +77,34 @@ public class RouteUi extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        Appply = new javax.swing.JButton();
         lblId2 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRoute = new javax.swing.JTable();
-        txtSearch = new javax.swing.JTextField();
-        lblSearchContent = new javax.swing.JLabel();
         txtFlyTime = new javax.swing.JTextField();
-        lblId8 = new javax.swing.JLabel();
         lblId17 = new javax.swing.JLabel();
         txtDepTime = new javax.swing.JTextField();
         lblId18 = new javax.swing.JLabel();
         txtFallTime = new javax.swing.JTextField();
         lblId19 = new javax.swing.JLabel();
         txtRN = new javax.swing.JTextField();
-        btnClear = new javax.swing.JButton();
-        btnRetrieve = new javax.swing.JButton();
         lblId20 = new javax.swing.JLabel();
-        txtBp = new javax.swing.JTextField();
-        txtEp = new javax.swing.JTextField();
+        txtArrTer = new javax.swing.JTextField();
+        txtBaggage = new javax.swing.JTextField();
         lblId9 = new javax.swing.JLabel();
         lblId21 = new javax.swing.JLabel();
-        txtFp = new javax.swing.JTextField();
-        cbCompany = new javax.swing.JComboBox<>();
+        txtDepTer = new javax.swing.JTextField();
+        cbDep = new javax.swing.JComboBox<>();
+        cbArr = new javax.swing.JComboBox<>();
+        btnSave1 = new javax.swing.JButton();
         lblId22 = new javax.swing.JLabel();
-        lblId23 = new javax.swing.JLabel();
-        cbDepAirport = new javax.swing.JComboBox<>();
-        cbFallAirport = new javax.swing.JComboBox<>();
-        cbAirplaneType = new javax.swing.JComboBox<>();
-        cbDepTerminal = new javax.swing.JComboBox<>();
+        txtBp = new javax.swing.JTextField();
+        txtEp = new javax.swing.JTextField();
         lblId10 = new javax.swing.JLabel();
-        lblId11 = new javax.swing.JLabel();
-        cbBaggage = new javax.swing.JComboBox<>();
-        cbFallTerminal = new javax.swing.JComboBox<>();
-        lblId12 = new javax.swing.JLabel();
+        lblId23 = new javax.swing.JLabel();
+        txtFp = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -95,30 +113,11 @@ public class RouteUi extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Airline Route");
 
-        btnDelete.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(0, 0, 0));
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        Appply.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        Appply.setText("Apply");
+        Appply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(0, 0, 0));
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnSave.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(0, 0, 0));
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                AppplyActionPerformed(evt);
             }
         });
 
@@ -128,25 +127,28 @@ public class RouteUi extends javax.swing.JPanel {
 
         lblId1.setForeground(new java.awt.Color(255, 255, 255));
         lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId1.setText("FALL AIRPORT");
+        lblId1.setText("DESTINATION");
 
-        tblRoute.setForeground(new java.awt.Color(0, 0, 0));
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
+        lblId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId.setText("DEPARTURE");
+
         tblRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "key", "ROUTE NAME", "COMPANY", "DEP-AIRPORT", "FALL-AIRPORT", "DEP-TIME", "FALL-TIME", "FLY TIME", "AIPLANE TYPE", "FIRST PRICE", "BUSI-PRICE", "ECO-PRICE", "DEP-TERMINAL", "FALL-TERMINAL", "BAGGAGE"
+                "ROUTE NAME", "DEPARTURE", "DEPARTURE TIME", "DESTINATION", "FALL TIME", "FLY TIME", "AIPLANE TYPE", "FIRST PRICE", "BUSI-PRICE", "ECO-PRICE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,27 +166,11 @@ public class RouteUi extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblRoute);
 
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
+        txtFlyTime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFlyTimeKeyTyped(evt);
             }
         });
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSearchKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-
-        lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
-        lblSearchContent.setText("Search Content:");
-
-        lblId8.setForeground(new java.awt.Color(255, 255, 255));
-        lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId8.setText("AIRPLANE TYPE");
 
         lblId17.setForeground(new java.awt.Color(255, 255, 255));
         lblId17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -200,6 +186,12 @@ public class RouteUi extends javax.swing.JPanel {
         lblId18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId18.setText("FALL TIME");
 
+        txtFallTime.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFallTimeKeyTyped(evt);
+            }
+        });
+
         lblId19.setForeground(new java.awt.Color(255, 255, 255));
         lblId19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblId19.setText("ROUTE NAME");
@@ -210,35 +202,43 @@ public class RouteUi extends javax.swing.JPanel {
             }
         });
 
-        btnClear.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnClear.setForeground(new java.awt.Color(0, 0, 0));
-        btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-
-        btnRetrieve.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnRetrieve.setForeground(new java.awt.Color(0, 0, 0));
-        btnRetrieve.setText("Retrieve");
-        btnRetrieve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetrieveActionPerformed(evt);
-            }
-        });
-
         lblId20.setForeground(new java.awt.Color(255, 255, 255));
         lblId20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId20.setText("BUSINESS CLASS PRICE");
+        lblId20.setText("FALL TERMINAL");
 
         lblId9.setForeground(new java.awt.Color(255, 255, 255));
         lblId9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId9.setText("ECONOMY CLASS PRICE");
+        lblId9.setText("BAGGAGE");
 
         lblId21.setForeground(new java.awt.Color(255, 255, 255));
         lblId21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId21.setText("FIRST CLASS PRICE");
+        lblId21.setText("DEPARTURE TERMINAL");
+
+        txtDepTer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDepTerKeyPressed(evt);
+            }
+        });
+
+        btnSave1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        btnSave1.setText("Clear");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
+        lblId22.setForeground(new java.awt.Color(255, 255, 255));
+        lblId22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId22.setText("BUSINESS CLASS PRICE");
+
+        lblId10.setForeground(new java.awt.Color(255, 255, 255));
+        lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId10.setText("ECONOMY CLASS PRICE");
+
+        lblId23.setForeground(new java.awt.Color(255, 255, 255));
+        lblId23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId23.setText("FIRST CLASS PRICE");
 
         txtFp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -246,138 +246,92 @@ public class RouteUi extends javax.swing.JPanel {
             }
         });
 
-        cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a company>" }));
-
-        lblId22.setForeground(new java.awt.Color(255, 255, 255));
-        lblId22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId22.setText("COMPANY");
-
-        lblId23.setForeground(new java.awt.Color(255, 255, 255));
-        lblId23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId23.setText("DEPARTURE AIRPORT");
-
-        cbDepAirport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose an airport>" }));
-
-        cbFallAirport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose an airport>" }));
-
-        cbAirplaneType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a type>" }));
-
-        cbDepTerminal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a terminal>", "A", "B", "C" }));
-
-        lblId10.setForeground(new java.awt.Color(255, 255, 255));
-        lblId10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId10.setText("DEPARTURE TERMINAL");
-
-        lblId11.setForeground(new java.awt.Color(255, 255, 255));
-        lblId11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId11.setText("BAGGAGE");
-
-        cbBaggage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a baggage>", "A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" }));
-
-        cbFallTerminal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<choose a terminal>", "A", "B", "C" }));
-
-        lblId12.setForeground(new java.awt.Color(255, 255, 255));
-        lblId12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblId12.setText("FALL TERMINAL");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSave)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(btnDelete))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRetrieve)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnClear)))
-                                .addGap(30, 30, 30)
-                                .addComponent(btnUpdate)
-                                .addGap(156, 156, 156)
-                                .addComponent(lblSearchContent)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId19, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId23, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 58, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbDepAirport, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtRN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                    .addComponent(cbFallAirport, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbAirplaneType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId22, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbDep, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cbArr, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(lblId19, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(26, 26, 26)
+                                                        .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(lblId17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(74, 74, 74)))
+                                                .addGap(16, 16, 16)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblId20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblId21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 10, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblId18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(458, 458, 458)
+                                        .addComponent(Appply)
+                                        .addGap(128, 128, 128)
+                                        .addComponent(btnSave1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(lblId23, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(28, 28, 28)
+                                        .addComponent(txtFp, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblId22, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBaggage)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblId20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblId9, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblId21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblId10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtBp)
-                                    .addComponent(txtEp, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbDepTerminal, 0, 206, Short.MAX_VALUE)
-                                    .addComponent(txtFp))
-                                .addGap(161, 161, 161))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblId12, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbBaggage, 0, 206, Short.MAX_VALUE)
-                                    .addComponent(cbFallTerminal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtDepTer)
+                                        .addComponent(txtArrTer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 1, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -385,375 +339,164 @@ public class RouteUi extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnSave)
-                    .addComponent(lblSearchContent)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRetrieve)
-                    .addComponent(btnClear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId22))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId17))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId18)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtFp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId21))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtBp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId20))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblId9))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbDepTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblId10))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblId2)
-                                .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtFlyTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblId19)
+                                .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId19)
-                            .addComponent(txtRN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId23)
-                            .addComponent(cbDepAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblId1)
-                            .addComponent(cbFallAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDepTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblId8)
-                            .addComponent(cbAirplaneType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtArrTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId20)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFallTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId18))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbFallTerminal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtFp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId23)
+                    .addComponent(txtBp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId22)
+                    .addComponent(lblId10)
+                    .addComponent(txtEp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId11))
-                .addGap(41, 41, 41))
+                    .addComponent(Appply)
+                    .addComponent(btnSave1))
+                .addGap(64, 64, 64))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
-    Connection con = null;
-    Statement st = null, st1 = null;
-    ResultSet rs = null, rs1 = null, rsCompany = null, rsDepAirport = null, rsFallAirport = null, rsType = null;
-
-    int idkey = 0;
-    int key = 0;
     
-    private void routeCount() {
-        try {
-            st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idkey) from airlinedb1.route");
-            rs1.next();
-            idkey = rs1.getInt(1) + 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-    
-    private void displayComList() {
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rsCompany = st.executeQuery("Select * from airlinedb1.airlinecompany");
-            while (rsCompany.next()) {
-                cbCompany.addItem(rsCompany.getString("name"));
-            }
-            rsCompany.close();
-            
-            rsDepAirport = st.executeQuery("Select * from airlinedb1.airport");
-            while (rsDepAirport.next()) {
-                cbDepAirport.addItem(rsDepAirport.getString("name"));
-            }
-            rsDepAirport.close();
-            
-            rsFallAirport = st.executeQuery("Select * from airlinedb1.airport");
-            while (rsFallAirport.next()) {
-                cbFallAirport.addItem(rsFallAirport.getString("name"));
-            }
-            rsFallAirport.close();
-            
-            rsType = st.executeQuery("Select * from airlinedb1.airplane");
-            while (rsType.next()) {
-                cbAirplaneType.addItem(rsType.getString("type"));
-            }
-            rsType.close();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = tblRoute.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
-            return;
-        }
-
-        //Get tblList first
-        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
-        //delete row
-        if (tblRoute.getSelectedRowCount() == 1) {
-            //if single row is selected then delete
-//            tblModel.removeRow(tblRoute.getSelectedRow());
-            try {
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                String query = "delete from airlinedb1.route where idkey = " + key;
-                Statement add = (Statement) con.createStatement();
-                add.executeUpdate(query);
-                JOptionPane.showMessageDialog(this, "Route deleted successfully!");
-                displayRoute();
-                clear();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            JOptionPane.showMessageDialog(this, "This Route Deleted.");
-        } else {
-            if (tblRoute.getRowCount() == 0) {
-                //if table is empty then display message
-                JOptionPane.showMessageDialog(this, "Table is Empty!");
-            } else {
-                //if table is not empty but other than one row is selected
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Delete!");
-            }
-        }
-
-
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        //Get table Model1
-        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
-        key = Integer.parseInt(tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString());
-        if(cbDepAirport.getSelectedItem().equals(cbFallAirport.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(null, "Please Set Different Airports for Departure and Fall!");
-        } else if (key != 0) {
-            //If single row is selected then update
-
-            String routeName = txtRN.getText();
-            String company = cbCompany.getSelectedItem().toString();
-            String depAirport = cbDepAirport.getSelectedItem().toString();
-            String fallAirport = cbFallAirport.getSelectedItem().toString();
-            String departureTime = txtDepTime.getText();
-            String fallTime = txtFallTime.getText();
-            int flytime = Integer.parseInt(txtFlyTime.getText());
-            String type = cbAirplaneType.getSelectedItem().toString();
-            int Fp = Integer.parseInt(txtFp.getText());
-            int Bp = Integer.parseInt(txtBp.getText());
-            int Ep = Integer.parseInt(txtEp.getText());
-            String depterminal = cbDepTerminal.getSelectedItem().toString();
-            String fallterminal = cbFallTerminal.getSelectedItem().toString();
-            String baggage = cbBaggage.getSelectedItem().toString();
-            
-
-            try {
-                //ssl error
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1?autoReconnect=true&useSSL=false", "root", "Airline3306");
-                String query = "UPDATE route SET routename = '" + routeName + "'" + ",company = '" + company + "'" + ",departureairport = '" + depAirport + "'" + ",fallairport = '" + fallAirport + "'" + ",departuretime = '" + departureTime + "'" + ",falltime = '" + fallTime + "'" + ",flytime = '" + flytime + "'" + ",type = '" + type + "'"
-                         + ",firstprice = '" + Fp + "'" + ",businessprice = '" + Bp + "'" + ",economyprice = '" + Ep + "'" + ",departureterminal = '" + depterminal + "'" + ",fallterminal = '" + fallterminal + "'" + ",baggage = '" + baggage + "'"+ " WHERE idkey = " + key;
-                Statement add = (Statement) con.createStatement();
-                add.executeUpdate(query);
-                JOptionPane.showMessageDialog(this, "Route updated successfully!");
-                displayRoute();
-                clear();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            try{
-                if (tblRoute.getSelectedRow() == 0) {
-                //if table is empty.
-                JOptionPane.showMessageDialog(this, "Please Select a Route.");
-            } else {
-                //if multiple rows are selected.
-                JOptionPane.showMessageDialog(this, "Please Select Single Row for Update!");
-            }
-            } catch(Exception e){
-                e.printStackTrace();
-            }
-            
-        }
-
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        try {
-            int flytime = Integer.parseInt(txtFlyTime.getText());
-        } catch (NumberFormatException exe) {
-            JOptionPane.showMessageDialog(this, "Datatype of flytime should be int!");
-            return;
-        }
-
-        if (txtRN.getText().equals("")
-                || cbDepAirport.getSelectedItem().equals("<choose an airport>")
-                || cbCompany.getSelectedItem().equals("<choose a company>")
-                || cbFallAirport.getSelectedItem().equals("<choose an airport>")
-                || txtFlyTime.getText().equals("")
-                || txtDepTime.getText().equals("")
-                || txtFallTime.getText().equals("")
-                || cbAirplaneType.getSelectedItem().equals("<choose a type>")
-                || txtFp.getText().equals("")
-                || txtBp.getText().equals("")
-                || txtEp.getText().equals("")
-                || cbDepTerminal.getSelectedItem().equals("<choose a terminal>")
-                || cbFallTerminal.getSelectedItem().equals("<choose a terminal>")
-                || cbBaggage.getSelectedItem().equals("<choose a baggage>")) {
-            JOptionPane.showMessageDialog(null, "Please Set All Data!");
-        } else if(cbDepAirport.getSelectedItem().equals(cbFallAirport.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(null, "Please Set Different Airports for Departure and Fall!");
-        } else {
-            try {
-                routeCount();
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-
-                PreparedStatement add = con.prepareStatement("insert into route values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                add.setInt(1, idkey);
-                add.setString(2, txtRN.getText());
-                add.setString(3, cbCompany.getSelectedItem().toString());
-                add.setString(4, cbDepAirport.getSelectedItem().toString());
-                add.setString(5, cbFallAirport.getSelectedItem().toString());
-                add.setString(6, txtDepTime.getText());
-                add.setString(7, txtFallTime.getText());
-                add.setString(8, txtFlyTime.getText());
-                add.setString(9, cbAirplaneType.getSelectedItem().toString());
-                add.setString(10, txtFp.getText());
-                add.setString(11, txtBp.getText());
-                add.setString(12, txtEp.getText());
-                add.setString(13, cbDepTerminal.getSelectedItem().toString());
-                add.setString(14, cbFallTerminal.getSelectedItem().toString());
-                add.setString(15, cbBaggage.getSelectedItem().toString());
+    private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
+        model.setRowCount(0);
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.route");
+            while(rs.next()){
+                if(rs.getString("company").equals(airlineCompany.getName())){
+                    Object[] row = new Object[10];
+                    row[0] = rs.getString("routename");
+                    row[1] = rs.getString("departureairport");
+                    row[2] = rs.getString("departuretime");
+                    row[3] = rs.getString("fallairport");
+                    row[4] = rs.getString("falltime");
+                    row[5] = rs.getString("flytime");
+                    if(rs.getString("type")==null||rs.getString("type").isEmpty())
+                        row[6] = "";
+                    else
+                        row[6] = rs.getString("type");
+                    row[7] = rs.getInt("firstprice");
+                    row[8] = rs.getInt("businessprice");
+                    row[9] = rs.getInt("economyprice");
+                    model.addRow(row);  
+                    
+                }
                 
-
-                int row = add.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Route saved successfully!");
-                con.close();
-                displayRoute();
-                clear();
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-        }
-
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void displayRoute() {
-
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.route");
-            tblRoute.setModel(DbUtils.resultSetToTableModel(rs));
-
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
-        }
+ 
+        }      
+        
     }
+    
+    
+
+
+    private void AppplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AppplyActionPerformed
+        // TODO add your handling code here:
+        String route = txtRN.getText();
+        String depAir = String.valueOf(cbDep.getSelectedItem());
+        String arrAir = String.valueOf(cbArr.getSelectedItem());
+        String depTime = txtDepTime.getText();
+        String arrTime = txtFallTime.getText();
+        String baggage = txtBaggage.getText();
+        String depTer = txtDepTer.getText();
+        String arrTer = txtArrTer.getText();
+        if(baggage.isEmpty()||depTer.isEmpty()||arrTer.isEmpty()||route.isEmpty()||depTime.isEmpty()||arrTime.isEmpty()||txtDepTer.getText().isEmpty()||txtArrTer.getText().isEmpty()||txtBaggage.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please fill all information!");
+            return;
+        }
+        if(depAir.equals(arrAir)){
+            JOptionPane.showMessageDialog(this, "Departure airport and Arrival airport can't be same");
+            return;
+        }
+        int fp = Integer.parseInt(txtFp.getText());
+        int bp = Integer.parseInt(txtBp.getText());
+        int ep = Integer.parseInt(txtEp.getText());
+        int fly = Integer.parseInt(txtFlyTime.getText());
+        
+        try{
+            ResultSet rs = st.executeQuery("Select * from airlinedb1.route");
+            int i=0;
+            while(rs.next()){
+                if(rs.getString("routename").equals(route)){
+                    JOptionPane.showMessageDialog(this, "Route name has existed");
+                    return;
+                }
+                i++;
+            }
+            i++;
+            String query ="insert into airlinedb1.route (idkey,routename,company, departureairport, fallairport, departuretime,falltime,departureterminal,fallterminal,flytime,firstprice,businessprice,economyprice,baggage) values(" +i+",'"+route+"','"+airlineCompany.getName()+"','"+depAir+"','"+arrAir+"','"+depTime+"','"+arrTime+"','"+depTer+"','"+ arrTer +"',"+fly+","+fp+","+bp+","+ep+",'"+baggage+ "')";
+            st.executeUpdate(query);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+ 
+        }   
+        
+        populateTable();
+        
+        txtRN.setText("");
+        txtFlyTime.setText("");
+        txtDepTime.setText("");
+        txtFallTime.setText("");
+        txtDepTer.setText("");
+        txtArrTer.setText("");
+        txtBaggage.setText("");
+        
+        JOptionPane.showMessageDialog(this, "Route added");
+
+    }//GEN-LAST:event_AppplyActionPerformed
+
+    
 
     private void tblRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
 
-        //Set data to text field when raw is selected
-        key = Integer.parseInt(tblModel.getValueAt(tblRoute.getSelectedRow(), 0).toString());
-        String tblRouteName = tblModel.getValueAt(tblRoute.getSelectedRow(), 1).toString();
-        String tblCompany = tblModel.getValueAt(tblRoute.getSelectedRow(), 2).toString();
-        String tblDepAirport = tblModel.getValueAt(tblRoute.getSelectedRow(), 3).toString();
-        String tblFallAirport = tblModel.getValueAt(tblRoute.getSelectedRow(), 4).toString();
-        String tblDepTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 5).toString();
-        String tblFallTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 6).toString();
-        String tblFlyTime = tblModel.getValueAt(tblRoute.getSelectedRow(), 7).toString();
-        String tblType = tblModel.getValueAt(tblRoute.getSelectedRow(), 8).toString();
-        String tblFp = tblModel.getValueAt(tblRoute.getSelectedRow(), 9).toString();
-        String tblBp = tblModel.getValueAt(tblRoute.getSelectedRow(), 10).toString();
-        String tblEp = tblModel.getValueAt(tblRoute.getSelectedRow(), 11).toString();
-        String tblDepTerminal = tblModel.getValueAt(tblRoute.getSelectedRow(), 12).toString();
-        String tblFallTerminal = tblModel.getValueAt(tblRoute.getSelectedRow(), 13).toString();
-        String tblBaggage = tblModel.getValueAt(tblRoute.getSelectedRow(), 14).toString();
-
-        //Set to text field
-        txtRN.setText(tblRouteName);
-        cbCompany.setSelectedItem(tblCompany);
-        cbDepAirport.setSelectedItem(tblDepAirport);
-        cbFallAirport.setSelectedItem(tblFallAirport);
-        txtFlyTime.setText(tblFlyTime);
-        txtDepTime.setText(tblDepTime);
-        txtFallTime.setText(tblFallTime);
-        cbAirplaneType.setSelectedItem(tblType);
-        txtFp.setText(tblFp);
-        txtBp.setText(tblBp);
-        txtEp.setText(tblEp);
-        cbDepTerminal.setSelectedItem(tblDepTerminal);
-        cbFallTerminal.setSelectedItem(tblFallTerminal);
-        cbBaggage.setSelectedItem(tblBaggage);
 
 
     }//GEN-LAST:event_tblRouteMouseClicked
-
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        // TODO add your handling code here:
-        //clear table first
-        //Get tblList first
-        DefaultTableModel model = (DefaultTableModel) tblRoute.getModel();
-        tblRoute.setModel(model);
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-        tblRoute.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
-        //populate
-        clear();
-
-    }//GEN-LAST:event_txtSearchKeyPressed
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void txtDepTimeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepTimeKeyPressed
         // TODO add your handling code here:
@@ -762,34 +505,37 @@ public class RouteUi extends javax.swing.JPanel {
     private void txtRNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRNKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRNKeyPressed
-    private void clear() {
+
+    private void txtDepTerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepTerKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepTerKeyPressed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        // TODO add your handling code here:
         txtRN.setText("");
-        cbCompany.setSelectedItem("<choose a company>");
-        cbDepAirport.setSelectedItem("<choose an airport>");
-        cbFallAirport.setSelectedItem("<choose an airport>");
         txtFlyTime.setText("");
         txtDepTime.setText("");
         txtFallTime.setText("");
-        cbAirplaneType.setSelectedItem("<choose a type>");
-        txtFp.setText("");
+        txtDepTer.setText("");
+        txtArrTer.setText("");
+        txtBaggage.setText("");
         txtBp.setText("");
+        txtFp.setText("");
         txtEp.setText("");
-        cbDepTerminal.setSelectedItem("<choose a terminal>");
-        cbFallTerminal.setSelectedItem("<choose a terminal>");
-        cbBaggage.setSelectedItem("<choose a baggage>");
+        
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
-    }
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void txtFallTimeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFallTimeKeyTyped
+        // TODO add your handling code here:
 
-        clear();
-    }//GEN-LAST:event_btnClearActionPerformed
+    }//GEN-LAST:event_txtFallTimeKeyTyped
 
-    private void btnRetrieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel) tblRoute.getModel();
-        displayRoute();
-
-
-    }//GEN-LAST:event_btnRetrieveActionPerformed
+    private void txtFlyTimeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFlyTimeKeyTyped
+        // TODO add your handling code here:
+        char ch = evt.getKeyChar();
+        if(ch<'0'||ch>'9')
+            evt.consume();
+    }//GEN-LAST:event_txtFlyTimeKeyTyped
 
     private void txtFpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFpKeyPressed
         // TODO add your handling code here:
@@ -797,26 +543,17 @@ public class RouteUi extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnRetrieve;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton Appply;
+    private javax.swing.JButton btnSave1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbAirplaneType;
-    private javax.swing.JComboBox<String> cbBaggage;
-    private javax.swing.JComboBox<String> cbCompany;
-    private javax.swing.JComboBox<String> cbDepAirport;
-    private javax.swing.JComboBox<String> cbDepTerminal;
-    private javax.swing.JComboBox<String> cbFallAirport;
-    private javax.swing.JComboBox<String> cbFallTerminal;
+    private javax.swing.JComboBox<String> cbArr;
+    private javax.swing.JComboBox<String> cbDep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblId10;
-    private javax.swing.JLabel lblId11;
-    private javax.swing.JLabel lblId12;
     private javax.swing.JLabel lblId17;
     private javax.swing.JLabel lblId18;
     private javax.swing.JLabel lblId19;
@@ -825,18 +562,18 @@ public class RouteUi extends javax.swing.JPanel {
     private javax.swing.JLabel lblId21;
     private javax.swing.JLabel lblId22;
     private javax.swing.JLabel lblId23;
-    private javax.swing.JLabel lblId8;
     private javax.swing.JLabel lblId9;
-    private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblRoute;
+    private javax.swing.JTextField txtArrTer;
+    private javax.swing.JTextField txtBaggage;
     private javax.swing.JTextField txtBp;
+    private javax.swing.JTextField txtDepTer;
     private javax.swing.JTextField txtDepTime;
     private javax.swing.JTextField txtEp;
     private javax.swing.JTextField txtFallTime;
     private javax.swing.JTextField txtFlyTime;
     private javax.swing.JTextField txtFp;
     private javax.swing.JTextField txtRN;
-    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
 //    private void populateTable() {

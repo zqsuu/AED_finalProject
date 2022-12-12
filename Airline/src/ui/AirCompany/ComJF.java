@@ -339,7 +339,7 @@ public class ComJF extends javax.swing.JFrame {
     private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
 
         
-        AirplaneUi airplane = new AirplaneUi(airplaneList);
+        AirplaneUi airplane = new AirplaneUi(airlineCompany);
         sysSplit.setRightComponent(airplane);
 
     }//GEN-LAST:event_tabAirplaneMouseClicked
@@ -359,26 +359,20 @@ public class ComJF extends javax.swing.JFrame {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        RouteUi route = new RouteUi(routeList);
+        RouteUi route = new RouteUi(airlineCompany);
         sysSplit.setRightComponent(route);
 
     }//GEN-LAST:event_tabRouteMouseClicked
 
     private void tabIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIncomeMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
-        //        EncounterManagement encounterManagement = new EncounterManagement(enList);
-        //        sysSplit.setRightComponent(encounterManagement);
+        IncomeUi income = new IncomeUi(airlineCompany);
+        sysSplit.setRightComponent(income);
 
     }//GEN-LAST:event_tabIncomeMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         this.setVisible(false);
-        LogIn login = new LogIn();
         login.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
