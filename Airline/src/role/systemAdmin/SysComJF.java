@@ -4,12 +4,13 @@
  */
 package role.systemAdmin;
 
-import ui.AirCompany.AirplaneUi;
-import ui.AirCompany.RouteUi;
-import ui.AirCompany.EmployeeUi;
-import ui.AirCompany.RouteCrewUi;
+import role.sysCompany.AirplaneUi;
+import role.sysCompany.RouteUi;
+import role.sysCompany.RouteCrewUi;
+import role.sysCompany.IncomeUi;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
+import role.sysCompany.EmployeeUi;
 import ui.airline.LogIn;
 
 /**
@@ -350,30 +351,21 @@ public class SysComJF extends javax.swing.JFrame {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        AirplaneUi airplane = new AirplaneUi(airplaneList);
+        AirplaneUi airplane = new AirplaneUi();
         sysSplit.setRightComponent(airplane);
 
     }//GEN-LAST:event_tabAirplaneMouseClicked
 
     private void tabCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCrewMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
-        SysEmployeeUi employee = new SysEmployeeUi(airlineCompany);
+        
+        EmployeeUi employee = new EmployeeUi();
         sysSplit.setRightComponent(employee);
 
     }//GEN-LAST:event_tabCrewMouseClicked
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
         RouteUi route = new RouteUi(routeList);
         sysSplit.setRightComponent(route);
 
@@ -381,13 +373,8 @@ public class SysComJF extends javax.swing.JFrame {
 
     private void tabIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIncomeMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
-        //        EncounterManagement encounterManagement = new EncounterManagement(enList);
-        //        sysSplit.setRightComponent(encounterManagement);
+        IncomeUi income = new IncomeUi(airlineCompany);
+        sysSplit.setRightComponent(income);
 
     }//GEN-LAST:event_tabIncomeMouseClicked
 

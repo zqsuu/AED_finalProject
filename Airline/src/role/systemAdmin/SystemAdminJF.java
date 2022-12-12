@@ -4,10 +4,7 @@
  */
 package role.systemAdmin;
 
-import model.Airport;
-import ui.AirCompany.ComJF;
-import ui.Airplane.ManufacturerJF;
-import ui.Airport.AirportJF;
+
 import ui.airline.LogIn;
 
 /**
