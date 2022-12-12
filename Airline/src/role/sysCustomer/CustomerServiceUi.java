@@ -40,21 +40,12 @@ public class CustomerServiceUi extends javax.swing.JPanel {
         
         initComponents();
         
-        
-        
-        
-        cbAirport.removeAllItems();
-        
         try{
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
             
             populateTable();
             
-            ResultSet rs = st.executeQuery("Select * from airlinedb1.airport");
-            while(rs.next()){
-                cbAirport.addItem(rs.getString("name"));
-            }
             
             String content;
             String[] time;
