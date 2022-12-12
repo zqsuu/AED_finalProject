@@ -11,6 +11,7 @@ import role.sysCompany.IncomeUi;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
 import role.sysCompany.EmployeeUi;
+import role.sysCompany.OrderUi;
 import ui.airline.LogIn;
 
 /**
@@ -72,6 +73,8 @@ public class SysComJF extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        tabOrder = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,7 +188,7 @@ public class SysComJF extends javax.swing.JFrame {
         tabIncomeLayout.setVerticalGroup(
             tabIncomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabIncomeLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -258,6 +261,32 @@ public class SysComJF extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tabOrder.setBackground(new java.awt.Color(255, 0, 0));
+        tabOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabOrderMouseClicked(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("ORDER");
+
+        javax.swing.GroupLayout tabOrderLayout = new javax.swing.GroupLayout(tabOrder);
+        tabOrder.setLayout(tabOrderLayout);
+        tabOrderLayout.setHorizontalGroup(
+            tabOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        tabOrderLayout.setVerticalGroup(
+            tabOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabOrderLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
         javax.swing.GroupLayout sysMenuPanelLayout = new javax.swing.GroupLayout(sysMenuPanel);
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
@@ -268,6 +297,7 @@ public class SysComJF extends javax.swing.JFrame {
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabRouteCrew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tabOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +312,9 @@ public class SysComJF extends javax.swing.JFrame {
                 .addComponent(tabIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tabRouteCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -387,16 +419,19 @@ public class SysComJF extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLogoutMouseClicked
 
     private void tabRouteCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteCrewMouseClicked
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabRouteCrew.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
+        
         RouteCrewUi routeCrew = new RouteCrewUi();
         sysSplit.setRightComponent(routeCrew);
 
     }//GEN-LAST:event_tabRouteCrewMouseClicked
+
+    private void tabOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabOrderMouseClicked
+        
+        OrderUi order = new OrderUi();
+        sysSplit.setRightComponent(order);
+        
+        
+    }//GEN-LAST:event_tabOrderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -439,6 +474,7 @@ public class SysComJF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -451,6 +487,7 @@ public class SysComJF extends javax.swing.JFrame {
     private javax.swing.JPanel tabCrew;
     private javax.swing.JPanel tabIncome;
     private javax.swing.JPanel tabLogout;
+    private javax.swing.JPanel tabOrder;
     private javax.swing.JPanel tabRoute;
     private javax.swing.JPanel tabRouteCrew;
     // End of variables declaration//GEN-END:variables

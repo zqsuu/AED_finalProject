@@ -39,10 +39,9 @@ public class RouteUi extends javax.swing.JPanel {
     Connection con;
     Statement st;
 
-    public RouteUi(AirlineCompany air) {
+    public RouteUi() {
         initComponents();
         
-        airlineCompany = air;
         
         try{
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
@@ -404,7 +403,7 @@ public class RouteUi extends javax.swing.JPanel {
         try{
             ResultSet rs = st.executeQuery("Select * from airlinedb1.route");
             while(rs.next()){
-                if(rs.getString("company").equals(airlineCompany.getName())){
+                
                     Object[] row = new Object[10];
                     row[0] = rs.getString("routename");
                     row[1] = rs.getString("departureairport");
@@ -421,7 +420,7 @@ public class RouteUi extends javax.swing.JPanel {
                     row[9] = rs.getInt("economyprice");
                     model.addRow(row);  
                     
-                }
+                
                 
             }
         }catch(Exception e){

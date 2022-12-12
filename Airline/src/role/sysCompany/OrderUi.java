@@ -4,7 +4,6 @@
  */
 package role.sysCompany;
 
-import ui.AirCompany.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,9 +13,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.AirlineCompany;
-import model.FlightReservation;
-import model.Route;
-
 
 /**
  *
@@ -33,9 +29,8 @@ public class OrderUi extends javax.swing.JPanel {
     Connection con;
     Statement st;
     
-    public OrderUi(AirlineCompany air){
+    public OrderUi(){
         initComponents();
-        airlineCompany = air;
         
         
         try{
@@ -367,7 +362,7 @@ public class OrderUi extends javax.swing.JPanel {
         try{
             ResultSet rs = st.executeQuery("Select * from airlinedb1.flightreservation");
             while(rs.next()){
-                if(rs.getString("company").equals(airlineCompany.getName())){
+                
                     if(state.equals("all")){
                         Object[] row = new Object[7];
                         row[0] = rs.getString("reservationid");
@@ -390,7 +385,7 @@ public class OrderUi extends javax.swing.JPanel {
                         row[6] = rs.getInt("price");
                         model.addRow(row);  
                     }
-                }
+                
                 
             }
         }catch(Exception e){

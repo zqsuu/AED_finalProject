@@ -98,26 +98,21 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
+                              <Component id="Appply" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                              <Component id="btnSave1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
-                                      <Component id="Appply" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="btnSave1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                      <Component id="lblId23" min="-2" pref="129" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtFp" min="-2" pref="188" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblId22" min="-2" pref="147" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtBp" min="-2" pref="185" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="lblId23" min="-2" pref="129" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtFp" min="-2" pref="188" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblId22" min="-2" pref="147" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtBp" min="-2" pref="185" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>

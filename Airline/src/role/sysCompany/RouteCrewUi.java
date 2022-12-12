@@ -4,7 +4,6 @@
  */
 package role.sysCompany;
 
-import ui.AirCompany.*;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -14,8 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.AirlineCompany;
-import model.EmployeeArrangeList;
 import net.proteanit.sql.DbUtils;
 
 /**
