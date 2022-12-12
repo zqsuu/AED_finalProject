@@ -84,8 +84,6 @@ public class CustomerServiceUi extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomerService = new javax.swing.JTable();
-        lblSearchContent = new javax.swing.JLabel();
-        cbAirport = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 102));
 
@@ -127,16 +125,6 @@ public class CustomerServiceUi extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCustomerService);
 
-        lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        lblSearchContent.setForeground(new java.awt.Color(255, 255, 255));
-        lblSearchContent.setText("Airport");
-
-        cbAirport.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbAirportItemStateChanged(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,12 +134,6 @@ public class CustomerServiceUi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1162, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(531, 531, 531)
-                .addComponent(lblSearchContent)
-                .addGap(18, 18, 18)
-                .addComponent(cbAirport, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +142,7 @@ public class CustomerServiceUi extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchContent)
-                    .addComponent(cbAirport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addContainerGap(440, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,20 +152,12 @@ public class CustomerServiceUi extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tblCustomerServiceMouseClicked
 
-    private void cbAirportItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAirportItemStateChanged
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_cbAirportItemStateChanged
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbAirport;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblSearchContent;
     private javax.swing.JTable tblCustomerService;
     // End of variables declaration//GEN-END:variables
 
