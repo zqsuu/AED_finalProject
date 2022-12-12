@@ -5,13 +5,13 @@
 package role.systemAdmin;
 
 import role.sysCompany.AirplaneUi;
-import role.sysCompany.RouteUi;
 import role.sysCompany.RouteCrewUi;
 import role.sysCompany.IncomeUi;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
 import role.sysCompany.EmployeeUi;
 import role.sysCompany.OrderUi;
+import role.sysCompany.RouteUi;
 import ui.airline.LogIn;
 
 /**
@@ -398,7 +398,7 @@ public class SysComJF extends javax.swing.JFrame {
 
     private void tabRouteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteMouseClicked
 
-        RouteUi route = new RouteUi(routeList);
+        RouteUi route = new RouteUi();
         sysSplit.setRightComponent(route);
 
     }//GEN-LAST:event_tabRouteMouseClicked

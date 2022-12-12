@@ -9,10 +9,9 @@ import model.Airport;
 import model.AirportList;
 import model.Customer;
 import model.CustomerList;
+import role.sysCustomer.CustomerServiceUi;
 import ui.airline.LogIn;
-import ui.customer.BookFlightUi;
-import ui.customer.CustomerUi;
-import ui.customer.ReservationUi;
+import role.sysCustomer.ReservationUi;
 
 /**
  *
@@ -52,12 +51,8 @@ public class SysCustomerJF extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tabService = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        tabCustomer = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         tabLogout = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        tabBook = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         sysEncounterPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,32 +116,6 @@ public class SysCustomerJF extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        tabCustomer.setBackground(new java.awt.Color(255, 0, 0));
-        tabCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabCustomerMouseClicked(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CUSTOMER");
-
-        javax.swing.GroupLayout tabCustomerLayout = new javax.swing.GroupLayout(tabCustomer);
-        tabCustomer.setLayout(tabCustomerLayout);
-        tabCustomerLayout.setHorizontalGroup(
-            tabCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        tabCustomerLayout.setVerticalGroup(
-            tabCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabCustomerLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-
         tabLogout.setBackground(new java.awt.Color(153, 0, 0));
         tabLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,52 +142,20 @@ public class SysCustomerJF extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        tabBook.setBackground(new java.awt.Color(255, 0, 0));
-        tabBook.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabBookMouseClicked(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("BOOK");
-
-        javax.swing.GroupLayout tabBookLayout = new javax.swing.GroupLayout(tabBook);
-        tabBook.setLayout(tabBookLayout);
-        tabBookLayout.setHorizontalGroup(
-            tabBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        tabBookLayout.setVerticalGroup(
-            tabBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabBookLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-
         javax.swing.GroupLayout sysMenuPanelLayout = new javax.swing.GroupLayout(sysMenuPanel);
         sysMenuPanel.setLayout(sysMenuPanelLayout);
         sysMenuPanelLayout.setHorizontalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sysMenuPanelLayout.setVerticalGroup(
             sysMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sysMenuPanelLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(tabCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(157, 157, 157)
                 .addComponent(tabReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(76, 76, 76)
                 .addComponent(tabService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                 .addComponent(tabLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,30 +221,17 @@ public class SysCustomerJF extends javax.swing.JFrame {
     private void tabReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabReservationMouseClicked
 
 
-        ReservationUi reservation = new ReservationUi(customer);
+        ReservationUi reservation = new ReservationUi();
         sysSplit.setRightComponent(reservation);
 
     }//GEN-LAST:event_tabReservationMouseClicked
 
     private void tabServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabServiceMouseClicked
 
-        tabReservation.setVisible(true);
-        tabService.setVisible(true);
-        tabCustomer.setVisible(true);
-        //        tabEncounter.setVisible(true);
-        tabLogout.setVisible(true);
-        //        DoctorProfile doctorProfile = new DoctorProfile(dlist);
-        //        sysSplit.setRightComponent(doctorProfile);
+        CustomerServiceUi reservation = new CustomerServiceUi();
+        sysSplit.setRightComponent(reservation);
 
     }//GEN-LAST:event_tabServiceMouseClicked
-
-    private void tabCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCustomerMouseClicked
-
-        CustomerUi customerUi = new CustomerUi(customer);
-        
-        sysSplit.setRightComponent(customerUi);
-
-    }//GEN-LAST:event_tabCustomerMouseClicked
 
     private void tabLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLogoutMouseClicked
         this.setVisible(false);
@@ -315,13 +239,6 @@ public class SysCustomerJF extends javax.swing.JFrame {
         sysJF.setVisible(true);
 
     }//GEN-LAST:event_tabLogoutMouseClicked
-
-    private void tabBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBookMouseClicked
-        // TODO add your handling code here:
-        BookFlightUi book = new BookFlightUi(customer,login.getAirCompany());
-        sysSplit.setRightComponent(book);
-        
-    }//GEN-LAST:event_tabBookMouseClicked
 
     /**
      * @param args the command line arguments
@@ -379,15 +296,11 @@ public class SysCustomerJF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel sysEncounterPanel;
     private javax.swing.JPanel sysMenuPanel;
     private javax.swing.JSplitPane sysSplit;
-    private javax.swing.JPanel tabBook;
-    private javax.swing.JPanel tabCustomer;
     private javax.swing.JPanel tabLogout;
     private javax.swing.JPanel tabReservation;
     private javax.swing.JPanel tabService;
