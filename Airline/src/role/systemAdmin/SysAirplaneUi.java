@@ -392,7 +392,7 @@ public class SysAirplaneUi extends javax.swing.JPanel {
     private void airplaneCount() {
         try {
             st1 = (Statement) con.createStatement();
-            rs1 = st.executeQuery("select Max(idairplane) from airlinedb1.airplanetype");
+            rs1 = st1.executeQuery("select Max(idairplane) from airlinedb1.airplanetype");
             rs1.next();
             idairplanetype = rs1.getInt(1) + 1;
         } catch (Exception e) {
