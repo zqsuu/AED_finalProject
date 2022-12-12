@@ -461,7 +461,7 @@ public class CustomerServiceUi extends javax.swing.JPanel {
                     row[1] = rs.getString("bus");
                     row[2] = rs.getString("luggage");
                     row[3] = rs.getString("food");
-                    row[4] = rs.getString("check");
+                    row[4] = rs.getString("checkin");
                     model.addRow(row);   
                 }
                 
