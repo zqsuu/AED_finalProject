@@ -63,7 +63,7 @@ public class IncomeUi extends javax.swing.JPanel {
                 }
             }
             
-            for(int i=0;i<model.getRowCount();i++){
+            for(int i=0;i<model.getRowCount()+1;i++){
                 rs = st.executeQuery("Select * from airlinedb1.airplanetype");
                 while(rs.next()){
                     if(rs.getString("type").equals(String.valueOf(model.getValueAt(i, 4)))){
@@ -85,7 +85,7 @@ public class IncomeUi extends javax.swing.JPanel {
             int com = 0;
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-            for(int i=0;i<model.getRowCount();i++){
+            for(int i=0;i<model.getRowCount()+1;i++){
                 com+=Integer.parseInt(String.valueOf(model.getValueAt(i, 1)))-Integer.parseInt(String.valueOf(model.getValueAt(i, 2)))-Integer.parseInt(String.valueOf(model.getValueAt(i, 3)));
                 dataset.addValue(Integer.parseInt(String.valueOf(model.getValueAt(i, 1))), "A", String.valueOf(model.getValueAt(i, 0)));
                 

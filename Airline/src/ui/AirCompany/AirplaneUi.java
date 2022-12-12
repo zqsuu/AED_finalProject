@@ -488,7 +488,7 @@ public class AirplaneUi extends javax.swing.JPanel {
                     model.addRow(row);
                 }    
             }
-            for(int i=0;i<model.getRowCount();i++){
+            for(int i=0;i<model.getRowCount()+1;i++){
                 rs = st.executeQuery("Select * from airlinedb1.airplanetype");
                 while(rs.next()){
                     if(rs.getString("type").equals(String.valueOf(model.getValueAt(i, 1)))){
