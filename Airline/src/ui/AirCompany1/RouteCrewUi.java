@@ -31,10 +31,10 @@ public class RouteCrewUi extends javax.swing.JPanel {
     
     public RouteCrewUi() {
         initComponents();
-        arrangeCount();
         displayArrange();
         displayRNList();
         displayEmployee();
+        arrangeCount();
         clear();
 
 //        populateTable();
@@ -378,20 +378,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
     int idarrange = 0;
     int arrangeId = 0;
 
-    private void arrangeCount() {
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st1 = (Statement) con.createStatement();
-            rs1 = st1.executeQuery("select Max(idarrange) from airlinedb1.routecrew");
-            rs1.next();
-            idarrange = rs1.getInt(1) + 1;
-            rs1.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void displayArrange() {
 
         try {
@@ -404,6 +390,20 @@ public class RouteCrewUi extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    private void arrangeCount() {
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st1 = (Statement) con.createStatement();
+            rs1 = st1.executeQuery("select Max(idarrange) from airlinedb1.routecrew");
+            rs1.next();
+            idarrange = rs1.getInt(1) + 1;
+            rs1.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void displayRNList() {

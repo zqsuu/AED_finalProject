@@ -26,11 +26,13 @@ public class EmployeeUi extends javax.swing.JPanel {
      * Creates new form ViewJPanel
      */
     AirlineCompany employeeList;
+    String airport;
 
-    public EmployeeUi(AirlineCompany employeeList) {
+    public EmployeeUi(AirlineCompany employeeList, String airport) {
         initComponents();
 
         this.employeeList = employeeList;
+        this.airport = airport;
         displayEmployee();
         employeeCount();
         clear();
@@ -74,6 +76,8 @@ public class EmployeeUi extends javax.swing.JPanel {
         btnUpdate1 = new javax.swing.JButton();
         btnRetrieve = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        lblId8 = new javax.swing.JLabel();
+        txtRoute = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 102));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -122,20 +126,20 @@ public class EmployeeUi extends javax.swing.JPanel {
 
         tblCrew.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee Id", "ID", "NAME", "GENDER", "AGE", "ROLE", "FLY YEARS", "PASSWORD"
+                "Employee Id", "ID", "NAME", "GENDER", "AGE", "ROLE", "FLY YEARS", "PASSWORD", "ROUTE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -234,6 +238,12 @@ public class EmployeeUi extends javax.swing.JPanel {
             }
         });
 
+        lblId8.setForeground(new java.awt.Color(255, 255, 255));
+        lblId8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId8.setText("ROUTE");
+
+        txtRoute.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,7 +276,11 @@ public class EmployeeUi extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblId8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -347,7 +361,10 @@ public class EmployeeUi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId3))
+                    .addComponent(lblId3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblId8)))
                 .addContainerGap(178, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -376,7 +393,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
             st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.employee");
+            rs = st.executeQuery("Select idemployee,id,name,gender,age,role,flyyears,password,route from airlinedb1.employee Where company = '" + airport + "'");
             tblCrew.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
@@ -392,6 +409,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         cbRole.setSelectedItem("<choose a role>");
         txtFlyYears.setText("");
         txtPassword.setText("");
+        txtRoute.setText("");
 
     }
     private void tblCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCrewMouseClicked
@@ -407,6 +425,12 @@ public class EmployeeUi extends javax.swing.JPanel {
         String tblRole = tblModel.getValueAt(tblCrew.getSelectedRow(), 5).toString();
         String tblFlyYears = tblModel.getValueAt(tblCrew.getSelectedRow(), 6).toString();
         String tblPassword = tblModel.getValueAt(tblCrew.getSelectedRow(), 7).toString();
+        String tblRoute = null;
+        if (tblModel.getValueAt(tblCrew.getSelectedRow(), 8) == null) {
+            tblRoute = null;
+        } else {
+            tblRoute = tblModel.getValueAt(tblCrew.getSelectedRow(), 8).toString();
+        }
 
         //Set to text field
         txtId.setText(tblId);
@@ -424,6 +448,7 @@ public class EmployeeUi extends javax.swing.JPanel {
         cbRole.setSelectedItem(tblRole);
         txtFlyYears.setText(tblFlyYears);
         txtPassword.setText(tblPassword);
+        txtRoute.setText(tblRoute);
 
 
     }//GEN-LAST:event_tblCrewMouseClicked
@@ -466,10 +491,8 @@ public class EmployeeUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Datatype of Age/FlyYears should be int!");
             return;
         }
-        
-        
 
-        if ((!(rbtnFemale.isSelected()||rbtnMale.isSelected()))
+        if ((!(rbtnFemale.isSelected() || rbtnMale.isSelected()))
                 || txtId.getText().equals("")
                 || txtName.getText().equals("")
                 || txtAge.getText().equals("")
@@ -479,18 +502,18 @@ public class EmployeeUi extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Set All Data!");
         } else {
             try {
-                
+
                 employeeCount();
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?)");
+                PreparedStatement add = (PreparedStatement) con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?,?,?)");
                 add.setInt(1, idemployee);
                 add.setString(2, txtId.getText());
                 add.setString(3, txtName.getText());
                 String gender = null;
-                if(rbtnFemale.isSelected()) {
+                if (rbtnFemale.isSelected()) {
                     gender = "Female";
                 }
-                if(rbtnMale.isSelected()) {
+                if (rbtnMale.isSelected()) {
                     gender = "Male";
                 }
                 add.setString(4, gender);
@@ -498,7 +521,14 @@ public class EmployeeUi extends javax.swing.JPanel {
                 add.setString(6, cbRole.getSelectedItem().toString());
                 add.setString(7, txtFlyYears.getText());
                 add.setString(8, txtPassword.getText());
-
+                String route = txtRoute.getText();
+                if (route.isEmpty()) {
+                    add.setString(9, null);
+                } else {
+                    add.setString(9, route);
+                }
+                add.setString(10, employeeList.getName());
+                
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Employee saved successfully!");
                 con.close();
@@ -562,12 +592,12 @@ public class EmployeeUi extends javax.swing.JPanel {
             String id = txtId.getText();
             String name = txtName.getText();
             String gender = null;
-                if(rbtnFemale.isSelected()) {
-                    gender = "Female";
-                }
-                if(rbtnMale.isSelected()) {
-                    gender = "Male";
-                }
+            if (rbtnFemale.isSelected()) {
+                gender = "Female";
+            }
+            if (rbtnMale.isSelected()) {
+                gender = "Male";
+            }
             int age = Integer.parseInt(txtAge.getText());
             String role = cbRole.getSelectedItem().toString();
             int flyYears = Integer.parseInt(txtFlyYears.getText());
@@ -632,6 +662,7 @@ public class EmployeeUi extends javax.swing.JPanel {
     private javax.swing.JLabel lblId5;
     private javax.swing.JLabel lblId6;
     private javax.swing.JLabel lblId7;
+    private javax.swing.JLabel lblId8;
     private javax.swing.JLabel lblSearchContent;
     private javax.swing.JRadioButton rbtnFemale;
     private javax.swing.JRadioButton rbtnMale;
@@ -641,6 +672,7 @@ public class EmployeeUi extends javax.swing.JPanel {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtRoute;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 

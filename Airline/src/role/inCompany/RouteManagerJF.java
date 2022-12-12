@@ -263,7 +263,7 @@ public class RouteManagerJF extends javax.swing.JFrame {
 
     private void tabRouteCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRouteCrewMouseClicked
    
-        RouteCrewUi routeCrew = new RouteCrewUi(employeeArrangeList);
+        RouteCrewUi routeCrew = new RouteCrewUi();
         sysSplit.setRightComponent(routeCrew);
 
     }//GEN-LAST:event_tabRouteCrewMouseClicked

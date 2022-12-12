@@ -29,15 +29,12 @@ public class ComJF extends javax.swing.JFrame {
         this.login = login;
 
     }
+    
+    
     public ComJF(LogIn login,AirlineCompany air) {
         initComponents();
         this.login = login;
         airlineCompany = air;
-        //        if(routeList==null){
-//            routeList = new AirlineCompany();
-//        }else{
-//            this.routeList=routeList;
-//        }
         
     }
 
@@ -341,11 +338,7 @@ public class ComJF extends javax.swing.JFrame {
 
     private void tabAirplaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAirplaneMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
+        
         AirplaneUi airplane = new AirplaneUi(airplaneList);
         sysSplit.setRightComponent(airplane);
 
@@ -353,12 +346,8 @@ public class ComJF extends javax.swing.JFrame {
 
     private void tabCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCrewMouseClicked
 
-        tabAirplane.setVisible(true);
-        tabCrew.setVisible(true);
-        tabRoute.setVisible(true);
-        tabIncome.setVisible(true);
-        tabLogout.setVisible(true);
-        EmployeeUi employee = new EmployeeUi(employeeList);
+        
+        EmployeeUi employee = new EmployeeUi(airlineCompany, airlineCompany.getName());
         sysSplit.setRightComponent(employee);
 
     }//GEN-LAST:event_tabCrewMouseClicked

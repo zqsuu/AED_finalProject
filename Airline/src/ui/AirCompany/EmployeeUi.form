@@ -65,6 +65,10 @@
                       <Component id="lblId3" min="-2" pref="98" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtAge" min="-2" pref="185" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblId8" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtRoute" min="-2" pref="185" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -173,6 +177,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtAge" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblId3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Component id="txtRoute" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblId8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="178" max="32767" attributes="0"/>
           </Group>
@@ -286,19 +294,25 @@
         <Component class="javax.swing.JTable" name="tblCrew">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
+              <Table columnCount="9" rowCount="4">
                 <Column editable="false" title="Employee Id" type="java.lang.Integer"/>
                 <Column editable="false" title="ID" type="java.lang.String"/>
                 <Column editable="false" title="NAME" type="java.lang.String"/>
                 <Column editable="false" title="GENDER" type="java.lang.String"/>
                 <Column editable="false" title="AGE" type="java.lang.Integer"/>
                 <Column editable="false" title="ROLE" type="java.lang.String"/>
-                <Column editable="true" title="FLY YEARS" type="java.lang.Integer"/>
-                <Column editable="true" title="PASSWORD" type="java.lang.String"/>
+                <Column editable="false" title="FLY YEARS" type="java.lang.Integer"/>
+                <Column editable="false" title="PASSWORD" type="java.lang.String"/>
+                <Column editable="false" title="ROUTE" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -477,6 +491,20 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId8">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="ROUTE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtRoute">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
