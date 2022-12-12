@@ -4,7 +4,8 @@
  */
 package role.inCompany;
 
-import ui.AirCompany.*;
+import ui.AirCompany.EmployeeUi;
+import ui.AirCompany.RouteCrewUi;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
 import ui.airline.LogIn;

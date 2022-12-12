@@ -401,7 +401,7 @@ public class ComJF extends javax.swing.JFrame {
         tabRouteCrew.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        RouteCrewUi routeCrew = new RouteCrewUi(employeeArrangeList);
+        RouteCrewUi routeCrew = new RouteCrewUi();
         sysSplit.setRightComponent(routeCrew);
 
     }//GEN-LAST:event_tabRouteCrewMouseClicked

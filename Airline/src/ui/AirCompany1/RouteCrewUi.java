@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.AirCompany;
+package ui.AirCompany1;
 
+import ui.AirCompany.*;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -30,10 +31,10 @@ public class RouteCrewUi extends javax.swing.JPanel {
     
     public RouteCrewUi() {
         initComponents();
+        arrangeCount();
         displayArrange();
         displayRNList();
         displayEmployee();
-        arrangeCount();
         clear();
 
 //        populateTable();
@@ -377,20 +378,6 @@ public class RouteCrewUi extends javax.swing.JPanel {
     int idarrange = 0;
     int arrangeId = 0;
 
-    private void displayArrange() {
-
-        try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
-            st = (Statement) con.createStatement();
-            rs = st.executeQuery("Select * from airlinedb1.routecrew");
-            tblArrange.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
     private void arrangeCount() {
         try {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
@@ -403,6 +390,20 @@ public class RouteCrewUi extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
+    }
+
+    private void displayArrange() {
+
+        try {
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb1", "root", "Airline3306");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("Select * from airlinedb1.routecrew");
+            tblArrange.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void displayRNList() {

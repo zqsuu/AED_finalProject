@@ -4,7 +4,6 @@
  */
 package ui.Airplane;
 
-import ui.AirCompany.*;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;

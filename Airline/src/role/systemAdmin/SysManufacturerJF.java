@@ -4,7 +4,6 @@
  */
 package role.systemAdmin;
 
-import ui.AirCompany.*;
 import model.AirlineCompany;
 import model.EmployeeArrangeList;
 import ui.airline.LogIn;

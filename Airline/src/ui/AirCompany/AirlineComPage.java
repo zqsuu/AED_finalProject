@@ -413,7 +413,7 @@ public class AirlineComPage extends javax.swing.JPanel {
         tabRouteCrew.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        RouteCrewUi routeCrew = new RouteCrewUi(employeeArrangeList);
+        RouteCrewUi routeCrew = new RouteCrewUi();
         sysSplit.setRightComponent(routeCrew);
         
         

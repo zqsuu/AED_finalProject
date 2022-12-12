@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package role.systemAdmin;
+package ui.Airplane;
 
+import role.systemAdmin.*;
 import ui.Airplane.*;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
