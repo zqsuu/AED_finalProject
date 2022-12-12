@@ -94,20 +94,20 @@ public class CustomerServiceUi extends javax.swing.JPanel {
 
         tblCustomerService.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "AIRPORT", "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN"
+                "AIRPORT", "SHUTTLE BUS", "LUGGAGE STORAGE", "FOOD SERVICE", "CHECK-IN", "CUSTOMER"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -170,12 +170,13 @@ public class CustomerServiceUi extends javax.swing.JPanel {
             ResultSet rs = st.executeQuery("Select * from airlinedb1.customerservice");
             while(rs.next()){
                 
-                    Object[] row = new Object[5];
+                    Object[] row = new Object[6];
                     row[0] = rs.getString("airport");
                     row[1] = rs.getString("bus");
                     row[2] = rs.getString("luggage");
                     row[3] = rs.getString("food");
                     row[4] = rs.getString("check");
+                    row[5] = rs.getString("customer");
                     model.addRow(row);   
                 
                 
