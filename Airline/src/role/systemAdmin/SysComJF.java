@@ -362,7 +362,7 @@ public class SysComJF extends javax.swing.JFrame {
         tabRoute.setVisible(true);
         tabIncome.setVisible(true);
         tabLogout.setVisible(true);
-        EmployeeUi employee = new EmployeeUi(employeeList);
+        SysEmployeeUi employee = new SysEmployeeUi(airlineCompany);
         sysSplit.setRightComponent(employee);
 
     }//GEN-LAST:event_tabCrewMouseClicked

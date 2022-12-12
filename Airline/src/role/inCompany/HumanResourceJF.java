@@ -278,7 +278,7 @@ public class HumanResourceJF extends javax.swing.JFrame {
 
     private void tabCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCrewMouseClicked
 
-        EmployeeUi employee = new EmployeeUi(employeeList);
+        EmployeeUi employee = new EmployeeUi(airlineCompany, airlineCompany.getName());
         sysSplit.setRightComponent(employee);
 
     }//GEN-LAST:event_tabCrewMouseClicked
